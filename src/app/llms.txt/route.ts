@@ -15,7 +15,7 @@ export function GET() {
     "",
     `> ${SITE.description}`,
     "",
-    `${SITE.name} is operated by ${SITE.parent} (${SITE.parentUrl}). Pricing, minimums and timelines are quoted per account after an application at ${SITE.url}/apply; none are published.`,
+    `${SITE.name} is operated by ${SITE.parent} (${SITE.parentUrl}). Wholesale pricing is in the catalog at ${SITE.url}/catalog; everything else is quoted. To start, choose services at ${SITE.url}/get-started and send the request on WhatsApp or to ${SITE.email}.`,
     "",
     RUO_NOTICE,
     "",
@@ -30,7 +30,7 @@ export function GET() {
     "## Company",
     "",
     `- [Standards](${SITE.url}/standards): How supply is documented, and the research-use-only line partners are held to.`,
-    `- [Apply](${SITE.url}/apply): One application for any combination of services, reviewed by a person.`,
+    `- [Get started](${SITE.url}/get-started): Pick services and send the request on WhatsApp or by email.`,
     `- Contact: ${SITE.email}`,
     "",
   ];

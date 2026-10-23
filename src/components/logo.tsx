@@ -1,17 +1,17 @@
 import Link from "next/link";
 import { SITE } from "@/lib/site";
 
-/** Wordmark: a hairline gold vial outline beside the name in Fraunces. */
-export function Logo({ className = "" }: { className?: string }) {
+/** Wordmark: the Vanta vial outline in gold beside the name. */
+export function Logo() {
   return (
-    <Link href="/" className={`group inline-flex items-center gap-2.5 ${className}`} aria-label={`${SITE.name} home`}>
-      <svg width="18" height="24" viewBox="0 0 18 24" fill="none" aria-hidden="true">
-        <rect x="5" y="0.75" width="8" height="3.5" rx="0.75" stroke="var(--gold)" strokeWidth="1" />
-        <path d="M3.5 6.5h11v14.25a2.5 2.5 0 0 1-2.5 2.5H6a2.5 2.5 0 0 1-2.5-2.5V6.5Z" stroke="var(--gold)" strokeWidth="1" />
-        <path d="M3.5 13.5h11" stroke="var(--gold)" strokeOpacity="0.5" strokeWidth="1" />
+    <Link href="/" className="inline-flex items-center gap-2" aria-label={`${SITE.name} home`}>
+      <svg width="16" height="22" viewBox="0 0 18 24" fill="none" aria-hidden="true">
+        <rect x="5" y="0.9" width="8" height="3.4" rx="0.8" stroke="var(--gold-fill)" strokeWidth="1.5" />
+        <path d="M3.5 6.5h11v14.25a2.5 2.5 0 0 1-2.5 2.5H6a2.5 2.5 0 0 1-2.5-2.5V6.5Z" stroke="var(--ink)" strokeWidth="1.5" />
+        <path d="M3.5 13.5h11" stroke="var(--gold-fill)" strokeWidth="1.5" />
       </svg>
-      <span className="font-display text-[19px] font-medium tracking-[-0.02em] text-white">
-        Vanta <span className="text-white/60 transition-colors group-hover:text-white/80">Foundry</span>
+      <span className="text-[17px] font-semibold tracking-[-0.03em] text-ink">
+        Vanta <span className="text-muted">Foundry</span>
       </span>
     </Link>
   );

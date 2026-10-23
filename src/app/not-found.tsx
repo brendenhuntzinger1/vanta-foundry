@@ -3,14 +3,14 @@ import { Container } from "@/components/blocks";
 
 export default function NotFound() {
   return (
-    <section className="halo relative pt-40 pb-10">
+    <section className="pt-24 pb-10">
       <Container className="text-center">
-        <p className="eyebrow">404</p>
-        <h1 className="display mt-5 text-[48px] text-white sm:text-[64px]">Not on file.</h1>
-        <p className="mx-auto mt-5 max-w-md text-[15.5px] leading-7 text-muted">That page doesn&rsquo;t exist. The services and guides do.</p>
-        <div className="mt-9 flex justify-center gap-3">
-          <Link href="/" className="btn-gold rounded-full px-6 py-3 text-[14px]">Home</Link>
-          <Link href="/guides" className="btn-ghost rounded-full px-6 py-3 text-[14px]">Guides</Link>
+        <h1 className="h-display text-[44px] text-ink sm:text-[60px]">Page not found.</h1>
+        <p className="mx-auto mt-4 max-w-md text-[17px] leading-[1.6] text-body">That page doesn&rsquo;t exist. Try one of these instead.</p>
+        <div className="mt-8 flex flex-wrap justify-center gap-3">
+          <Link href="/" className="btn btn-dark h-11 px-6 text-[15px]">Home</Link>
+          <Link href="/get-started" className="btn btn-light h-11 px-6 text-[15px]">Get started</Link>
+          <Link href="/catalog" className="btn btn-light h-11 px-6 text-[15px]">Catalog</Link>
         </div>
       </Container>
     </section>

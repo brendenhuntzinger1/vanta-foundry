@@ -154,7 +154,7 @@ export const GUIDES: Guide[] = [
         ],
       },
     ],
-    services: ["white-label", "launch"],
+    services: ["white-label", "factory-direct"],
   },
   {
     slug: "why-run-a-backup-payment-processor",
@@ -196,7 +196,7 @@ export const GUIDES: Guide[] = [
         ],
       },
     ],
-    services: ["payments", "storefronts"],
+    services: ["payment-processing", "website-development"],
   },
   {
     slug: "research-use-only-storefront-copy",
@@ -240,7 +240,7 @@ export const GUIDES: Guide[] = [
         ],
       },
     ],
-    services: ["storefronts", "launch"],
+    services: ["website-development", "white-label"],
   },
 ];
 

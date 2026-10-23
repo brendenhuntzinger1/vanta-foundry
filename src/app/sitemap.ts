@@ -8,7 +8,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return [
     { url: u("/"), changeFrequency: "weekly", priority: 1 },
     ...SERVICES.map((s) => ({ url: u(`/${s.slug}`), changeFrequency: "monthly" as const, priority: 0.9 })),
-    { url: u("/apply"), changeFrequency: "yearly", priority: 0.7 },
+    { url: u("/get-started"), changeFrequency: "yearly", priority: 0.8 },
     { url: u("/standards"), changeFrequency: "monthly", priority: 0.6 },
     { url: u("/guides"), changeFrequency: "weekly", priority: 0.7 },
     ...GUIDES.map((g) => ({ url: u(`/guides/${g.slug}`), lastModified: g.updated, changeFrequency: "monthly" as const, priority: 0.7 })),

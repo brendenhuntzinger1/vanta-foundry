@@ -36,26 +36,24 @@ export default async function GuidePage(props: PageProps<"/guides/[slug]">) {
 
   return (
     <>
-      <article className="halo grain relative pt-32 sm:pt-40">
-        <Container className="relative">
-          <nav aria-label="Breadcrumb" className="text-[12.5px] text-faint">
-            <Link href="/guides" className="hover:text-white">
-              Guides
-            </Link>
-          </nav>
+      <article className="pt-12 sm:pt-16">
+        <Container>
           <div className="mx-auto max-w-[720px]">
-            <h1 className="display mt-8 text-[40px] text-white sm:text-[58px]">{g.title}</h1>
-            <p className="mt-5 text-[13px] text-faint">
+            <nav aria-label="Breadcrumb" className="text-[13.5px] text-muted">
+              <Link href="/guides" className="hover:text-ink">Guides</Link>
+            </nav>
+            <h1 className="h-display mt-6 text-[38px] text-ink sm:text-[54px]">{g.title}</h1>
+            <p className="mt-4 text-[14px] text-muted">
               Updated <time dateTime={g.updated}>{updated}</time> · {SITE.name}
             </p>
 
-            <div className="mt-12 rounded-2xl border border-gold/25 bg-gold/[0.04] p-7">
-              <p className="text-[12px] uppercase tracking-[0.18em] text-gold/80">Short answer</p>
-              <p className="mt-2 text-[13.5px] text-white/50">{g.question}</p>
-              <p className="mt-4 text-[17px] leading-8 text-white/90">{g.answer}</p>
+            <div className="mt-10 rounded-2xl border border-line bg-bg-2 p-6 sm:p-7">
+              <p className="text-[14px] font-medium text-gold">Short answer</p>
+              <p className="mt-1 text-[14px] text-muted">{g.question}</p>
+              <p className="mt-3 text-[17.5px] leading-[1.65] text-ink">{g.answer}</p>
             </div>
 
-            <div className="prose-foundry mt-6">
+            <div className="prose-foundry mt-4">
               {g.sections.map((sec) => (
                 <section key={sec.h}>
                   <h2>{sec.h}</h2>
@@ -78,12 +76,12 @@ export default async function GuidePage(props: PageProps<"/guides/[slug]">) {
             </div>
 
             {services.length > 0 && (
-              <div className="mt-16 border-t border-line pt-10">
-                <p className="eyebrow">Related services</p>
-                <div className="mt-5 flex flex-wrap gap-3">
+              <div className="mt-14 border-t border-line pt-8">
+                <p className="text-[14px] font-medium text-gold">Related services</p>
+                <div className="mt-4 flex flex-wrap gap-3">
                   {services.map((s) => (
-                    <Link key={s.slug} href={`/${s.slug}`} className="btn-ghost rounded-full px-5 py-2.5 text-[13.5px]">
-                      {s.name} <span aria-hidden="true">→</span>
+                    <Link key={s.slug} href={`/${s.slug}`} className="btn btn-light h-10 px-5 text-[14px]">
+                      {s.name}
                     </Link>
                   ))}
                 </div>

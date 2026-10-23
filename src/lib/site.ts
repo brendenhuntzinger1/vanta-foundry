@@ -1,37 +1,46 @@
 /**
- * One place for the brand's name, address and contact details.
+ * The brand's name and every way to reach the team, in one file.
  *
- * "Vanta Foundry" is a working name. Renaming the site is a change to this
- * file and nothing else: every page, the metadata, the JSON-LD and llms.txt
- * read from here.
+ * "Vanta Foundry" is a working name; renaming the site is a change here only.
  */
 export const SITE = {
   name: "Vanta Foundry",
-  shortName: "Foundry",
   parent: "Vanta Labs",
   parentUrl: "https://www.vantalabsresearch.com",
   url: (process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.vantafoundry.com").replace(/\/$/, ""),
-  tagline: "Everything behind the label.",
   description:
-    "Wholesale supply, white label, fulfillment, payments setup and storefront development for research-supply businesses, from the team that runs Vanta Labs.",
+    "Payment processing, wholesale and factory-direct supply, white label, 3PL fulfillment and website development, from the team behind Vanta Labs.",
+  /** Every email link and prefilled request goes here (owner, 2026-10-23). */
+  email: "support@vantalabsresearch.com",
   /**
-   * Shown publicly as the fallback contact. Defaults to the parent brand's
-   * support inbox, which exists today; set NEXT_PUBLIC_CONTACT_EMAIL once a
-   * partners@ address on the new domain is live.
+   * WhatsApp number in international format, digits only (e.g. "18135550123").
+   * Empty hides every WhatsApp button and the site falls back to email, so a
+   * wrong or missing number can never send a customer to a dead chat.
    */
-  email: process.env.NEXT_PUBLIC_CONTACT_EMAIL ?? "support@vantalabsresearch.com",
+  whatsapp: (process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? "").replace(/\D/g, ""),
   privacyUrl: "https://www.vantalabsresearch.com/legal/privacy",
   termsUrl: "https://www.vantalabsresearch.com/legal/terms",
 } as const;
 
+export function whatsappLink(text?: string) {
+  if (!SITE.whatsapp) return null;
+  return `https://wa.me/${SITE.whatsapp}${text ? `?text=${encodeURIComponent(text)}` : ""}`;
+}
+
+export function emailLink(subject?: string, body?: string) {
+  const q = new URLSearchParams();
+  if (subject) q.set("subject", subject);
+  if (body) q.set("body", body);
+  const qs = q.toString().replace(/\+/g, "%20");
+  return `mailto:${SITE.email}${qs ? `?${qs}` : ""}`;
+}
+
 export const NAV = [
-  { href: "/wholesale", label: "Wholesale" },
-  { href: "/white-label", label: "White label" },
-  { href: "/fulfillment", label: "Fulfillment" },
-  { href: "/payments", label: "Payments" },
-  { href: "/storefronts", label: "Storefronts" },
-  { href: "/guides", label: "Guides" },
+  { href: "/#services", label: "Services" },
+  { href: "/catalog", label: "Catalog & pricing" },
+  { href: "/#how-it-works", label: "How it works" },
+  { href: "/#faq", label: "FAQ" },
 ] as const;
 
 export const RUO_NOTICE =
-  "Vanta Foundry supplies laboratory research materials for research use only. They are not for human or veterinary use, and are not drugs, foods, cosmetics or dietary supplements. We do not supply businesses that sell for human use.";
+  "Research materials supplied by Vanta Foundry are for laboratory research use only. They are not for human or veterinary use and are not drugs, foods, cosmetics or dietary supplements. Payment processing and website development are available to any lawful business.";
