@@ -15,7 +15,7 @@ export function GET() {
     "",
     `> ${SITE.description}`,
     "",
-    `${SITE.name} is operated by ${SITE.parent} (${SITE.parentUrl}). Wholesale pricing is in the catalog at ${SITE.url}/catalog; everything else is quoted. To start, choose services at ${SITE.url}/get-started and send the request on WhatsApp or to ${SITE.email}.`,
+    `${SITE.name} is operated by ${SITE.parent} (${SITE.parentUrl}). The product catalog is at ${SITE.url}/catalog; pricing is sent on inquiry, and everything else is quoted. To start, choose services at ${SITE.url}/get-started and send the request on WhatsApp or to ${SITE.email}.`,
     "",
     RUO_NOTICE,
     "",

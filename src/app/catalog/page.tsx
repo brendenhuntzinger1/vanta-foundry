@@ -1,14 +1,14 @@
 import type { Metadata } from "next";
 import { Container } from "@/components/blocks";
-import { CatalogTable } from "./catalog-table";
+import { CatalogBrowser } from "./catalog-browser";
 import { pageMetadata } from "@/lib/metadata";
 import { CATALOG } from "@/lib/catalog";
 
 export const metadata: Metadata = {
   ...pageMetadata({
     path: "/catalog",
-    title: "Catalog & wholesale pricing",
-    description: "The Vanta Labs research catalog with wholesale pricing. Add quantities and send your order request on WhatsApp or by email.",
+    title: "Catalog",
+    description: "Everything you can order wholesale from the Vanta Labs research catalog. Pick products and send an inquiry on WhatsApp or by email for pricing.",
   }),
   // Product names stay out of search results; the page is for buyers who came
   // through the site. Remove this line to let search engines index it.
@@ -21,14 +21,15 @@ export default function CatalogPage() {
     <section className="pt-16 sm:pt-20">
       <Container>
         <div className="max-w-2xl">
-          <h1 className="h-display text-[42px] text-ink sm:text-[60px]">Catalog & pricing.</h1>
+          <h1 className="h-display text-[42px] text-ink sm:text-[60px]">Catalog.</h1>
           <p className="mt-5 text-[18px] leading-[1.6] text-body">
-            The full Vanta Labs catalog: {CATALOG.length} products in {sizes} sizes. Enter how many you want, then send the
-            list to us. We confirm the final price before you pay.
+            Everything you can order: {CATALOG.length} products in {sizes} sizes, straight from the Vanta Labs catalog.
+            No prices are listed. Tap <strong className="font-semibold text-ink">Inquire</strong> on any product to message
+            us on WhatsApp, and we reply with wholesale pricing.
           </p>
         </div>
         <div className="mt-10">
-          <CatalogTable />
+          <CatalogBrowser />
         </div>
       </Container>
     </section>

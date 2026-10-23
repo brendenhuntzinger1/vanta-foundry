@@ -18,7 +18,7 @@ export function SiteFooter() {
             title="Company"
             links={[
               { href: "/get-started", label: "Get started" },
-              { href: "/catalog", label: "Catalog & pricing" },
+              { href: "/catalog", label: "Catalog" },
               { href: "/standards", label: "Our standards" },
               { href: "/guides", label: "Guides" },
             ]}

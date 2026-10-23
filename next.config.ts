@@ -2,6 +2,16 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   poweredByHeader: false,
+  images: {
+    // Product photos come from the Vanta Labs store's public image storage.
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "mlpimwgkwuqpsvsrlpqv.supabase.co",
+        pathname: "/storage/v1/object/public/product-images/**",
+      },
+    ],
+  },
   async headers() {
     return [
       {

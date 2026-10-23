@@ -13,11 +13,11 @@ export const SITE = {
   /** Every email link and prefilled request goes here (owner, 2026-10-23). */
   email: "support@vantalabsresearch.com",
   /**
-   * WhatsApp number in international format, digits only (e.g. "18135550123").
-   * Empty hides every WhatsApp button and the site falls back to email, so a
-   * wrong or missing number can never send a customer to a dead chat.
+   * WhatsApp number in international format, digits only: +1 (419) 378-1139
+   * (owner, 2026-10-23). NEXT_PUBLIC_WHATSAPP_NUMBER overrides it; an empty
+   * value hides every WhatsApp button and the site falls back to email.
    */
-  whatsapp: (process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? "").replace(/\D/g, ""),
+  whatsapp: (process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? "14193781139").replace(/\D/g, ""),
   privacyUrl: "https://www.vantalabsresearch.com/legal/privacy",
   termsUrl: "https://www.vantalabsresearch.com/legal/terms",
 } as const;
@@ -37,7 +37,7 @@ export function emailLink(subject?: string, body?: string) {
 
 export const NAV = [
   { href: "/#services", label: "Services" },
-  { href: "/catalog", label: "Catalog & pricing" },
+  { href: "/catalog", label: "Catalog" },
   { href: "/#how-it-works", label: "How it works" },
   { href: "/#faq", label: "FAQ" },
 ] as const;
