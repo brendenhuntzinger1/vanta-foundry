@@ -1,19 +1,13 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Container, CtaBand, FaqList } from "./blocks";
+import { FeaturedWork, StackRow } from "./featured-work";
 import { IconArrow, IconCheck } from "./icons";
 import type { Service } from "@/lib/services";
 import { INDUSTRIES } from "@/lib/industries";
 import { SITE } from "@/lib/site";
 
 const START = "/start/website-development";
-
-const WORK = [
-  { name: "Genesis Biomapping", kind: "Research supply · live", src: "/showcase/genesis-desktop.webp", top: true },
-  { name: "Vanta Labs", kind: "Research supply · live", src: "/showcase/vanta-labs-desktop.webp", top: true },
-  { name: "Solenne", kind: "Skincare", src: "/solenne/hero.webp" },
-  { name: "Halcyon", kind: "Coffee & food", src: "/sites/halcyon-hero.webp" },
-];
 
 const PILLARS = [
   { t: "Designed for your brand", b: "Every site is designed from scratch around your brand and your customers. No themes, no templates, no AI filler." },
@@ -51,7 +45,7 @@ export function WebsiteLanding({ s }: { s: Service }) {
           <div className="mx-auto max-w-[980px] text-center">
             <p className="text-[14px] font-medium text-gold-fill">Website development</p>
             <h1 className="h-display mt-5 text-[50px] leading-[0.98] sm:text-[92px]">
-              Websites that sell.
+              Websites that <span className="accent">sell.</span>
               <span className="block text-white/45">Built in days.</span>
             </h1>
             <p className="mx-auto mt-7 max-w-[620px] text-[18px] leading-[1.6] text-white/70 sm:text-[19px]">
@@ -86,7 +80,9 @@ export function WebsiteLanding({ s }: { s: Service }) {
       <section className="mt-28 sm:mt-36">
         <Container>
           <div className="mx-auto max-w-[760px] text-center">
-            <h2 className="h-section text-[36px] text-ink sm:text-[54px]">Premium is the standard.</h2>
+            <h2 className="h-section text-[36px] text-ink sm:text-[54px]">
+              Premium is the <span className="accent">standard.</span>
+            </h2>
             <p className="mt-4 text-[18px] leading-[1.6] text-body">What every site we build includes, whatever your industry.</p>
           </div>
           <ul className="mt-14 grid gap-px overflow-hidden rounded-3xl border border-line bg-line sm:grid-cols-2">
@@ -105,28 +101,21 @@ export function WebsiteLanding({ s }: { s: Service }) {
         <Container>
           <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
             <div>
-              <h2 className="h-section text-[36px] text-ink sm:text-[54px]">Look what we built.</h2>
-              <p className="mt-3 text-[18px] text-body">Designed and hand-coded by our team.</p>
+              <h2 className="h-section text-[36px] text-ink sm:text-[54px]">
+                Look what we <span className="accent">built.</span>
+              </h2>
+              <p className="mt-3 text-[18px] text-body">Live stores taking real orders, and brands in other industries.</p>
             </div>
             <Link href="/work" className="inline-flex items-center gap-1.5 text-[15px] font-medium text-ink underline underline-offset-4">
               See every site <IconArrow />
             </Link>
           </div>
-          <ul className="mt-12 grid gap-4 md:grid-cols-2">
-            {WORK.map((w) => (
-              <li key={w.name}>
-                <Link href="/work" className="group block h-full overflow-hidden rounded-2xl border border-line">
-                  <div className="relative aspect-[16/10] overflow-hidden bg-bg-2">
-                    <Image src={w.src} alt={`${w.name} website`} fill sizes="(min-width: 768px) 560px, 100vw" className={`object-cover transition-transform duration-700 group-hover:scale-[1.03] ${w.top ? "object-left-top" : ""}`} />
-                  </div>
-                  <div className="flex h-[68px] flex-col justify-center px-5">
-                    <p className="text-[16px] font-semibold tracking-[-0.02em] text-ink">{w.name}</p>
-                    <p className="text-[13px] text-muted">{w.kind}</p>
-                  </div>
-                </Link>
-              </li>
-            ))}
-          </ul>
+          <div className="mt-12">
+            <FeaturedWork />
+          </div>
+          <div className="mt-14">
+            <StackRow />
+          </div>
         </Container>
       </section>
 
@@ -134,7 +123,9 @@ export function WebsiteLanding({ s }: { s: Service }) {
       <section className="mt-28 sm:mt-36">
         <Container>
           <div className="mx-auto max-w-[760px] text-center">
-            <h2 className="h-section text-[36px] text-ink sm:text-[54px]">Live in 72 hours to a week.</h2>
+            <h2 className="h-section text-[36px] text-ink sm:text-[54px]">
+              Live in 72 hours to a <span className="accent">week.</span>
+            </h2>
             <p className="mt-4 text-[18px] leading-[1.6] text-body">A clear process, with you signing off at every step.</p>
           </div>
           <ol className="mt-14 grid gap-4 md:grid-cols-4">
@@ -155,7 +146,9 @@ export function WebsiteLanding({ s }: { s: Service }) {
           <div className="grid gap-10 overflow-hidden rounded-[32px] bg-ink p-8 text-white sm:p-14 lg:grid-cols-[1.1fr_1fr] lg:items-center">
             <div>
               <p className="text-[14px] font-medium text-gold-fill">After launch</p>
-              <h2 className="h-section mt-3 text-[36px] sm:text-[54px]">Your own developer team, on call 24/7.</h2>
+              <h2 className="h-section mt-3 text-[36px] sm:text-[54px]">
+                Your own developer team, <span className="accent">on call 24/7.</span>
+              </h2>
               <p className="mt-5 max-w-[520px] text-[17px] leading-[1.65] text-white/70">
                 A monthly plan gives you a team that knows your site. Something breaks, needs changing or needs building: tell us
                 and it gets done. You never touch maintenance.
@@ -179,7 +172,9 @@ export function WebsiteLanding({ s }: { s: Service }) {
       <section className="mt-28 sm:mt-36">
         <Container>
           <div className="mx-auto max-w-[760px] text-center">
-            <h2 className="h-section text-[36px] text-ink sm:text-[54px]">For any industry.</h2>
+            <h2 className="h-section text-[36px] text-ink sm:text-[54px]">
+              For <span className="accent">any</span> industry.
+            </h2>
             <p className="mt-4 text-[18px] leading-[1.6] text-body">See what we build for yours.</p>
           </div>
           <ul className="mx-auto mt-12 flex max-w-[960px] flex-wrap justify-center gap-2.5">

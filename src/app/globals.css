@@ -93,6 +93,14 @@ body {
   line-height: 1.05;
 }
 
+/* One italic serif word in a headline: the premium accent. */
+.accent {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+}
+
 /* In the components layer so utility classes can still override them. */
 @layer components {
 .btn {
