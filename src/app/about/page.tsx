@@ -2,6 +2,8 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { Container, CtaBand, SectionHead } from "@/components/blocks";
 import { Agreements } from "@/components/agreements";
+import { LaunchTimeline } from "@/components/launch-timeline";
+import { LaunchPackage } from "@/components/launch-package";
 import { IconCheck } from "@/components/icons";
 import { JsonLd, breadcrumbs } from "@/lib/jsonld";
 import { pageMetadata } from "@/lib/metadata";
@@ -61,6 +63,21 @@ export default function AboutPage() {
             How we document research supply:{" "}
             <Link href="/standards" className="text-ink underline underline-offset-2">our standards</Link>.
           </p>
+        </Container>
+      </section>
+
+      <section className="mt-24">
+        <Container>
+          <SectionHead title="How a launch runs." lede="From nothing to selling in about eight days, when one team handles the site, payments, product, labels and shipping." />
+          <div className="mt-10">
+            <LaunchTimeline />
+          </div>
+        </Container>
+      </section>
+
+      <section className="mt-24">
+        <Container>
+          <LaunchPackage />
         </Container>
       </section>
 
