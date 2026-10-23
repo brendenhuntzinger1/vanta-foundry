@@ -38,7 +38,7 @@ export default async function StartPage(props: PageProps<"/start/[service]">) {
   return (
     <section className="pt-10 sm:pt-14">
       <Container>
-        <div className="mx-auto max-w-[760px]">
+        <div className="mx-auto max-w-[1100px]">
           <nav aria-label="Breadcrumb" className="text-[13.5px] text-muted">
             <Link href="/" className="hover:text-ink">Home</Link>
             <span className="mx-2" aria-hidden="true">/</span>

@@ -7,44 +7,96 @@
  * they are not our prices.
  */
 
-export type FlowQuestion = { q: string; options: string[]; multi?: boolean; hint?: string };
+export type FlowOption = string | { label: string; desc?: string; tag?: string };
+
+export type FlowQuestion = {
+  q: string;
+  /** Short name for the "Your project" summary. */
+  label?: string;
+  options: FlowOption[];
+  multi?: boolean;
+  hint?: string;
+};
+
+export const optLabel = (o: FlowOption) => (typeof o === "string" ? o : o.label);
 
 export type Flow = {
   /** One line under the heading on the first screen. */
   promise: string;
   questions: FlowQuestion[];
+  /** Big points on the first screen; falls back to the service's list. */
+  pillars?: { t: string; b: string }[];
+  /** Show the sites we've built on the first screen. */
+  showcase?: boolean;
   /** For a path that isn't one service (e.g. RUO brand scaling). */
   subject?: { slug: string; name: string; title: string; includes: string[] };
 };
 
-const WHEN: FlowQuestion = { q: "When do you want to start?", options: ["As soon as possible", "This month", "In the next few months", "Just exploring"] };
-const RUO: FlowQuestion = { q: "Confirm research use", options: ["I confirm these are for research use only"] };
+const WHEN: FlowQuestion = { q: "When do you want to start?", label: "Timing", options: ["As soon as possible", "This month", "In the next few months", "Just exploring"] };
+const RUO: FlowQuestion = { q: "Confirm research use", label: "Research use", options: ["I confirm these are for research use only"] };
 
 export const FLOWS: Record<string, Flow> = {
   "website-development": {
-    promise: "A premium, custom-coded site for any industry, usually live in 72 hours to a week, with a developer team on call after launch.",
+    promise: "A premium, custom-coded website for any industry, designed for your brand, live in 72 hours to a week, and looked after by your own developer team.",
+    showcase: true,
+    pillars: [
+      { t: "Designed for your brand", b: "Custom design and hand-written code. Never a template, never AI filler." },
+      { t: "Live in 72 hours to a week", b: "Built, tested and launched by our developers, with every change you ask for." },
+      { t: "Your developer team, 24/7", b: "On a monthly plan, a team on call for fixes, changes and new features. You never do maintenance." },
+      { t: "Found on Google and AI", b: "SEO and GEO built in from day one, so customers and AI tools can find you." },
+    ],
     questions: [
-      { q: "What are you building?", options: ["Online store", "Service or booking business", "Company or brand site", "Landing page", "Not sure yet"] },
-      { q: "What's your industry?", options: ["Skincare & beauty", "Health, clinics & wellness", "Food & beverage", "Apparel & fashion", "Research supply", "Home & local services", "Professional services", "Something else"] },
+      {
+        q: "What are you building?",
+        label: "Project",
+        options: [
+          { label: "Online store", desc: "Products, cart, checkout and accounts" },
+          { label: "Service or booking business", desc: "Bookings, consultations and payments" },
+          { label: "Company or brand site", desc: "Who you are, what you do, how to reach you" },
+          { label: "Landing page", desc: "One page built to convert" },
+          { label: "Not sure yet", desc: "We'll recommend the right build" },
+        ],
+      },
+      { q: "What's your industry?", label: "Industry", options: ["Skincare & beauty", "Health, clinics & wellness", "Food & beverage", "Apparel & fashion", "Research supply", "Home & local services", "Professional services", "Something else"] },
       {
         q: "What do you want included?",
+        label: "Included",
         multi: true,
         hint: "Tap all that apply.",
-        options: ["Custom design", "Online store & checkout", "Booking & appointments", "SEO (Google)", "GEO (AI search)", "Payment processing", "Logo & branding", "Copywriting", "Monthly developer team (24/7)"],
+        options: [
+          { label: "Custom design", desc: "Designed from scratch for your brand" },
+          { label: "Online store & checkout", desc: "Cards, Apple Pay, Google Pay" },
+          { label: "Booking & appointments", desc: "Clients book and pay online" },
+          { label: "SEO (Google)", desc: "Rank in search and Google Maps" },
+          { label: "GEO (AI search)", desc: "Get recommended by ChatGPT, Gemini, Perplexity" },
+          { label: "Payment processing", desc: "Merchant account with a backup" },
+          { label: "Logo & branding", desc: "A look that's yours" },
+          { label: "Copywriting", desc: "Every page written for you" },
+        ],
       },
-      { q: "Do you have a website now?", options: ["No, starting fresh", "Yes, rebuild it", "Yes, improve it"] },
-      { q: "What's your budget?", options: ["Under $2,500", "$2,500 – $5,000", "$5,000 – $10,000", "$10,000+", "Not sure yet"] },
+      {
+        q: "How should it be looked after?",
+        label: "Care",
+        options: [
+          { label: "Build + developer team", desc: "A monthly plan with a team on call 24/7 for fixes, changes and new features. You never touch maintenance.", tag: "Recommended" },
+          { label: "Build only", desc: "We design, build and launch it. You look after it from there." },
+          { label: "Not sure, tell me more", desc: "We'll explain both on WhatsApp." },
+        ],
+      },
+      { q: "Do you have a website now?", label: "Current site", options: ["No, starting fresh", "Yes, rebuild it", "Yes, improve it"] },
+      { q: "What's your budget?", label: "Budget", hint: "Your range helps us recommend the right build. We quote in writing.", options: ["Under $2,500", "$2,500 – $5,000", "$5,000 – $10,000", "$10,000+", "Not sure yet"] },
       WHEN,
     ],
   },
   "payment-processing": {
     promise: "Cards, Apple Pay and Google Pay connected to your checkout, with a backup processor ready. Every account is subject to approval.",
     questions: [
-      { q: "What do you sell?", options: ["Physical products", "Services", "Subscriptions", "Research supply", "Health & wellness", "Something else"] },
-      { q: "Do you take card payments now?", options: ["Not yet", "Yes, I want a backup", "Yes, but I was shut down", "Yes, I want better rates"] },
-      { q: "Roughly how much per month?", options: ["Just starting", "Under $10k", "$10k – $50k", "$50k – $250k", "$250k+"] },
+      { q: "What do you sell?", label: "Sells", options: ["Physical products", "Services", "Subscriptions", "Research supply", "Health & wellness", "Something else"] },
+      { q: "Do you take card payments now?", label: "Current setup", options: ["Not yet", "Yes, I want a backup", "Yes, but I was shut down", "Yes, I want better rates"] },
+      { q: "Roughly how much per month?", label: "Volume", options: ["Just starting", "Under $10k", "$10k – $50k", "$50k – $250k", "$250k+"] },
       {
         q: "What do you need?",
+        label: "Needs",
         multi: true,
         hint: "Tap all that apply.",
         options: ["Cards", "Apple Pay & Google Pay", "Subscriptions", "Backup processor", "High-risk approval", "Checkout on my website", "Payment links & invoices"],
@@ -55,10 +107,10 @@ export const FLOWS: Record<string, Flow> = {
   "seo-ai-search": {
     promise: "SEO and AI search set up for your business, with a plain-words report every month. No one can guarantee rankings; we do the work that earns them.",
     questions: [
-      { q: "Where are your customers?", options: ["My local area", "A few cities", "Nationwide", "Worldwide"] },
-      { q: "What matters most?", multi: true, hint: "Tap all that apply.", options: ["More calls and leads", "More online sales", "Showing up in AI answers", "Google Maps", "Beating a competitor"] },
-      { q: "Do you have a website?", options: ["Yes", "No, I need one too"] },
-      { q: "What's your monthly budget?", options: ["Under $1,000 / mo", "$1,000 – $2,500 / mo", "$2,500 – $5,000 / mo", "$5,000+ / mo", "Not sure yet"] },
+      { q: "Where are your customers?", label: "Customers", options: ["My local area", "A few cities", "Nationwide", "Worldwide"] },
+      { q: "What matters most?", label: "Goals", multi: true, hint: "Tap all that apply.", options: ["More calls and leads", "More online sales", "Showing up in AI answers", "Google Maps", "Beating a competitor"] },
+      { q: "Do you have a website?", label: "Website", options: ["Yes", "No, I need one too"] },
+      { q: "What's your monthly budget?", label: "Budget", options: ["Under $1,000 / mo", "$1,000 – $2,500 / mo", "$2,500 – $5,000 / mo", "$5,000+ / mo", "Not sure yet"] },
       WHEN,
     ],
   },
@@ -78,15 +130,16 @@ export const FLOWS: Record<string, Flow> = {
     },
     promise: "Everything a research-use-only brand needs to launch or grow: product, label, shipping, website and payments, from the team behind Vanta Labs.",
     questions: [
-      { q: "Where are you now?", options: ["Starting from scratch", "Already selling, want to scale", "Switching suppliers"] },
+      { q: "Where are you now?", label: "Stage", options: ["Starting from scratch", "Already selling, want to scale", "Switching suppliers"] },
       {
         q: "What do you need?",
+        label: "Needs",
         multi: true,
         hint: "Tap all that apply.",
         options: ["White-label vials", "Wholesale stock", "Factory-direct supply", "3PL fulfillment", "Website & checkout", "Payment processing", "SEO & AI search"],
       },
       { q: "How many products to start?", options: ["1–3", "4–10", "10–25", "25+"] },
-      { q: "Budget for your first order?", options: ["Under $5,000", "$5,000 – $15,000", "$15,000 – $50,000", "$50,000+", "Not sure yet"] },
+      { q: "Budget for your first order?", label: "Budget", options: ["Under $5,000", "$5,000 – $15,000", "$15,000 – $50,000", "$50,000+", "Not sure yet"] },
       RUO,
     ],
   },
@@ -105,7 +158,7 @@ export const FLOWS: Record<string, Flow> = {
       { q: "What do you need made?", options: ["Something in your catalog", "Something not listed"] },
       { q: "What size of order?", options: ["One large order", "Recurring orders"] },
       { q: "How should it be labelled?", options: ["Under my own label", "Plain, no label"] },
-      { q: "Budget for this order?", options: ["Under $15,000", "$15,000 – $50,000", "$50,000+", "Not sure yet"] },
+      { q: "Budget for this order?", label: "Budget", options: ["Under $15,000", "$15,000 – $50,000", "$50,000+", "Not sure yet"] },
       RUO,
     ],
   },
