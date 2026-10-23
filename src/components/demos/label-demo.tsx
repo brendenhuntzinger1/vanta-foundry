@@ -14,7 +14,7 @@ export function LabelDemo() {
   return (
     <Screen
       title={`Label proof · ${l.brand}`}
-      subtitle={approved ? "Approved · sent to print" : "Example brand · waiting for approval"}
+      subtitle={approved ? "Approved · sent to print" : "Waiting for approval"}
       status={approved ? <Pill tone="ok">Approved</Pill> : <Pill tone="warn">Proof</Pill>}
     >
       <div className="grid gap-5 sm:grid-cols-[1fr_190px] sm:items-center">
@@ -42,7 +42,7 @@ export function LabelDemo() {
           <button type="button" onClick={() => setApproved((v) => !v)} className={`btn h-11 w-full text-[14px] ${approved ? "btn-light" : "btn-dark"}`}>
             {approved ? "Undo" : "Approve proof"}
           </button>
-          <p className="text-[12px] leading-5 text-muted">Your name goes where the example brand is. Nothing prints until you approve.</p>
+          <p className="text-[12px] leading-5 text-muted">Your brand name goes on the label. Nothing prints until you approve.</p>
         </div>
       </div>
     </Screen>

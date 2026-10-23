@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { Container, CtaBand, FaqList, SectionHead } from "@/components/blocks";
 import { ContactButtons } from "@/components/contact-buttons";
@@ -61,6 +62,13 @@ const WANTS = [
   { label: "Factory-direct supply", href: "/start/factory-direct" },
 ];
 
+const WORK = [
+  { brand: "Vanta Labs", industry: "Research supply · live", src: "/showcase/vanta-labs-desktop.webp", top: true },
+  { brand: "Solenne", industry: "Skincare", src: "/solenne/hero.webp" },
+  { brand: "Halcyon", industry: "Coffee & food", src: "/sites/halcyon-hero.webp" },
+  { brand: "Atlas", industry: "Athletic apparel", src: "/sites/atlas-hero.webp" },
+];
+
 const WHY = [
   { t: "We use everything we sell", b: "Our own store, Vanta Labs, runs on the same supply, payments and code we offer you." },
   { t: "Websites live in 72 hours to a week", b: "Designed for your brand and hand-coded for any industry. Never a template, never AI filler." },
@@ -111,6 +119,33 @@ export default function Home() {
           <div className="mt-14 sm:mt-16">
             <ServiceBento />
           </div>
+        </Container>
+      </section>
+
+      {/* Our work */}
+      <section id="work" className="mt-28 scroll-mt-20">
+        <Container>
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+            <SectionHead label="Our work" title="Look what we built." lede="Designed and hand-coded by our team, in every industry." />
+            <Link href="/work" className="btn btn-light h-11 shrink-0 px-5 text-[14.5px]">
+              See every store <IconArrow />
+            </Link>
+          </div>
+          <ul className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+            {WORK.map((w) => (
+              <li key={w.brand}>
+                <Link href="/work" className="group block overflow-hidden rounded-2xl border border-line">
+                  <div className="relative aspect-[4/3] overflow-hidden bg-bg-2">
+                    <Image src={w.src} alt={`${w.brand} storefront`} fill sizes="(min-width: 1024px) 280px, (min-width: 640px) 50vw, 100vw" className={`object-cover transition-transform duration-500 group-hover:scale-[1.03] ${w.top ? "object-left-top" : ""}`} />
+                  </div>
+                  <div className="p-4">
+                    <p className="text-[16px] font-semibold tracking-[-0.02em] text-ink">{w.brand}</p>
+                    <p className="text-[13.5px] text-muted">{w.industry}</p>
+                  </div>
+                </Link>
+              </li>
+            ))}
+          </ul>
         </Container>
       </section>
 

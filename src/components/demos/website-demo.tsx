@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useState } from "react";
 import { SITE } from "@/lib/site";
 import { SITES, SiteView } from "./example-sites";
@@ -53,7 +54,10 @@ export function WebsiteDemo() {
               <a href={SITE.parentUrl} target="_blank" rel="noopener noreferrer" className="text-ink underline underline-offset-2">Visit it</a>
             </>
           ) : (
-            <>{s.industry}. An example brand, designed and coded to the standard we build for clients.</>
+            <>
+              {s.industry}. Designed and built by our team.{" "}
+              <Link href="/work" className="text-ink underline underline-offset-2">See it full size</Link>
+            </>
           )}
         </p>
       </div>

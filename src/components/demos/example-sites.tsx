@@ -2,8 +2,8 @@ import Image from "next/image";
 import { SolenneSite } from "./solenne-site";
 
 /**
- * Halcyon (coffee) and Atlas (apparel): invented brands, built as real HTML the
- * way we build client sites. Together with Solenne they show that we build for
+ * Halcyon (coffee) and Atlas (apparel): brands our team designed and built as
+ * real HTML. Together with Solenne they show that we build for
  * any industry, not only research supply.
  */
 export function HalcyonSite() {
@@ -82,9 +82,9 @@ export function AtlasSite() {
 
 export const SITES = [
   { key: "vanta", name: "Vanta Labs", industry: "Research supply · live store", url: "vantalabsresearch.com", real: true },
-  { key: "solenne", name: "Solenne", industry: "Skincare", url: "solenne.com", real: false },
-  { key: "halcyon", name: "Halcyon", industry: "Specialty coffee", url: "halcyoncoffee.com", real: false },
-  { key: "atlas", name: "Atlas", industry: "Athletic apparel", url: "atlasrun.com", real: false },
+  { key: "solenne", name: "Solenne", industry: "Skincare", url: "Solenne · Skincare", real: false },
+  { key: "halcyon", name: "Halcyon", industry: "Specialty coffee", url: "Halcyon · Coffee", real: false },
+  { key: "atlas", name: "Atlas", industry: "Athletic apparel", url: "Atlas · Apparel", real: false },
 ] as const;
 
 export type SiteKey = (typeof SITES)[number]["key"];
