@@ -7,6 +7,8 @@ import { ContactButtons } from "@/components/contact-buttons";
 import { IconArrow, IconCheck } from "@/components/icons";
 import { ServiceIcon } from "@/components/service-icon";
 import { LabelGallery } from "@/components/label-gallery";
+import { WebDevExtras } from "@/components/web-dev-extras";
+import { CardBrands } from "@/components/card-brands";
 import { SERVICES, getService } from "@/lib/services";
 import { getGuide } from "@/lib/guides";
 import { JsonLd, ORG_ID, breadcrumbs, faqPage } from "@/lib/jsonld";
@@ -51,6 +53,7 @@ export default async function ServicePage(props: PageProps<"/[service]">) {
               </p>
               <h1 className="h-display mt-6 text-[42px] text-ink sm:text-[60px]">{s.title}</h1>
               <p className="mt-5 text-[18px] leading-[1.6] text-body">{s.answer}</p>
+              {s.slug === "payment-processing" && <CardBrands className="mt-5" />}
               <div className="mt-8 flex flex-wrap gap-3">
                 <Link href={`/get-started?services=${s.slug}`} className="btn btn-dark h-12 px-6 text-[15px]">
                   Get started <IconArrow />
@@ -99,6 +102,8 @@ export default async function ServicePage(props: PageProps<"/[service]">) {
           </div>
         </Container>
       </section>
+
+      {s.slug === "website-development" && <WebDevExtras />}
 
       {s.slug === "white-label" && (
         <section className="mt-28">

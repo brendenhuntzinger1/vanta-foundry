@@ -5,6 +5,7 @@ import { SERVICES } from "@/lib/services";
 import { SITE, emailLink, whatsappLink } from "@/lib/site";
 import { ServiceIcon } from "./service-icon";
 import { IconCheck, IconMail, IconWhatsApp } from "./icons";
+import { CardBrands } from "./card-brands";
 
 /**
  * Step 1: tap the services you want. Step 2: send the list on WhatsApp or by
@@ -12,29 +13,37 @@ import { IconCheck, IconMail, IconWhatsApp } from "./icons";
  * leaves in the visitor's own app, addressed to us.
  */
 export function ServicePicker({ initial = [] }: { initial?: string[] }) {
-  const nameId = useId();
-  const bizId = useId();
+  const uid = useId();
   const [picked, setPicked] = useState<string[]>(initial.filter((s) => SERVICES.some((x) => x.slug === s)));
-  const [name, setName] = useState("");
-  const [business, setBusiness] = useState("");
+  const [f, setF] = useState({ name: "", phone: "", email: "", business: "", website: "", details: "" });
+  const set = (k: keyof typeof f) => (e: { target: { value: string } }) => setF((v) => ({ ...v, [k]: e.target.value }));
 
   const toggle = (slug: string) => setPicked((p) => (p.includes(slug) ? p.filter((s) => s !== slug) : [...p, slug]));
   const chosen = SERVICES.filter((s) => picked.includes(s.slug));
 
+  const t = (k: keyof typeof f) => f[k].trim();
   const message = [
-    "Hi Vanta Foundry.",
-    ...(name.trim() || business.trim()
-      ? [`This is ${[name.trim(), business.trim() && (name.trim() ? `from ${business.trim()}` : business.trim())].filter(Boolean).join(" ")}.`]
-      : []),
+    "Hi Vanta Foundry, I'd like to get started.",
     "",
     "I'm interested in:",
     ...chosen.map((s) => `- ${s.name}`),
     "",
-    "Can you tell me how to get started?",
+    `Name: ${t("name")}`,
+    `Phone: ${t("phone")}`,
+    ...(t("email") ? [`Email: ${t("email")}`] : []),
+    ...(t("business") ? [`Business: ${t("business")}`] : []),
+    ...(t("website") ? [`Website: ${t("website")}`] : []),
+    ...(t("details") ? ["", t("details")] : []),
   ].join("\n");
   const wa = whatsappLink(message);
   const mail = emailLink(`Getting started: ${chosen.map((s) => s.name).join(", ")}`, message);
-  const ready = chosen.length > 0;
+  const phoneOk = t("phone").replace(/\D/g, "").length >= 10;
+  const ready = chosen.length > 0 && t("name").length > 0 && phoneOk;
+  const missing = [
+    chosen.length === 0 && "pick at least one service",
+    !t("name") && "add your name",
+    !phoneOk && "add a phone number",
+  ].filter(Boolean) as string[];
 
   return (
     <div>
@@ -66,6 +75,7 @@ export function ServicePicker({ initial = [] }: { initial?: string[] }) {
               </span>
               <span className="mt-4 text-[16.5px] font-semibold tracking-[-0.02em] text-ink">{s.name}</span>
               <span className="mt-1.5 text-[14px] leading-[1.5] text-muted">{s.short}</span>
+              {s.slug === "payment-processing" && <CardBrands size="sm" className="mt-3" />}
             </button>
           );
         })}
@@ -87,13 +97,14 @@ export function ServicePicker({ initial = [] }: { initial?: string[] }) {
           )}
         </div>
         <div className="mt-5 grid gap-3 sm:grid-cols-2">
-          <div>
-            <label htmlFor={nameId} className="text-[13px] text-muted">Your name (optional)</label>
-            <input id={nameId} value={name} onChange={(e) => setName(e.target.value)} autoComplete="name" className="mt-1.5 h-11 w-full rounded-xl border border-line-2 bg-white px-3.5 text-[15px] outline-none focus:border-ink" />
-          </div>
-          <div>
-            <label htmlFor={bizId} className="text-[13px] text-muted">Business name (optional)</label>
-            <input id={bizId} value={business} onChange={(e) => setBusiness(e.target.value)} autoComplete="organization" className="mt-1.5 h-11 w-full rounded-xl border border-line-2 bg-white px-3.5 text-[15px] outline-none focus:border-ink" />
+          <Field id={`${uid}-name`} label="Your name" required value={f.name} onChange={set("name")} autoComplete="name" />
+          <Field id={`${uid}-phone`} label="Phone number" required type="tel" inputMode="tel" value={f.phone} onChange={set("phone")} autoComplete="tel" />
+          <Field id={`${uid}-email`} label="Email (optional)" type="email" value={f.email} onChange={set("email")} autoComplete="email" />
+          <Field id={`${uid}-business`} label="Business name (optional)" value={f.business} onChange={set("business")} autoComplete="organization" />
+          <Field id={`${uid}-website`} label="Current website (optional)" type="url" inputMode="url" value={f.website} onChange={set("website")} />
+          <div className="sm:col-span-2">
+            <label htmlFor={`${uid}-details`} className="text-[13px] text-muted">Anything else? Volume, timeline, what you sell (optional)</label>
+            <textarea id={`${uid}-details`} rows={3} value={f.details} onChange={set("details")} className="mt-1.5 w-full rounded-xl border border-line-2 bg-white px-3.5 py-3 text-[15px] outline-none focus:border-ink" />
           </div>
         </div>
         <div className="mt-5 flex flex-col gap-3 sm:flex-row">
@@ -119,10 +130,23 @@ export function ServicePicker({ initial = [] }: { initial?: string[] }) {
           </a>
         </div>
         <p className="mt-4 text-[13px] text-muted">
+          {!ready && missing.length > 0 && <span className="block pb-1 font-medium text-ink">To send, {missing.join(", ")}.</span>}
           Your message opens {wa ? "in WhatsApp or your email app" : "in your email app"}, already written. Prefer to type it yourself? Email{" "}
           <a href={emailLink()} className="text-ink underline underline-offset-2">{SITE.email}</a>.
         </p>
       </div>
+    </div>
+  );
+}
+
+function Field({ id, label, required, ...rest }: { id: string; label: string; required?: boolean } & React.InputHTMLAttributes<HTMLInputElement>) {
+  return (
+    <div>
+      <label htmlFor={id} className="text-[13px] text-muted">
+        {label}
+        {required && <span className="text-ink"> *</span>}
+      </label>
+      <input id={id} required={required} {...rest} className="mt-1.5 h-11 w-full rounded-xl border border-line-2 bg-white px-3.5 text-[15px] outline-none focus:border-ink" />
     </div>
   );
 }
