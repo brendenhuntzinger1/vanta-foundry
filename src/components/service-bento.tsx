@@ -6,31 +6,37 @@ import { LABEL_LOOKS } from "@/lib/labels";
 import { SiteRotator } from "./site-rotator";
 
 /**
- * The first thing under the headline: every service as a tile with its own
- * picture, so a visitor knows what we offer before scrolling.
+ * The two things we sell, as two rows of tiles: websites, payments and SEO
+ * for any business; and peptide supply for research brands. Each tile opens
+ * its one-minute start flow.
  */
-export function ServiceBento() {
-  const svc = (slug: string) => SERVICES.find((s) => s.slug === slug)!;
-  const look = (key: string) => LABEL_LOOKS.find((l) => l.key === key)!.src;
-
+export function WebBento() {
   return (
     <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-      <Tile slug="website-development" title="Custom websites, any industry" body="Custom-coded and live in 72 hours to a week, with your own developer team on call.">
+      <Tile slug="website-development" title="Custom websites" body="Custom-coded and live in 72 hours to a week, with your own developer team on call.">
         <SiteRotator />
       </Tile>
-
-      <Tile slug="payment-processing" title="Payment processing, any industry" body="Cards, Apple Pay and Google Pay, with a backup processor always ready.">
+      <Tile slug="payment-processing" title="Payment processing" body="Cards, Apple Pay and Google Pay, with a backup processor always ready.">
         <PayVisual />
       </Tile>
-
-      <Tile slug="wholesale" title={svc("wholesale").name} body="Research products by the case, at wholesale prices that leave room for your margin.">
-        <Photo src="/supply/bulk.webp" alt="Cartons of vials packed for a bulk order" chip="Bulk quantities · wholesale pricing" />
+      <Tile slug="seo-ai-search" title="SEO & AI search" body="Found on Google and Maps, and recommended by ChatGPT, Gemini and Perplexity.">
+        <SeoVisual />
       </Tile>
+    </ul>
+  );
+}
 
-      <Tile slug="factory-direct" title={svc("factory-direct").name} body="Made to order at the manufacturer. A certificate of analysis comes with every wholesale lot.">
-        <Photo src="/supply/factory-coa.webp" alt="A vial filling line with a certificate of analysis on a clipboard" chip="COA included with wholesale" />
+export function SupplyBento() {
+  const svc = (slug: string) => SERVICES.find((s) => s.slug === slug)!;
+  const look = (key: string) => LABEL_LOOKS.find((l) => l.key === key)!.src;
+  return (
+    <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+      <Tile slug="wholesale" title={svc("wholesale").name} body="Our catalog by the case, at wholesale prices. COA with every lot.">
+        <Photo src="/supply/bulk.webp" alt="Cartons of vials packed for a bulk order" chip="Bulk · wholesale pricing" />
       </Tile>
-
+      <Tile slug="factory-direct" title={svc("factory-direct").name} body="Made to order at the manufacturer, for the lowest unit cost.">
+        <Photo src="/supply/factory-coa.webp" alt="A vial filling line with a certificate of analysis on a clipboard" chip="COA included" />
+      </Tile>
       <Tile slug="white-label" title={svc("white-label").name} body="Your brand on every vial, in any look you want.">
         <div className="flex h-full items-end justify-center gap-2 bg-[#141416] px-4 pt-5">
           {["halo", "kinetic", "ember", "polar"].map((k, i) => (
@@ -40,12 +46,9 @@ export function ServiceBento() {
           ))}
         </div>
       </Tile>
-
-      <Tile slug="fulfillment" title={svc("fulfillment").name} body="We store your stock, pack every order and ship it as your brand.">
-        <Photo src="/supply/warehouse.webp" alt="Aisles of racked, labelled stock in a clean warehouse" chip="Stored, packed & shipped as your brand" />
+      <Tile slug="fulfillment" title={svc("fulfillment").name} body="We store, pack and ship every order as your brand.">
+        <Photo src="/supply/warehouse.webp" alt="Aisles of racked, labelled stock in a clean warehouse" chip="Shipped as your brand" />
       </Tile>
-
-      <SeoTile />
     </ul>
   );
 }
@@ -115,37 +118,21 @@ function PayVisual() {
   );
 }
 
-/** Full-width tile: the brand on Google, and named in an AI answer. */
-function SeoTile() {
+/** The brand on Google, and named in an AI answer. */
+function SeoVisual() {
   return (
-    <li className="sm:col-span-2 lg:col-span-3">
-      <Link href="/start/seo-ai-search" className="group grid overflow-hidden rounded-2xl border border-line bg-white transition-[border-color,box-shadow] duration-200 hover:border-line-2 hover:shadow-[0_14px_36px_-20px_rgba(0,0,0,0.3)] lg:grid-cols-[1fr_1.35fr]">
-        <div className="flex flex-col justify-center p-6 sm:p-8">
-          <p className="text-[13px] font-medium text-gold">SEO & AI search</p>
-          <p className="mt-2 text-[24px] font-semibold leading-tight tracking-[-0.03em] text-ink sm:text-[28px]">Found on Google. Recommended by AI.</p>
-          <p className="mt-2 text-[15px] leading-[1.55] text-muted">
-            SEO and GEO for any industry, so customers find you on Google, Maps, ChatGPT, Gemini and Perplexity. On its own or in a launch package.
-          </p>
-          <span className="mt-5 inline-flex items-center gap-1.5 text-[13.5px] font-medium text-ink">
-            Get started <IconArrow className="transition-transform duration-200 group-hover:translate-x-0.5" />
-          </span>
-        </div>
-        <div className="grid gap-3 bg-[#141416] p-5 sm:grid-cols-2 sm:p-6" aria-hidden="true">
-          <div className="rounded-xl bg-white p-4">
-            <p className="text-[11px] text-muted">Google · &ldquo;best coffee subscription&rdquo;</p>
-            <p className="mt-2 text-[11px] text-body">halcyoncoffee.com</p>
-            <p className="text-[14px] font-medium leading-snug text-[#1a0dab]">Halcyon Coffee · Fresh-Roasted Subscriptions</p>
-            <p className="mt-1 text-[12px] leading-[1.45] text-body">Small-lot beans roasted every Monday, shipped the same week.</p>
-          </div>
-          <div className="rounded-xl border border-white/10 bg-[#1d1d20] p-4 text-white">
-            <p className="text-[11px] text-white/55">AI answer</p>
-            <p className="mt-2 text-[12.5px] leading-[1.5] text-white/85">
-              For a fresh-roasted subscription, <span className="font-semibold text-white">Halcyon Coffee</span> roasts small lots weekly and ships the same week.
-            </p>
-            <p className="mt-2 inline-flex rounded-full border border-white/15 px-2 py-0.5 text-[10.5px] text-white/65">Source: halcyoncoffee.com</p>
-          </div>
-        </div>
-      </Link>
-    </li>
+    <div className="flex h-full flex-col justify-center gap-2.5 px-5">
+      <div className="rounded-xl bg-white p-3.5">
+        <p className="text-[10.5px] text-muted">Google · &ldquo;coffee subscription&rdquo;</p>
+        <p className="mt-1 text-[13px] font-medium leading-snug text-[#1a0dab]">Halcyon Coffee · Fresh-Roasted</p>
+        <p className="text-[11px] text-body">Roasted every Monday, shipped the same week.</p>
+      </div>
+      <div className="rounded-xl border border-white/10 bg-[#1d1d20] p-3.5 text-white">
+        <p className="text-[10.5px] text-white/55">AI answer</p>
+        <p className="mt-1 text-[12px] leading-[1.45] text-white/85">
+          Try <span className="font-semibold text-white">Halcyon Coffee</span>: small lots, roasted weekly.
+        </p>
+      </div>
+    </div>
   );
 }
