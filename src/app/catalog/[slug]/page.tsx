@@ -47,7 +47,7 @@ function intro(p: CatalogProduct, f: ProductFacts) {
 }
 
 function productFaqs(p: CatalogProduct, f: ProductFacts) {
-  const verified = f.reports.filter((r) => r.status === "verified");
+  const verified = f.reports.filter((r) => r.status === "product_match");
   const reference = f.reports.filter((r) => r.status === "reference");
   const list = (rs: typeof f.reports) => rs.map((r) => `${r.id}${r.size ? ` (${r.size})` : ""}, ${r.lab}, ${r.date}`).join("; ");
   return [
@@ -58,7 +58,7 @@ function productFaqs(p: CatalogProduct, f: ProductFacts) {
     {
       q: `Is a certificate of analysis published for ${p.name}?`,
       a: verified.length
-        ? `Yes. Vanta Labs publishes ${verified.length === 1 ? "a laboratory report" : `${verified.length} laboratory reports`} for the batch it currently supplies: ${list(verified)}.${reference.length ? ` A further report is reference only: ${reference.map((r) => r.note).join(" ")}` : ""} Your quote names the lot you'll receive and its report.`
+        ? `Yes. Vanta Labs publishes ${verified.length === 1 ? "a laboratory report that matches" : `${verified.length} laboratory reports that match`} this product and size: ${list(verified)}. That doesn't by itself confirm the batch you'd receive.${reference.length ? ` A further report is reference only: ${reference.map((r) => r.note).join(" ")}` : ""} Your quote names the lot you'll receive and its report.`
         : reference.length
           ? `Not for the size or lot sold. A reference report is published (${list(reference)}), but ${reference.map((r) => r.note?.replace(/^./, (c) => c.toLowerCase())).join(" ")} Ask for the report for your lot before you order.`
           : `Not yet. No laboratory report has been published for ${p.name}. Ask for the documentation for your lot before you order.`,
@@ -137,7 +137,7 @@ export default async function ProductPage(props: PageProps<"/catalog/[slug]">) {
             <h2 className="h-section text-[28px] text-ink sm:text-[36px]">Specifications</h2>
             {f.composition && (
               <div className="mt-6">
-                <p className="text-[14px] font-medium text-ink">Composition, as labelled on the batch report</p>
+                <p className="text-[14px] font-medium text-ink">Composition, as labelled on the laboratory report</p>
                 <dl className="mt-2 divide-y divide-line border-y border-line">
                   {f.composition.map(([c, amt]) => (
                     <div key={c} className="grid grid-cols-[1fr_auto] gap-4 py-3 text-[15px]">
@@ -197,7 +197,7 @@ export default async function ProductPage(props: PageProps<"/catalog/[slug]">) {
             {f.reports.length ? (
               <>
                 <p className="mt-4 text-[15.5px] leading-[1.65] text-body">
-                  Laboratory reports Vanta Labs has published, with the size and batch printed on each. A <strong className="font-semibold text-ink">batch report</strong> matches the product and size we supply; a <strong className="font-semibold text-ink">reference</strong> report doesn&rsquo;t document the size or lot sold, and says why. Your quote names the lot you&rsquo;ll receive and its report.
+                  Laboratory reports Vanta Labs has published, with the size and batch exactly as printed on each. <strong className="font-semibold text-ink">Matches product and size</strong> means the report&rsquo;s product and labelled size match this listing; it doesn&rsquo;t confirm the batch in current wholesale stock. A <strong className="font-semibold text-ink">reference</strong> report doesn&rsquo;t match the size or lot we list, and says why. Your quote names the lot you&rsquo;ll receive and its report.
                 </p>
                 <div className="mt-5">
                   <ReportList reports={f.reports} />

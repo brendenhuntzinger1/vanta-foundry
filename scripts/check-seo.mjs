@@ -55,7 +55,7 @@ async function checkPage(route, { title, h1, cta, phrase, mustContain = [] }) {
   const want = SITE + (route === "/" ? "" : route);
   if (p.canonical.replace(/\/$/, "") !== want) fail(route, `canonical is "${p.canonical}", expected "${want}"`);
   if (cta && !p.text.includes(cta)) fail(route, `CTA "${cta}" not found`);
-  if (phrase && !(p.title + " " + p.h1s.join(" ") + " " + p.text).toLowerCase().includes(phrase.toLowerCase())) fail(route, `primary phrase "${phrase}" not on the page`);
+  if (phrase && ![p.title, ...p.h1s, p.text].some((t) => t.toLowerCase().includes(phrase.toLowerCase()))) fail(route, `primary phrase "${phrase}" not on the page`);
   for (const m of mustContain) if (!p.text.includes(m)) fail(route, `missing "${m}"`);
 }
 

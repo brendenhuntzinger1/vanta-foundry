@@ -94,7 +94,10 @@ export function InquiryBar() {
   const { whatsapp, email } = inquiryLinks(items, { business, shipTo, id: handoffId });
   const sent = (channel: string) => {
     track("contact_click", { channel, form: "wholesale_inquiry", products: items.length });
-    if (handoffId) logHandoff(handoffId, items, channel, { business, shipTo });
+    if (handoffId) {
+      logHandoff(handoffId, items, channel, { business, shipTo });
+      track("wholesale_handoff", { channel, products: items.length, ref: refFor(handoffId) });
+    }
   };
   const openList = () => {
     setHandoffId(uuid());

@@ -78,9 +78,10 @@ export default function TestingPage() {
                 When your order arrives, check that the lot on the vials matches the report named on your quote.
               </p>
               <p>
-                Below, a <strong>batch report</strong> matches the product and size we supply. A <strong>reference</strong> report is
-                published but doesn&rsquo;t document the size or lot sold: a partner&rsquo;s lot, a different labelled size, or no batch
-                number. Each one says which. Ask for the report for your own lot whenever you rely on a reference report.
+                Below, <strong>matches product and size</strong> means the product and labelled size printed on the report match the
+                listing. It doesn&rsquo;t confirm that the printed batch is the batch in current wholesale stock; that is confirmed on your
+                quote, which names your lot. A <strong>reference</strong> report is published but doesn&rsquo;t match the size or lot we
+                list: a partner&rsquo;s lot, a different labelled size, or no batch number. Each one says which.
               </p>
             </section>
             <section>

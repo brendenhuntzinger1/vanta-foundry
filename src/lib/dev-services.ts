@@ -159,7 +159,7 @@ export const DEV_SERVICES: DevService[] = [
       { q: "What is tested before launch?", a: "Every page on phones and desktop, test orders through each payment method, every email the store sends, speed and search setup. Nothing goes live untested." },
       { q: "How long does it take?", a: "Most sites are fully built and live within 72 hours to a week. Larger catalogs and custom features take longer; your quote states the timeline." },
     ],
-    guides: ["retail-vs-wholesale-ordering", "wholesale-business-launch-checklist"],
+    guides: ["retail-vs-wholesale-ordering", "wholesale-business-launch-checklist", "why-nextjs-site-is-slow", "core-web-vitals-explained"],
     related: [
       { href: "/website-development/peptide-websites", label: "peptide website development" },
       { href: "/website-development/integrations", label: "ecommerce integrations" },
@@ -279,7 +279,7 @@ export const DEV_SERVICES: DevService[] = [
       { q: "Will the site go down?", a: "We build and test the new site separately, then switch at a quiet time with the old one kept ready. Any downtime is planned and kept short." },
       { q: "Can you improve my site instead of rebuilding it?", a: "Yes. If what you have is sound, we fix and improve it. The review tells you which makes more sense." },
     ],
-    guides: ["catalog-url-migration"],
+    guides: ["catalog-url-migration", "core-web-vitals-explained", "choose-website-development-partner"],
     related: [
       { href: "/website-development/ecommerce", label: "ecommerce website development" },
       { href: "/contact", label: "talk to us" },
@@ -392,7 +392,7 @@ export const DEV_SERVICES: DevService[] = [
       { q: "What are the support hours?", a: "The team is on call 24/7." },
       { q: "Can you look after a site you didn't build?", a: "Yes, after a review of the site, so we know what we're taking on." },
     ],
-    guides: [],
+    guides: ["why-nextjs-site-is-slow", "core-web-vitals-explained"],
     related: [
       { href: "/website-development", label: "website development" },
       { href: "/contact", label: "contact the team" },

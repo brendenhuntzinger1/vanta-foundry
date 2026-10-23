@@ -171,7 +171,7 @@ export const SERVICES: Service[] = [
       { q: "What is the monthly developer team?", a: "A monthly plan that gives you a development team on call 24/7. Anything breaks, needs changing or needs adding, you message us and it gets fixed. It covers sites we build and, after a review, sites you already have." },
     ],
     demo: "website",
-    guides: ["peptide-website-features", "peptide-website-cost", "shopify-vs-custom-peptide-website", "research-use-only-storefront-copy"],
+    guides: ["choose-website-development-partner", "peptide-website-features", "peptide-website-cost", "core-web-vitals-explained"],
   },
   {
     slug: "seo-ai-search",

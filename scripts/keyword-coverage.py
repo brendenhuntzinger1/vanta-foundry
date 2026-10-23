@@ -30,6 +30,7 @@ UNAVAILABLE = "unavailable offer"
 UNRESOLVED = "unresolved fact (owner)"
 EXCLUDED = "excluded by compliance"
 DEFERRED = "deferred (needs sourced content)"
+LOCAL = "location intent: needs local facts"
 
 # ---------------------------------------------------------------- products
 # Competitor product slug -> our catalog slug, with any format difference.
@@ -90,7 +91,7 @@ FIXED = {
     "BELK-004": ("/guides", COVERED, "Guides hub, 22 guides."),
     "BELK-005": ("/start/website-development", COVERED, "Website brief, saved and emailed; /contact splits website and wholesale."),
     "BELK-006": ("/website-development", MERGED, "FAQs live on each service page, matching visible questions."),
-    "BELK-007": (None, NOT_RELEVANT, "Global locations hub: no offices or verified service areas to list."),
+    "BELK-007": ("/website-development", LOCAL, "Locations hub: no offices or verified service areas to list yet."),
     "BELK-008": ("/work", COVERED, "Website development portfolio, concept stores labelled."),
     "BELK-009": ("/", MERGED, "Privacy policy is Vanta Labs' (footer link); no separate Foundry policy."),
     "BELK-010": ("/", MERGED, "Terms are Vanta Labs' (footer link)."),
@@ -98,17 +99,17 @@ FIXED = {
     "BELK-035": ("/guides/shopify-vs-custom-peptide-website", MERGED, "Platform trade-offs, without 'Shopify Plus vs headless' claims we can't support."),
     "BELK-036": ("/website-development/b2b-portals", COVERED, "B2B ecommerce portal service + buyer-portal guide."),
     "BELK-037": ("/website-development/peptide-websites", MERGED, "State-specific ranking article not built: no Texas facts. Niche intent owned here."),
-    "BELK-038": (None, DEFERRED, "Next.js performance guide needs original measurements; not written."),
+    "BELK-038": ("/guides/why-nextjs-site-is-slow", COVERED, "Why Is My Next.js Site Slow? (causes and fixes; no invented measurements)."),
     "BELK-039": (None, EXCLUDED, "Industry statistics: no sourced data; plan forbids fabricated figures."),
     "BELK-040": ("/seo-ai-search", MERGED, "SEO-first design: SEO built into every build (website-development pillars)."),
     "BELK-041": ("/website-development", MERGED, "Generic 'why a website' content; the hub answers it without a thin page."),
-    "BELK-042": (None, DEFERRED, "'Choosing a digital partner' guide not written; low commercial specificity."),
+    "BELK-042": ("/guides/choose-website-development-partner", COVERED, "How to Choose a Website Development Partner."),
     "BELK-043": ("/website-development", MERGED, "UI/UX design is part of every build (designed for your brand)."),
     "BELK-044": (None, NOT_RELEVANT, "Design-trend listicle; no buyer decision served."),
     "BELK-045": ("/seo-ai-search", MERGED, "Long-term SEO covered by the SEO & AI search service."),
     "BELK-046": (None, NOT_RELEVANT, "International SEO: no international offer verified."),
     "BELK-047": ("/website-development", MERGED, "Speed is a build pillar; no revenue statistics claimed."),
-    "BELK-048": (None, DEFERRED, "Core Web Vitals explainer not written; needs measured examples."),
+    "BELK-048": ("/guides/core-web-vitals-explained", COVERED, "Core Web Vitals Explained (Google's thresholds, cited to web.dev)."),
     "BELK-049": ("/guides/seo-vs-geo", MERGED, "AI search vs SEO answered in the SEO vs GEO guide."),
     "BELK-050": ("/seo-ai-search", MERGED, "GEO explained on the SEO & AI search service and guide."),
     "BELK-051": ("/website-development/ecommerce", MERGED, "Stack stated (Next.js and React); enterprise headless-CMS playbook not written."),
@@ -143,7 +144,7 @@ FIXED = {
     "99PW-005": ("/standards", COVERED, "Our standards: research-use-only rules and documentation."),
     "99PW-006": ("/contact", COVERED, "Separate wholesale and website inquiry paths."),
     "99PW-007": ("/glossary", COVERED, "Existing glossary."),
-    "99PW-008": (None, NOT_RELEVANT, "Locations hub: no verified local service facts."),
+    "99PW-008": ("/wholesale", LOCAL, "Locations hub: no verified shipping coverage to list yet."),
     "99PW-009": ("/catalog", COVERED, "Wholesale Peptide Catalog."),
     "99PW-010": (None, UNRESOLVED, "No published Foundry refund/replacement policy for wholesale; terms are per quote. Owner to confirm."),
     "99PW-011": ("/supply", COVERED, "Front door for research brands: wholesale, white label, 3PL."),
@@ -195,8 +196,8 @@ def disposition(r):
         return ("/catalog", MERGED, "Category browsing is a filter on /catalog; our categories differ, no thin category pages.")
     if profile == "LOCATION":
         if rid.startswith("BELK"):
-            return (None, NOT_RELEVANT, "City/region page not built: no office, local work or service facts there (plan §10).")
-        return (None, NOT_RELEVANT, "City/state page not built: no verified local supply facts; /wholesale serves the intent.")
+            return ("/website-development", LOCAL, "Real intent (web development in a place), served nationally by /website-development. A local page needs a real local fact (office, local work, in-person service); none is verified.")
+        return ("/wholesale", LOCAL, "Real intent (wholesale peptides in a state/city), served nationally by /wholesale. A local page needs verified shipping coverage or local facts; none is verified.")
     m = re.search(r"/products/([^/]+)(/research)?$", url)
     if m:
         dest, status, note = product_disposition(m.group(1))
@@ -450,7 +451,9 @@ def main():
     w("\nStatus meanings: *covered and verified*: a Foundry page owns the intent and answers 200 (for phrases, the exact phrase is in its visible text). "
       "*merged*: served by an existing page under the buyer wording we chose. *unavailable offer*: we don't sell it, so no page. "
       "*excluded by compliance*: dosing, reconstitution, human-use or outcome content. *deferred*: needs sourced or reviewed content first. "
-      "*unresolved fact*: needs an owner decision or fact. *needs improvement*: the check failed.\n")
+      "*unresolved fact*: needs an owner decision or fact. *location intent*: a real buyer intent served by a national page; a local page waits on local facts. "
+      "*needs improvement*: the check failed.\n\n"
+      "**Classified is not implemented.** Only *covered and verified* and *merged* rows have a live Foundry page serving the intent; see `docs/KEYWORD-DECISIONS.md` for which exact phrases are actually on which page.\n")
 
     w("## Keyword families\n")
     w("| Family | Owner page | Phrases checked | Missing from rendered page |")

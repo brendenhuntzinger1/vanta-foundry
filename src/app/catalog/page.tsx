@@ -40,8 +40,8 @@ export default function CatalogPage() {
           <div className="mt-8 max-w-2xl">
             <h1 className="h-display text-[42px] text-ink sm:text-[60px]">{P.h1}</h1>
             <p className="mt-5 text-[18px] leading-[1.6] text-body">
-              {CATALOG.length} products in {sizes} vial sizes, ready for bulk peptide supply. {documented} have a published batch report that
-              matches the size we supply. No prices are listed: tap <strong className="font-semibold text-ink">Inquire</strong> on any product, or add
+              {CATALOG.length} products in {sizes} vial sizes, ready for bulk peptide supply. {documented} have a published laboratory report
+              whose product and labelled size match the listing. No prices are listed: tap <strong className="font-semibold text-ink">Inquire</strong> on any product, or add
               several to one list, and we reply with wholesale pricing.
             </p>
             <p className="mt-4 text-[15px] text-body">

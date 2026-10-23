@@ -7,8 +7,9 @@ import { IconArrowUpRight } from "./icons";
 /**
  * Published laboratory reports, as a list that reads on a phone. Each row
  * gives the report number, the size and batch printed on it, and links to
- * the laboratory's own document. Reference reports say why they don't
- * document the size or lot sold, instead of hiding it.
+ * the laboratory's own document. "Matches product and size" means what's
+ * printed matches what we list; it doesn't confirm the batch in current
+ * inventory. Reference reports say why they don't match, instead of hiding it.
  */
 export function ReportList({ reports, showProduct = false }: { reports: (ProductReport & { slug?: string; product?: string })[]; showProduct?: boolean }) {
   return (
@@ -26,8 +27,8 @@ export function ReportList({ reports, showProduct = false }: { reports: (Product
               <span className="font-mono text-[13.5px]">{r.id}</span>
               {r.size && <span className="text-muted"> · {r.size} label</span>}
               {r.batch && <span className="text-muted"> · Batch {r.batch}</span>}
-              <span className={`ml-2 inline-block rounded-full px-2 py-0.5 align-middle text-[11.5px] font-medium ${r.status === "verified" ? "bg-bg-2 text-ink" : "bg-warn-tint text-warn"}`}>
-                {r.status === "verified" ? "Batch report" : "Reference only"}
+              <span className={`ml-2 inline-block rounded-full px-2 py-0.5 align-middle text-[11.5px] font-medium ${r.status === "product_match" ? "bg-bg-2 text-ink" : "bg-warn-tint text-warn"}`}>
+                {r.status === "product_match" ? "Matches product and size" : "Reference only"}
               </span>
             </p>
             <p className="mt-1 text-[13.5px] leading-[1.55] text-body">

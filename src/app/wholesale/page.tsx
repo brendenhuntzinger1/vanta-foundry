@@ -122,14 +122,14 @@ export default function WholesalePage() {
             <h2 className="text-[24px] font-semibold tracking-[-0.025em] text-ink">Available Formats and Quantities</h2>
             <p className="mt-3 text-[16px] leading-[1.65] text-body">
               Most products are supplied as lyophilized powder in single vials; a few are solutions. Each product page lists its vial
-              sizes. {QUANTITY_NOTE} Blends list each component&rsquo;s amount as labelled on the batch report.
+              sizes. {QUANTITY_NOTE} Blends list each component&rsquo;s amount as labelled on its laboratory report.
             </p>
           </div>
           <div className="rounded-2xl border border-line bg-bg-2 p-7 sm:p-9">
             <h2 className="text-[24px] font-semibold tracking-[-0.025em] text-ink">Testing and Batch Documentation</h2>
             <p className="mt-3 text-[16px] leading-[1.65] text-body">
-              {documented} of {CATALOG.length} products have a published batch report from a named third-party laboratory that matches the
-              size we supply; {REFERENCE_REPORT_ONLY.length} have a reference report only, and {NO_PUBLISHED_REPORT.length} have none yet ({reports.length} reports
+              {documented} of {CATALOG.length} products have a published report from a named third-party laboratory whose product and labelled
+              size match the listing; {REFERENCE_REPORT_ONLY.length} have a reference report only, and {NO_PUBLISHED_REPORT.length} have none yet ({reports.length} reports
               in all). Every wholesale lot comes with its certificate of analysis, matched by lot number.
             </p>
             <Link href="/wholesale/testing" className="mt-5 inline-flex items-center gap-1.5 text-[15px] font-medium text-ink underline underline-offset-4">

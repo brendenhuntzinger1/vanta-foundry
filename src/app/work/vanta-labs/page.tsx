@@ -40,7 +40,7 @@ const SECTIONS: { h: string; p: string[]; list?: string[] }[] = [
   {
     h: "Catalog",
     p: [
-      "Products are organised by category, each size listed once. Every product page carries the compound's identity data where it applies: synonyms and codes, description, available sizes, supplied form, CAS number, molecular formula and weight, and sequence, with the source (PubChem or FDA GSRS) and the date it was read. Blends list each component as labelled on the batch report.",
+      "Products are organised by category, each size listed once. Every product page carries the compound's identity data where it applies: synonyms and codes, description, available sizes, supplied form, CAS number, molecular formula and weight, and sequence, with the source (PubChem or FDA GSRS) and the date it was read. Blends list each component as labelled on the laboratory report.",
     ],
   },
   {

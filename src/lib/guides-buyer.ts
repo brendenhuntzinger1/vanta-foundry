@@ -896,4 +896,165 @@ export const BUYER_GUIDES: Guide[] = [
     ],
     services: ["wholesale", "white-label", "website-development", "fulfillment"],
   },
+  {
+    slug: "core-web-vitals-explained",
+    title: "Core Web Vitals Explained for Business Owners",
+    question: "What are Core Web Vitals, and do they matter for my website?",
+    description: "The three Core Web Vitals in plain words: what LCP, INP and CLS measure, Google's thresholds, and what usually fixes each one.",
+    answer:
+      "Core Web Vitals are three measurements Google uses to describe how a page feels to real visitors: Largest Contentful Paint (how fast the main content appears), Interaction to Next Paint (how fast the page responds to a tap or click) and Cumulative Layout Shift (how much the page jumps while loading). Google's guidance at web.dev calls a page good at 2.5 seconds or less for LCP, 200 milliseconds or less for INP and 0.1 or less for CLS, measured at the 75th percentile of visits on mobile and desktop separately.",
+    updated: "2026-10-23",
+    sections: [
+      {
+        h: "The Three Measurements",
+        list: [
+          "**Largest Contentful Paint (LCP):** the time until the biggest image or block of text in view has loaded. Good is 2.5 seconds or less.",
+          "**Interaction to Next Paint (INP):** how long the page takes to visibly respond after a tap, click or key press, across the visit. Good is 200 milliseconds or less. INP replaced First Input Delay as a Core Web Vital in 2024.",
+          "**Cumulative Layout Shift (CLS):** how much content moves around unexpectedly while the page loads, such as a button jumping as an image arrives. Good is 0.1 or less.",
+        ],
+        p: [
+          "Each is judged at the 75th percentile: at least three in four visits should meet the threshold, counted separately for phones and computers. These definitions are Google's, published at web.dev.",
+        ],
+      },
+      {
+        h: "Lab Scores and Real Visitors",
+        p: [
+          "A lab test such as Lighthouse loads the page once on a simulated device. It is useful for finding problems, but it isn't what Google reports for your site. The field data in Search Console and PageSpeed Insights comes from real Chrome visitors over the previous 28 days, and a page with little traffic may have no field data at all.",
+          "So a perfect lab score doesn't guarantee good field numbers, and a weak lab score on a fast connection may still pass in the field. Check both, and trust the field data when you have it.",
+        ],
+      },
+      {
+        h: "What Usually Fixes Each One",
+        list: [
+          "**Slow LCP:** an oversized hero image, a slow server response, or text waiting on a web font. Serve correctly sized, modern-format images, cache pages close to visitors, and load the main image first.",
+          "**Slow INP:** too much JavaScript running when someone taps. Ship less script to the browser, break up long tasks, and load chat widgets and trackers after the page is usable.",
+          "**High CLS:** images, embeds or banners without reserved space. Give every image and embed its dimensions, and don't insert content above what the visitor is reading.",
+        ],
+      },
+      {
+        h: "How Much They Matter",
+        p: [
+          "Core Web Vitals are one of many signals Google uses; relevant, useful content matters more. Their bigger effect is on people: a page that appears quickly and doesn't jump keeps more visitors reading and buying. Nobody can promise a ranking from better scores.",
+        ],
+      },
+      {
+        h: "Checking Your Own Site",
+        list: [
+          "Search Console, Core Web Vitals report: field data grouped by page type.",
+          "PageSpeed Insights: field data for one URL plus a lab test with suggestions.",
+          "Test on a real mid-range phone on mobile data, not only on a fast laptop.",
+        ],
+        p: [
+          "Every site we build is tested for speed before launch: see [website development](/website-development). If an existing site is slow, a [redesign or migration](/website-development/redesign) may fix it, or a targeted repair may be enough.",
+        ],
+      },
+    ],
+    services: ["website-development", "seo-ai-search"],
+  },
+  {
+    slug: "why-nextjs-site-is-slow",
+    title: "Why Is My Next.js Site Slow?",
+    question: "What usually makes a Next.js website slow, and how is it fixed?",
+    description: "The common reasons a Next.js site loads or responds slowly, how to find which one you have, and what fixes it.",
+    answer:
+      "A Next.js site is usually slow for one of a few reasons: pages rendered on every request that could be static or cached, large images served without optimisation, too much JavaScript sent to the browser, slow data fetching that blocks the page, or third-party scripts loading first. Measure before changing anything: field data in Search Console shows which pages are slow for real visitors, and the browser's performance tools show why.",
+    updated: "2026-10-23",
+    sections: [
+      {
+        h: "Rendering Every Request",
+        p: [
+          "Next.js can build a page once and serve it from a cache, or render it on the server for every visitor. Product, service and article pages rarely need fresh rendering each time. Pages that read cookies, headers or uncached data are rendered per request, often by accident. Make content pages static or cache them with a sensible revalidation interval, and keep per-request rendering for pages that genuinely change per visitor.",
+        ],
+      },
+      {
+        h: "Images",
+        p: [
+          "Large photos are the most common cause of a slow first paint. Use the framework's image component with real width and height, the right sizes for each screen, and priority only for the main image in view. Reserve space for every image so the layout doesn't shift.",
+        ],
+      },
+      {
+        h: "Too Much JavaScript",
+        p: [
+          "Marking whole pages or layouts as client components ships their code to every visitor. Keep components on the server unless they need state or event handlers, push interactivity down to the small parts that need it, and check the size of every library you add. A long task in the browser is what makes taps feel slow.",
+        ],
+      },
+      {
+        h: "Slow Data and Blocking Requests",
+        p: [
+          "A page waits for its slowest data request. Fetch in parallel instead of one after another, cache results that don't change per visitor, and stream slower sections in after the main content so visitors see the page sooner.",
+        ],
+      },
+      {
+        h: "Third-Party Scripts",
+        p: [
+          "Chat widgets, tag managers, heatmaps and ad pixels often cost more than the site's own code. Load them after the page is interactive, remove the ones nobody uses, and test with them switched off to see their real cost.",
+        ],
+      },
+      {
+        h: "How We Approach It",
+        p: [
+          "We build in Next.js and React, and test speed on phones before launch. For an existing site, we measure first, fix the largest cause, and measure again. See [ecommerce website development](/website-development/ecommerce) or [website maintenance and support](/website-development/maintenance), and [Core Web Vitals explained](/guides/core-web-vitals-explained) for the measurements themselves.",
+        ],
+      },
+    ],
+    services: ["website-development"],
+  },
+  {
+    slug: "choose-website-development-partner",
+    title: "How to Choose a Website Development Partner",
+    question: "How do you choose a company to build your website?",
+    description: "What to check before you hire a website developer: real work, ownership, scope, testing, support and how the quote is written.",
+    answer:
+      "Choose a website development partner on evidence: live sites they built that you can use yourself, a written scope that says what's included and what isn't, clear ownership of your domain, code and content, a testing and launch plan, and a support arrangement in writing. Compare proposals line by line for the same scope, not on price alone.",
+    updated: "2026-10-23",
+    sections: [
+      {
+        h: "Look at Real Work",
+        p: [
+          "Open the sites they say they built, on your phone. Check that they load quickly, that the checkout or forms work, and that the work is labelled honestly: a live client site, the company's own store, or a concept design are different kinds of proof. Ask what part of each project they actually did.",
+        ],
+      },
+      {
+        h: "Ownership",
+        list: [
+          "Your domain is registered in your name.",
+          "You own the code, content and design, and can take them elsewhere.",
+          "You have admin access to the hosting, analytics and payment accounts.",
+          "What happens to all of it if you stop a monthly plan is written down.",
+        ],
+      },
+      {
+        h: "Scope and Price",
+        p: [
+          "A good proposal lists the pages, features and integrations, who writes the content, how many rounds of changes are included and what costs extra. Vague scopes are where projects run late. If two quotes differ a lot, the difference is usually in what's included.",
+        ],
+      },
+      {
+        h: "Testing and Launch",
+        p: [
+          "Ask how the site is tested before launch: on which phones and browsers, with test orders through each payment method, and with every form and email checked. For a redesign, ask how existing URLs and search visibility are kept. See [website redesign and migration](/website-development/redesign).",
+        ],
+      },
+      {
+        h: "After Launch",
+        p: [
+          "Sites need fixes, updates and changes. Find out who does them, how you ask, and what's included, before you sign. See how our [maintenance and support plan](/website-development/maintenance) works.",
+        ],
+      },
+      {
+        h: "Questions to Ask",
+        list: [
+          "Which of these live sites did you build, and what was your role?",
+          "What exactly is included, and what would cost extra?",
+          "Who owns the code, domain and content?",
+          "How is the site tested before launch?",
+          "What happens after launch, and what does it cost?",
+        ],
+        p: [
+          "Ready to compare? Send us your brief from [website development](/website-development) and we'll reply with a written scope and quote.",
+        ],
+      },
+    ],
+    services: ["website-development"],
+  },
 ];

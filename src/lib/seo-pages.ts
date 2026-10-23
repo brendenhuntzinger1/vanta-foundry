@@ -228,7 +228,7 @@ export const SEO_PAGES = {
   },
   contact: {
     route: "/contact",
-    primaryPhrase: "Vanta Foundry contact",
+    primaryPhrase: "contact Vanta Foundry",
     title: T("Contact Vanta Foundry"),
     h1: "Contact Vanta Foundry",
     description: "Send a website brief on the site, or a wholesale inquiry on WhatsApp or by email to support@vantalabsresearch.com. A person on our team replies.",
