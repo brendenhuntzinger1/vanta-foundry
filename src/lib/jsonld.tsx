@@ -21,6 +21,10 @@ export function organization() {
     url: SITE.url,
     description: SITE.description,
     email: SITE.email,
+    ...(SITE.whatsapp ? { telephone: `+${SITE.whatsapp}` } : {}),
+    contactPoint: { "@type": "ContactPoint", contactType: "sales", email: SITE.email, ...(SITE.whatsapp ? { telephone: `+${SITE.whatsapp}` } : {}), availableLanguage: "English" },
+    knowsAbout: ["Website development", "Payment processing", "Search engine optimization", "Generative engine optimization", "Third-party logistics", "White-label research supply"],
+    areaServed: "US",
     parentOrganization: { "@type": "Organization", name: SITE.parent, url: SITE.parentUrl },
   };
 }

@@ -36,10 +36,10 @@ export default async function StartPage(props: PageProps<"/start/[service]">) {
           <span className="mx-2" aria-hidden="true">/</span>
           <span className="text-ink">Get started</span>
         </nav>
-        <p className="mt-6 inline-flex items-center gap-2 text-[15px] font-medium text-ink">
+        <h1 className="mt-6 inline-flex items-center gap-2 text-[15px] font-medium text-ink">
           <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-bg-2"><ServiceIcon slug={s.slug} /></span>
-          {s.name}
-        </p>
+          Get started: {s.name}
+        </h1>
         <div className="mt-6">
           <ServiceFlow service={s} flow={flow} />
         </div>
