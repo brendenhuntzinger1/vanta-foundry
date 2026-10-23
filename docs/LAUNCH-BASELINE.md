@@ -87,20 +87,38 @@ reports show their reason on the page:
 - **CJC-1295 no DAC (Lot GB-5583809-P):** a Genesis Biomapping partner lot (Genesis is named as the client), 5 mg vial, identity only; the product is sold as 10 mg.
 - **MOTS-c (Lot GB-7058391-P)** and **Tesamorelin (Lot GB-1700427-P):** Genesis Biomapping partner lots. No report covers Tesamorelin 5 mg.
 
-## Factual questions for the owner (all in one place)
+## Owner questions (only the unanswered facts)
 
-1. **Batch:** 37 Kovera reports across about 30 compounds print the same batch, **Vanta184290**. Is that one manufacturing batch, an order/shipment code, or a lab-entry error? Is it the batch in current wholesale stock?
-2. **L-Carnitine:** is there a report for the 6,000 mg product, or is the 10 mg report the right document?
-3. **KLOW:** what batch was tested (the report says N/A)?
-4. **CJC-1295 no DAC, MOTS-c, Tesamorelin:** were these Genesis Biomapping lots the same material Vanta supplies? Is there a Vanta report for CJC-1295 no DAC 10 mg and Tesamorelin 5 mg?
-5. **Thymosin Alpha-1 (KVR-2026-4D316E):** the report measures 12.91 mg net content against a 5 mg label. Is the label or the fill correct?
-6. **HCG and Recon water:** will reports be published?
-7. **Coded names:** VLP-1/2/3 reports name semaglutide, tirzepatide and retatrutide. Keep coded names only (recommended), or name the compounds?
-8. **Origin:** where are products manufactured, and where do wholesale orders ship from? (No "US-made" or "ships from" claim is published.)
-9. **Shipping coverage:** which states or countries do you ship wholesale to, and exclude? (Decides the 98 wholesale location intents; see `docs/LOCATION-OPPORTUNITIES.md`.)
-10. **Wholesale terms:** is there a refund/replacement policy, standard quote validity and payment terms for wholesale?
-11. **KPV salt form:** free base or acetate, if documented.
-12. **Website service area:** which countries do you take website clients in, remotely? Do you meet any in person, and is there an office address to publish? (Decides the 24 development location intents, and whether the existing `areaServed: "US"` in the structured data is right.)
+Each fact is asked separately: one answer doesn't imply another (for example, where products ship from says nothing about where they're made).
+
+| # | Question | Affects | Shown until answered |
+|---|---|---|---|
+| 1 | **Business location:** where is Vanta Foundry based, and should the address be published? | `/contact`, `/about`, Organization structured data | No address; email and WhatsApp only |
+| 2 | **Manufacturing origin:** where are the products made? | Any "made in" claim; the USA phrases; audit page 99PW-448 | No origin claim |
+| 3 | **Shipping origin:** where do wholesale and 3PL orders ship from? | `/wholesale/ordering`, `/fulfillment` | Not stated; the quote confirms |
+| 4 | **Shipping destinations:** which US states and countries do you ship to, and which are excluded? | A "Where we ship" section; 98 wholesale location intents; the USA phrases | The buyer gives a destination and the quote confirms whether we ship there |
+| 5 | **Remote website clients:** which countries do you take website clients in? | A "Where we work" section; 24 development location intents; the Organization structured data's `areaServed: "US"` (live before this PR) | No country list in the copy. Confirm "US", or I remove that line from the structured data |
+| 6 | **Offices and in-person meetings:** is there a physical office, and do you meet clients in person anywhere? | `/contact`; any local page | Nothing said about offices or meetings |
+| 7 | **Batch Vanta184290:** 37 Kovera reports across about 30 compounds print this batch. Is it a real manufacturing batch, an order code or an entry error? Is it the stock buyers would receive? | 36 report rows marked "Matches product and size"; `/wholesale/testing` | As now: product and size match, the batch is shown as printed, and the page says current stock isn't confirmed. Each quote names the lot |
+| 8 | **Thymosin Alpha-1:** the report measures 12.91 mg net content against a 5 mg label. Which is right? | `/catalog/thymosin-alpha-1` | The report with that note |
+| 9 | **Missing or partner reports:** a report for L-Carnitine 6,000 mg? KLOW's tested batch? Are the Genesis lots (CJC-1295 no DAC, MOTS-c, Tesamorelin) Vanta's material? Reports for CJC-1295 no DAC 10 mg and Tesamorelin 5 mg? Will HCG and Recon water get reports? | Those product pages | "Reference only" with the reason, or "No report published yet" |
+| 10 | **Wholesale terms:** refund or replacement policy, quote validity, payment terms | `/wholesale/ordering` FAQs | "Confirmed on your quote" |
+| 11 | **Coded names:** keep VLP-1/2/3 only, or name the compounds? | `/catalog/glp-1`, `-2`, `-3` | Coded names only (recommended) |
+| 12 | **KPV salt form:** free base or acetate? | `/catalog/kpv` spec table | Omitted |
+
+## Report mismatches: what each page shows
+
+No product page needs to be held back. Each mismatch is labelled where it appears, and no reference report is presented as verification of the stock a buyer will receive.
+
+| Mismatch | Page | Recommendation | Now |
+|---|---|---|---|
+| One batch, Vanta184290, printed across about 30 compounds (Q7) | About 30 product pages, `/wholesale/testing` | Show the report, labelled "Matches product and size", with the batch as printed and "doesn't confirm current stock" | Done |
+| Thymosin Alpha-1: 12.91 mg net vs 5 mg label (Q8) | `/catalog/thymosin-alpha-1` | Show the report with the note; don't hold the page | Done |
+| L-Carnitine: 10 mg report, 6,000 mg product | `/catalog/l-carnitine` | Labelled reference; not counted as documented | Done |
+| KLOW: batch N/A | `/catalog/klow` | Labelled reference | Done |
+| CJC-1295 no DAC: a Genesis partner lot, 5 mg, identity only; we sell 10 mg | `/catalog/cjc-1295-no-dac` | Labelled reference for now. Remove the link if Q9 says it isn't Vanta's material | Labelled reference |
+| MOTS-c, Tesamorelin: Genesis partner lots | Those pages | Same as CJC-1295 no DAC | Labelled reference |
+| HCG, Recon water: no report | Those pages | "No report published yet"; inquiries still work | Done |
 
 ## Inquiry storage and delivery
 
@@ -200,9 +218,9 @@ Three different things, reported separately.
 | Analytics events | Queued correctly; not delivered (no analytics endpoint locally) |
 | Keyword placements | Read from rendered HTML (`docs/KEYWORD-DECISIONS.md`) |
 
-**2. Deployment build status** (from the Vercel bot on the PR): every push builds a preview, and each has reported **Ready** (the most recent checked: `dpl_5PCpGQi8wC9jL6anXQZiK9bAWDMX`, commit 90455f7). This shows the build succeeded on Vercel. It doesn't show that the deployed pages, forms or settings work.
+**2. Deployment build status** (from the Vercel bot on the PR): every push builds a preview, and each has reported **Ready** (the latest checked when this was written: `dpl_Fvez71vez11YzGxzXCitMgdxU2Wc`, commit 090e327). This shows the build succeeded on Vercel. It doesn't show that the deployed pages, forms or settings work.
 
-**3. Deployed functional tests:** **none run.** The preview is behind Vercel Authentication, and the connected Vercel account gets **404 on project `prj_h0c01RMILqTNP5Vc8PN7nrBnBDOU`** (team `team_mYQ1nzN5ge279mjxaLG26lYe`) and **403 on the deployment**. To fix: grant the connection access to the `vanta-foundry` project, or share a preview bypass link.
+**3. Deployed functional tests:** **none run.** The preview is behind Vercel Authentication, and the connected Vercel account gets **404 on project `prj_h0c01RMILqTNP5Vc8PN7nrBnBDOU`** (team `team_mYQ1nzN5ge279mjxaLG26lYe`) and **403 on the deployment**. See *Getting past the Vercel blocker* below.
 
 Run these on the deployed preview once access exists (each is "not run" until then):
 
@@ -217,14 +235,49 @@ Run these on the deployed preview once access exists (each is "not run" until th
 | Analytics delivery | After enabling Web Analytics, repeat the brief and handoff | Vercel shows `inquiry_submitted` separately from `contact_click` and `wholesale_handoff` |
 | Clean-up | Delete the rows those tests create, by their exact ids | — |
 
+## Getting past the Vercel blocker
+
+The connected Vercel account can see three projects in the team (`vanta-labs`, `vanta-skin`, `telehealth-jrgh`) but not `vanta-foundry`, so its access is per project and this one was left out.
+
+**The one action:** in Vercel, open the team *brendenhuntzinger1s-projects* → **Settings → Integrations**. Find the Claude/MCP integration, open its **project access**, and add **vanta-foundry** (or choose All Projects).
+
+If that setting isn't there, open the latest preview deployment in Vercel, click **Share**, and paste the share link into the Claude session. It expires on its own, so no secret needs to be shared. It's enough to test pages and forms, and Resend delivery can be checked through the Resend connection, but analytics can't be read with it.
+
+## Deployed verification log
+
+Fill one row per check on the **latest deployed commit**. "Accepted" (Resend answered 200 with an email id) isn't "delivered" (Resend shows the email as delivered, or it's in the support@ inbox).
+
+| Check | Commit | Environment | Result | Evidence |
+|---|---|---|---|---|
+| Rendering and navigation, 390×844 and 1280 | | Preview | Not run | |
+| Preview noindex (header and robots) | | Preview | Not run | |
+| Brief saved with reference | | Preview + `foundry.leads` | Not run | |
+| Notification accepted by Resend | | Preview + Resend | Not run | |
+| Notification delivered | | Resend + inbox | Not run | |
+| Retry: no second row, no second email | | Preview + both | Not run | |
+| Wholesale handoff keeps products, quantities, reference | | Preview + `foundry.leads` | Not run | |
+| Analytics: `inquiry_submitted` separate from `contact_click`, `wholesale_handoff` | | Production or preview with Web Analytics on | Not run | |
+
+## Launch preparation (checked)
+
+| Item | Result | Evidence |
+|---|---|---|
+| Public domain | `https://www.vantafoundry.com` (the apex 308s to it); `SITE.url` defaults to it | `curl` of the live site; `src/lib/site.ts` |
+| Production canonicals, sitemap, robots | All self-canonicals and all 104 sitemap URLs on `https://www.vantafoundry.com`; robots allows all except `/api/` and names the sitemap; no `X-Robots-Tag` | Local build with `VERCEL_ENV=production` |
+| Preview noindex can't reach production | With `VERCEL_ENV=preview`: robots disallows all and every page sends `X-Robots-Tag: noindex, nofollow`. Production gets neither. Both switch on `VERCEL_ENV`, which Vercel sets to `production` only on production | Two local builds compared; `src/lib/env.ts`, `next.config.ts` |
+| Internal links | Relative; no preview or other hostnames | `check:seo` and a scan of the rendered HTML |
+| Lead privacy | `foundry.leads` has RLS on, no policies and no table grants, and the schema isn't exposed. The two write functions return only `ref`, `created` and `notified`, never contact details. The Supabase advisor's "anon can execute SECURITY DEFINER" warnings are these intended write-only functions | SQL catalog queries; Supabase advisors |
+| Notification failures visible | The row keeps `notify_error` and an empty `notified_at`. The API now also logs "lead saved but not emailed" with the reference, visible in Vercel logs | `src/app/api/lead/route.ts` |
+| Recovering unemailed leads | `select ref, name, email, service, details, created_at, notify_error from foundry.leads where kind = 'website_brief' and notified_at is null order by created_at;` A visitor's retry also re-sends the email | Supabase SQL editor |
+| Unverified service area removed | This PR's Service structured data no longer says `areaServed: "US"`; the Organization line from before the PR waits on Q5 | `src/lib/jsonld.tsx` |
+
 ## Launch blockers
 
-1. **No deployed functional test has run** (Vercel access, above): rendering, brief storage, notification delivery, duplicate protection, handoff contents and analytics delivery are verified locally only.
-2. **Report batch question 1** (Vanta184290) unanswered: product pages already avoid batch-verification claims, but the owner should confirm before buyers rely on them.
-3. **Web Analytics not enabled**, so launch-day measurement would be lost.
-4. **Test rows** in `foundry.leads` (delete statement above) so the first real lead isn't mixed with tests.
+1. **No deployed functional test has run** (Vercel access, above). Rendering, brief storage, notification delivery, duplicate protection, handoff contents and analytics are verified locally only.
+2. **Web Analytics not enabled** (Project → Analytics → Enable), so inquiries couldn't be measured from day one.
+3. **Test rows** in `foundry.leads`: the delete waited for approval and timed out, so the 8 rows (the statement above) are still the only rows.
 
-Not blockers (handled after release): sitemap submission and indexing; the deferred research content; location pages; the other factual questions.
+Not blockers: the owner questions (each has a safe display meanwhile); sitemap submission and indexing; deferred research content; the 122 location pages (`docs/SEO-BACKLOG.md`).
 
 ## Indexing status
 
@@ -234,9 +287,13 @@ Not blockers (handled after release): sitemap submission and indexing; the defer
 | Sitemap submitted to Google Search Console / Bing | **Not done**: no webmaster access from this workspace |
 | Indexed | **Unknown** (not verified). Nothing is deployed to production from this PR yet |
 
-After release: verify `https://www.vantafoundry.com` in Search Console and
-Bing Webmaster Tools, submit `/sitemap.xml`, and inspect `/wholesale`,
-`/catalog`, `/website-development/peptide-websites` and two product pages.
+### Submitting the sitemap after release
+
+1. **Google Search Console** (search.google.com/search-console): Add property → **Domain** → `vantafoundry.com`. Add the TXT record it gives to the domain's DNS, then Verify.
+2. Sitemaps → enter `sitemap.xml` → Submit. Status should read "Success" with 104 discovered URLs.
+3. URL Inspection → request indexing for `/`, `/wholesale`, `/catalog`, `/website-development` and `/website-development/peptide-websites`.
+4. **Bing Webmaster Tools** (bing.com/webmasters): Import from Search Console (fastest), or add the site and verify. Then Sitemaps → Submit `https://www.vantafoundry.com/sitemap.xml`.
+5. Record the date. Indexing stays **unknown** until the Pages report in each tool shows it.
 
 ## 60-day measurement plan
 

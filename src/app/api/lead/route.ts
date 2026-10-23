@@ -46,6 +46,8 @@ export async function POST(request: Request) {
 
   const sent = await notify(lead);
   if (saved) await markNotified(lead.id, sent.ok, sent.error);
+  // Shows in the Vercel logs; the row (notified_at empty) is the record to work from.
+  if (saved && !sent.ok) console.error("lead saved but not emailed", ref, sent.error);
 
   if (saved || sent.ok) return Response.json({ ok: true, ref, saved: Boolean(saved), notified: sent.ok });
   return Response.json({ ok: false, fallback: true }, { status: sent.error === "not configured" ? 503 : 502 });

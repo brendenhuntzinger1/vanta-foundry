@@ -79,7 +79,6 @@ export function service({ name, description, path, serviceType }: { name: string
     url: `${SITE.url}${path}`,
     ...(serviceType ? { serviceType } : {}),
     provider: { "@id": ORG_ID },
-    areaServed: "US",
   };
 }
 
