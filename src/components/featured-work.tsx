@@ -24,8 +24,8 @@ const LIVE = [
 ];
 
 const MORE = [
-  { name: "Solenne", kind: "Skincare", src: "/solenne/hero.webp" },
-  { name: "Halcyon", kind: "Specialty coffee", src: "/sites/halcyon-hero.webp" },
+  { name: "Solenne", kind: "Skincare", src: "/showcase/solenne-desktop.webp" },
+  { name: "Halcyon", kind: "Specialty coffee", src: "/showcase/halcyon-desktop.webp" },
 ];
 
 /**
@@ -74,7 +74,7 @@ export function FeaturedWork() {
           <li key={m.name}>
             <Link href="/work" className="group block overflow-hidden rounded-[28px] border border-line">
               <div className="relative aspect-[16/10] overflow-hidden bg-bg-2">
-                <Image src={m.src} alt={`${m.name} website`} fill sizes="(min-width: 768px) 560px, 100vw" className="object-cover transition-transform duration-700 group-hover:scale-[1.03]" />
+                <Image src={m.src} alt={`${m.name} website`} fill sizes="(min-width: 768px) 560px, 100vw" className="object-cover object-left-top transition-transform duration-700 group-hover:scale-[1.03]" />
               </div>
               <div className="flex items-center justify-between px-6 py-5">
                 <div>

@@ -61,8 +61,8 @@ export default function Home() {
                 {[
                   { src: "/showcase/genesis-desktop.webp", alt: "Genesis Biomapping website", top: true },
                   { src: "/showcase/vanta-labs-desktop.webp", alt: "Vanta Labs website", top: true },
-                  { src: "/solenne/hero.webp", alt: "Solenne skincare website" },
-                  { src: "/sites/halcyon-hero.webp", alt: "Halcyon coffee website" },
+                  { src: "/showcase/solenne-desktop.webp", alt: "Solenne skincare website", top: true },
+                  { src: "/showcase/halcyon-desktop.webp", alt: "Halcyon coffee website", top: true },
                 ].map((x) => (
                   <div key={x.src} className="relative overflow-hidden rounded-[14px]">
                     <Image src={x.src} alt={x.alt} fill sizes="(min-width: 1024px) 280px, 50vw" className={`object-cover ${x.top ? "object-left-top" : ""}`} priority />
