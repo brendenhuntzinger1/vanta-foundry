@@ -14,7 +14,7 @@ const cormorant = Cormorant_Garamond({ subsets: ["latin"], weight: ["400", "500"
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
-  title: `${SITE.name}: Custom Websites, Payment Processing, SEO & Peptide Supply`,
+  title: `${SITE.name}: Advanced Custom Websites, Payments & SEO for Any Business`,
   description: SITE.description,
   applicationName: SITE.name,
   alternates: { canonical: "/" },

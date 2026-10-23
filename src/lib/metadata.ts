@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { SITE } from "./site";
 
 export function pageMetadata({ path, title, description }: { path: string; title?: string; description: string }): Metadata {
-  const fullTitle = title ? `${title} · ${SITE.name}` : `${SITE.name}: Custom Websites, Payment Processing, SEO & Peptide Supply`;
+  const fullTitle = title ? `${title} · ${SITE.name}` : `${SITE.name}: Advanced Custom Websites, Payments & SEO for Any Business`;
   return {
     title: fullTitle,
     description,
