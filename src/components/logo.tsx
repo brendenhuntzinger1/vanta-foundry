@@ -19,7 +19,7 @@ export function Logo() {
   return (
     <Link href="/" className="inline-flex items-center gap-2.5" aria-label={`${SITE.name} home`}>
       <LogoMark />
-      <span className="text-[13.5px] uppercase leading-none tracking-[0.18em] text-ink">
+      <span className="whitespace-nowrap text-[12.5px] uppercase leading-none tracking-[0.16em] text-ink sm:text-[13.5px] sm:tracking-[0.18em]">
         <span className="font-semibold">Vanta</span> <span className="font-normal">Foundry</span>
       </span>
     </Link>

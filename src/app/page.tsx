@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Container, CtaBand, FaqList, SectionHead } from "@/components/blocks";
 import { FeaturedWork, StackRow } from "@/components/featured-work";
+import { SupplyShowcase } from "@/components/supply-showcase";
 import { IconArrow, IconWhatsApp } from "@/components/icons";
 import { JsonLd, faqPage } from "@/lib/jsonld";
 import { SITE, whatsappLink } from "@/lib/site";
@@ -46,15 +47,25 @@ export default function Home() {
       <section className="pt-14 sm:pt-24">
         <Container>
           <div className="mx-auto max-w-[860px] text-center">
-            <h1 className="h-display text-[46px] leading-[1] text-ink sm:text-[84px]">
-              Build your brand.
+            <h1 className="h-display text-[44px] leading-[1] text-ink sm:text-[84px]">
+              Websites. Wholesale.
               <span className="block">
-                Or <span className="accent">supply</span> it.
+                <span className="accent">3PL.</span>
               </span>
             </h1>
-            <p className="mx-auto mt-6 max-w-[600px] text-[18px] leading-[1.6] text-body">
-              Premium website development for any business, and peptide wholesale &amp; 3PL for research brands. Pick where to start.
+            <p className="mx-auto mt-6 max-w-[640px] text-[17px] leading-[1.6] text-body sm:text-[18px]">
+              Premium website development for any business. Peptide wholesale, white label and 3PL fulfillment for research
+              brands. One team.
             </p>
+            {/* Both front doors on the first screen, even on a phone. */}
+            <div className="mx-auto mt-8 grid max-w-[560px] grid-cols-2 gap-2.5 lg:hidden">
+              <Link href="/website-development" className="btn btn-dark h-14 text-[15px]">
+                Websites <IconArrow />
+              </Link>
+              <Link href="/supply" className="btn h-14 bg-gold-fill text-[15px] text-ink">
+                Wholesale &amp; 3PL <IconArrow />
+              </Link>
+            </div>
           </div>
 
           {/* The two front doors */}
@@ -102,6 +113,13 @@ export default function Home() {
               <li className="text-[18px] tracking-[-0.025em] text-muted">and more</li>
             </ul>
           </div>
+        </Container>
+      </section>
+
+      {/* Wholesale & 3PL */}
+      <section className="mt-24 sm:mt-32">
+        <Container>
+          <SupplyShowcase />
         </Container>
       </section>
 
