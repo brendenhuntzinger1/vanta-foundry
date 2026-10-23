@@ -28,7 +28,6 @@ export function WebBento() {
 
 export function SupplyBento() {
   const svc = (slug: string) => SERVICES.find((s) => s.slug === slug)!;
-  const look = (key: string) => LABEL_LOOKS.find((l) => l.key === key)!.src;
   return (
     <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
       <Tile slug="wholesale" title={svc("wholesale").name} body="Our catalog by the case, at wholesale prices. COA with every lot.">
@@ -38,13 +37,7 @@ export function SupplyBento() {
         <Photo src="/supply/factory-coa.webp" alt="A vial filling line with a certificate of analysis on a clipboard" chip="COA included" />
       </Tile>
       <Tile slug="white-label" title={svc("white-label").name} body="Your brand on every vial, in any look you want.">
-        <div className="flex h-full items-end justify-center gap-2 bg-[#141416] px-4 pt-5">
-          {["halo", "kinetic", "ember", "polar"].map((k, i) => (
-            <div key={k} className={`relative w-[22%] overflow-hidden rounded-t-lg ${i % 2 ? "h-[150px]" : "h-[165px]"}`}>
-              <Image src={look(k)} alt="" fill sizes="100px" className="object-cover" />
-            </div>
-          ))}
-        </div>
+        <VialRow />
       </Tile>
       <Tile slug="fulfillment" title={svc("fulfillment").name} body="We store, pack and ship every order as your brand.">
         <Photo src="/supply/warehouse.webp" alt="Aisles of racked, labelled stock in a clean warehouse" chip="Shipped as your brand" />
@@ -89,7 +82,7 @@ function ApplePay({ className = "" }: { className?: string }) {
 }
 
 /** A dark checkout sheet: Apple Pay front and centre, cards and backup below. */
-function PayVisual() {
+export function PayVisual() {
   return (
     <div className="flex h-full items-center justify-center px-5">
       <div className="w-full max-w-[260px] rounded-2xl border border-white/10 bg-[#1d1d20] p-4 text-white shadow-[0_18px_40px_-20px_rgba(0,0,0,0.8)]">
@@ -133,6 +126,20 @@ function SeoVisual() {
           Try <span className="font-semibold text-white">Halcyon Coffee</span>: small lots, roasted weekly.
         </p>
       </div>
+    </div>
+  );
+}
+
+/** Four label looks side by side, on dark. */
+export function VialRow() {
+  const look = (key: string) => LABEL_LOOKS.find((l) => l.key === key)!.src;
+  return (
+    <div className="flex h-full items-end justify-center gap-2 bg-[#141416] px-4 pt-5">
+      {["halo", "kinetic", "ember", "polar"].map((k, i) => (
+        <div key={k} className={`relative w-[22%] max-w-[110px] overflow-hidden rounded-t-lg ${i % 2 ? "h-[78%]" : "h-[86%]"}`}>
+          <Image src={look(k)} alt="" fill sizes="110px" className="object-cover" />
+        </div>
+      ))}
     </div>
   );
 }
