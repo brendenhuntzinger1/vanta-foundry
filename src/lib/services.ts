@@ -57,13 +57,13 @@ export const SERVICES: Service[] = [
   {
     slug: "wholesale",
     name: "Wholesale supply",
-    short: "Buy from the Vanta Labs catalog in bulk, at wholesale prices.",
+    short: "Buy our in-stock products in bulk, at wholesale prices.",
     title: "The Vanta catalog, at wholesale prices.",
     answer:
-      "Vanta Foundry wholesale is bulk supply of the Vanta Labs research catalog at wholesale prices, for research-supply brands, resellers and laboratories. Each lot is matched to its certificate of analysis where one has been issued. Browse the catalog, send an inquiry on WhatsApp or by email, and we reply with pricing.",
+      "Vanta Foundry wholesale is bulk supply of our in-stock research catalog at wholesale prices, for research-supply brands, resellers and laboratories. Each lot is matched to its certificate of analysis where one has been issued. Browse the catalog, send an inquiry on WhatsApp or by email, and we reply with pricing.",
     forWho: "Research-supply brands, resellers and laboratories that buy in quantity.",
     includes: [
-      "The full Vanta Labs catalog",
+      "Our full in-stock catalog, with photos",
       "Wholesale pricing that improves with quantity",
       "Lot numbers and certificates of analysis",
       "Standing orders, so you don't re-order by hand",

@@ -1,17 +1,26 @@
 import Link from "next/link";
 import { SITE } from "@/lib/site";
 
-/** Wordmark: the Vanta vial outline in gold beside the name. */
+/**
+ * The mark: a black tile holding a V cut down its centre line, one arm white
+ * and one arm Vanta gold. Beside it, the name set in spaced capitals.
+ */
+export function LogoMark({ size = 28 }: { size?: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 28 28" aria-hidden="true">
+      <rect width="28" height="28" rx="7" fill="#0c0c0d" />
+      <path d="M7 7.5h3.6L14 15.6V21L7 7.5Z" fill="#ffffff" />
+      <path d="M21 7.5h-3.6L14 15.6V21l7-13.5Z" fill="#c7ae5e" />
+    </svg>
+  );
+}
+
 export function Logo() {
   return (
-    <Link href="/" className="inline-flex items-center gap-2" aria-label={`${SITE.name} home`}>
-      <svg width="16" height="22" viewBox="0 0 18 24" fill="none" aria-hidden="true">
-        <rect x="5" y="0.9" width="8" height="3.4" rx="0.8" stroke="var(--gold-fill)" strokeWidth="1.5" />
-        <path d="M3.5 6.5h11v14.25a2.5 2.5 0 0 1-2.5 2.5H6a2.5 2.5 0 0 1-2.5-2.5V6.5Z" stroke="var(--ink)" strokeWidth="1.5" />
-        <path d="M3.5 13.5h11" stroke="var(--gold-fill)" strokeWidth="1.5" />
-      </svg>
-      <span className="text-[17px] font-semibold tracking-[-0.03em] text-ink">
-        Vanta <span className="text-muted">Foundry</span>
+    <Link href="/" className="inline-flex items-center gap-2.5" aria-label={`${SITE.name} home`}>
+      <LogoMark />
+      <span className="text-[13.5px] uppercase leading-none tracking-[0.18em] text-ink">
+        <span className="font-semibold">Vanta</span> <span className="font-normal">Foundry</span>
       </span>
     </Link>
   );
