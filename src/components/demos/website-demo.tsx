@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { SITE } from "@/lib/site";
 import { SITES, SiteView } from "./example-sites";
 
 /**
@@ -51,7 +50,7 @@ export function WebsiteDemo() {
           {s.real ? (
             <>
               {s.industry}. Built and run by us.{" "}
-              <a href={SITE.parentUrl} target="_blank" rel="noopener noreferrer" className="text-ink underline underline-offset-2">Visit it</a>
+              <a href={s.href} target="_blank" rel="noopener noreferrer" className="text-ink underline underline-offset-2">Visit it</a>
             </>
           ) : (
             <>

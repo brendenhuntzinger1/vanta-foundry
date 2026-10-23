@@ -9,6 +9,7 @@ import { ServiceIcon } from "@/components/service-icon";
 import { LabelGallery } from "@/components/label-gallery";
 import { WebDevExtras } from "@/components/web-dev-extras";
 import { CardBrands } from "@/components/card-brands";
+import { CatalogBrowser } from "@/app/catalog/catalog-browser";
 import { SERVICES, getService } from "@/lib/services";
 import { getGuide } from "@/lib/guides";
 import { JsonLd, ORG_ID, breadcrumbs, faqPage } from "@/lib/jsonld";
@@ -69,6 +70,21 @@ export default async function ServicePage(props: PageProps<"/[service]">) {
           </div>
         </Container>
       </section>
+
+      {s.slug === "wholesale" && (
+        <section id="catalog" className="mt-24 scroll-mt-20">
+          <Container>
+            <SectionHead
+              label="Catalog"
+              title="Everything you can order, right here."
+              lede="Tap Inquire on any product and WhatsApp opens with it filled in. We reply with wholesale pricing. Every wholesale lot comes with a certificate of analysis."
+            />
+            <div className="mt-10">
+              <CatalogBrowser />
+            </div>
+          </Container>
+        </section>
+      )}
 
       <section className="mt-28">
         <Container className="grid gap-6 md:grid-cols-2">
