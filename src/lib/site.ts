@@ -37,6 +37,13 @@ export function emailLink(subject?: string, body?: string) {
   return `mailto:${SITE.email}${qs ? `?${qs}` : ""}`;
 }
 
+/**
+ * Website-development pages take inquiries through their own form, so the
+ * WhatsApp buttons (meant for wholesale and supply) are hidden there
+ * (owner, 2026-10-23).
+ */
+export const NO_WHATSAPP_PATHS = ["/website-development", "/start/website-development", "/work"];
+
 export const NAV = [
   { href: "/#services", label: "Services" },
   { href: "/work", label: "Our work" },

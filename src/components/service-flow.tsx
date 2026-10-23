@@ -1,12 +1,15 @@
 "use client";
 
-import { useId, useState } from "react";
+import { useEffect, useId, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { type Flow, type FlowOption, optLabel } from "@/lib/flows";
 import { SERVICES } from "@/lib/services";
 import { SITE, emailLink, whatsappLink } from "@/lib/site";
 import { IconArrow, IconCheck, IconMail, IconWhatsApp } from "./icons";
+
+/** Wall-clock time, read only in effects and event handlers. */
+const now = () => Date.now();
 
 export type FlowSubject = { slug: string; name: string; title: string; includes: string[] };
 
@@ -30,11 +33,19 @@ export function ServiceFlow({ subject, flow, learnMore }: { subject: FlowSubject
   const [step, setStep] = useState(0);
   const [answers, setAnswers] = useState<Record<number, string[]>>({});
   const [extra, setExtra] = useState<string[]>([]);
-  const [f, setF] = useState({ name: "", phone: "", email: "", business: "", details: "" });
+  const [f, setF] = useState({ name: "", phone: "", email: "", business: "", website: "", details: "", company_url: "" });
   const t = (k: keyof typeof f) => f[k].trim();
+  const form = flow.contact === "form";
+  const [send, setSend] = useState<"idle" | "sending" | "sent" | "fallback" | "error">("idle");
+  const [sendError, setSendError] = useState("");
+  const started = useRef(0);
+  useEffect(() => {
+    started.current = now();
+  }, []);
 
   const phoneOk = t("phone").replace(/\D/g, "").length >= 10;
-  const detailsOk = t("name").length > 0 && phoneOk;
+  const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(t("email"));
+  const detailsOk = t("name").length > 0 && phoneOk && (!form || emailOk);
   const others = SERVICES.filter((s) => s.slug !== subject.slug);
   const summary = flow.questions.map((q, i) => ({ label: q.label ?? q.q, value: (answers[i] ?? []).join(", ") }));
 
@@ -48,8 +59,41 @@ export function ServiceFlow({ subject, flow, learnMore }: { subject: FlowSubject
     `Phone: ${t("phone")}`,
     ...(t("email") ? [`Email: ${t("email")}`] : []),
     ...(t("business") ? [`Business: ${t("business")}`] : []),
+    ...(t("website") ? [`Current site: ${t("website")}`] : []),
     ...(t("details") ? ["", t("details")] : []),
   ].join("\n");
+
+  const submit = async () => {
+    setSend("sending");
+    setSendError("");
+    try {
+      const res = await fetch("/api/lead", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          service: subject.name,
+          answers: [...summary, ...(extra.length ? [{ label: "Also", value: extra.join(", ") }] : [])],
+          name: t("name"),
+          email: t("email"),
+          phone: t("phone"),
+          business: t("business"),
+          website: t("website"),
+          details: t("details"),
+          company_url: f.company_url,
+          elapsed: now() - started.current,
+        }),
+      });
+      const data = (await res.json().catch(() => ({}))) as { ok?: boolean; fallback?: boolean; error?: string };
+      if (data.ok) setSend("sent");
+      else if (data.fallback) setSend("fallback");
+      else {
+        setSend("error");
+        setSendError(data.error ?? "Something went wrong. Please try again.");
+      }
+    } catch {
+      setSend("fallback");
+    }
+  };
   const wa = whatsappLink(message);
   const mail = emailLink(`Getting started: ${subject.name}`, message);
 
@@ -206,18 +250,24 @@ export function ServiceFlow({ subject, flow, learnMore }: { subject: FlowSubject
           {step === Q + 2 && (
             <div>
               <h2 className="text-[30px] font-semibold leading-[1.1] tracking-[-0.035em] text-ink sm:text-[40px]">Where should we reply?</h2>
-              <p className="mt-3 text-[15px] text-muted">A person on our team reads every request.</p>
+              <p className="mt-3 text-[15px] text-muted">{form ? "A project lead from our team reviews every brief personally." : "A person on our team reads every request."}</p>
               <div className="mt-8 grid gap-3 sm:grid-cols-2">
                 <Field id={`${uid}-name`} label="Your name" required value={f.name} onChange={(v) => setF({ ...f, name: v })} autoComplete="name" />
+                <Field id={`${uid}-email`} label={form ? "Email" : "Email (optional)"} required={form} type="email" value={f.email} onChange={(v) => setF({ ...f, email: v })} autoComplete="email" />
                 <Field id={`${uid}-phone`} label="Phone number" required type="tel" inputMode="tel" value={f.phone} onChange={(v) => setF({ ...f, phone: v })} autoComplete="tel" />
-                <Field id={`${uid}-email`} label="Email (optional)" type="email" value={f.email} onChange={(v) => setF({ ...f, email: v })} autoComplete="email" />
                 <Field id={`${uid}-business`} label="Business name (optional)" value={f.business} onChange={(v) => setF({ ...f, business: v })} autoComplete="organization" />
+                {form && <Field id={`${uid}-website`} label="Current website (optional)" type="url" inputMode="url" value={f.website} onChange={(v) => setF({ ...f, website: v })} />}
+                {/* Honeypot: hidden from people, filled by bots. */}
+                <div aria-hidden="true" className="absolute -left-[9999px] h-0 w-0 overflow-hidden">
+                  <label htmlFor={`${uid}-cu`}>Company URL</label>
+                  <input id={`${uid}-cu`} tabIndex={-1} autoComplete="off" value={f.company_url} onChange={(e) => setF({ ...f, company_url: e.target.value })} />
+                </div>
                 <div className="sm:col-span-2">
                   <label htmlFor={`${uid}-details`} className="text-[13px] text-muted">Anything else we should know? (optional)</label>
                   <textarea id={`${uid}-details`} rows={3} value={f.details} onChange={(e) => setF({ ...f, details: e.target.value })} className="mt-1.5 w-full rounded-xl border border-line-2 bg-white px-3.5 py-3 text-[16px] outline-none focus:border-ink" />
                 </div>
               </div>
-              <Nav back={() => go(step - 1)} next={() => go(step + 1)} nextLabel="Review your brief" disabled={!detailsOk} hint={detailsOk ? undefined : "Add your name and a phone number to continue."} />
+              <Nav back={() => go(step - 1)} next={() => go(step + 1)} nextLabel="Review your brief" disabled={!detailsOk} hint={detailsOk ? undefined : form ? "Add your name, email and phone number to continue." : "Add your name and a phone number to continue."} />
             </div>
           )}
 
@@ -249,20 +299,50 @@ export function ServiceFlow({ subject, flow, learnMore }: { subject: FlowSubject
                   </div>
                 </dl>
               </div>
+              {form ? (
+                <div className="mt-6">
+                  {send === "sent" ? (
+                    <div className="rounded-2xl bg-ink p-6 text-white">
+                      <p className="flex items-center gap-2 text-[18px] font-semibold"><IconCheck className="text-gold-fill" /> Brief received. Thank you, {t("name").split(" ")[0]}.</p>
+                      <p className="mt-2 text-[14.5px] leading-[1.6] text-white/70">A project lead will review it and reach out at {t("email")} or {t("phone")} with next steps, a quote and a timeline.</p>
+                      <Link href="/work" className="mt-5 inline-flex items-center gap-1.5 text-[14px] font-medium text-white underline underline-offset-4">While you wait, see our work <IconArrow /></Link>
+                    </div>
+                  ) : send === "fallback" ? (
+                    <div className="rounded-2xl border border-line p-6">
+                      <p className="text-[16px] font-semibold text-ink">One more tap.</p>
+                      <p className="mt-1.5 text-[14.5px] text-body">Send your brief from your email app. It opens with everything written in.</p>
+                      <a href={mail} className="btn btn-dark mt-5 h-14 px-8 text-[16px]"><IconMail /> Send by email</a>
+                    </div>
+                  ) : (
+                    <>
+                      <button type="button" onClick={submit} disabled={send === "sending"} className="btn btn-dark h-14 w-full px-8 text-[16px] disabled:opacity-60 sm:w-auto">
+                        {send === "sending" ? "Sending…" : "Send my brief"} {send !== "sending" && <IconArrow />}
+                      </button>
+                      {send === "error" && <p className="mt-3 text-[13.5px] text-[#b42318]" role="alert">{sendError}</p>}
+                      <p className="mt-4 text-[13px] text-muted">We use your details only to reply to this brief.</p>
+                    </>
+                  )}
+                </div>
+              ) : (
+                <>
               <div className="mt-6 flex flex-col gap-3 sm:flex-row">
-                {wa && (
-                  <a href={wa} target="_blank" rel="noopener noreferrer" className="btn btn-dark h-14 px-8 text-[16px]">
-                    <IconWhatsApp className="text-wa" /> Send on WhatsApp
+                  {wa && (
+                    <a href={wa} target="_blank" rel="noopener noreferrer" className="btn btn-dark h-14 px-8 text-[16px]">
+                      <IconWhatsApp className="text-wa" /> Send on WhatsApp
+                    </a>
+                  )}
+                  <a href={mail} className={`btn ${wa ? "btn-light" : "btn-dark"} h-14 px-8 text-[16px]`}>
+                    <IconMail /> Send by email
                   </a>
-                )}
-                <a href={mail} className={`btn ${wa ? "btn-light" : "btn-dark"} h-14 px-8 text-[16px]`}>
-                  <IconMail /> Send by email
-                </a>
-              </div>
-              <p className="mt-4 text-[13px] text-muted">Opens with everything above written in. Prefer to write yourself? {SITE.email}</p>
-              <button type="button" onClick={() => go(step - 1)} className="mt-6 text-[14px] text-muted underline underline-offset-2 hover:text-ink">
-                Back
-              </button>
+                </div>
+                <p className="mt-4 text-[13px] text-muted">Opens with everything above written in. Prefer to write yourself? {SITE.email}</p>
+                </>
+              )}
+              {send !== "sent" && (
+                <button type="button" onClick={() => go(step - 1)} className="mt-6 text-[14px] text-muted underline underline-offset-2 hover:text-ink">
+                  Back
+                </button>
+              )}
             </div>
           )}
         </div>

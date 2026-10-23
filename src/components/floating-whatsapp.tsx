@@ -2,7 +2,7 @@
 
 import { usePathname } from "next/navigation";
 import { IconWhatsApp } from "./icons";
-import { whatsappLink } from "@/lib/site";
+import { NO_WHATSAPP_PATHS, whatsappLink } from "@/lib/site";
 
 /**
  * Bottom-right chat button on every page when WhatsApp is configured. Hidden
@@ -12,7 +12,7 @@ import { whatsappLink } from "@/lib/site";
 export function FloatingWhatsApp() {
   const pathname = usePathname();
   const wa = whatsappLink("Hi Vanta Foundry, I have a question.");
-  if (!wa || pathname === "/catalog") return null;
+  if (!wa || pathname === "/catalog" || NO_WHATSAPP_PATHS.includes(pathname)) return null;
   return (
     <a
       href={wa}

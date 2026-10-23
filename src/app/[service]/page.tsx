@@ -8,6 +8,7 @@ import { IconArrow, IconCheck } from "@/components/icons";
 import { ServiceIcon } from "@/components/service-icon";
 import { LabelGallery } from "@/components/label-gallery";
 import { WebDevExtras } from "@/components/web-dev-extras";
+import { WebsiteLanding } from "@/components/website-landing";
 import { CardBrands } from "@/components/card-brands";
 import { CatalogBrowser } from "@/app/catalog/catalog-browser";
 import { SERVICES, getService } from "@/lib/services";
@@ -36,6 +37,23 @@ export default async function ServicePage(props: PageProps<"/[service]">) {
   const guides = s.guides.map(getGuide).filter((g) => g !== undefined);
   const others = SERVICES.filter((x) => x.slug !== s.slug);
   const supply = ["wholesale", "factory-direct", "white-label"].includes(s.slug);
+  const schema = (
+    <>
+      <JsonLd data={{ "@context": "https://schema.org", "@type": "Service", name: `${SITE.name} ${s.name}`, description: s.answer, url: `${SITE.url}/${s.slug}`, provider: { "@id": ORG_ID } }} />
+      <JsonLd data={faqPage(s.faqs)} />
+      <JsonLd data={breadcrumbs([{ name: "Home", path: "/" }, { name: s.name, path: `/${s.slug}` }])} />
+    </>
+  );
+
+  // Website development has its own premium landing page (ready for ads).
+  if (s.slug === "website-development") {
+    return (
+      <>
+        <WebsiteLanding s={s} />
+        {schema}
+      </>
+    );
+  }
 
   return (
     <>

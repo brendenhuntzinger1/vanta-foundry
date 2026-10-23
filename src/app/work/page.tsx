@@ -92,7 +92,7 @@ export default function WorkPage() {
         </section>
       ))}
 
-      <CtaBand />
+      <CtaBand title="Want one like these?" lede="Tell us about your business in about a minute. A project lead replies with a quote and a timeline." primary={{ href: "/start/website-development", label: "Start your project" }} contact={false} />
       <JsonLd data={breadcrumbs([{ name: "Home", path: "/" }, { name: "Our work", path: "/work" }])} />
     </>
   );

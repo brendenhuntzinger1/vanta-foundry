@@ -38,9 +38,14 @@ export function FaqList({ faqs }: { faqs: { q: string; a: string }[] }) {
 export function CtaBand({
   title = "Tell us what you need.",
   lede = "Pick your services and send them on WhatsApp or by email. A person on our team replies.",
+  primary = { href: "/get-started", label: "Choose your services" },
+  contact = true,
 }: {
   title?: string;
   lede?: string;
+  primary?: { href: string; label: string };
+  /** Show the WhatsApp/email buttons. Off on website-development pages. */
+  contact?: boolean;
 }) {
   return (
     <section className="mt-28">
@@ -49,10 +54,10 @@ export function CtaBand({
           <h2 className="h-section mx-auto max-w-2xl text-[34px] text-white sm:text-[50px]">{title}</h2>
           <p className="mx-auto mt-4 max-w-lg text-[17px] leading-[1.6] text-white/70">{lede}</p>
           <div className="mt-9 flex flex-wrap justify-center gap-3">
-            <Link href="/get-started" className="btn h-12 bg-white px-6 text-[15px] text-ink hover:bg-white/90">
-              Choose your services
+            <Link href={primary.href} className="btn h-12 bg-white px-6 text-[15px] text-ink hover:bg-white/90">
+              {primary.label}
             </Link>
-            <ContactButtons className="justify-center [&_.btn-dark]:bg-white/10 [&_.btn-dark]:hover:bg-white/15 [&_.btn-light]:border-white/20 [&_.btn-light]:bg-transparent [&_.btn-light]:text-white" size="lg" />
+            {contact && <ContactButtons className="justify-center [&_.btn-dark]:bg-white/10 [&_.btn-dark]:hover:bg-white/15 [&_.btn-light]:border-white/20 [&_.btn-light]:bg-transparent [&_.btn-light]:text-white" size="lg" />}
           </div>
         </div>
       </Container>
