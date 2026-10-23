@@ -42,7 +42,7 @@ export function ServiceBento() {
       </Tile>
 
       <Tile slug="fulfillment" title={svc("fulfillment").name} body="We store your stock, pack every order and ship it as your brand.">
-        <Photo src="/supply/fulfillment.webp" alt="A packing station with branded boxes ready to ship" chip="Packed & shipped as your brand" />
+        <Photo src="/supply/warehouse.webp" alt="Aisles of racked, labelled stock in a clean warehouse" chip="Stored, packed & shipped as your brand" />
       </Tile>
     </ul>
   );
