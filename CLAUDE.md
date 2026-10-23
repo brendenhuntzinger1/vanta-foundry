@@ -26,9 +26,10 @@ Website development and payment processing are offered to any lawful business.
   glass, gradient text, tracked eyebrow labels or numbered grids.
 - Make it dummy-proof. Visitors pick services and send the request on WhatsApp
   or by email (`support@vantalabsresearch.com`). There's no form backend.
-- The catalog lists the Vanta Labs products and sizes with NO prices.
-  Customers tap what they want and send an inquiry on WhatsApp
-  (+1 419-378-1139) or to the support email, and we reply with pricing.
+- The catalog shows the Vanta Labs products (photos from the store's image
+  storage) with NO prices. Each product has an Inquire button that opens
+  WhatsApp (+1 419-378-1139), or the support email, with the product filled
+  in, and we reply with pricing.
 
 ## Verify in a browser
 

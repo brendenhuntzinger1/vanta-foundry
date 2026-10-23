@@ -68,9 +68,9 @@ export const SERVICES: Service[] = [
       "Lot numbers and certificates of analysis",
       "Standing orders, so you don't re-order by hand",
     ],
-    steps: ["Pick products from the catalog", "Send your inquiry on WhatsApp or by email", "We reply with pricing, then ship"],
+    steps: ["Find a product in the catalog", "Tap Inquire: WhatsApp opens with it filled in", "We reply with pricing, then ship"],
     faqs: [
-      { q: "Where are the prices?", a: "We send them to you. Pick products in the catalog, send the inquiry, and we reply with wholesale pricing for your quantities." },
+      { q: "Where are the prices?", a: "We send them to you. Tap Inquire on any product in the catalog and we reply on WhatsApp with wholesale pricing for your quantities." },
       { q: "Is there a minimum order?", a: "Ask us. Minimums depend on the products and quantities." },
       { q: "Who can buy wholesale?", a: "Businesses that sell or use these materials for research. We don't supply businesses that market them for human or veterinary use." },
     ],

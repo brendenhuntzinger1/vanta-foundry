@@ -23,8 +23,9 @@ export default function CatalogPage() {
         <div className="max-w-2xl">
           <h1 className="h-display text-[42px] text-ink sm:text-[60px]">Catalog.</h1>
           <p className="mt-5 text-[18px] leading-[1.6] text-body">
-            Everything you can order: {CATALOG.length} products in {sizes} sizes from the Vanta Labs catalog. Tap the sizes
-            you want and send us an inquiry. We reply with wholesale pricing.
+            Everything you can order: {CATALOG.length} products in {sizes} sizes, straight from the Vanta Labs catalog.
+            No prices are listed. Tap <strong className="font-semibold text-ink">Inquire</strong> on any product to message
+            us on WhatsApp, and we reply with wholesale pricing.
           </p>
         </div>
         <div className="mt-10">

@@ -149,7 +149,7 @@ export default function Home() {
               <p className="text-[14px] font-medium text-gold">Catalog</p>
               <h2 className="h-section mt-2 text-[32px] text-ink sm:text-[42px]">See everything you can order.</h2>
               <p className="mt-4 text-[17px] leading-[1.6] text-body">
-                Every product and size in the Vanta Labs catalog. Tap what you want and send us an inquiry. We reply with pricing on WhatsApp or by email.
+                Every Vanta Labs product, with photos. Tap Inquire on anything you want and it opens WhatsApp with the product filled in. We reply with pricing.
               </p>
             </div>
             <div className="flex lg:justify-end">

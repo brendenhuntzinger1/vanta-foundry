@@ -17,13 +17,13 @@ It's a standalone Next.js app with its own repository, Vercel project and domain
 | --- | --- |
 | WhatsApp number | `src/lib/site.ts`, `whatsapp` (now +1 419-378-1139). The Vercel env `NEXT_PUBLIC_WHATSAPP_NUMBER` overrides it. |
 | Contact email | `src/lib/site.ts`, `email` (now `support@vantalabsresearch.com`) |
-| Catalog products and sizes | `src/lib/catalog.ts`. Read from the live store on 2026-10-23; update when the store changes. No prices are shown: customers send an inquiry. |
+| Catalog products, sizes and photos | `src/lib/catalog.ts`. Read from the live store on 2026-10-23 (photos load from the store's public image storage); update when the store changes. No prices are shown: each product has an Inquire button that opens WhatsApp. |
 | Service wording | `src/lib/services.ts` |
 | Site name | `src/lib/site.ts`. "Vanta Foundry" is a working name. |
 
 ## How a customer gets in touch
 
-There's no form and no backend. A visitor taps the services they want, or the product sizes they want in the catalog, then presses **Send on WhatsApp** or **Send by email**. The message opens in their own app, already written and addressed to us. Nothing can get lost on a server.
+There's no form and no backend. A visitor taps the services they want, or **Inquire** on a product in the catalog, then presses **Send on WhatsApp** or **Send by email**. The message opens in their own app, already written and addressed to us. Nothing can get lost on a server.
 
 ## Run
 
