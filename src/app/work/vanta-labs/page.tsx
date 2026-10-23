@@ -46,7 +46,7 @@ const SECTIONS: { h: string; p: string[]; list?: string[] }[] = [
   {
     h: "Documentation",
     p: [
-      "Each product lists the laboratory reports for the batch it currently supplies: report number, vial size, method, result, laboratory and date, with a link to the laboratory's own PDF and the access code for checking it with the laboratory. A COA library lists every published report and can be searched by product, compound, batch or lot number. Where no report is published, the page says so instead of hiding it.",
+      "Each product lists its published laboratory reports: report number, vial size, method, result, laboratory and date, with a link to the laboratory's own PDF and the access code for checking it with the laboratory. A COA library lists every published report and can be searched by product, compound, batch or lot number. Where no report is published, the page says so instead of hiding it.",
       "We use the same reports on this site: see peptide testing and batch COAs.",
     ],
   },

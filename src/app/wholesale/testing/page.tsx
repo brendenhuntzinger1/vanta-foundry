@@ -17,7 +17,7 @@ export const metadata: Metadata = pageMetadata({ path: P.route, title: P.title, 
 
 const FAQS = [
   { q: "Who issued the reports?", a: "Named third-party laboratories. Each report shows the laboratory's name; the list above says which laboratory issued each one." },
-  { q: "Does a report match the lot I'll receive?", a: "The reports listed here cover the batch the Vanta Labs store currently supplies. A wholesale lot can be a different batch, so your quote names the lot you'll receive and its report. Check that the lot number on your vials matches the report." },
+  { q: "Does a report match the lot I'll receive?", a: "Not necessarily. Each report covers the batch printed on it, and that batch hasn't been confirmed as the one in current wholesale stock. Your quote names the lot you'll receive and its report. Check that the lot number on your vials matches the report." },
   { q: "What does an HPLC purity result cover?", a: "The share of the detected signal that belongs to the main compound, at the wavelength the method used. It doesn't measure net peptide content, sterility, endotoxin, residual solvents or heavy metals unless those tests appear on the report." },
   { q: "How can I check a report is genuine?", a: "With the laboratory. Kovera Labs reports can be checked at the laboratory's verify page with the report number and the access code shown on the Vanta Labs product page. Horizon Analytical reports can be searched by lot number on the laboratory's site." },
   { q: "Is every product tested?", a: "No, not yet. The products without a published report are listed on this page, and we'll say so on your quote." },
@@ -120,7 +120,7 @@ export default function TestingPage() {
         <Container>
           <h2 className="h-section text-[32px] text-ink sm:text-[44px]">Published reports</h2>
           <p className="mt-3 max-w-2xl text-[16px] leading-[1.6] text-body">
-            As published by Vanta Labs for the batch it currently supplies, read {STORE_FACTS_READ_ON}. Results are quoted exactly as
+            As published by the Vanta Labs store, read {STORE_FACTS_READ_ON}. Each row shows the batch printed on the report. Results are quoted exactly as
             the store lists them.
           </p>
           <div className="mt-8">

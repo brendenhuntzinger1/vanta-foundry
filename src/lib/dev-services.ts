@@ -49,7 +49,7 @@ export const DEV_SERVICES: DevService[] = [
       {
         h: "Product Catalogs and COA Pages",
         p: [
-          "On Vanta Labs, each product page lists the reports published for the batch it currently supplies: report number, vial size, laboratory, date and result, with a link to the laboratory's own PDF. A separate COA library lists every published report and can be searched by product, batch or lot number.",
+          "On Vanta Labs, each product page lists its published laboratory reports: report number, vial size, laboratory, date and result, with a link to the laboratory's own PDF. A separate COA library lists every published report and can be searched by product, batch or lot number.",
           "We model products, sizes and documents as linked records, so a new report attaches to the right size and shows up on the product page and in the library at the same time. Nobody has to remember to update two places.",
         ],
       },
