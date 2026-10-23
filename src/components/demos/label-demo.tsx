@@ -1,64 +1,48 @@
 "use client";
 
-import { useId, useState } from "react";
+import Image from "next/image";
+import { useState } from "react";
 import { Pill, Screen } from "./frame";
-import { LABEL_STYLES, Vial, type LabelStyle } from "./vial";
+import { LABEL_LOOKS } from "@/lib/labels";
 
-/** A label proof the visitor can put their own brand on, in four label styles. */
+/** Pick a label look, see it on a real vial, approve the proof. */
 export function LabelDemo() {
-  const inputId = useId();
-  const [brand, setBrand] = useState("Your Brand");
-  const [style, setStyle] = useState<LabelStyle>("noir");
+  const [i, setI] = useState(0);
   const [approved, setApproved] = useState(false);
+  const l = LABEL_LOOKS[i];
 
   return (
     <Screen
-      title="Label proof"
-      subtitle={approved ? "Approved · sent to print" : "Waiting for your approval"}
+      title={`Label proof · ${l.brand}`}
+      subtitle={approved ? "Approved · sent to print" : "Example brand · waiting for approval"}
       status={approved ? <Pill tone="ok">Approved</Pill> : <Pill tone="warn">Proof</Pill>}
     >
-      <div className="grid gap-6 sm:grid-cols-[1fr_200px] sm:items-center">
-        <div className="rounded-xl bg-bg-2 py-5">
-          <Vial brand={brand.trim() || "Your Brand"} style={style} width={150} />
+      <div className="grid gap-5 sm:grid-cols-[1fr_190px] sm:items-center">
+        <div className="relative mx-auto aspect-[4/5] w-full max-w-[280px] overflow-hidden rounded-xl bg-bg-2">
+          <Image key={l.key} src={l.src} alt={`${l.brand} vial with a ${l.look.toLowerCase()} label`} fill sizes="280px" className="fade-in object-cover" />
         </div>
-        <div className="space-y-4">
-          <div>
-            <label htmlFor={inputId} className="block text-[13px] font-medium text-ink">
-              Type your brand name
-            </label>
-            <input
-              id={inputId}
-              value={brand}
-              maxLength={22}
-              onChange={(e) => {
-                setBrand(e.target.value);
-                setApproved(false);
-              }}
-              className="mt-1.5 h-11 w-full rounded-lg border border-line-2 bg-white px-3 text-[15px] text-ink outline-none focus:border-ink"
-            />
-          </div>
-          <div>
-            <p className="text-[13px] font-medium text-ink">Pick a label style</p>
-            <div role="group" aria-label="Label style" className="mt-1.5 grid grid-cols-2 gap-1.5">
-              {LABEL_STYLES.map((s) => (
-                <button
-                  key={s.key}
-                  type="button"
-                  aria-pressed={style === s.key}
-                  onClick={() => {
-                    setStyle(s.key);
-                    setApproved(false);
-                  }}
-                  className={`h-9 rounded-lg border text-[13px] transition-colors ${style === s.key ? "border-ink bg-ink text-white" : "border-line-2 bg-white text-ink hover:border-ink"}`}
-                >
-                  {s.name}
-                </button>
-              ))}
-            </div>
+        <div className="space-y-3">
+          <p className="text-[13px] font-medium text-ink">Pick a look</p>
+          <div role="group" aria-label="Label look" className="grid grid-cols-2 gap-1.5 sm:grid-cols-1">
+            {LABEL_LOOKS.map((x, n) => (
+              <button
+                key={x.key}
+                type="button"
+                aria-pressed={i === n}
+                onClick={() => {
+                  setI(n);
+                  setApproved(false);
+                }}
+                className={`h-10 rounded-lg border px-3 text-left text-[13px] transition-colors ${i === n ? "border-ink bg-ink text-white" : "border-line-2 bg-white text-ink hover:border-ink"}`}
+              >
+                {x.look}
+              </button>
+            ))}
           </div>
           <button type="button" onClick={() => setApproved((v) => !v)} className={`btn h-11 w-full text-[14px] ${approved ? "btn-light" : "btn-dark"}`}>
             {approved ? "Undo" : "Approve proof"}
           </button>
+          <p className="text-[12px] leading-5 text-muted">Your name goes where the example brand is. Nothing prints until you approve.</p>
         </div>
       </div>
     </Screen>

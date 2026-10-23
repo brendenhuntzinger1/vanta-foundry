@@ -1,40 +1,24 @@
 import Image from "next/image";
 import { CATALOG } from "@/lib/catalog";
-import { Vial } from "./demos/vial";
+import { LABEL_LOOKS } from "@/lib/labels";
 
-/**
- * Label styles, side by side: the real Vanta Labs vial first, then three
- * example brands in other styles. The example brands are invented and
- * labelled as examples.
- */
+/** Our real Vanta Labs vial first, then example brands in other looks. */
 export function LabelGallery() {
   const vanta = CATALOG.find((p) => p.slug === "ghk-cu");
-  const examples = [
-    { brand: "Halden Labs", product: "BPC-157", size: "10 mg", style: "noir" as const },
-    { brand: "Meridian Supply", product: "NAD+", size: "500 mg", style: "clinical" as const },
-    { brand: "Fernwood Research", product: "Semax", size: "10 mg", style: "bold" as const },
+  const items = [
+    ...(vanta ? [{ key: "vanta", brand: "Vanta Labs", note: "Our own label, in production", src: vanta.image }] : []),
+    ...LABEL_LOOKS.map((l) => ({ key: l.key, brand: l.brand, note: `${l.look} · example brand`, src: l.src })),
   ];
   return (
-    <ul className="grid grid-cols-2 gap-3 lg:grid-cols-4">
-      {vanta && (
-        <li className="overflow-hidden rounded-2xl border border-line bg-white">
+    <ul className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
+      {items.map((x) => (
+        <li key={x.key} className="overflow-hidden rounded-2xl border border-line bg-white">
           <div className="relative aspect-[4/5] bg-bg-2">
-            <Image src={vanta.image} alt="Vanta Labs vial with its own label" fill sizes="(min-width: 1024px) 270px, 50vw" className="object-cover" />
+            <Image src={x.src} alt={`${x.brand} vial label`} fill sizes="(min-width: 1024px) 190px, 50vw" className="object-cover" />
           </div>
-          <div className="p-4">
-            <p className="text-[15px] font-semibold text-ink">Vanta Labs</p>
-            <p className="text-[13px] text-muted">Our own label, in production</p>
-          </div>
-        </li>
-      )}
-      {examples.map((e) => (
-        <li key={e.brand} className="overflow-hidden rounded-2xl border border-line bg-white">
-          <div className="flex aspect-[4/5] items-center justify-center bg-bg-2">
-            <Vial brand={e.brand} product={e.product} size={e.size} style={e.style} width={140} />
-          </div>
-          <div className="p-4">
-            <p className="text-[15px] font-semibold text-ink">{e.brand}</p>
-            <p className="text-[13px] capitalize text-muted">{e.style} style · example brand</p>
+          <div className="p-3.5">
+            <p className="text-[14.5px] font-semibold text-ink">{x.brand}</p>
+            <p className="text-[12.5px] text-muted">{x.note}</p>
           </div>
         </li>
       ))}
