@@ -1,6 +1,6 @@
 import { ContactButtons } from "./contact-buttons";
 
-const DAYS = [
+export const DAYS = [
   { d: "Day 1", t: "First message", b: "You tell us on WhatsApp what you sell and what you need. We map out the whole launch." },
   { d: "Day 2", t: "Design and labels started", b: "Your site design and label proofs are underway. Payment processing application goes in, with a backup." },
   { d: "Day 3", t: "Site design approved", b: "You review the design. Our developers start coding it, page by page." },
