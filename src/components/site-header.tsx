@@ -51,6 +51,16 @@ export function SiteHeader() {
           <Link href="/get-started" className="btn btn-dark hidden h-10 px-5 text-[14px] sm:inline-flex">
             Get started
           </Link>
+          {/* The other front door, always one tap away on a phone. */}
+          {pathname.startsWith("/supply") ? (
+            <Link href="/website-development" className="btn btn-dark h-10 px-4 text-[13.5px] md:hidden">
+              Websites
+            </Link>
+          ) : (
+            <Link href="/supply" className="btn h-10 bg-gold-fill px-4 text-[13.5px] text-ink md:hidden">
+              Wholesale
+            </Link>
+          )}
           <button
             type="button"
             className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-line-2 md:hidden"
