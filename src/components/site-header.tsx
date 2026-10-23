@@ -5,13 +5,13 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Logo } from "./logo";
 import { IconWhatsApp } from "./icons";
-import { NAV, whatsappLink } from "@/lib/site";
+import { NAV, NO_WHATSAPP_PATHS, whatsappLink } from "@/lib/site";
 
 export function SiteHeader() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const wa = whatsappLink("Hi Vanta Foundry, I have a question.");
+  const wa = NO_WHATSAPP_PATHS.includes(pathname) ? null : whatsappLink("Hi Vanta Foundry, I have a question.");
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 4);

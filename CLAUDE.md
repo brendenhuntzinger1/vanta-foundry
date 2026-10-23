@@ -25,7 +25,13 @@ Website development and payment processing are offered to any lawful business.
 - Light theme, premium and plain-spoken. It must not look AI-made: no glows,
   glass, gradient text, tracked eyebrow labels or numbered grids.
 - Make it dummy-proof. Visitors pick services and send the request on WhatsApp
-  or by email (`support@vantalabsresearch.com`). There's no form backend.
+  or by email (`support@vantalabsresearch.com`).
+- Website development is the exception: its pages are a premium, ad-ready
+  funnel with no WhatsApp. The brief is submitted on the page to
+  `/api/lead`, which emails it to the team through Resend
+  (`RESEND_API_KEY` and `LEAD_FROM` in the Vercel project; `LEAD_TO`
+  optional). Without them the form falls back to the visitor's email app.
+  WhatsApp stays for wholesale and supply.
 - The catalog shows the Vanta Labs products (photos from the store's image
   storage) with NO prices. Each product has an Inquire button that opens
   WhatsApp (+1 419-378-1139), or the support email, with the product filled

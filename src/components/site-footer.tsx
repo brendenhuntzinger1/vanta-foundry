@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Logo } from "./logo";
+import { HideOnWebsitePages } from "./hide-on-website-pages";
 import { RUO_NOTICE, SITE, emailLink, whatsappLink } from "@/lib/site";
 import { SERVICES } from "@/lib/services";
 
@@ -31,7 +32,7 @@ export function SiteFooter() {
           <Col
             title="Contact"
             links={[
-              ...(wa ? [{ href: wa, label: "WhatsApp" }] : []),
+              ...(wa ? [{ href: wa, label: "WhatsApp", whatsapp: true }] : []),
               { href: emailLink(), label: SITE.email },
               { href: SITE.privacyUrl, label: "Privacy" },
               { href: SITE.termsUrl, label: "Terms" },
@@ -53,12 +54,13 @@ export function SiteFooter() {
   );
 }
 
-function Col({ title, links }: { title: string; links: { href: string; label: string }[] }) {
+function Col({ title, links }: { title: string; links: { href: string; label: string; whatsapp?: boolean }[] }) {
   return (
     <div>
       <p className="text-[13px] font-medium text-ink">{title}</p>
       <ul className="mt-4 space-y-2.5">
-        {links.map((l) => (
+        {links.map((l) => {
+          const item = (
           <li key={l.href}>
             {l.href.startsWith("/") ? (
               <Link href={l.href} className="text-[14px] text-muted transition-colors hover:text-ink">
@@ -74,7 +76,9 @@ function Col({ title, links }: { title: string; links: { href: string; label: st
               </a>
             )}
           </li>
-        ))}
+          );
+          return l.whatsapp ? <HideOnWebsitePages key={l.href}>{item}</HideOnWebsitePages> : item;
+        })}
       </ul>
     </div>
   );

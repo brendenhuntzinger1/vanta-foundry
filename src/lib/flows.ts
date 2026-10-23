@@ -26,6 +26,12 @@ export type Flow = {
   questions: FlowQuestion[];
   /** Big points on the first screen; falls back to the service's list. */
   pillars?: { t: string; b: string }[];
+  /**
+   * "form": the brief is submitted on the page (name, email, phone) and
+   * emailed to the team, with no WhatsApp; used for website development.
+   * Otherwise it opens in WhatsApp or email.
+   */
+  contact?: "form";
   /** Show the sites we've built on the first screen. */
   showcase?: boolean;
   /** For a path that isn't one service (e.g. RUO brand scaling). */
@@ -39,6 +45,7 @@ export const FLOWS: Record<string, Flow> = {
   "website-development": {
     promise: "A premium, custom-coded website for any industry, designed for your brand, live in 72 hours to a week, and looked after by your own developer team.",
     showcase: true,
+    contact: "form",
     pillars: [
       { t: "Designed for your brand", b: "Custom design and hand-written code. Never a template, never AI filler." },
       { t: "Live in 72 hours to a week", b: "Built, tested and launched by our developers, with every change you ask for." },
