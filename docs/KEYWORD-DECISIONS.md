@@ -246,9 +246,9 @@ Added: **25**. Omitted with a reason: **19**.
 | B2B peptide fulfillment | 3PL & fulfillment | `/fulfillment` | Yes | Added (body): opening answer paragraph |
 | B2B peptide portal development | B2B ecommerce portal | `/website-development/b2b-portals` | Yes | Added (body): 'Documentation' section |
 | BPC-157 supplier | BPC-157 Wholesale | `/catalog/bpc-157` | Yes | Added (body): intro under the H1 ('We're a wholesale BPC-157 supplier'; same sentence on every product page) |
-| branded research compounds USA | custom branded peptides | `/white-label` | No | Omitted: 'USA'/'United States' states an origin or service area we haven't verified (owner questions on origin and coverage). |
+| branded research compounds USA | custom branded peptides | `/white-label` | No | Omitted: shipping is confirmed (Tampa Bay, Florida, to the US), but 'USA' next to a product is usually read as US-made, and manufacturing origin isn't confirmed. |
 | COA audit | Start with the paperwork | `/guides/choose-wholesale-peptide-supplier` | Yes | Added (body): 'Documentation' section, first sentence |
-| dropship research compounds USA | dropship from our stock | `/fulfillment` | No | Omitted: 'USA'/'United States' states an origin or service area we haven't verified (owner questions on origin and coverage). |
+| dropship research compounds USA | dropship from our stock | `/fulfillment` | No | Omitted: shipping is confirmed (Tampa Bay, Florida, to the US), but 'USA' next to a product is usually read as US-made, and manufacturing origin isn't confirmed. |
 | how to launch a research compound business | How to Start a Research Peptide Business | `/guides/start-a-research-peptide-business` | Yes | Added (body): opening answer paragraph |
 | how to sell research peptides | How to Start a Research Peptide Business | `/guides/start-a-research-peptide-business` | Yes | Added (body): opening answer paragraph |
 | HPLC purity test | HPLC purity | `/wholesale/testing` | Yes | Added (body): 'Test Methods' list, first item |
@@ -259,14 +259,14 @@ Added: **25**. Omitted with a reason: **19**.
 | peptide business no inventory | hold no inventory at all | `/fulfillment` | No | Omitted: not grammatical as written; the page already says 'hold no inventory', and forcing the string would read as stuffing. |
 | peptide business website | peptide website | `/website-development/peptide-websites` | Yes | Added (body): opening answer paragraph, first sentence |
 | peptide dropshipping program | peptide dropshipping | `/fulfillment` | Yes | Added (FAQ question): new FAQ 'How does the peptide dropshipping program work?' |
-| peptide dropshipping program USA | peptide dropshipping | `/fulfillment` | No | Omitted: 'USA'/'United States' states an origin or service area we haven't verified (owner questions on origin and coverage). |
+| peptide dropshipping program USA | peptide dropshipping | `/fulfillment` | No | Omitted: shipping is confirmed (Tampa Bay, Florida, to the US), but 'USA' next to a product is usually read as US-made, and manufacturing origin isn't confirmed. |
 | peptide SEO website | Search setup: titles, structured data, sitemap | `/website-development/peptide-websites` | Yes | Added (body): 'What Your Peptide Website Needs' list, new last item |
 | peptide supplier dropship | dropship from our stock | `/fulfillment` | No | Omitted: not grammatical as written; the dropship intent is already on the page. |
 | peptide supplier verification | verify its reports | `/guides/choose-wholesale-peptide-supplier` | Yes | Added (body): 'Documentation' section, second paragraph |
 | peptides wholesale | wholesale peptides | `/wholesale` | Yes | Added (body): catalog section paragraph ('To buy peptides wholesale…') |
 | private label peptide supplier | private label peptides | `/white-label` | Yes | Added (body): opening answer paragraph |
-| private label peptides United States | private label peptides | `/white-label` | No | Omitted: 'USA'/'United States' states an origin or service area we haven't verified (owner questions on origin and coverage). |
-| private label peptides USA | private label peptides | `/white-label` | No | Omitted: 'USA'/'United States' states an origin or service area we haven't verified (owner questions on origin and coverage). |
+| private label peptides United States | private label peptides | `/white-label` | No | Omitted: shipping is confirmed (Tampa Bay, Florida, to the US), but 'USA' next to a product is usually read as US-made, and manufacturing origin isn't confirmed. |
+| private label peptides USA | private label peptides | `/white-label` | No | Omitted: shipping is confirmed (Tampa Bay, Florida, to the US), but 'USA' next to a product is usually read as US-made, and manufacturing origin isn't confirmed. |
 | research compound business launch | How to Start a Research Peptide Business | `/guides/start-a-research-peptide-business` | No | Omitted: 'how to launch a research compound business' was added to the same guide; a second variant would be stuffing. |
 | research compound e-commerce | peptide website | `/website-development/peptide-websites` | Yes | Added (body): 'Retail Checkout or B2B Ordering?' section, new paragraph |
 | research compound fulfillment partner | 3PL | `/fulfillment` | Yes | Added (body): 'Who it's for' line |
@@ -277,7 +277,7 @@ Added: **25**. Omitted with a reason: **19**.
 | scale peptide business | Launching or scaling a brand? | `/supply` | No | Omitted: not grammatical as written, and there is no scaling service to describe beyond supply and 3PL. |
 | SEO services United States | SEO & AI search | `/seo-ai-search` | No | Omitted: the US service area for website clients isn't confirmed (the Organization JSON-LD areaServed 'US' predates this PR and needs the same confirmation). |
 | start a peptide business | start a research peptide business | `/guides/start-a-research-peptide-business` | Yes | Added (body): 'Decide What You'll Sell' section, first sentence |
-| start a peptide business USA | start a research peptide business | `/guides/start-a-research-peptide-business` | No | Omitted: 'USA'/'United States' states an origin or service area we haven't verified (owner questions on origin and coverage). The guide also doesn't cover US-specific rules. |
+| start a peptide business USA | start a research peptide business | `/guides/start-a-research-peptide-business` | No | Omitted: shipping is confirmed (Tampa Bay, Florida, to the US), but 'USA' next to a product is usually read as US-made, and manufacturing origin isn't confirmed. The guide also doesn't cover US-specific rules. |
 | UI/UX design | We design the site | `/website-development` | Yes | Added (body): 'What we build' section intro |
 | verify peptide supplier | verify its reports | `/guides/choose-wholesale-peptide-supplier` | No | Omitted: not grammatical as written; 'peptide supplier verification' was added to the same guide. |
 | white label BPC-157 | any catalog product | `/white-label` | Yes | Added (FAQ answer): new FAQ 'Can I white label a specific product, like BPC-157?' |

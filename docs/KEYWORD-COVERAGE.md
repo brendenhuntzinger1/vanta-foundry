@@ -68,7 +68,7 @@ Status meanings: *covered and verified*: a Foundry page owns the intent and answ
 | bioregulator peptides research | — | unavailable offer | Not in catalog. | no destination (by design) |
 | BPC-157 supplier | `/catalog/bpc-157` | covered and verified | Exact phrase added (was 'BPC-157 Wholesale'). | /catalog/bpc-157 200; phrase rendered |
 | BPC-157 wholesale | `/catalog/bpc-157` | covered and verified | Title and H1. | /catalog/bpc-157 200; phrase rendered |
-| branded research compounds USA | `/white-label` | merged into an existing page | Omitted: 'USA'/'United States' states an origin or service area we haven't verified (owner questions on origin and coverage). | /white-label 200 |
+| branded research compounds USA | `/white-label` | merged into an existing page | Omitted: shipping is confirmed (Tampa Bay, Florida, to the US), but 'USA' next to a product is usually read as US-made, and manufacturing origin isn't confirmed. | /white-label 200 |
 | bulk peptide fulfillment consulting | — | unavailable offer | Consulting not sold. | no destination (by design) |
 | cellular health peptides | — | excluded by compliance | Health framing. | no destination (by design) |
 | chemiluminescence assay | — | not relevant | Unrelated assay technique. | no destination (by design) |
@@ -78,7 +78,7 @@ Status meanings: *covered and verified*: a Foundry page owns the intent and answ
 | custom branded peptides | `/white-label` | covered and verified | Opening of the private label page. | /white-label 200; phrase rendered |
 | custom web development | `/website-development` | covered and verified | Hub phrase. | /website-development 200; phrase rendered |
 | digital agency | — | not relevant | Generic agency label; we describe the offers. | no destination (by design) |
-| dropship research compounds USA | `/fulfillment` | merged into an existing page | Omitted: 'USA'/'United States' states an origin or service area we haven't verified (owner questions on origin and coverage). | /fulfillment 200 |
+| dropship research compounds USA | `/fulfillment` | merged into an existing page | Omitted: shipping is confirmed (Tampa Bay, Florida, to the US), but 'USA' next to a product is usually read as US-made, and manufacturing origin isn't confirmed. | /fulfillment 200 |
 | Epithalon pineal research | — | excluded by compliance | Physiological/outcome framing. | no destination (by design) |
 | fluorescence spectroscopy | — | not relevant | Unrelated assay technique. | no destination (by design) |
 | GLP-1 wholesale | `/catalog/glp-1` | unresolved fact (owner) | VLP-1 (SM) is described as a GLP-1 receptor agonist peptide; targeting drug-class wholesale terms is an owner decision. | /catalog/glp-1 200 |
@@ -111,7 +111,7 @@ Status meanings: *covered and verified*: a Foundry page owns the intent and answ
 | peptide distributor setup | — | unavailable offer | Not an offer. | no destination (by design) |
 | peptide dosage calculator | — | excluded by compliance | Dosing prohibited. | no destination (by design) |
 | peptide dropshipping program | `/fulfillment` | covered and verified | Exact phrase added (was 'peptide dropshipping'). | /fulfillment 200; phrase rendered |
-| peptide dropshipping program USA | `/fulfillment` | merged into an existing page | Omitted: 'USA'/'United States' states an origin or service area we haven't verified (owner questions on origin and coverage). | /fulfillment 200 |
+| peptide dropshipping program USA | `/fulfillment` | merged into an existing page | Omitted: shipping is confirmed (Tampa Bay, Florida, to the US), but 'USA' next to a product is usually read as US-made, and manufacturing origin isn't confirmed. | /fulfillment 200 |
 | peptide fulfillment consulting | — | unavailable offer | Consulting not sold. | no destination (by design) |
 | peptide fulfillment optimization | — | unavailable offer | Consulting not sold. | no destination (by design) |
 | peptide manufacturing | — | unresolved fact (owner) | Manufacturing facts not verified. | no destination (by design) |
@@ -128,8 +128,8 @@ Status meanings: *covered and verified*: a Foundry page owns the intent and answ
 | peptides wholesale | `/wholesale` | covered and verified | Exact phrase added (was 'wholesale peptides'). | /wholesale 200; phrase rendered |
 | private label GLP-1 peptides | — | unresolved fact (owner) | Coded-name policy; owner decision. | no destination (by design) |
 | private label peptide supplier | `/white-label` | covered and verified | Exact phrase added (was 'private label peptides'). | /white-label 200; phrase rendered |
-| private label peptides United States | `/white-label` | merged into an existing page | Omitted: 'USA'/'United States' states an origin or service area we haven't verified (owner questions on origin and coverage). | /white-label 200 |
-| private label peptides USA | `/white-label` | merged into an existing page | Omitted: 'USA'/'United States' states an origin or service area we haven't verified (owner questions on origin and coverage). | /white-label 200 |
+| private label peptides United States | `/white-label` | merged into an existing page | Omitted: shipping is confirmed (Tampa Bay, Florida, to the US), but 'USA' next to a product is usually read as US-made, and manufacturing origin isn't confirmed. | /white-label 200 |
+| private label peptides USA | `/white-label` | merged into an existing page | Omitted: shipping is confirmed (Tampa Bay, Florida, to the US), but 'USA' next to a product is usually read as US-made, and manufacturing origin isn't confirmed. | /white-label 200 |
 | research compound business launch | `/guides/start-a-research-peptide-business` | merged into an existing page | Omitted: 'how to launch a research compound business' was added to the same guide; a second variant would be stuffing. | /guides/start-a-research-peptide-business 200 |
 | research compound distribution development | — | unavailable offer | Not an offer. | no destination (by design) |
 | research compound e-commerce | `/website-development/peptide-websites` | covered and verified | Exact phrase added (was 'peptide website'). | /website-development/peptide-websites 200; phrase rendered |
@@ -153,7 +153,7 @@ Status meanings: *covered and verified*: a Foundry page owns the intent and answ
 | spectrofluorometer | — | not relevant | Instrument term. | no destination (by design) |
 | SPPS peptide synthesis | — | deferred (needs sourced content) | Synthesis article not written. | no destination (by design) |
 | start a peptide business | `/guides/start-a-research-peptide-business` | covered and verified | Exact phrase added (was 'start a research peptide business'). | /guides/start-a-research-peptide-business 200; phrase rendered |
-| start a peptide business USA | `/guides/start-a-research-peptide-business` | merged into an existing page | Omitted: 'USA'/'United States' states an origin or service area we haven't verified (owner questions on origin and coverage). The guide also doesn't cover US-specific rules. | /guides/start-a-research-peptide-business 200 |
+| start a peptide business USA | `/guides/start-a-research-peptide-business` | merged into an existing page | Omitted: shipping is confirmed (Tampa Bay, Florida, to the US), but 'USA' next to a product is usually read as US-made, and manufacturing origin isn't confirmed. The guide also doesn't cover US-specific rules. | /guides/start-a-research-peptide-business 200 |
 | syringe units calculator | — | excluded by compliance | Dosing prohibited. | no destination (by design) |
 | tirzepatide supplier | — | unresolved fact (owner) | Coded-name policy; owner decision. | no destination (by design) |
 | tissue repair research | — | excluded by compliance | Outcome framing. | no destination (by design) |

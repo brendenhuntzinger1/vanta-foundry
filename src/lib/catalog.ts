@@ -41,7 +41,7 @@ export const CATALOG: CatalogProduct[] = [
   { slug: "kpv", name: "KPV", category: "Peptides", sizes: ["10mg"], image: img("42944703-1e7f-4273-954f-3f65382119c9/1792687256336-e0123f2e-1fdc-442c-ac79-93fdfd7c5a98.webp") },
   { slug: "mots-c", name: "MOTS-C", category: "Peptides", sizes: ["10mg"], image: img("bd9c7436-3890-42ee-b6eb-4eb0798b917e/1792687263129-5aef431b-c99b-48a0-a5de-ff1ecc890767.webp") },
   { slug: "ss-31", name: "SS-31", category: "Peptides", sizes: ["10mg"], image: img("33ef1620-1dde-486a-a5e3-162e22e89f0e/1792687283430-dc528546-9ecd-4057-8a56-bf50ad32de62.webp") },
-  { slug: "thymosin-alpha-1", name: "Thymosin Alpha-1", category: "Peptides", sizes: ["5mg"], image: img("c064a13f-b431-4592-b24b-d1a85c517cdc/1792687289007-75b32ace-1793-49ab-96b9-bf5d45d5e79f.webp") },
+  { slug: "thymosin-alpha-1", name: "Thymosin Alpha-1", category: "Peptides", sizes: ["10mg"], image: img("c064a13f-b431-4592-b24b-d1a85c517cdc/1792687289007-75b32ace-1793-49ab-96b9-bf5d45d5e79f.webp") },
   { slug: "epithalon", name: "Epithalon", category: "Peptides", sizes: ["10mg"], image: img("9c6f03fd-a8bd-406b-8efe-bda40818ae11/1792687215854-c4968088-57a8-4205-93de-f578042d707c.webp") },
   { slug: "semax", name: "Semax", category: "Peptides", sizes: ["10mg"], image: img("65306ca9-31d6-4f65-83b2-92246b76c5af/1792687279378-b2d03ba8-a8a8-450d-a0c8-2600c7a4cb9c.webp") },
   { slug: "selank", name: "Selank", category: "Peptides", sizes: ["10mg"], image: img("8cdd7435-d630-4d54-88f5-cc0dc5dac230/1792687277349-b83b6124-2b55-421d-9db1-6318716c2964.webp") },
@@ -85,7 +85,7 @@ export const NO_PUBLISHED_REPORT = ["hcg", "recon-water"];
  * (a partner lot, a size mismatch or no batch number). Must match the
  * `reference` reports in product-facts.ts; checked by `npm run check:seo`.
  */
-export const REFERENCE_REPORT_ONLY = ["cjc-1295-no-dac", "klow", "l-carnitine", "mots-c", "tesamorelin"];
+export const REFERENCE_REPORT_ONLY = ["cjc-1295-no-dac", "klow", "l-carnitine", "mots-c", "tesamorelin", "thymosin-alpha-1"];
 
 /** What the catalog card says about a product's documentation. */
 export function reportBadge(slug: string) {

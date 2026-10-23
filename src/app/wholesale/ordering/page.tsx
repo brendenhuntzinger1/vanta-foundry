@@ -31,7 +31,7 @@ const STEPS = [
   },
   {
     h: "Delivery",
-    p: "We ship to you, or store the stock and ship each order as your brand from our warehouse. Tracking is sent when it ships. When it arrives, check the lot numbers on the vials against the report named on your quote.",
+    p: "We ship to you, or store the stock and ship each order as your brand from our warehouse. Orders from stock ship from Tampa Bay, Florida, to addresses in the United States; factory-direct orders can ship internationally, straight from the factory. Tracking is sent when it ships. When it arrives, check the lot numbers on the vials against the report named on your quote.",
   },
   {
     h: "Reorders",
@@ -44,6 +44,7 @@ const FAQS = [
   { q: "What are the payment terms?", a: "None are published. Ask how and when payment is made before you approve a quote, and get the answer in writing." },
   { q: "Is there tiered pricing?", a: "Yes. Wholesale pricing improves with quantity, and your quote shows the price for the quantities you ask about." },
   { q: "How long is a quote valid?", a: "Ask when you receive it, and confirm it in writing before you rely on the price. Pricing depends on current availability, so a quote isn't open-ended." },
+  { q: "Where do you ship?", a: "Orders from our stock, including white label and 3PL orders, ship from Tampa Bay, Florida, to addresses in the United States only. Factory-direct orders can ship directly from the factory to other countries; your quote confirms the destination, method and lead time." },
   { q: "What determines lead time?", a: "The products, quantities, whether they're in stock or made to order (factory-direct), labelling, and the destination. The quote states the lead time before you commit." },
   { q: "Do I need an account to ask for pricing?", a: "No. Send your list on WhatsApp or by email; there's nothing to sign up for." },
   { q: "Which units are quantities in?", a: `Vials. ${QUANTITY_NOTE}` },

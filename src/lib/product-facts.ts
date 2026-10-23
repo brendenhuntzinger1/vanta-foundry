@@ -3,8 +3,11 @@
  * product pages and COA library on 2026-10-23. Every report field was then
  * checked against the report document itself (see docs/LAUNCH-BASELINE.md).
  * Identity data cites the store's own sources (PubChem, FDA GSRS). Reports are
- * the laboratory documents the store publishes for the batch it currently
- * supplies; a wholesale quote names the lot a buyer will receive.
+ * the laboratory documents the store publishes; a wholesale quote names the
+ * lot a buyer will receive.
+ *
+ * Exception: Thymosin Alpha-1 is listed at 10 mg on the owner's word
+ * (2026-10-23), although the store and its report still say 5 mg.
  *
  * Refresh when the store's catalog or reports change.
  */
@@ -299,10 +302,10 @@ export const PRODUCT_FACTS: Record<string, ProductFacts> = {
     status: ["The material supplied here is a research chemical. It is not a drug product and is not for human or veterinary use."],
   },
   "thymosin-alpha-1": {
-    specs: [["Name", "Thymosin Alpha-1"], ["Synonyms and codes", "Thymalfasin, Thymosin alpha 1"], ["Description", "Synthetic peptide of 28 amino acids"], ["Available sizes", "5 mg"], ["Supplied form", "Lyophilized powder"], ["CAS number", "62304-98-7"], ["Molecular formula", "C129H215N33O55"], ["Molecular weight", "3108.3 g/mol"]],
+    specs: [["Name", "Thymosin Alpha-1"], ["Synonyms and codes", "Thymalfasin, Thymosin alpha 1"], ["Description", "Synthetic peptide of 28 amino acids"], ["Available sizes", "10 mg"], ["Supplied form", "Lyophilized powder"], ["CAS number", "62304-98-7"], ["Molecular formula", "C129H215N33O55"], ["Molecular weight", "3108.3 g/mol"]],
     sources: [["PubChem CID 16130571", "https://pubchem.ncbi.nlm.nih.gov/compound/16130571"]],
     reports: [
-      { id: "KVR-2026-4D316E", size: "5 mg", batch: "Vanta184290", result: "Purity 99.764% (RP-HPLC, 214 nm) · Identity by LC-MS · Net content 12.91 mg", date: "Aug 24, 2026", lab: "Kovera Labs", url: "https://www.vantalabsresearch.com/coa/KVR-2026-4D316E.pdf", status: "product_match", note: "The report measured 12.91 mg net content against a 5 mg label." },
+      { id: "KVR-2026-4D316E", size: "5 mg", batch: "Vanta184290", result: "Purity 99.764% (RP-HPLC, 214 nm) · Identity by LC-MS · Net content 12.91 mg", date: "Aug 24, 2026", lab: "Kovera Labs", url: "https://www.vantalabsresearch.com/coa/KVR-2026-4D316E.pdf", status: "reference", note: "The report is labelled 5 mg and measured 12.91 mg net content; we supply 10 mg vials. No report is published for the 10 mg size." },
     ],
     status: ["Thymosin alpha-1 (thymalfasin) is not listed as an approved drug in the FDA's Drugs@FDA database (searched 24 September 2026)."],
   },

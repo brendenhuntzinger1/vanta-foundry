@@ -75,32 +75,33 @@ Three separate questions, kept apart on the site and here:
 | Question | Result | How it was checked |
 |---|---|---|
 | Does the report link open? | **41 of 41** (38 lab PDFs, 3 Horizon lot pages) | `npm run check:reports` |
-| Do the product, labelled size and client printed on the report match our listing? | **36 match**, **5 reference only**, 2 products have no report | Every PDF read with `pdftotext`; Horizon lot pages read |
+| Do the product, labelled size and client printed on the report match our listing? | **35 match**, **6 reference only**, 2 products have no report | Every PDF read with `pdftotext`; Horizon lot pages read |
 | Is the printed batch the batch in current wholesale inventory? | **Not established** for any product | Needs the owner/supplier; each quote names the buyer's lot |
 
-The site labels the 36 "Matches product and size" and says it doesn't confirm
-the batch in stock; it never calls them batch-verified. The five reference
+The site labels the 35 "Matches product and size" and says it doesn't confirm
+the batch in stock; it never calls them batch-verified. The six reference
 reports show their reason on the page:
 
 - **L-Carnitine (KVR-2026-C2C983):** the report is labelled 10 mg (liquid); the product is sold as 6,000 mg.
 - **KLOW (KVR-2026-E355F5):** the report prints `Batch: N/A`.
 - **CJC-1295 no DAC (Lot GB-5583809-P):** a Genesis Biomapping partner lot (Genesis is named as the client), 5 mg vial, identity only; the product is sold as 10 mg.
 - **MOTS-c (Lot GB-7058391-P)** and **Tesamorelin (Lot GB-1700427-P):** Genesis Biomapping partner lots. No report covers Tesamorelin 5 mg.
+- **Thymosin Alpha-1 (KVR-2026-4D316E):** the report is labelled 5 mg and measured 12.91 mg net content. The owner confirmed on 2026-10-23 that the product is 10 mg, so the page lists 10 mg and shows this report as reference only. The Vanta Labs store still lists 5 mg and should be corrected there.
 
 ## Owner questions (only the unanswered facts)
 
-Each fact is asked separately: one answer doesn't imply another (for example, where products ship from says nothing about where they're made).
+Answered 2026-10-23: 1, 3, 4 and 8. The owner said nothing else is needed for launch, so the rest stay on their safe display and can wait. Each fact is asked separately: one answer doesn't imply another (for example, where products ship from says nothing about where they're made).
 
 | # | Question | Affects | Shown until answered |
 |---|---|---|---|
-| 1 | **Business location:** where is Vanta Foundry based, and should the address be published? | `/contact`, `/about`, Organization structured data | No address; email and WhatsApp only |
+| 1 | **Business location** | `/contact`, `/about`, Organization data | **Answered:** don't publish it. No address is shown |
 | 2 | **Manufacturing origin:** where are the products made? | Any "made in" claim; the USA phrases; audit page 99PW-448 | No origin claim |
-| 3 | **Shipping origin:** where do wholesale and 3PL orders ship from? | `/wholesale/ordering`, `/fulfillment` | Not stated; the quote confirms |
-| 4 | **Shipping destinations:** which US states and countries do you ship to, and which are excluded? | A "Where we ship" section; 98 wholesale location intents; the USA phrases | The buyer gives a destination and the quote confirms whether we ship there |
+| 3 | **Shipping origin** | `/wholesale/ordering`, `/fulfillment` | **Answered:** stock ships from Tampa Bay, Florida. Now on both pages |
+| 4 | **Shipping destinations** | `/wholesale/ordering`, `/fulfillment`, `/factory-direct` | **Answered:** stock, white label and 3PL orders ship to the United States only; factory-direct orders can ship internationally from the factory. Now on those pages |
 | 5 | **Remote website clients:** which countries do you take website clients in? | A "Where we work" section; 24 development location intents; the Organization structured data's `areaServed: "US"` (live before this PR) | No country list in the copy. Confirm "US", or I remove that line from the structured data |
 | 6 | **Offices and in-person meetings:** is there a physical office, and do you meet clients in person anywhere? | `/contact`; any local page | Nothing said about offices or meetings |
 | 7 | **Batch Vanta184290:** 37 Kovera reports across about 30 compounds print this batch. Is it a real manufacturing batch, an order code or an entry error? Is it the stock buyers would receive? | 36 report rows marked "Matches product and size"; `/wholesale/testing` | As now: product and size match, the batch is shown as printed, and the page says current stock isn't confirmed. Each quote names the lot |
-| 8 | **Thymosin Alpha-1:** the report measures 12.91 mg net content against a 5 mg label. Which is right? | `/catalog/thymosin-alpha-1` | The report with that note |
+| 8 | **Thymosin Alpha-1 size** | `/catalog/thymosin-alpha-1` | **Answered:** 10 mg. Listed as 10 mg; the 5 mg report is reference only. *Owner to do:* the Vanta Labs store still lists 5 mg |
 | 9 | **Missing or partner reports:** a report for L-Carnitine 6,000 mg? KLOW's tested batch? Are the Genesis lots (CJC-1295 no DAC, MOTS-c, Tesamorelin) Vanta's material? Reports for CJC-1295 no DAC 10 mg and Tesamorelin 5 mg? Will HCG and Recon water get reports? | Those product pages | "Reference only" with the reason, or "No report published yet" |
 | 10 | **Wholesale terms:** refund or replacement policy, quote validity, payment terms | `/wholesale/ordering` FAQs | "Confirmed on your quote" |
 | 11 | **Coded names:** keep VLP-1/2/3 only, or name the compounds? | `/catalog/glp-1`, `-2`, `-3` | Coded names only (recommended) |
@@ -113,7 +114,7 @@ No product page needs to be held back. Each mismatch is labelled where it appear
 | Mismatch | Page | Recommendation | Now |
 |---|---|---|---|
 | One batch, Vanta184290, printed across about 30 compounds (Q7) | About 30 product pages, `/wholesale/testing` | Show the report, labelled "Matches product and size", with the batch as printed and "doesn't confirm current stock" | Done |
-| Thymosin Alpha-1: 12.91 mg net vs 5 mg label (Q8) | `/catalog/thymosin-alpha-1` | Show the report with the note; don't hold the page | Done |
+| Thymosin Alpha-1: report labelled 5 mg (12.91 mg measured); product is 10 mg (owner) | `/catalog/thymosin-alpha-1` | Labelled reference; no 10 mg report yet | Done |
 | L-Carnitine: 10 mg report, 6,000 mg product | `/catalog/l-carnitine` | Labelled reference; not counted as documented | Done |
 | KLOW: batch N/A | `/catalog/klow` | Labelled reference | Done |
 | CJC-1295 no DAC: a Genesis partner lot, 5 mg, identity only; we sell 10 mg | `/catalog/cjc-1295-no-dac` | Labelled reference for now. Remove the link if Q9 says it isn't Vanta's material | Labelled reference |
@@ -159,7 +160,7 @@ read leads; reading `foundry.leads` over the API is refused (checked).
 
 ### Test rows to delete
 
-Eight rows were created by testing. Delete exactly these (the connector held deletes for your approval):
+Eight rows were created by testing. **Deleted 2026-10-23** with the owner's permission, by exactly these ids (the delete returned all eight):
 
 ```sql
 delete from foundry.leads where id in (

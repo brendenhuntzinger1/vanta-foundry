@@ -13,7 +13,7 @@ tag phrases word for word, each checked on its rendered page.
 
 | Item | Needs | Adds | Doesn't count as |
 |---|---|---|---|
-| "Where we ship" section on `/wholesale/ordering` | Q3 shipping origin, Q4 destinations | Accurate shipping copy; the USA phrases that turn out true | Any of the 98 wholesale location pages |
+| ~~"Where we ship" copy~~ **Done 2026-10-23**: shipping origin and destinations on `/wholesale/ordering`, `/fulfillment`, `/factory-direct` | Answered | Accurate shipping copy | Any of the 98 wholesale location pages (still not implemented) |
 | "Where we work" section on `/website-development` | Q5 remote countries, Q6 offices | Accurate service-area copy; corrected `areaServed` | Any of the 24 development location pages |
 | Wholesale terms on `/wholesale/ordering` | Q10 | Refund, quote validity and payment terms, stated once | — |
 | KPV salt form spec row | Q12 | The "KPV free base vs acetate" phrase | — |
@@ -43,7 +43,7 @@ won't be counted as doing so. Don't build template city pages.
 ## 4. Phrases left out on purpose
 
 19 of the 44 reviewed phrases (see `docs/KEYWORD-DECISIONS.md`):
-- **8 USA / United States phrases:** revisit after Q2–Q5.
+- **8 USA / United States phrases:** shipping is now confirmed, but "USA" next to a product reads as US-made; revisit once manufacturing origin (Q2) is known.
 - **"research compound logistics":** if `/fulfillment` gains a logistics section.
 - **The rest:** ungrammatical, untrue or duplicates; no action.
 

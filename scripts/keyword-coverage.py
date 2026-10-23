@@ -339,7 +339,7 @@ PHRASES = {
 # (owner, 2026-10-23: keep the competitor's exact phrase where it is true and
 # reads naturally). phrase -> (wording the page used before, added?, where it
 # was added, or the reason it wasn't). Added phrases become COVERED, so the check enforces them.
-USA_REASON = "Omitted: 'USA'/'United States' states an origin or service area we haven't verified (owner questions on origin and coverage)."
+USA_REASON = "Omitted: shipping is confirmed (Tampa Bay, Florida, to the US), but 'USA' next to a product is usually read as US-made, and manufacturing origin isn't confirmed."
 REVIEW = {
     "B2B peptide fulfillment": ("3PL & fulfillment", True, "opening answer paragraph"),
     "B2B peptide portal development": ("B2B ecommerce portal", True, "'Documentation' section"),

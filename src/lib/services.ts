@@ -96,6 +96,7 @@ export const SERVICES: Service[] = [
     faqs: [
       { q: "What's the difference from wholesale?", a: "Wholesale ships from our stock, fast. Factory-direct is made to order for larger quantities: a lower price, a longer wait." },
       { q: "How long does it take?", a: "It depends on the products and quantities. Your quote states the lead time before you commit." },
+      { q: "Can you ship outside the United States?", a: "Factory-direct orders can. They ship directly from the factory to international destinations, and your quote confirms the destination, method and lead time. Orders from our US stock ship within the United States only." },
     ],
     demo: "factory",
     guides: ["dropship-vs-3pl-vs-inventory", "white-label-vs-private-label-vs-factory-direct"],
@@ -142,6 +143,7 @@ export const SERVICES: Service[] = [
       { q: "Dropship or 3PL: which do I need?", a: "Dropship if you don't want to buy stock up front. 3PL if you already own inventory and want someone to store and ship it. Wholesale peptide fulfillment works either way: buy stock wholesale and we store and ship it, or sell from ours." },
       { q: "How does the peptide dropshipping program work?", a: "You list products in your store and connect it to us. Each order comes to us and ships from our stock under your brand, so you hold no inventory. Pricing and terms are on your quote." },
       { q: "Will customers see your name?", a: "No. The slip and the tracking emails carry your brand." },
+      { q: "Where do orders ship from?", a: "From Tampa Bay, Florida, to addresses in the United States. 3PL and dropship orders aren't shipped outside the US." },
     ],
     demo: "fulfillment",
     guides: ["dropship-vs-3pl-vs-inventory"],
