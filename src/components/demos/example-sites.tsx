@@ -81,9 +81,9 @@ export function AtlasSite() {
 }
 
 export const SITES = [
+  { key: "remade", name: "Remade Clinic", industry: "Telehealth · live site", url: "remadeclinic.com", real: true, href: "https://remadeclinic.com" },
   { key: "vanta", name: "Vanta Labs", industry: "Research supply · live store", url: "vantalabsresearch.com", real: true, href: "https://www.vantalabsresearch.com" },
   { key: "genesis", name: "Genesis Biomapping", industry: "Research supply · live store", url: "genesisbiomapping.co", real: true, href: "https://genesisbiomapping.co" },
-  { key: "remade", name: "Remade Clinic", industry: "Telehealth · live site", url: "remadeclinic.com", real: true, href: "https://remadeclinic.com" },
   { key: "solenne", name: "Solenne", industry: "Skincare", url: "Solenne · Skincare", real: false, href: "/work" },
   { key: "halcyon", name: "Halcyon", industry: "Specialty coffee", url: "Halcyon · Coffee", real: false, href: "/work" },
   { key: "atlas", name: "Atlas", industry: "Athletic apparel", url: "Atlas · Apparel", real: false, href: "/work" },

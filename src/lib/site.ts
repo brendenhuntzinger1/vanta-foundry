@@ -11,7 +11,7 @@ export const SITE = {
   builtStores: ["Vanta Labs", "Genesis Biomapping", "Remade Clinic"],
   url: (process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.vantafoundry.com").replace(/\/$/, ""),
   description:
-    "Payment processing, wholesale and factory-direct supply, white label, 3PL fulfillment, website development and SEO & AI search, from the team behind Vanta Labs.",
+    "Premium, custom-coded websites for any business, with payment processing, SEO & AI search and a 24/7 developer team. Plus RUO supply, white label and 3PL for research brands.",
   /** Every email link and prefilled request goes here (owner, 2026-10-23). */
   email: "support@vantalabsresearch.com",
   /**
