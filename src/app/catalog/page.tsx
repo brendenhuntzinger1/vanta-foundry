@@ -26,7 +26,7 @@ export default function CatalogPage() {
           <p className="mt-5 text-[18px] leading-[1.6] text-body">
             {CATALOG.length} products in {sizes} sizes, ready to supply in bulk. No prices are listed: tap{" "}
             <strong className="font-semibold text-ink">Inquire</strong> on any product and we reply on WhatsApp with wholesale
-            pricing.
+            pricing. Every wholesale lot comes with a certificate of analysis (COA).
           </p>
         </div>
         <div className="mt-8 flex flex-col gap-5 rounded-2xl border border-line bg-bg-2 p-6 sm:flex-row sm:items-center sm:justify-between sm:p-7">

@@ -64,6 +64,7 @@ const WANTS = [
 
 const WORK = [
   { brand: "Vanta Labs", industry: "Research supply · live", src: "/showcase/vanta-labs-desktop.webp", top: true },
+  { brand: "Genesis Biomapping", industry: "Research supply · live", src: "/showcase/genesis-desktop.webp", top: true },
   { brand: "Solenne", industry: "Skincare", src: "/solenne/hero.webp" },
   { brand: "Halcyon", industry: "Coffee & food", src: "/sites/halcyon-hero.webp" },
   { brand: "Atlas", industry: "Athletic apparel", src: "/sites/atlas-hero.webp" },
@@ -131,7 +132,7 @@ export default function Home() {
               See every store <IconArrow />
             </Link>
           </div>
-          <ul className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+          <ul className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
             {WORK.map((w) => (
               <li key={w.brand}>
                 <Link href="/work" className="group block overflow-hidden rounded-2xl border border-line">

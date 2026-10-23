@@ -19,13 +19,13 @@ function inquiry(p: CatalogProduct) {
 }
 
 /**
- * Step 1: confirm research use. Step 2: find a product. Step 3: tap Inquire,
- * which opens WhatsApp (or email) with that product already written in. No
- * prices are shown (owner, 2026-10-23); we reply with them.
+ * Find a product and tap Inquire, which opens WhatsApp (or email) with that
+ * product already written in. Shown straight away, no click-through
+ * (owner, 2026-10-23), with the research-use notice above the grid. No prices
+ * are shown; we reply with them. Wholesale lots come with a COA.
  */
 export function CatalogBrowser() {
   const searchId = useId();
-  const [confirmed, setConfirmed] = useState(false);
   const [query, setQuery] = useState("");
   const [category, setCategory] = useState(ALL);
 
@@ -35,23 +35,14 @@ export function CatalogBrowser() {
     return CATALOG.filter((p) => (category === ALL || p.category === category) && (!q || p.name.toLowerCase().includes(q) || p.category.toLowerCase().includes(q)));
   }, [query, category]);
 
-  if (!confirmed) {
-    return (
-      <div className="max-w-xl rounded-2xl border border-line bg-bg-2 p-7">
-        <p className="text-[17px] font-semibold text-ink">Before you look: research use only</p>
-        <p className="mt-2 text-[15.5px] leading-[1.6] text-body">
-          These products are laboratory research materials. They are not for human or veterinary use. Please confirm that
-          you are buying for research purposes.
-        </p>
-        <button type="button" onClick={() => setConfirmed(true)} className="btn btn-dark mt-6 h-12 px-6 text-[15px]">
-          I confirm. Show the catalog
-        </button>
-      </div>
-    );
-  }
-
   return (
-    <div className="fade-in">
+    <div>
+      <div className="mb-6 flex flex-col gap-2 rounded-2xl border border-line bg-bg-2 px-5 py-4 text-[14px] leading-[1.55] text-body sm:flex-row sm:items-center sm:justify-between">
+        <p>
+          <span className="font-semibold text-ink">Every wholesale lot comes with a certificate of analysis (COA).</span> Lot numbers on every unit.
+        </p>
+        <p className="text-[13px] text-muted sm:text-right">For laboratory research use only. Not for human or veterinary use.</p>
+      </div>
       <div className="flex flex-col gap-5">
         <div className="w-full sm:max-w-sm">
           <label htmlFor={searchId} className="text-[13px] text-muted">Search</label>
@@ -89,6 +80,7 @@ export function CatalogBrowser() {
             return (
               <li key={p.slug} className="flex flex-col overflow-hidden rounded-2xl border border-line bg-white">
                 <div className="relative aspect-[4/5] bg-bg-2">
+                  <span className="absolute left-2.5 top-2.5 z-10 rounded-full bg-ink/85 px-2.5 py-1 text-[11px] font-medium text-white">COA included</span>
                   <Image
                     src={p.image}
                     alt={p.name}
