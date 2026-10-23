@@ -3,15 +3,17 @@ import Link from "next/link";
 import { Container, CtaBand, FaqList, SectionHead } from "@/components/blocks";
 import { FeaturedWork, StackRow } from "@/components/featured-work";
 import { SupplyShowcase } from "@/components/supply-showcase";
-import { IconArrow, IconWhatsApp } from "@/components/icons";
+import { IconArrow, IconCheck, IconWhatsApp } from "@/components/icons";
 import { JsonLd, faqPage } from "@/lib/jsonld";
 import { SITE, whatsappLink } from "@/lib/site";
 
 /*
  * Two front doors (owner, 2026-10-23): website development for any business,
- * and wholesale & 3PL for research brands. Each opens its own premium page;
- * the homepage only helps a visitor pick the right one.
+ * and wholesale & 3PL for research brands, side by side and equal at the top
+ * of the page (owner: "put them both at the top"), plus the complete build.
  */
+
+const BUILD = ["Website", "SEO, AEO & GEO", "Payments", "Product & label", "Warehouse & shipping"];
 
 const FAQS = [
   {
@@ -44,67 +46,53 @@ export default function Home() {
   const wa = whatsappLink("Hi Vanta Foundry, I have a question.");
   return (
     <>
-      <section className="pt-14 sm:pt-24">
+      {/* Hero: both front doors, side by side and equal, on every screen size. */}
+      <section className="pt-8 sm:pt-16">
         <Container>
-          <div className="mx-auto max-w-[860px] text-center">
-            <h1 className="h-display text-[44px] leading-[1] text-ink sm:text-[84px]">
-              Websites. Wholesale.
-              <span className="block">
-                <span className="accent">3PL.</span>
-              </span>
+          <div className="mx-auto max-w-[900px] text-center">
+            <h1 className="h-display text-[36px] leading-[1.05] text-ink sm:text-[76px]">
+              Build it. Stock it. <span className="accent whitespace-nowrap">Ship it.</span>
             </h1>
-            <p className="mx-auto mt-6 max-w-[640px] text-[17px] leading-[1.6] text-body sm:text-[18px]">
-              Premium website development for any business. Peptide wholesale, white label and 3PL fulfillment for research
-              brands. One team.
+            <p className="mx-auto mt-4 max-w-[640px] text-[15.5px] leading-[1.55] text-body sm:mt-6 sm:text-[18px]">
+              The complete build: your website and search presence, your product, and the shipping. Pick one, or let one team
+              do it all.
             </p>
-            {/* Both front doors on the first screen, even on a phone. */}
-            <div className="mx-auto mt-8 grid max-w-[560px] grid-cols-2 gap-2.5 lg:hidden">
-              <Link href="/website-development" className="btn btn-dark h-14 text-[15px]">
-                Websites <IconArrow />
-              </Link>
-              <Link href="/supply" className="btn h-14 bg-gold-fill text-[15px] text-ink">
-                Wholesale &amp; 3PL <IconArrow />
-              </Link>
-            </div>
           </div>
 
-          {/* The two front doors */}
-          <div className="mx-auto mt-12 grid max-w-[1120px] gap-4 lg:grid-cols-2">
+          <div className="mx-auto mt-6 grid max-w-[1160px] grid-cols-2 gap-2.5 sm:mt-12 sm:gap-5">
             <Door
               href="/website-development"
               dark
               eyebrow="For any business"
-              title="Website development"
-              body="Premium, custom-coded websites, live in 72 hours to a week, with payments, SEO and your own developer team on call 24/7."
-              points={["Custom design", "SEO & AI search", "Payments", "Developer team 24/7"]}
-              cta="Explore website development"
-            >
-              <div className="grid h-full grid-cols-2 gap-1 bg-ink p-1">
-                {[
-                  { src: "/showcase/genesis-desktop.webp", alt: "Genesis Biomapping website", top: true },
-                  { src: "/showcase/vanta-labs-desktop.webp", alt: "Vanta Labs website", top: true },
-                  { src: "/solenne/hero.webp", alt: "Solenne skincare website" },
-                  { src: "/sites/halcyon-hero.webp", alt: "Halcyon coffee website" },
-                ].map((x) => (
-                  <div key={x.src} className="relative overflow-hidden rounded-[14px]">
-                    <Image src={x.src} alt={x.alt} fill sizes="(min-width: 1024px) 280px, 50vw" className={`object-cover ${x.top ? "object-left-top" : ""}`} priority />
-                  </div>
-                ))}
-              </div>
-            </Door>
+              title="Websites & SEO"
+              items={["Custom website", "Google SEO", "AEO & GEO (AI search)", "Payments", "24/7 developer team"]}
+              cta="Start a website"
+              image={{ src: "/showcase/genesis-desktop.webp", alt: "The Genesis Biomapping website, built by our team", top: true }}
+            />
             <Door
               href="/supply"
               eyebrow="For research brands"
               title="Wholesale & 3PL"
-              body="Research peptides wholesale or factory-direct with a COA for every wholesale lot, your label on every vial, stored and shipped as your brand."
-              points={["Peptide wholesale", "White label", "Factory-direct", "3PL fulfillment"]}
-              cta="Explore wholesale & 3PL"
-            >
-              <Image src="/supply/bulk.webp" alt="Cartons of vials packed for a bulk order" fill sizes="(min-width: 1024px) 560px, 100vw" className="object-cover" priority />
-            </Door>
+              items={["Peptide wholesale", "COA with every lot", "Factory-direct", "White label", "3PL fulfillment"]}
+              cta="See the catalog"
+              image={{ src: "/supply/bulk.webp", alt: "Cartons of vials packed for a bulk order" }}
+            />
           </div>
 
-          <div className="mx-auto mt-14 flex max-w-[1120px] flex-col items-center gap-3 border-y border-line py-6 sm:flex-row sm:justify-between">
+          {/* The complete build, end to end */}
+          <div className="mx-auto mt-5 max-w-[1160px] rounded-[20px] border border-line bg-bg-2 px-4 py-4 sm:mt-6 sm:rounded-[24px] sm:px-8 sm:py-6">
+            <p className="text-center text-[13px] text-muted sm:text-left">Or the whole thing, from one team</p>
+            <ul className="mt-3 flex flex-wrap items-center justify-center gap-x-2 gap-y-2 sm:justify-start">
+              {BUILD.map((b, i) => (
+                <li key={b} className="flex items-center gap-2">
+                  <span className="rounded-full border border-line-2 bg-white px-3 py-1.5 text-[13px] text-ink sm:px-4 sm:py-2 sm:text-[14.5px]">{b}</span>
+                  {i < BUILD.length - 1 && <IconArrow className="hidden text-muted sm:block" aria-hidden="true" />}
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="mx-auto mt-14 flex max-w-[1160px] flex-col items-center gap-3 border-y border-line py-6 sm:flex-row sm:justify-between">
             <p className="text-[13.5px] text-muted">The team behind</p>
             <ul className="flex flex-wrap justify-center gap-x-9 gap-y-2">
               {SITE.builtStores.map((b) => (
@@ -193,20 +181,23 @@ export default function Home() {
   );
 }
 
-function Door({ href, eyebrow, title, body, points, cta, dark, children }: { href: string; eyebrow: string; title: string; body: string; points: string[]; cta: string; dark?: boolean; children: React.ReactNode }) {
+function Door({ href, eyebrow, title, items, cta, dark, image }: { href: string; eyebrow: string; title: string; items: string[]; cta: string; dark?: boolean; image: { src: string; alt: string; top?: boolean } }) {
   return (
-    <Link href={href} className={`group flex flex-col overflow-hidden rounded-[28px] border transition-shadow duration-300 hover:shadow-[0_30px_70px_-35px_rgba(0,0,0,0.5)] ${dark ? "border-ink bg-ink text-white" : "border-line bg-white text-ink"}`}>
-      <div className="relative aspect-[16/9] overflow-hidden">{children}</div>
-      <div className="flex flex-1 flex-col p-7 sm:p-9">
-        <p className={`text-[13.5px] font-medium ${dark ? "text-gold-fill" : "text-gold"}`}>{eyebrow}</p>
-        <p className="mt-2 text-[32px] font-semibold leading-[1.05] tracking-[-0.035em] sm:text-[40px]">{title}</p>
-        <p className={`mt-3 text-[16px] leading-[1.6] ${dark ? "text-white/70" : "text-body"}`}>{body}</p>
-        <ul className="mt-5 flex flex-wrap gap-2">
-          {points.map((p) => (
-            <li key={p} className={`rounded-full px-3 py-1.5 text-[13px] ${dark ? "bg-white/10 text-white/85" : "bg-bg-2 text-body"}`}>{p}</li>
+    <Link href={href} className={`group flex flex-col overflow-hidden rounded-[20px] border transition-shadow duration-300 hover:shadow-[0_30px_70px_-35px_rgba(0,0,0,0.5)] sm:rounded-[28px] ${dark ? "border-ink bg-ink text-white" : "border-line bg-white text-ink"}`}>
+      <div className="relative aspect-[4/3] overflow-hidden sm:aspect-[2/1]">
+        <Image src={image.src} alt={image.alt} fill sizes="(min-width: 1160px) 570px, 50vw" className={`object-cover transition-transform duration-700 group-hover:scale-[1.03] ${image.top ? "object-left-top" : ""}`} priority />
+      </div>
+      <div className="flex flex-1 flex-col p-3.5 sm:p-9">
+        <p className={`text-[11.5px] font-medium sm:text-[13.5px] ${dark ? "text-gold-fill" : "text-gold"}`}>{eyebrow}</p>
+        <p className="mt-1 text-[19px] font-semibold leading-[1.05] tracking-[-0.03em] sm:mt-2 sm:text-[40px]">{title}</p>
+        <ul className={`mt-2.5 space-y-1 text-[12.5px] leading-snug sm:mt-5 sm:grid sm:grid-cols-2 sm:gap-x-4 sm:gap-y-2 sm:space-y-0 sm:text-[15px] ${dark ? "text-white/80" : "text-body"}`}>
+          {items.map((x) => (
+            <li key={x} className="flex items-start gap-1.5 sm:gap-2">
+              <IconCheck className={`mt-px h-3.5 w-3.5 shrink-0 sm:h-[18px] sm:w-[18px] ${dark ? "text-gold-fill" : "text-gold"}`} /> {x}
+            </li>
           ))}
         </ul>
-        <span className={`mt-8 inline-flex w-fit items-center gap-2 rounded-full px-6 py-3.5 text-[15px] font-medium ${dark ? "bg-white text-ink" : "bg-ink text-white"}`}>
+        <span className={`mt-4 inline-flex h-10 w-full items-center justify-center gap-1.5 rounded-full text-[13px] font-medium sm:mt-8 sm:h-14 sm:w-fit sm:px-7 sm:text-[15.5px] ${dark ? "bg-white text-ink" : "bg-ink text-white"}`}>
           {cta} <IconArrow className="transition-transform duration-200 group-hover:translate-x-0.5" />
         </span>
       </div>

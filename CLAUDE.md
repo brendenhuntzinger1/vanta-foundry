@@ -40,11 +40,12 @@ Website development and payment processing are offered to any lawful business.
   storage) with NO prices. Each product has an Inquire button that opens
   WhatsApp (+1 419-378-1139), or the support email, with the product filled
   in, and we reply with pricing.
-- Wholesale & 3PL is as big as websites (owner, 2026-10-23): "I don't want
-  people to have to search and find that." The homepage hero names both
-  ("Websites. Wholesale. 3PL.") with a button for each on the first screen,
-  the homepage shows catalog products and the four supply lanes, and the
-  phone header always has a Wholesale button. Don't bury it again.
+- Both front doors share the top, equal (owner, 2026-10-23): "put them both at
+  the top ... look like what we offer is like a complete build." The homepage
+  hero is "Build it. Stock it. Ship it." with Websites & SEO (incl. AEO/GEO)
+  and Wholesale & 3PL side by side, two columns even on a phone, then the
+  complete build (website, SEO/AEO/GEO, payments, product & label, warehouse
+  & shipping). Never let one door push the other below the first screen.
 
 ## Verify in a browser
 
