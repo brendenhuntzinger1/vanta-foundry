@@ -1,15 +1,16 @@
 # Organic growth build: launch record and 60-day plan
 
 Built 2026-10-23 from the *Vanta Foundry: Organic Growth Master Plan*. This
-file records what shipped, which page owns which search, what is still
-blocked, and how the next 60 days are measured. Approved titles, H1s and
+file records what PR #31 implements, which page owns which search, what is
+still blocked, and how the next 60 days are measured. Nothing here is deployed
+to production yet: "implemented" means implemented in the PR. Approved titles, H1s and
 CTAs live in `src/lib/seo-pages.ts`; `npm run check:seo` enforces them.
 
 ## Where the plan and the owner's decisions differ
 
 The owner's decisions in `CLAUDE.md` (same date) win where they conflict:
 
-| Plan said | What shipped | Why |
+| Plan said | What the PR implements | Why |
 |---|---|---|
 | Homepage H1 "Website Development & Wholesale Peptides" | H1 stays "Build your brand. Or supply it."; the `<title>` carries the phrase | Owner restored the two-doors homepage and rejected later variants |
 | `/wholesale/catalog/`, `/wholesale/products/{slug}/`, `/wholesale/private-label/` | `/catalog`, `/catalog/{slug}`, `/white-label` | Plan: keep existing valuable URLs; no redirects needed |
@@ -96,10 +97,10 @@ reports show their reason on the page:
 6. **HCG and Recon water:** will reports be published?
 7. **Coded names:** VLP-1/2/3 reports name semaglutide, tirzepatide and retatrutide. Keep coded names only (recommended), or name the compounds?
 8. **Origin:** where are products manufactured, and where do wholesale orders ship from? (No "US-made" or "ships from" claim is published.)
-9. **Shipping coverage:** which states or countries do you ship wholesale to, and exclude? (Unlocks 98 wholesale location intents.)
+9. **Shipping coverage:** which states or countries do you ship wholesale to, and exclude? (Decides the 98 wholesale location intents; see `docs/LOCATION-OPPORTUNITIES.md`.)
 10. **Wholesale terms:** is there a refund/replacement policy, standard quote validity and payment terms for wholesale?
 11. **KPV salt form:** free base or acetate, if documented.
-12. **In-person service:** do you meet website clients anywhere? (Unlocks 24 development location intents.)
+12. **Website service area:** which countries do you take website clients in, remotely? Do you meet any in person, and is there an office address to publish? (Decides the 24 development location intents, and whether the existing `areaServed: "US"` in the structured data is right.)
 
 ## Inquiry storage and delivery
 
@@ -184,14 +185,41 @@ Qualification, quotes, sales and repeat orders are `foundry.leads` columns, not 
 - `npm run check:seo` checks every registry page, product, guide and sitemap URL: 200, indexable, one H1, approved title and H1, self-canonical, CTA, primary phrase in title/H1/body (each checked on its own), supporting phrases, report statuses and notes, no broken internal links, no orphans. It establishes that the build matches the approved registry; it can't establish rankings, indexing, real-device behaviour or persuasiveness.
 - Keyword work: `docs/KEYWORD-COVERAGE.md` (every audit page and phrase classified) and `docs/KEYWORD-DECISIONS.md` (what is actually implemented, placement by placement, the deferred list, owner decisions and the URL map). Regenerate with `npm run keywords`.
 
-## Preview and environments
+## Verification tiers
 
-- All verification above ran on a **local production build** with the real database; browsers were Playwright-emulated (390×844, 1024, 1280). No real devices were used.
-- The PR preview for the latest commit deployed (Vercel bot: Ready, deployment `dpl_FFF6uk2rYDhik9boWC1JaPYxsXqt`). It's behind Vercel Authentication. The connected Vercel account sees the team (`team_mYQ1nzN5ge279mjxaLG26lYe`) but gets **404 on project `prj_h0c01RMILqTNP5Vc8PN7nrBnBDOU`** and **403 on the deployment**, so the rendered preview, its forms, its environment variables and Web Analytics could not be checked or changed. To fix: in the Vercel connection settings, grant access to the `vanta-foundry` project (or share a preview bypass link).
+Three different things, reported separately.
+
+**1. Local test results** (local `npm run build && npm start`, real Supabase database, Playwright-emulated browsers at 390×844, 1024 and 1280; no real devices):
+
+| Check | Result |
+|---|---|
+| `npm run check:seo` | Pass: 106 URLs, registry, canonicals, links, orphans |
+| `npm run check:reports` | Pass: 41 of 41 report links open (this proves the PDF opens, not that it matches current stock) |
+| Brief saved, reference shown, retry, concurrency, email failure, storage outage | Pass (table above) |
+| Wholesale handoff contents | Pass: products, sizes, quantities and reference identical in message and saved row |
+| Analytics events | Queued correctly; not delivered (no analytics endpoint locally) |
+| Keyword placements | Read from rendered HTML (`docs/KEYWORD-DECISIONS.md`) |
+
+**2. Deployment build status** (from the Vercel bot on the PR): every push builds a preview, and each has reported **Ready** (the most recent checked: `dpl_5PCpGQi8wC9jL6anXQZiK9bAWDMX`, commit 90455f7). This shows the build succeeded on Vercel. It doesn't show that the deployed pages, forms or settings work.
+
+**3. Deployed functional tests:** **none run.** The preview is behind Vercel Authentication, and the connected Vercel account gets **404 on project `prj_h0c01RMILqTNP5Vc8PN7nrBnBDOU`** (team `team_mYQ1nzN5ge279mjxaLG26lYe`) and **403 on the deployment**. To fix: grant the connection access to the `vanta-foundry` project, or share a preview bypass link.
+
+Run these on the deployed preview once access exists (each is "not run" until then):
+
+| Deployed check | How | Pass when |
+|---|---|---|
+| Pages render | Open `/`, `/website-development`, `/wholesale`, `/catalog/bpc-157`, `/wholesale/testing` at 390×844 | 200, correct H1, no layout breaks |
+| Preview isn't indexable | `curl -I` any page and `/robots.txt` | `X-Robots-Tag: noindex`, robots disallows all |
+| Brief storage | Submit one brief | A new row in `foundry.leads` with the shown reference |
+| Notification delivery | Same brief | Resend shows one delivered email to support@; the row has `notified_at` |
+| Duplicate protection | Submit the same brief again (back + resend) | Same reference, still one row, no second email |
+| Wholesale handoff | Add two products with quantities, send by WhatsApp and by email | Message and saved row both hold the same products, quantities and reference |
+| Analytics delivery | After enabling Web Analytics, repeat the brief and handoff | Vercel shows `inquiry_submitted` separately from `contact_click` and `wholesale_handoff` |
+| Clean-up | Delete the rows those tests create, by their exact ids | — |
 
 ## Launch blockers
 
-1. **Preview not inspected** and the real email from the new code not seen (Vercel access, above).
+1. **No deployed functional test has run** (Vercel access, above): rendering, brief storage, notification delivery, duplicate protection, handoff contents and analytics delivery are verified locally only.
 2. **Report batch question 1** (Vanta184290) unanswered: product pages already avoid batch-verification claims, but the owner should confirm before buyers rely on them.
 3. **Web Analytics not enabled**, so launch-day measurement would be lost.
 4. **Test rows** in `foundry.leads` (delete statement above) so the first real lead isn't mixed with tests.
@@ -202,9 +230,9 @@ Not blockers (handled after release): sitemap submission and indexing; the defer
 
 | Step | Status |
 |---|---|
-| Eligible / crawlable | Yes, on the local build (robots, 200s, self-canonicals, no unintended noindex); not checked on production |
+| Eligible / crawlable | On the local build only (robots, 200s, self-canonicals, no unintended noindex); unknown on production |
 | Sitemap submitted to Google Search Console / Bing | **Not done**: no webmaster access from this workspace |
-| Confirmed indexed | Unknown until Search Console shows it after release |
+| Indexed | **Unknown** (not verified). Nothing is deployed to production from this PR yet |
 
 After release: verify `https://www.vantafoundry.com` in Search Console and
 Bing Webmaster Tools, submit `/sitemap.xml`, and inspect `/wholesale`,

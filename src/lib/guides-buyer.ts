@@ -21,8 +21,8 @@ export const BUYER_GUIDES: Guide[] = [
       {
         h: "Documentation",
         p: [
-          "Start with the paperwork, because it is the part you can verify before any money moves. A supplier should be able to show a certificate of analysis (COA) for the lot it intends to ship, not a sample report from an older batch.",
-          "Check that the report names a laboratory, a date, a method and a lot number, and that the lot number will be printed on the units you receive. If the laboratory offers a way to verify its reports, use it.",
+          "Start with a COA audit, because the paperwork is the part you can verify before any money moves. A supplier should be able to show a certificate of analysis (COA) for the lot it intends to ship, not a sample report from an older batch.",
+          "Check that the report names a laboratory, a date, a method and a lot number, and that the lot number will be printed on the units you receive. If the laboratory offers a way to verify its reports, use it; that one step does more for peptide supplier verification than any badge on a website.",
         ],
         list: [
           "A COA per lot, issued by a named laboratory.",
@@ -840,13 +840,13 @@ export const BUYER_GUIDES: Guide[] = [
     question: "What do you need to start a research peptide business?",
     description: "The parts of a research-use-only peptide business, in order: catalog, documented supply, labels, website, payments and fulfillment.",
     answer:
-      "A research peptide business needs six things working together: a catalog you can document, a supplier that gives you a laboratory report for every lot, labels and copy that stay research use only, a website buyers can trust, payment processing that accepts the category, and a way to ship. Get advice from your own lawyer on how the rules apply to you; this guide covers the operating parts, not legal questions.",
+      "A research peptide business needs six things working together: a catalog you can document, a supplier that gives you a laboratory report for every lot, labels and copy that stay research use only, a website buyers can trust, payment processing that accepts the category, and a way to ship. Get advice from your own lawyer on how the rules apply to you; this guide covers how to launch a research compound business and how to sell research peptides day to day, not legal questions.",
     updated: "2026-10-23",
     sections: [
       {
         h: "Decide What You'll Sell",
         p: [
-          "Start with a short catalog you can document well rather than a long one you can't. For each product, know its identity data (name, sequence where it applies, CAS number, formula), the vial sizes you'll offer and whether a laboratory report exists for the lot you'll sell.",
+          "To start a peptide business for research supply, begin with a short catalog you can document well rather than a long one you can't. For each product, know its identity data (name, sequence where it applies, CAS number, formula), the vial sizes you'll offer and whether a laboratory report exists for the lot you'll sell.",
           "Research-use-only means exactly that. Every page, label, email and social post describes what a material is, never what it does or how a person might use it.",
         ],
       },

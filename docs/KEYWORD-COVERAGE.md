@@ -16,17 +16,17 @@ Competitor phrases are research evidence, not Vanta claims. A meta-keyword tag s
   - unresolved fact (owner): 6
   - not relevant: 4
 - Explicit tag phrases: **122**
-  - merged into an existing page: 44
+  - covered and verified: 35
   - unavailable offer: 20
+  - merged into an existing page: 19
   - excluded by compliance: 18
   - not relevant: 13
-  - covered and verified: 10
   - unresolved fact (owner): 10
   - deferred (needs sourced content): 7
 
 Status meanings: *covered and verified*: a Foundry page owns the intent and answers 200 (for phrases, the exact phrase is in its visible text). *merged*: served by an existing page under the buyer wording we chose. *unavailable offer*: we don't sell it, so no page. *excluded by compliance*: dosing, reconstitution, human-use or outcome content. *deferred*: needs sourced or reviewed content first. *unresolved fact*: needs an owner decision or fact. *location intent*: a real buyer intent served by a national page; a local page waits on local facts. *needs improvement*: the check failed.
 
-**Classified is not implemented.** Only *covered and verified* and *merged* rows have a live Foundry page serving the intent; see `docs/KEYWORD-DECISIONS.md` for which exact phrases are actually on which page.
+**Classified is not implemented.** Only *covered and verified* and *merged* rows have a Foundry page implemented in this PR serving the intent; see `docs/KEYWORD-DECISIONS.md` for which exact phrases are actually on which page.
 
 ## Keyword families
 
@@ -59,59 +59,59 @@ Status meanings: *covered and verified*: a Foundry page owns the intent and answ
 | 503A bulks list KPV | — | excluded by compliance | Compounding (human use) context. | no destination (by design) |
 | 99 purity peptides | — | not relevant | Competitor brand. | no destination (by design) |
 | B2B peptide consulting | — | unavailable offer | Consulting not sold. | no destination (by design) |
-| B2B peptide fulfillment | `/fulfillment` | merged into an existing page | Fulfillment page covers B2B 3PL; exact phrase not used. | /fulfillment 200 |
+| B2B peptide fulfillment | `/fulfillment` | covered and verified | Exact phrase added (was '3PL & fulfillment'). | /fulfillment 200; phrase rendered |
 | B2B peptide infrastructure | — | not relevant | Jargon; offers are described plainly. | no destination (by design) |
-| B2B peptide portal development | `/website-development/b2b-portals` | merged into an existing page | Owned as 'B2B ecommerce portal' (broader buyer wording). | /website-development/b2b-portals 200 |
+| B2B peptide portal development | `/website-development/b2b-portals` | covered and verified | Exact phrase added (was 'B2B ecommerce portal'). | /website-development/b2b-portals 200; phrase rendered |
 | B2B peptide sales strategy | — | unavailable offer | Sales strategy consulting not sold. | no destination (by design) |
 | BAC water calculator | — | excluded by compliance | Reconstitution calculator prohibited. | no destination (by design) |
 | bioluminescence imaging | — | not relevant | Unrelated assay technique. | no destination (by design) |
 | bioregulator peptides research | — | unavailable offer | Not in catalog. | no destination (by design) |
-| BPC-157 supplier | `/catalog/bpc-157` | merged into an existing page | Owned via 'BPC-157 Wholesale'. | /catalog/bpc-157 200 |
+| BPC-157 supplier | `/catalog/bpc-157` | covered and verified | Exact phrase added (was 'BPC-157 Wholesale'). | /catalog/bpc-157 200; phrase rendered |
 | BPC-157 wholesale | `/catalog/bpc-157` | covered and verified | Title and H1. | /catalog/bpc-157 200; phrase rendered |
-| branded research compounds USA | `/white-label` | merged into an existing page | Private label page; no 'USA' origin claim. | /white-label 200 |
+| branded research compounds USA | `/white-label` | merged into an existing page | Omitted: 'USA'/'United States' states an origin or service area we haven't verified (owner questions on origin and coverage). | /white-label 200 |
 | bulk peptide fulfillment consulting | — | unavailable offer | Consulting not sold. | no destination (by design) |
 | cellular health peptides | — | excluded by compliance | Health framing. | no destination (by design) |
 | chemiluminescence assay | — | not relevant | Unrelated assay technique. | no destination (by design) |
-| COA audit | `/guides/choose-wholesale-peptide-supplier` | merged into an existing page | Supplier guide covers checking COAs; 'audit' term not used. | /guides/choose-wholesale-peptide-supplier 200 |
+| COA audit | `/guides/choose-wholesale-peptide-supplier` | covered and verified | Exact phrase added (was 'Start with the paperwork'). | /guides/choose-wholesale-peptide-supplier 200; phrase rendered |
 | COC documentation peptides | — | not relevant | Chain-of-custody service not offered. | no destination (by design) |
 | compound shipping compliance | — | unresolved fact (owner) | Shipping/compliance facts not verified for publication. | no destination (by design) |
 | custom branded peptides | `/white-label` | covered and verified | Opening of the private label page. | /white-label 200; phrase rendered |
 | custom web development | `/website-development` | covered and verified | Hub phrase. | /website-development 200; phrase rendered |
 | digital agency | — | not relevant | Generic agency label; we describe the offers. | no destination (by design) |
-| dropship research compounds USA | `/fulfillment` | merged into an existing page | Dropship offer; no 'USA' claim. | /fulfillment 200 |
+| dropship research compounds USA | `/fulfillment` | merged into an existing page | Omitted: 'USA'/'United States' states an origin or service area we haven't verified (owner questions on origin and coverage). | /fulfillment 200 |
 | Epithalon pineal research | — | excluded by compliance | Physiological/outcome framing. | no destination (by design) |
 | fluorescence spectroscopy | — | not relevant | Unrelated assay technique. | no destination (by design) |
 | GLP-1 wholesale | `/catalog/glp-1` | unresolved fact (owner) | VLP-1 (SM) is described as a GLP-1 receptor agonist peptide; targeting drug-class wholesale terms is an owner decision. | /catalog/glp-1 200 |
 | histone acetylation peptide | — | not relevant | Mechanism research. | no destination (by design) |
-| how to launch a research compound business | `/guides/start-a-research-peptide-business` | merged into an existing page | Launch guide (title uses 'research peptide business'). | /guides/start-a-research-peptide-business 200 |
-| how to sell research peptides | `/guides/start-a-research-peptide-business` | merged into an existing page | Launch guide answers it. | /guides/start-a-research-peptide-business 200 |
-| HPLC purity test | `/wholesale/testing` | merged into an existing page | HPLC purity explained (methods, limits). | /wholesale/testing 200 |
+| how to launch a research compound business | `/guides/start-a-research-peptide-business` | covered and verified | Exact phrase added (was 'How to Start a Research Peptide Business'). | /guides/start-a-research-peptide-business 200; phrase rendered |
+| how to sell research peptides | `/guides/start-a-research-peptide-business` | covered and verified | Exact phrase added (was 'How to Start a Research Peptide Business'). | /guides/start-a-research-peptide-business 200; phrase rendered |
+| HPLC purity test | `/wholesale/testing` | covered and verified | Exact phrase added (was 'HPLC purity'). | /wholesale/testing 200; phrase rendered |
 | hybrid peptide synthesis | — | deferred (needs sourced content) | Synthesis article not written. | no destination (by design) |
 | institutional peptide sales | — | unavailable offer | Not an offer. | no destination (by design) |
 | Khavinson bioregulator peptides | — | unavailable offer | Not in catalog. | no destination (by design) |
 | KPV free base vs acetate | — | unresolved fact (owner) | Salt form of our KPV not documented. | no destination (by design) |
 | KPV peptide research | `/catalog/kpv` | deferred (needs sourced content) | Product page only; research article not written. | /catalog/kpv 200 |
 | laboratory compliance | — | not relevant | Generic tag. | no destination (by design) |
-| LC-MS mass spec | `/wholesale/testing` | merged into an existing page | Identity by LC-MS explained. | /wholesale/testing 200 |
+| LC-MS mass spec | `/wholesale/testing` | covered and verified | Exact phrase added (was 'Identity by mass spectrometry'). | /wholesale/testing 200; phrase rendered |
 | LPPS solution phase | — | deferred (needs sourced content) | Synthesis article not written. | no destination (by design) |
 | metabolic peptides | — | excluded by compliance | Health/outcome framing. | no destination (by design) |
 | NAD+ longevity research | — | excluded by compliance | Outcome framing. | no destination (by design) |
 | NAD+ wholesale | `/catalog/nad` | covered and verified | Title and H1. | /catalog/nad 200; phrase rendered |
-| Next.js development | `/website-development/ecommerce` | merged into an existing page | Stack stated: 'Next.js and React'. | /website-development/ecommerce 200 |
-| Next.js peptide website | `/website-development/peptide-websites` | merged into an existing page | Built in Next.js and React (process section). | /website-development/peptide-websites 200 |
+| Next.js development | `/website-development/ecommerce` | covered and verified | Exact phrase added (was 'hand-code sites in Next.js and React'). | /website-development/ecommerce 200; phrase rendered |
+| Next.js peptide website | `/website-development/peptide-websites` | covered and verified | Exact phrase added (was 'hand-code it in Next.js and React'). | /website-development/peptide-websites 200; phrase rendered |
 | NF-kB signalling inhibition | — | excluded by compliance | Mechanism/effect claim. | no destination (by design) |
 | PepT1 transporter uptake | — | excluded by compliance | Mechanism/effect claim. | no destination (by design) |
 | peptide affiliate program | — | unavailable offer | Foundry has no affiliate program (Vanta Labs runs its own). | no destination (by design) |
-| peptide brand development | `/white-label` | merged into an existing page | Private label + website; 'brand development' not used. | /white-label 200 |
+| peptide brand development | `/white-label` | covered and verified | Exact phrase added (was 'Labels designed to your brand'). | /white-label 200; phrase rendered |
 | peptide business consulting USA | — | unavailable offer | Consulting not sold. | no destination (by design) |
-| peptide business no inventory | `/fulfillment` | merged into an existing page | Dropship: 'hold no inventory'. | /fulfillment 200 |
-| peptide business website | `/website-development/peptide-websites` | merged into an existing page | Owned via 'peptide website development'. | /website-development/peptide-websites 200 |
+| peptide business no inventory | `/fulfillment` | merged into an existing page | Omitted: not grammatical as written; the page already says 'hold no inventory', and forcing the string would read as stuffing. | /fulfillment 200 |
+| peptide business website | `/website-development/peptide-websites` | covered and verified | Exact phrase added (was 'peptide website'). | /website-development/peptide-websites 200; phrase rendered |
 | peptide distribution development | — | unavailable offer | Not an offer. | no destination (by design) |
 | peptide distribution network | — | unavailable offer | Not an offer. | no destination (by design) |
 | peptide distributor setup | — | unavailable offer | Not an offer. | no destination (by design) |
 | peptide dosage calculator | — | excluded by compliance | Dosing prohibited. | no destination (by design) |
-| peptide dropshipping program | `/fulfillment` | merged into an existing page | Owned via 'peptide dropshipping'. | /fulfillment 200 |
-| peptide dropshipping program USA | `/fulfillment` | merged into an existing page | No 'USA' claim. | /fulfillment 200 |
+| peptide dropshipping program | `/fulfillment` | covered and verified | Exact phrase added (was 'peptide dropshipping'). | /fulfillment 200; phrase rendered |
+| peptide dropshipping program USA | `/fulfillment` | merged into an existing page | Omitted: 'USA'/'United States' states an origin or service area we haven't verified (owner questions on origin and coverage). | /fulfillment 200 |
 | peptide fulfillment consulting | — | unavailable offer | Consulting not sold. | no destination (by design) |
 | peptide fulfillment optimization | — | unavailable offer | Consulting not sold. | no destination (by design) |
 | peptide manufacturing | — | unresolved fact (owner) | Manufacturing facts not verified. | no destination (by design) |
@@ -119,62 +119,62 @@ Status meanings: *covered and verified*: a Foundry page owns the intent and answ
 | peptide packaging protocols | — | not relevant | Operational consulting. | no destination (by design) |
 | peptide reconstitution calculator | — | excluded by compliance | Reconstitution prohibited. | no destination (by design) |
 | peptide recovery | — | excluded by compliance | Outcome framing. | no destination (by design) |
-| peptide SEO website | `/website-development/peptide-websites` | merged into an existing page | SEO is part of the build; phrase not used. | /website-development/peptide-websites 200 |
-| peptide supplier dropship | `/fulfillment` | merged into an existing page | Dropship offer. | /fulfillment 200 |
+| peptide SEO website | `/website-development/peptide-websites` | covered and verified | Exact phrase added (was 'Search setup: titles, structured data, sitemap'). | /website-development/peptide-websites 200; phrase rendered |
+| peptide supplier dropship | `/fulfillment` | merged into an existing page | Omitted: not grammatical as written; the dropship intent is already on the page. | /fulfillment 200 |
 | peptide supplier for compounding pharmacy | — | excluded by compliance | Human-use supply not offered. | no destination (by design) |
-| peptide supplier verification | `/guides/choose-wholesale-peptide-supplier` | merged into an existing page | Supplier guide. | /guides/choose-wholesale-peptide-supplier 200 |
+| peptide supplier verification | `/guides/choose-wholesale-peptide-supplier` | covered and verified | Exact phrase added (was 'verify its reports'). | /guides/choose-wholesale-peptide-supplier 200; phrase rendered |
 | peptide synthesis | — | deferred (needs sourced content) | Synthesis article not written. | no destination (by design) |
 | peptide website development | `/website-development/peptide-websites` | covered and verified | Title and H1. | /website-development/peptide-websites 200; phrase rendered |
-| peptides wholesale | `/wholesale` | merged into an existing page | Owned via 'wholesale peptides' (same words). | /wholesale 200 |
+| peptides wholesale | `/wholesale` | covered and verified | Exact phrase added (was 'wholesale peptides'). | /wholesale 200; phrase rendered |
 | private label GLP-1 peptides | — | unresolved fact (owner) | Coded-name policy; owner decision. | no destination (by design) |
-| private label peptide supplier | `/white-label` | merged into an existing page | Owned via 'private label peptides'. | /white-label 200 |
-| private label peptides United States | `/white-label` | merged into an existing page | No origin claim. | /white-label 200 |
-| private label peptides USA | `/white-label` | merged into an existing page | No origin claim. | /white-label 200 |
-| research compound business launch | `/guides/start-a-research-peptide-business` | merged into an existing page | Launch guide. | /guides/start-a-research-peptide-business 200 |
+| private label peptide supplier | `/white-label` | covered and verified | Exact phrase added (was 'private label peptides'). | /white-label 200; phrase rendered |
+| private label peptides United States | `/white-label` | merged into an existing page | Omitted: 'USA'/'United States' states an origin or service area we haven't verified (owner questions on origin and coverage). | /white-label 200 |
+| private label peptides USA | `/white-label` | merged into an existing page | Omitted: 'USA'/'United States' states an origin or service area we haven't verified (owner questions on origin and coverage). | /white-label 200 |
+| research compound business launch | `/guides/start-a-research-peptide-business` | merged into an existing page | Omitted: 'how to launch a research compound business' was added to the same guide; a second variant would be stuffing. | /guides/start-a-research-peptide-business 200 |
 | research compound distribution development | — | unavailable offer | Not an offer. | no destination (by design) |
-| research compound e-commerce | `/website-development/peptide-websites` | merged into an existing page | Peptide/research websites. | /website-development/peptide-websites 200 |
-| research compound fulfillment partner | `/fulfillment` | merged into an existing page | 3PL/dropship. | /fulfillment 200 |
-| research compound logistics | `/fulfillment` | merged into an existing page | 3PL. | /fulfillment 200 |
+| research compound e-commerce | `/website-development/peptide-websites` | covered and verified | Exact phrase added (was 'peptide website'). | /website-development/peptide-websites 200; phrase rendered |
+| research compound fulfillment partner | `/fulfillment` | covered and verified | Exact phrase added (was '3PL'). | /fulfillment 200; phrase rendered |
+| research compound logistics | `/fulfillment` | merged into an existing page | Omitted for now: /fulfillment is short and already carries four added fulfillment phrases; a fifth near-synonym would be repetitive. Candidate if the page gains a logistics section. | /fulfillment 200 |
 | research compound operations consulting | — | unavailable offer | Consulting not sold. | no destination (by design) |
-| research compound website design | `/website-development/peptide-websites` | merged into an existing page | Owned via 'peptide website design'. | /website-development/peptide-websites 200 |
+| research compound website design | `/website-development/peptide-websites` | covered and verified | Exact phrase added (was 'peptide website design'). | /website-development/peptide-websites 200; phrase rendered |
 | research grade peptides | — | unresolved fact (owner) | Quality-grade claim; not used without a definition the reports support. | no destination (by design) |
-| research peptide business launch support | `/guides/start-a-research-peptide-business` | merged into an existing page | Guide, not a paid launch service. | /guides/start-a-research-peptide-business 200 |
+| research peptide business launch support | `/guides/start-a-research-peptide-business` | merged into an existing page | Omitted: implies a paid launch-support service we don't sell; the guide is information only. | /guides/start-a-research-peptide-business 200 |
 | retatrutide research | — | unresolved fact (owner) | Coded-name policy; owner decision. | no destination (by design) |
 | retatrutide vs tirzepatide vs semaglutide | — | excluded by compliance | Drug comparison. | no destination (by design) |
-| RUO compliance | `/standards` | merged into an existing page | Research-use-only standards page. | /standards 200 |
+| RUO compliance | `/standards` | covered and verified | Exact phrase added (was 'Research use only, on everything'). | /standards 200; phrase rendered |
 | SaaS development | — | unavailable offer | Not offered. | no destination (by design) |
-| scale peptide business | `/supply` | merged into an existing page | RUO brand scaling section. | /supply 200 |
+| scale peptide business | `/supply` | merged into an existing page | Omitted: not grammatical as written, and there is no scaling service to describe beyond supply and 3PL. | /supply 200 |
 | semaglutide research | — | unresolved fact (owner) | Coded-name policy; owner decision. | no destination (by design) |
-| SEO services United States | `/seo-ai-search` | merged into an existing page | SEO & AI search; areaServed US in schema. | /seo-ai-search 200 |
+| SEO services United States | `/seo-ai-search` | merged into an existing page | Omitted: the US service area for website clients isn't confirmed (the Organization JSON-LD areaServed 'US' predates this PR and needs the same confirmation). | /seo-ai-search 200 |
 | Shopify development | — | unavailable offer | Not offered (stated on the ecommerce page). | no destination (by design) |
 | short chain peptide gene expression | — | excluded by compliance | Mechanism/effect claim. | no destination (by design) |
 | signal-to-noise ratio | — | not relevant | Assay term. | no destination (by design) |
 | solid phase peptide synthesis | — | deferred (needs sourced content) | Synthesis article not written. | no destination (by design) |
 | spectrofluorometer | — | not relevant | Instrument term. | no destination (by design) |
 | SPPS peptide synthesis | — | deferred (needs sourced content) | Synthesis article not written. | no destination (by design) |
-| start a peptide business | `/guides/start-a-research-peptide-business` | merged into an existing page | Owned via 'start a research peptide business'. | /guides/start-a-research-peptide-business 200 |
-| start a peptide business USA | `/guides/start-a-research-peptide-business` | merged into an existing page | No origin claim. | /guides/start-a-research-peptide-business 200 |
+| start a peptide business | `/guides/start-a-research-peptide-business` | covered and verified | Exact phrase added (was 'start a research peptide business'). | /guides/start-a-research-peptide-business 200; phrase rendered |
+| start a peptide business USA | `/guides/start-a-research-peptide-business` | merged into an existing page | Omitted: 'USA'/'United States' states an origin or service area we haven't verified (owner questions on origin and coverage). The guide also doesn't cover US-specific rules. | /guides/start-a-research-peptide-business 200 |
 | syringe units calculator | — | excluded by compliance | Dosing prohibited. | no destination (by design) |
 | tirzepatide supplier | — | unresolved fact (owner) | Coded-name policy; owner decision. | no destination (by design) |
 | tissue repair research | — | excluded by compliance | Outcome framing. | no destination (by design) |
 | triple agonist peptide | `/catalog/glp-3` | covered and verified | VLP-3 (RT) identity: 'triple agonist peptide'. | /catalog/glp-3 200; phrase rendered |
 | U-100 syringe calculator | — | excluded by compliance | Dosing prohibited. | no destination (by design) |
-| UI/UX design | `/website-development` | merged into an existing page | Design is part of every build; phrase not used. | /website-development 200 |
+| UI/UX design | `/website-development` | covered and verified | Exact phrase added (was 'We design the site'). | /website-development 200; phrase rendered |
 | US manufactured peptides | — | unresolved fact (owner) | Origin not verified; no claim published. | no destination (by design) |
-| verify peptide supplier | `/guides/choose-wholesale-peptide-supplier` | merged into an existing page | Supplier guide. | /guides/choose-wholesale-peptide-supplier 200 |
+| verify peptide supplier | `/guides/choose-wholesale-peptide-supplier` | merged into an existing page | Omitted: not grammatical as written; 'peptide supplier verification' was added to the same guide. | /guides/choose-wholesale-peptide-supplier 200 |
 | web design agency USA | — | not relevant | Agency label; no location claim. | no destination (by design) |
 | website redesign | `/website-development/redesign` | covered and verified | Primary phrase. | /website-development/redesign 200; phrase rendered |
-| white label BPC-157 | `/white-label` | merged into an existing page | Any catalog product can be labelled; no per-product label pages. | /white-label 200 |
-| white label peptides dropshipping | `/fulfillment` | merged into an existing page | Dropship as your brand. | /fulfillment 200 |
+| white label BPC-157 | `/white-label` | covered and verified | Exact phrase added (was 'any catalog product'). | /white-label 200; phrase rendered |
+| white label peptides dropshipping | `/fulfillment` | merged into an existing page | Omitted: not grammatical as written; dropship-under-your-brand is already explained. | /fulfillment 200 |
 | white label research compounds | `/white-label` | covered and verified | Supporting phrase on the private label page. | /white-label 200; phrase rendered |
 | wholesale distribution consulting | — | unavailable offer | Consulting not sold. | no destination (by design) |
-| wholesale peptide distributor USA | `/wholesale` | merged into an existing page | Owned via 'wholesale peptide supplier'; no distributor/origin claim. | /wholesale 200 |
-| wholesale peptide fulfillment | `/fulfillment` | merged into an existing page | 3PL page. | /fulfillment 200 |
+| wholesale peptide distributor USA | `/wholesale` | merged into an existing page | Omitted: 'distributor' (a distribution network) and 'USA' (origin) are both unverified. | /wholesale 200 |
+| wholesale peptide fulfillment | `/fulfillment` | covered and verified | Exact phrase added (was '3PL'). | /fulfillment 200; phrase rendered |
 | wholesale peptide fulfillment systems | — | unavailable offer | Consulting not sold. | no destination (by design) |
-| wholesale peptide site builder | `/website-development/peptide-websites` | merged into an existing page | Custom build, not a site builder. | /website-development/peptide-websites 200 |
-| wholesale peptide startup guide | `/guides/start-a-research-peptide-business` | merged into an existing page | Launch guide. | /guides/start-a-research-peptide-business 200 |
+| wholesale peptide site builder | `/website-development/peptide-websites` | merged into an existing page | Omitted: untrue; we hand-code custom sites, we don't offer a site builder. | /website-development/peptide-websites 200 |
+| wholesale peptide startup guide | `/guides/start-a-research-peptide-business` | merged into an existing page | Omitted: the guide already carries three launch phrases; a fourth would be stuffing. | /guides/start-a-research-peptide-business 200 |
 | wholesale peptide supplier | `/wholesale` | covered and verified | Supporting phrase on the wholesale hub. | /wholesale 200; phrase rendered |
-| wholesale peptide supplier services | `/wholesale` | merged into an existing page | Wholesale hub. | /wholesale 200 |
+| wholesale peptide supplier services | `/wholesale` | merged into an existing page | Omitted: 'wholesale peptide supplier' is already on /wholesale; adding 'services' repeats it without adding meaning. | /wholesale 200 |
 | wholesale research peptides | `/wholesale` | covered and verified | Supporting phrase. | /wholesale 200; phrase rendered |
 | WordPress development | — | unavailable offer | Not offered; the ecommerce FAQ says we hand-code in Next.js and React. | no destination (by design) |
 

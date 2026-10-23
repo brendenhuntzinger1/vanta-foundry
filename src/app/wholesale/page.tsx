@@ -92,7 +92,7 @@ export default function WholesalePage() {
           <div className="flex flex-wrap items-end justify-between gap-4">
             <div className="max-w-2xl">
               <h2 className="h-section text-[32px] text-ink sm:text-[44px]">Wholesale Peptide Catalog</h2>
-              <p className="mt-3 text-[17px] leading-[1.6] text-body">{CATALOG.length} wholesale research peptides and related research materials. Each one has its own page with vial sizes, specifications and published reports.</p>
+              <p className="mt-3 text-[17px] leading-[1.6] text-body">{CATALOG.length} wholesale research peptides and related research materials. Each one has its own page with vial sizes, specifications and published reports. To buy peptides wholesale, add the products you need to one request.</p>
             </div>
             <Link href="/catalog" className="inline-flex items-center gap-1.5 text-[15px] font-medium text-ink underline underline-offset-4">
               View the wholesale catalog <IconArrow />

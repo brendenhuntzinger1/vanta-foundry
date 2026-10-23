@@ -87,8 +87,8 @@ export default function TestingPage() {
             <section>
               <h2>Test Methods</h2>
               <ul>
-                <li><strong>HPLC purity.</strong> Reverse-phase HPLC separates the compounds in a sample; purity is the main peak&rsquo;s share of the detected signal, at a stated UV wavelength (214 nm for most peptides here, 260 nm for NAD+).</li>
-                <li><strong>Identity by mass spectrometry.</strong> LC-MS or UPLC/MS confirms the compound&rsquo;s measured mass matches the expected one.</li>
+                <li><strong>HPLC purity test.</strong> Reverse-phase HPLC separates the compounds in a sample; purity is the main peak&rsquo;s share of the detected signal, at a stated UV wavelength (214 nm for most peptides here, 260 nm for NAD+).</li>
+                <li><strong>Identity by LC-MS mass spec.</strong> LC-MS (or UPLC/MS) confirms the compound&rsquo;s measured mass matches the expected one.</li>
                 <li><strong>Identity screens.</strong> For multi-component solutions (B12, LIPO-C), the report lists the compounds detected in the vial, not their amounts.</li>
               </ul>
             </section>

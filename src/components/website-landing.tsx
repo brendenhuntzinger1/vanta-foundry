@@ -110,7 +110,7 @@ export function WebsiteLanding({ s }: { s: Service }) {
             <h2 className="h-section text-[36px] text-ink sm:text-[54px]">
               What we <span className="accent">build.</span>
             </h2>
-            <p className="mt-4 text-[18px] leading-[1.6] text-body">Custom web development for any business. Pick the one closest to your project; each page shows the scope, the process and the questions to ask.</p>
+            <p className="mt-4 text-[18px] leading-[1.6] text-body">Custom web development for any business, UI/UX design included. Pick the one closest to your project; each page shows the scope, the process and the questions to ask.</p>
           </div>
           <ul className="mx-auto mt-12 grid max-w-[1040px] gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {DEV_SERVICES.map((d) => (

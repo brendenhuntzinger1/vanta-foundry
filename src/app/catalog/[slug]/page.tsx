@@ -109,7 +109,7 @@ export default async function ProductPage(props: PageProps<"/catalog/[slug]">) {
             <div className="min-w-0">
               <p className="text-[14px] text-muted">{p.category}</p>
               <h1 className="h-display mt-2 text-[38px] leading-[1.02] text-ink sm:text-[54px]">{seo.h1}</h1>
-              <p className="mt-5 text-[17.5px] leading-[1.6] text-body">{intro(p, f)} Request wholesale pricing for the sizes and quantities you need.</p>
+              <p className="mt-5 text-[17.5px] leading-[1.6] text-body">{intro(p, f)} We&rsquo;re a wholesale {p.name} supplier: request pricing for the sizes and quantities you need.</p>
               <p className="mt-3 text-[14.5px] text-muted">{QUANTITY_NOTE}</p>
               <AddToInquiry slug={p.slug} sizes={p.sizes} className="mt-7" />
               <div className="mt-5 flex flex-wrap items-center gap-x-5 gap-y-3 text-[14.5px]">

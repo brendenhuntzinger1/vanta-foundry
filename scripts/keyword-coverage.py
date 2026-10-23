@@ -335,6 +335,62 @@ PHRASES = {
     "wholesale research peptides": ("/wholesale", COVERED, "Supporting phrase."),
 }
 
+# The 44 phrases first served under our own wording, reviewed one by one
+# (owner, 2026-10-23: keep the competitor's exact phrase where it is true and
+# reads naturally). phrase -> (wording the page used before, added?, where it
+# was added, or the reason it wasn't). Added phrases become COVERED, so the check enforces them.
+USA_REASON = "Omitted: 'USA'/'United States' states an origin or service area we haven't verified (owner questions on origin and coverage)."
+REVIEW = {
+    "B2B peptide fulfillment": ("3PL & fulfillment", True, "opening answer paragraph"),
+    "B2B peptide portal development": ("B2B ecommerce portal", True, "'Documentation' section"),
+    "BPC-157 supplier": ("BPC-157 Wholesale", True, "intro under the H1 ('We're a wholesale BPC-157 supplier'; same sentence on every product page)"),
+    "branded research compounds USA": ("custom branded peptides", False, USA_REASON),
+    "COA audit": ("Start with the paperwork", True, "'Documentation' section, first sentence"),
+    "dropship research compounds USA": ("dropship from our stock", False, USA_REASON),
+    "how to launch a research compound business": ("How to Start a Research Peptide Business", True, "opening answer paragraph"),
+    "how to sell research peptides": ("How to Start a Research Peptide Business", True, "opening answer paragraph"),
+    "HPLC purity test": ("HPLC purity", True, "'Test Methods' list, first item"),
+    "LC-MS mass spec": ("Identity by mass spectrometry", True, "'Test Methods' list, second item"),
+    "Next.js development": ("hand-code sites in Next.js and React", True, "FAQ 'Which platforms do you build on?'"),
+    "Next.js peptide website": ("hand-code it in Next.js and React", True, "'Our Development Process' list, Build step"),
+    "peptide brand development": ("Labels designed to your brand", True, "FAQ 'Can you design the label?'"),
+    "peptide business no inventory": ("hold no inventory at all", False, "Omitted: not grammatical as written; the page already says 'hold no inventory', and forcing the string would read as stuffing."),
+    "peptide business website": ("peptide website", True, "opening answer paragraph, first sentence"),
+    "peptide dropshipping program": ("peptide dropshipping", True, "new FAQ 'How does the peptide dropshipping program work?'"),
+    "peptide dropshipping program USA": ("peptide dropshipping", False, USA_REASON),
+    "peptide SEO website": ("Search setup: titles, structured data, sitemap", True, "'What Your Peptide Website Needs' list, new last item"),
+    "peptide supplier dropship": ("dropship from our stock", False, "Omitted: not grammatical as written; the dropship intent is already on the page."),
+    "peptide supplier verification": ("verify its reports", True, "'Documentation' section, second paragraph"),
+    "peptides wholesale": ("wholesale peptides", True, "catalog section paragraph ('To buy peptides wholesale…')"),
+    "private label peptide supplier": ("private label peptides", True, "opening answer paragraph"),
+    "private label peptides United States": ("private label peptides", False, USA_REASON),
+    "private label peptides USA": ("private label peptides", False, USA_REASON),
+    "research compound business launch": ("How to Start a Research Peptide Business", False, "Omitted: 'how to launch a research compound business' was added to the same guide; a second variant would be stuffing."),
+    "research compound e-commerce": ("peptide website", True, "'Retail Checkout or B2B Ordering?' section, new paragraph"),
+    "research compound fulfillment partner": ("3PL", True, "'Who it's for' line"),
+    "research compound logistics": ("3PL", False, "Omitted for now: /fulfillment is short and already carries four added fulfillment phrases; a fifth near-synonym would be repetitive. Candidate if the page gains a logistics section."),
+    "research compound website design": ("peptide website design", True, "'Retail Checkout or B2B Ordering?' section, same new paragraph"),
+    "research peptide business launch support": ("How to Start a Research Peptide Business", False, "Omitted: implies a paid launch-support service we don't sell; the guide is information only."),
+    "RUO compliance": ("Research use only, on everything", True, "intro under the H1"),
+    "scale peptide business": ("Launching or scaling a brand?", False, "Omitted: not grammatical as written, and there is no scaling service to describe beyond supply and 3PL."),
+    "SEO services United States": ("SEO & AI search", False, "Omitted: the US service area for website clients isn't confirmed (the Organization JSON-LD areaServed 'US' predates this PR and needs the same confirmation)."),
+    "start a peptide business": ("start a research peptide business", True, "'Decide What You'll Sell' section, first sentence"),
+    "start a peptide business USA": ("start a research peptide business", False, USA_REASON + " The guide also doesn't cover US-specific rules."),
+    "UI/UX design": ("We design the site", True, "'What we build' section intro"),
+    "verify peptide supplier": ("verify its reports", False, "Omitted: not grammatical as written; 'peptide supplier verification' was added to the same guide."),
+    "white label BPC-157": ("any catalog product", True, "new FAQ 'Can I white label a specific product, like BPC-157?'"),
+    "white label peptides dropshipping": ("dropship as your brand", False, "Omitted: not grammatical as written; dropship-under-your-brand is already explained."),
+    "wholesale peptide distributor USA": ("wholesale peptide supplier", False, "Omitted: 'distributor' (a distribution network) and 'USA' (origin) are both unverified."),
+    "wholesale peptide fulfillment": ("3PL", True, "FAQ 'Dropship or 3PL: which do I need?'"),
+    "wholesale peptide site builder": ("custom build", False, "Omitted: untrue; we hand-code custom sites, we don't offer a site builder."),
+    "wholesale peptide startup guide": ("How to Start a Research Peptide Business", False, "Omitted: the guide already carries three launch phrases; a fourth would be stuffing."),
+    "wholesale peptide supplier services": ("wholesale peptide supplier", False, "Omitted: 'wholesale peptide supplier' is already on /wholesale; adding 'services' repeats it without adding meaning."),
+}
+assert len(REVIEW) == 44, len(REVIEW)
+for _p, (_was, _added, _why) in REVIEW.items():
+    _dest = PHRASES[_p][0]
+    PHRASES[_p] = (_dest, COVERED, f"Exact phrase added (was '{_was}').") if _added else (_dest, MERGED, _why)
+
 # Families from the audit's placement table: owner, and the phrases that must render there.
 FAMILIES = [
     ("General wholesale", "/wholesale", ["wholesale peptides", "wholesale research peptides", "bulk research peptides", "wholesale peptide supplier"]),
@@ -453,7 +509,7 @@ def main():
       "*excluded by compliance*: dosing, reconstitution, human-use or outcome content. *deferred*: needs sourced or reviewed content first. "
       "*unresolved fact*: needs an owner decision or fact. *location intent*: a real buyer intent served by a national page; a local page waits on local facts. "
       "*needs improvement*: the check failed.\n\n"
-      "**Classified is not implemented.** Only *covered and verified* and *merged* rows have a live Foundry page serving the intent; see `docs/KEYWORD-DECISIONS.md` for which exact phrases are actually on which page.\n")
+      "**Classified is not implemented.** Only *covered and verified* and *merged* rows have a Foundry page implemented in this PR serving the intent; see `docs/KEYWORD-DECISIONS.md` for which exact phrases are actually on which page.\n")
 
     w("## Keyword families\n")
     w("| Family | Owner page | Phrases checked | Missing from rendered page |")

@@ -34,7 +34,7 @@ export const DEV_SERVICES: DevService[] = [
     seo: SEO_PAGES.peptideWebsites,
     name: "Peptide websites",
     answer:
-      "A peptide website needs a clear catalog, testing documentation a buyer can find in one tap, and an ordering process that works. We start from the workflow your business runs, retail checkout, wholesale requests or both, then scope the peptide website design, development and integrations around it. It's what we built for Vanta Labs, our own research-supply store.",
+      "A peptide business website needs a clear catalog, testing documentation a buyer can find in one tap, and an ordering process that works. We start from the workflow your business runs, retail checkout, wholesale requests or both, then scope the peptide website design, development and integrations around it. It's what we built for Vanta Labs, our own research-supply store.",
     sections: [
       {
         h: "What Your Peptide Website Needs",
@@ -44,6 +44,7 @@ export const DEV_SERVICES: DevService[] = [
           "**Documentation next to the product**: the laboratory report for each vial size, one tap from the product page.",
           "**Research-use-only copy and an access gate**, so the site says what it sells accurately everywhere.",
           "**An ordering path that matches how you sell**: checkout, quantity pricing, a wholesale request form, or all three.",
+          "**Search setup from day one.** A peptide SEO website starts with clean titles, structured data and a sitemap, built in rather than added later.",
         ],
       },
       {
@@ -57,6 +58,7 @@ export const DEV_SERVICES: DevService[] = [
         h: "Retail Checkout or B2B Ordering?",
         p: [
           "Retail checkout suits buyers who order a few units at a listed price. Wholesale buyers usually want quantity pricing, a quote before they commit, and reorders without starting over. Many research brands need both on one site.",
+          "Research compound e-commerce has one more constraint: every listing, email and ad has to stay research use only. That's why our research compound website design starts from the copy rules, not from a theme.",
           "We'll recommend the simplest setup that fits: a wholesale request form beside a retail store, quantity pricing tiers, or a full buyer portal with accounts. See [B2B ecommerce portal development](/website-development/b2b-portals) for the larger build.",
         ],
       },
@@ -72,7 +74,7 @@ export const DEV_SERVICES: DevService[] = [
         list: [
           "**Brief.** You tell us about the business in about a minute; a project lead follows up to plan the build.",
           "**Design.** We design the site and you sign off on every page before it's coded.",
-          "**Build.** Our developers hand-code it in Next.js and React, load the catalog and documents, and connect payments and email.",
+          "**Build.** Our developers hand-code it in Next.js and React, load the catalog and documents, and connect payments and email. You get a Next.js peptide website you own, not a rented theme.",
           "**Test and launch.** Every page, form and checkout path is tested on phones and desktop before it goes live.",
         ],
       },
@@ -154,7 +156,7 @@ export const DEV_SERVICES: DevService[] = [
       href: "/work",
     },
     faqs: [
-      { q: "Which platforms do you build on?", a: "We hand-code sites in Next.js and React, the stack Vanta Labs and this site run on, rather than adapting a theme. If you're set on WordPress, Shopify or another hosted platform, tell us in the brief and we'll say honestly whether we're the right fit." },
+      { q: "Which platforms do you build on?", a: "Custom Next.js development: we hand-code sites in Next.js and React, the stack Vanta Labs and this site run on, rather than adapting a theme. If you're set on WordPress, Shopify or another hosted platform, tell us in the brief and we'll say honestly whether we're the right fit." },
       { q: "Who supplies the content?", a: "You supply product details and photos, or we write the copy and plan the photography with you. Your quote says which." },
       { q: "What is tested before launch?", a: "Every page on phones and desktop, test orders through each payment method, every email the store sends, speed and search setup. Nothing goes live untested." },
       { q: "How long does it take?", a: "Most sites are fully built and live within 72 hours to a week. Larger catalogs and custom features take longer; your quote states the timeline." },
@@ -193,7 +195,7 @@ export const DEV_SERVICES: DevService[] = [
       {
         h: "Documentation",
         p: [
-          "Buyers download the report for the lot they received, and invoices and packing lists, from their account. For research supply this is often the thing wholesale buyers ask for first.",
+          "Buyers download the report for the lot they received, and invoices and packing lists, from their account. For research supply this is often the thing wholesale buyers ask for first, and it's where B2B peptide portal development differs most from a general wholesale portal.",
         ],
       },
       {
