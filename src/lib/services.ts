@@ -52,7 +52,7 @@ export const SERVICES: Service[] = [
       { q: "Do I need a website from you to use this?", a: "No. We can connect payments to the website you already have." },
     ],
     demo: "payments",
-    guides: ["why-run-a-backup-payment-processor"],
+    guides: ["why-run-a-backup-payment-processor", "payment-processor-shut-down-what-to-do", "high-risk-vs-standard-merchant-account"],
   },
   {
     slug: "wholesale",
@@ -97,7 +97,7 @@ export const SERVICES: Service[] = [
       { q: "How long does it take?", a: "It depends on the products and quantities. Your quote states the lead time before you commit." },
     ],
     demo: "factory",
-    guides: ["dropship-vs-3pl-vs-inventory"],
+    guides: ["dropship-vs-3pl-vs-inventory", "white-label-vs-private-label-vs-factory-direct"],
   },
   {
     slug: "white-label",
@@ -119,7 +119,7 @@ export const SERVICES: Service[] = [
       { q: "Can I put my own claims on the label?", a: "Labels carry what the product is, the lot and the research-use statement. We don't print usage, dosing or effect claims." },
     ],
     demo: "label",
-    guides: ["how-white-label-research-supply-works"],
+    guides: ["how-white-label-research-supply-works", "white-label-vs-private-label-vs-factory-direct"],
   },
   {
     slug: "fulfillment",
@@ -163,6 +163,8 @@ export const SERVICES: Service[] = [
     faqs: [
       { q: "Do you only build for peptide or research companies?", a: "No. We build websites for every industry and any lawful business. Research supply is one of the things we also offer." },
       { q: "How fast can my site be live?", a: "Most sites are fully built and live within 72 hours to a week, depending on what it needs to do. Any specific request, feature or integration is handled by our developer team." },
+      { q: "Who owns the website?", a: "You do. Your domain, your content and your site are yours, and they stay yours if you stop the monthly plan. It's written into your agreement before we start." },
+      { q: "What does the monthly plan cover?", a: "Fixes, changes, updates, new pages and features, plus speed, security and uptime, with the team on call 24/7. What's included is listed in your agreement, so there's no guessing." },
       { q: "Can you redo my current site?", a: "Yes. We can rebuild it or improve what you have, whichever makes more sense." },
       { q: "How much is a website?", a: "It depends on what the site needs to do. Tell us and we'll quote it." },
       { q: "What is the monthly developer team?", a: "A monthly plan that gives you a development team on call 24/7. Anything breaks, needs changing or needs adding, you message us and it gets fixed. It covers sites we build and, after a review, sites you already have." },
@@ -193,7 +195,7 @@ export const SERVICES: Service[] = [
       { q: "Is it part of a package?", a: "It can be. Website, payment processing and SEO & AI search are offered together as a launch package, with supply, white label and 3PL added if you sell research products." },
     ],
     demo: "seo",
-    guides: [],
+    guides: ["seo-vs-geo"],
   },
 ];
 

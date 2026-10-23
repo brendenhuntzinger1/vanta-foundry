@@ -10,6 +10,7 @@ export function ContactButtons({
   subject = "Vanta Foundry enquiry",
   size = "md",
   single = false,
+  light = false,
   className = "",
 }: {
   message?: string;
@@ -17,6 +18,8 @@ export function ContactButtons({
   size?: "md" | "lg";
   /** One button: WhatsApp when configured, otherwise email. */
   single?: boolean;
+  /** Outline style, for sitting beside another dark button. */
+  light?: boolean;
   className?: string;
 }) {
   const wa = whatsappLink(message);
@@ -24,7 +27,7 @@ export function ContactButtons({
   return (
     <div className={`flex flex-wrap items-center gap-3 ${className}`}>
       {wa && (
-        <a href={wa} target="_blank" rel="noopener noreferrer" className={`btn btn-dark ${pad}`}>
+        <a href={wa} target="_blank" rel="noopener noreferrer" className={`btn ${light ? "btn-light" : "btn-dark"} ${pad}`}>
           <IconWhatsApp className="text-wa" /> WhatsApp us
         </a>
       )}

@@ -22,6 +22,154 @@ export type Guide = {
 
 export const GUIDES: Guide[] = [
   {
+    slug: "payment-processor-shut-down-what-to-do",
+    title: "Stripe, PayPal or Square shut down your account? What to do next",
+    question: "What should a business do when Stripe, PayPal or Square closes its account?",
+    description: "The first 48 hours after a payment processor closes your account: what happens to your money, how to keep selling, and how to avoid it next time.",
+    answer:
+      "Stop the bleeding first: move checkout to a processor that accepts your business type, so you can take orders again. Then deal with the old account: find out whether funds are held in a reserve and when they release, and download your transaction history. Long term, run a second processor already connected, so the next closure is a switch, not a shutdown.",
+    updated: "2026-10-23",
+    sections: [
+      {
+        h: "Why it happens",
+        p: [
+          "Payment aggregators like Stripe, PayPal and Square approve accounts instantly and review them later. When a later review finds a business type outside their rules, a jump in volume, or a high refund or chargeback rate, they can close the account with little warning.",
+          "Some categories are reviewed more often than others: supplements, research supply, telehealth, subscriptions and anything with a long delivery time.",
+        ],
+      },
+      {
+        h: "The first 48 hours",
+        list: [
+          "**Take payments again.** Apply with a processor that accepts your business type and connect it to your checkout. This is the step that stops lost sales.",
+          "**Read the closure email.** It usually says whether funds are held, for how long, and why.",
+          "**Download your data.** Transaction history, customer receipts and dispute records, before access is limited.",
+          "**Answer open disputes.** Unanswered chargebacks are lost by default and count against you with the next processor.",
+        ],
+      },
+      {
+        h: "Held funds and reserves",
+        p: [
+          "A processor that closes an account often holds part of the balance as a reserve, to cover refunds and chargebacks that arrive later. The hold period is set in the processor's terms. Keep records of every order so you can answer anything that comes up while the reserve runs.",
+        ],
+      },
+      {
+        h: "How to not be here again",
+        list: [
+          "Apply with a processor that approves your business type up front, rather than one that reviews it after the fact.",
+          "Keep a second processor connected to your checkout, so switching is a setting, not a rebuild.",
+          "Watch refunds and chargebacks, and make cancellation and support easy to find.",
+          "Describe what you sell accurately on your application and your website.",
+        ],
+      },
+    ],
+    services: ["payment-processing", "website-development"],
+  },
+  {
+    slug: "high-risk-vs-standard-merchant-account",
+    title: "High-risk vs standard merchant accounts",
+    question: "What is the difference between a high-risk and a standard merchant account?",
+    description: "Why some businesses are classed as high-risk by payment processors, what changes in a high-risk merchant account, and how to tell which one you need.",
+    answer:
+      "A high-risk merchant account is a card-processing account for business types that processors expect to have more chargebacks, refunds or regulatory questions. It usually comes with a closer review, rolling reserves and different rates. A standard account suits low-risk businesses; if you sell in a reviewed category, applying for the right account up front is what keeps you from being shut down later.",
+    updated: "2026-10-23",
+    sections: [
+      {
+        h: "What makes a business high-risk",
+        list: [
+          "The category: supplements, research supply, telehealth, CBD, travel, subscriptions and similar.",
+          "Long delivery times or pre-orders, which raise the chance of disputes.",
+          "Recurring billing.",
+          "A history of chargebacks or a past account closure.",
+          "High average order values or fast-growing volume.",
+        ],
+      },
+      {
+        h: "What changes in a high-risk account",
+        list: [
+          "**Underwriting.** More documents up front: business details, website review, processing history.",
+          "**Reserves.** A share of sales may be held for a period to cover future chargebacks.",
+          "**Rates.** Pricing reflects the risk; it is quoted for your business.",
+          "**Stability.** The upside: the processor approved your business type knowingly, so it is less likely to close the account for being what it is.",
+        ],
+      },
+      {
+        h: "Which one do you need?",
+        p: [
+          "If a mainstream aggregator's rules exclude your category, or you have been closed before, apply for a high-risk account. If you are unsure, describe exactly what you sell to the processor before you apply and ask.",
+        ],
+      },
+    ],
+    services: ["payment-processing"],
+  },
+  {
+    slug: "seo-vs-geo",
+    title: "SEO vs GEO: what's the difference?",
+    question: "What is the difference between SEO and GEO (generative engine optimisation)?",
+    description: "SEO gets your pages ranked in search results; GEO gets your business named in AI answers from ChatGPT, Gemini, Perplexity and Google AI Overviews. How they differ and why you need both.",
+    answer:
+      "SEO (search engine optimisation) is the work that gets your pages ranked in Google's results. GEO (generative engine optimisation) is the work that gets your business understood and named in AI answers from tools like ChatGPT, Gemini, Perplexity and Google's AI Overviews. GEO builds on SEO: AI tools read the same web, so a fast, well-structured site with clear answers helps both.",
+    updated: "2026-10-23",
+    sections: [
+      {
+        h: "What SEO covers",
+        list: [
+          "Technical health: speed, mobile, indexing, structured data.",
+          "Pages that match what people search for.",
+          "Links and mentions from other sites.",
+          "For local businesses, a complete Google Business Profile and reviews.",
+        ],
+      },
+      {
+        h: "What GEO adds",
+        list: [
+          "Clear, quotable answers near the top of each page.",
+          "Consistent facts about your business everywhere it appears: name, services, location, contact.",
+          "Mentions on the sites, directories and reviews AI tools draw from.",
+          "Machine-readable summaries such as structured data and an llms.txt file.",
+        ],
+      },
+      {
+        h: "Can anyone guarantee AI mentions?",
+        p: [
+          "No. AI tools decide what to say, and their answers change. Anyone promising a guaranteed spot in ChatGPT is overselling. What you can do is make your business the easiest one to understand and the best-documented answer to the question.",
+        ],
+      },
+    ],
+    services: ["seo-ai-search", "website-development"],
+  },
+  {
+    slug: "white-label-vs-private-label-vs-factory-direct",
+    title: "White label vs private label vs factory-direct",
+    question: "What is the difference between white label, private label and factory-direct supply?",
+    description: "Three ways to sell research products under your own name: white label, private label and factory-direct, compared on cost, control and time to launch.",
+    answer:
+      "White label puts your brand on an existing, already-made product, so it is the fastest way to launch. Private label means the product is made for you to your specification, with more control and a longer lead time. Factory-direct means ordering straight from the manufacturer in larger quantities, for the lowest unit cost. All three are for research use only when the product is a research material.",
+    updated: "2026-10-23",
+    sections: [
+      {
+        h: "White label",
+        p: ["An existing product, relabelled with your brand. You choose the label design; the product and its documentation are the supplier's. Best for launching quickly and testing what sells."],
+      },
+      {
+        h: "Private label",
+        p: ["A product made for your brand to an agreed specification. More control over the product itself, usually with larger order sizes and a longer lead time than white label."],
+      },
+      {
+        h: "Factory-direct",
+        p: ["Ordering directly from the manufacturer, typically in large planned quantities. It gives the lowest unit cost, and documentation such as a certificate of analysis should come with each lot."],
+      },
+      {
+        h: "Which to choose",
+        list: [
+          "Launching or testing: white label.",
+          "Proven demand and a specific product in mind: private label.",
+          "Steady, high volume: factory-direct.",
+        ],
+      },
+    ],
+    services: ["white-label", "factory-direct", "wholesale"],
+  },
+  {
     slug: "dropship-vs-3pl-vs-inventory",
     title: "Dropship, 3PL or your own inventory",
     question: "Should a research-supply brand dropship, use a 3PL, or hold its own inventory?",

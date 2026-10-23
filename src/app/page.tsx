@@ -12,6 +12,7 @@ import { LaunchPackage } from "@/components/launch-package";
 import { JsonLd, faqPage } from "@/lib/jsonld";
 import { SERVICES } from "@/lib/services";
 import { SITE } from "@/lib/site";
+import { INDUSTRIES } from "@/lib/industries";
 
 const FAQS = [
   {
@@ -69,12 +70,6 @@ const WHY = [
   { t: "One team, one conversation", b: "Website, payments, supply and shipping, handled in one WhatsApp thread." },
 ];
 
-const STEPS = [
-  { title: "Pick your services", body: "Tap what you need. One service or all of them." },
-  { title: "Send it to us", body: "Your request opens in WhatsApp or email, already written." },
-  { title: "We set it up", body: "We confirm the details and the price, then get you running." },
-];
-
 export default function Home() {
   return (
     <>
@@ -87,8 +82,8 @@ export default function Home() {
               A few of the brands we&rsquo;re behind: {SITE.builtStores.join(" · ")}
             </p>
             <h1 className="h-display mt-7 text-[44px] text-ink sm:text-[72px]">
-              Everything your brand needs to sell online.
-              <span className="block text-muted">Built properly, by one team.</span>
+              Websites, payments and SEO for any business.
+              <span className="block text-muted">Plus peptide supply, labels and shipping.</span>
             </h1>
             <p className="mx-auto mt-6 max-w-[680px] text-[18px] leading-[1.6] text-body">
               Custom-coded websites and payment processing for any industry, live in days, with your own developer team.
@@ -110,7 +105,7 @@ export default function Home() {
               <Link href="#services" className="btn btn-dark h-12 px-6 text-[15px]">
                 Choose your services <IconArrow />
               </Link>
-              <ContactButtons size="lg" single />
+              <ContactButtons size="lg" single light />
             </div>
           </div>
           <div className="mt-14 sm:mt-16">
@@ -239,19 +234,20 @@ export default function Home() {
         </Container>
       </section>
 
-      {/* How it works */}
-      <section id="how-it-works" className="mt-32 scroll-mt-20">
+      {/* Industries */}
+      <section id="industries" className="mt-32 scroll-mt-20">
         <Container>
-          <SectionHead label="How it works" title="Three steps." />
-          <ol className="mt-12 grid gap-4 md:grid-cols-3">
-            {STEPS.map((st, i) => (
-              <li key={st.title} className="rounded-2xl border border-line p-7">
-                <span className="flex h-9 w-9 items-center justify-center rounded-full bg-ink text-[14px] font-semibold text-white">{i + 1}</span>
-                <p className="mt-6 text-[19px] font-semibold tracking-[-0.02em] text-ink">{st.title}</p>
-                <p className="mt-2 text-[15.5px] leading-[1.6] text-body">{st.body}</p>
+          <SectionHead label="Industries" title="Built for your industry." lede="Websites, payments and search for any lawful business. Pick yours to see what we build for it." />
+          <ul className="mt-10 grid gap-2.5 sm:grid-cols-2 lg:grid-cols-4">
+            {INDUSTRIES.map((ind) => (
+              <li key={ind.slug}>
+                <Link href={`/industries/${ind.slug}`} className="group flex h-full items-center justify-between gap-3 rounded-xl border border-line px-4 py-3.5 text-[15px] text-ink transition-colors hover:border-ink">
+                  {ind.name}
+                  <IconArrow className="shrink-0 text-muted transition-transform group-hover:translate-x-0.5" />
+                </Link>
               </li>
             ))}
-          </ol>
+          </ul>
         </Container>
       </section>
 
