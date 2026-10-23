@@ -40,15 +40,13 @@ Website development and payment processing are offered to any lawful business.
   storage) with NO prices. Each product has an Inquire button that opens
   WhatsApp (+1 419-378-1139), or the support email, with the product filled
   in, and we reply with pricing.
-- Both front doors share the top, equal (owner, 2026-10-23): "put them both at
-  the top ... look like what we offer is like a complete build." The homepage
-  hero is "Build it. Stock it. Ship it." with Websites & SEO (incl. AEO/GEO)
-  and Wholesale & 3PL side by side, two columns even on a phone. Never let
-  one door push the other below the first screen.
-- Calm, not cluttered (owner, 2026-10-23: "Not cluttered, people can see the
-  wholesale"). Homepage: the two doors, the catalog (8 products, COA badges),
-  websites + developer team "for any brand", three why-us points, FAQ. One
-  idea per section; no long checklists in the doors.
+- The homepage is the original two-doors version (owner, 2026-10-23: "It was
+  honestly better before when you first built the 2 sections"): headline
+  "Build your brand. Or supply it.", two big door cards (Website development
+  with the Genesis / Vanta Labs / Solenne / Halcyon collage, and Wholesale &
+  3PL), the brand row, FAQ and CTA. Later variants (the "Build it. Stock it.
+  Ship it." hero, the catalog block and the dark websites block) were tried
+  and rejected. The phone header keeps its Wholesale button.
 
 ## Verify in a browser
 
