@@ -1,13 +1,21 @@
 import type { Metadata } from "next";
 import { SITE } from "./site";
 
-export function pageMetadata({ path, title, description }: { path: string; title?: string; description: string }): Metadata {
-  const fullTitle = title ? `${title} · ${SITE.name}` : `${SITE.name}: Advanced Custom Websites, Payments & SEO for Any Business`;
+/**
+ * Titles put the page's subject first and the brand once, after a bar:
+ * "Peptide Website Development | Vanta Foundry". Approved titles live in
+ * src/lib/seo-pages.ts and are checked by `npm run check:seo`.
+ */
+export function pageMetadata({ path, title, description, noindex }: { path: string; title?: string; description: string; noindex?: boolean }): Metadata {
+  const fullTitle = title ? (title.endsWith(`| ${SITE.name}`) ? title : `${title} | ${SITE.name}`) : HOME_TITLE;
   return {
-    title: fullTitle,
+    title: { absolute: fullTitle },
     description,
     alternates: { canonical: path },
     openGraph: { title: fullTitle, description, url: path, siteName: SITE.name, type: "website" },
     twitter: { card: "summary_large_image", title: fullTitle, description },
+    ...(noindex ? { robots: { index: false, follow: true } } : {}),
   };
 }
+
+export const HOME_TITLE = `Website Development & Wholesale Peptides | ${SITE.name}`;

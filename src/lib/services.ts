@@ -76,7 +76,7 @@ export const SERVICES: Service[] = [
       { q: "Who can buy wholesale?", a: "Businesses that sell or use these materials for research. We don't supply businesses that market them for human or veterinary use." },
     ],
     demo: "wholesale",
-    guides: ["what-a-certificate-of-analysis-should-show"],
+    guides: ["choose-wholesale-peptide-supplier", "prepare-wholesale-order", "read-peptide-coa", "start-a-research-peptide-business"],
   },
   {
     slug: "factory-direct",
@@ -96,6 +96,7 @@ export const SERVICES: Service[] = [
     faqs: [
       { q: "What's the difference from wholesale?", a: "Wholesale ships from our stock, fast. Factory-direct is made to order for larger quantities: a lower price, a longer wait." },
       { q: "How long does it take?", a: "It depends on the products and quantities. Your quote states the lead time before you commit." },
+      { q: "Can you ship outside the United States?", a: "Factory-direct orders can. They ship directly from the factory to international destinations, and your quote confirms the destination, method and lead time. Orders from our US stock ship within the United States only." },
     ],
     demo: "factory",
     guides: ["dropship-vs-3pl-vs-inventory", "white-label-vs-private-label-vs-factory-direct"],
@@ -106,7 +107,7 @@ export const SERVICES: Service[] = [
     short: "Sell under your own brand. We put your label on every unit.",
     title: "Your brand on every label.",
     answer:
-      "White label (also called private label) means you sell our products under your own brand. We print labels to your design, apply them, and keep every unit traceable to its lot. You approve a proof before anything is printed.",
+      "White label (also called private label) means you sell our products under your own brand: custom branded peptides and other white label research compounds from the Vanta catalog. As your private label peptide supplier, we print labels to your design, apply them, and keep every unit traceable to its lot. You approve a proof before anything is printed.",
     forWho: "Anyone starting or growing their own brand without making the product themselves.",
     includes: [
       "Labels designed to your brand, or by us",
@@ -116,11 +117,12 @@ export const SERVICES: Service[] = [
     ],
     steps: ["Send your logo and the products you want", "Approve the label proof", "We label and ship, or store it for you"],
     faqs: [
-      { q: "Can you design the label?", a: "Yes. Send us your logo and colours, or just a name, and we will design it." },
+      { q: "Can you design the label?", a: "Yes. Send us your logo and colours, or just a name, and we will design it. For peptide brand development beyond the label, our website development team builds the storefront, quoted separately." },
+      { q: "Can I white label a specific product, like BPC-157?", a: "Ask for it in your inquiry. White label BPC-157, or any other catalog product, is quoted with its label, sizes and lot documentation, and the quote confirms which products can carry your label." },
       { q: "Can I put my own claims on the label?", a: "Labels carry what the product is, the lot and the research-use statement. We don't print usage, dosing or effect claims." },
     ],
     demo: "label",
-    guides: ["how-white-label-research-supply-works", "white-label-vs-private-label-vs-factory-direct"],
+    guides: ["private-label-vs-unbranded", "how-white-label-research-supply-works", "white-label-vs-private-label-vs-factory-direct"],
   },
   {
     slug: "fulfillment",
@@ -128,8 +130,8 @@ export const SERVICES: Service[] = [
     short: "We store your stock, pack every order and ship it as your brand.",
     title: "We pack and ship. Your name on the box.",
     answer:
-      "Vanta Foundry fulfillment (3PL) means we store your inventory and pick, pack and ship each order for you. Your packing slip and shipping emails carry your brand. Or dropship from our stock and hold no inventory at all.",
-    forWho: "Online sellers who would rather not pack boxes or rent storage.",
+      "Vanta Foundry fulfillment (3PL) is B2B peptide fulfillment for research brands: we store your inventory and pick, pack and ship each order for you. Your packing slip and shipping emails carry your brand. Or dropship from our stock and hold no inventory at all.",
+    forWho: "Online research brands that want a research compound fulfillment partner instead of packing boxes or renting storage.",
     includes: [
       "Storage for your inventory",
       "Every order picked, packed and shipped",
@@ -138,8 +140,10 @@ export const SERVICES: Service[] = [
     ],
     steps: ["Send us your stock, or dropship from ours", "Connect your store so orders come to us", "We pick, pack and ship every order"],
     faqs: [
-      { q: "Dropship or 3PL: which do I need?", a: "Dropship if you don't want to buy stock up front. 3PL if you already own inventory and want someone to store and ship it." },
+      { q: "Dropship or 3PL: which do I need?", a: "Dropship if you don't want to buy stock up front. 3PL if you already own inventory and want someone to store and ship it. Wholesale peptide fulfillment works either way: buy stock wholesale and we store and ship it, or sell from ours." },
+      { q: "How does the peptide dropshipping program work?", a: "You list products in your store and connect it to us. Each order comes to us and ships from our stock under your brand, so you hold no inventory. Pricing and terms are on your quote." },
       { q: "Will customers see your name?", a: "No. The slip and the tracking emails carry your brand." },
+      { q: "Where do orders ship from?", a: "From Tampa Bay, Florida, to addresses in the United States. 3PL and dropship orders aren't shipped outside the US." },
     ],
     demo: "fulfillment",
     guides: ["dropship-vs-3pl-vs-inventory"],
@@ -171,7 +175,7 @@ export const SERVICES: Service[] = [
       { q: "What is the monthly developer team?", a: "A monthly plan that gives you a development team on call 24/7. Anything breaks, needs changing or needs adding, you message us and it gets fixed. It covers sites we build and, after a review, sites you already have." },
     ],
     demo: "website",
-    guides: ["research-use-only-storefront-copy"],
+    guides: ["choose-website-development-partner", "peptide-website-features", "peptide-website-cost", "core-web-vitals-explained"],
   },
   {
     slug: "seo-ai-search",

@@ -1,3 +1,5 @@
+import { BUYER_GUIDES } from "./guides-buyer";
+
 /**
  * Guides: the site's search and AI-search surface.
  *
@@ -391,6 +393,8 @@ export const GUIDES: Guide[] = [
     services: ["website-development", "white-label"],
   },
 ];
+
+GUIDES.unshift(...BUYER_GUIDES);
 
 export function getGuide(slug: string) {
   return GUIDES.find((g) => g.slug === slug);

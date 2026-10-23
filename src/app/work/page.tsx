@@ -7,13 +7,15 @@ import { IconArrow } from "@/components/icons";
 import { SHOWCASE } from "@/lib/showcase";
 import { JsonLd, breadcrumbs } from "@/lib/jsonld";
 import { pageMetadata } from "@/lib/metadata";
+import { SEO_PAGES } from "@/lib/seo-pages";
 import { SITE } from "@/lib/site";
 
 const LIVE = [
   {
     brand: "Vanta Labs",
-    industry: "Research supply · live",
+    industry: "Research supply · live · our own store",
     summary: "Our own research-supply store: catalogue, lot documents, checkout and fulfillment, live today.",
+    caseStudy: "/work/vanta-labs",
     features: ["Live store", "COA per lot", "Backup processor", "Mobile-first checkout"],
     domain: "vantalabsresearch.com",
     href: SITE.parentUrl,
@@ -33,11 +35,7 @@ const LIVE = [
 
 ];
 
-export const metadata: Metadata = pageMetadata({
-  path: "/work",
-  title: "Our work",
-  description: "Storefronts designed and hand-coded by the Vanta Foundry team: Vanta Labs, Genesis Biomapping, skincare, coffee and athletic apparel. Custom websites for any industry.",
-});
+export const metadata: Metadata = pageMetadata({ path: "/work", title: SEO_PAGES.work.title, description: SEO_PAGES.work.description });
 
 export default function WorkPage() {
   return (
@@ -45,10 +43,12 @@ export default function WorkPage() {
       <section className="pt-16 sm:pt-20">
         <Container>
           <div className="max-w-[760px]">
-            <h1 className="h-display text-[44px] text-ink sm:text-[68px]">Look what we built.</h1>
+            <h1 className="text-[15px] font-medium text-gold">{SEO_PAGES.work.h1}</h1>
+            <p className="h-display mt-3 text-[44px] text-ink sm:text-[68px]">Look what we built.</p>
             <p className="mt-5 text-[18px] leading-[1.6] text-body">
-              Every store here is designed and hand-coded by our team. No templates, no page builders. Different industries,
-              one standard.
+              Every store here is designed and hand-coded by our team. No templates, no page builders. The first two are live
+              stores taking real orders; the rest are concept stores we built to the same standard for other industries, not client
+              projects.
             </p>
             <Link href="/start/website-development" className="btn btn-dark mt-8 h-12 px-6 text-[15px]">
               Build mine <IconArrow />
@@ -75,9 +75,16 @@ export default function WorkPage() {
                 <Image src={l.phone} alt={`The ${l.brand} store on a phone`} width={780} height={1688} sizes="100vw" className="h-auto w-full" />
               </div>
             </div>
-            <a href={l.href} target="_blank" rel="noopener noreferrer" className="mt-4 inline-flex items-center gap-1.5 text-[14px] font-medium text-ink underline underline-offset-2">
-              Visit {l.domain} <IconArrow />
-            </a>
+            <div className="mt-4 flex flex-wrap gap-x-6 gap-y-2">
+              {"caseStudy" in l && l.caseStudy && (
+                <Link href={l.caseStudy} className="inline-flex items-center gap-1.5 text-[14px] font-medium text-ink underline underline-offset-2">
+                  Read the case study <IconArrow />
+                </Link>
+              )}
+              <a href={l.href} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 text-[14px] font-medium text-ink underline underline-offset-2">
+                Visit {l.domain} <IconArrow />
+              </a>
+            </div>
           </Container>
         </section>
       ))}
@@ -85,7 +92,7 @@ export default function WorkPage() {
       {SHOWCASE.map((s) => (
         <section key={s.key} className="mt-24">
           <Container>
-            <Head industry={s.industry} brand={s.brand} summary={s.summary} features={s.features} />
+            <Head industry={`${s.industry} · concept store`} brand={s.brand} summary={s.summary} features={s.features} />
             <div className="mt-6">
               <Storefront s={s} />
             </div>

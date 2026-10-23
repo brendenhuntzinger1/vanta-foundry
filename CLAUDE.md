@@ -48,6 +48,15 @@ Website development and payment processing are offered to any lawful business.
   Ship it." hero, the catalog block and the dark websites block) were tried
   and rejected. The phone header keeps its Wholesale button.
 
+## Search pages (2026-10-23)
+
+- Approved titles, H1s and CTAs are in `src/lib/seo-pages.ts`; change them
+  there on purpose, never as a side effect. `npm run check:seo` (with
+  `npm start` running) must pass before release.
+- Product specs and report numbers come from the Vanta Labs store
+  (`src/lib/product-facts.ts`); never type a purity, lab or date by hand.
+- See `docs/LAUNCH-BASELINE.md` for what shipped and what's blocked.
+
 ## Verify in a browser
 
 Run `npm run build && npm start` and drive it with Playwright. Check phone

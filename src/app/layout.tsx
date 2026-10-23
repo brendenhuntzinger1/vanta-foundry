@@ -4,8 +4,13 @@ import "./globals.css";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { FloatingWhatsApp } from "@/components/contact-buttons";
-import { JsonLd, organization } from "@/lib/jsonld";
+import { Analytics } from "@vercel/analytics/next";
+import { PageTracker } from "@/components/page-tracker";
+import { InquiryBar } from "@/components/inquiry";
+import { HideOnWebsitePages } from "@/components/hide-on-website-pages";
+import { JsonLd, organization, website } from "@/lib/jsonld";
 import { SITE } from "@/lib/site";
+import { HOME_TITLE } from "@/lib/metadata";
 
 const geist = Geist({ subsets: ["latin"], variable: "--font-geist", display: "swap" });
 const geistMono = Geist_Mono({ subsets: ["latin"], variable: "--font-geist-mono", display: "swap" });
@@ -14,7 +19,7 @@ const cormorant = Cormorant_Garamond({ subsets: ["latin"], weight: ["400", "500"
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
-  title: `${SITE.name}: Advanced Custom Websites, Payments & SEO for Any Business`,
+  title: HOME_TITLE,
   description: SITE.description,
   applicationName: SITE.name,
   alternates: { canonical: "/" },
@@ -38,7 +43,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <main id="main">{children}</main>
         <SiteFooter />
         <FloatingWhatsApp />
+        <HideOnWebsitePages>
+          <InquiryBar />
+        </HideOnWebsitePages>
         <JsonLd data={organization()} />
+        <JsonLd data={website()} />
+        <PageTracker />
+        <Analytics />
       </body>
     </html>
   );

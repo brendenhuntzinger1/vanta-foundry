@@ -5,6 +5,7 @@ import { FeaturedWork, StackRow } from "./featured-work";
 import { IconArrow, IconCheck } from "./icons";
 import type { Service } from "@/lib/services";
 import { INDUSTRIES } from "@/lib/industries";
+import { DEV_SERVICES } from "@/lib/dev-services";
 import { SITE } from "@/lib/site";
 
 const START = "/start/website-development";
@@ -43,11 +44,11 @@ export function WebsiteLanding({ s }: { s: Service }) {
       <section className="bg-ink text-white">
         <Container className="pb-0 pt-20 sm:pt-28">
           <div className="mx-auto max-w-[980px] text-center">
-            <p className="text-[14px] font-medium text-gold-fill">Website development</p>
-            <h1 className="h-display mt-5 text-[50px] leading-[0.98] sm:text-[92px]">
+            <h1 className="text-[14px] font-medium text-gold-fill">Website development</h1>
+            <p className="h-display mt-5 text-[50px] leading-[0.98] sm:text-[92px]">
               Websites that <span className="accent">sell.</span>
               <span className="block text-white/45">Built in days.</span>
-            </h1>
+            </p>
             <p className="mx-auto mt-7 max-w-[620px] text-[18px] leading-[1.6] text-white/70 sm:text-[19px]">
               Premium, custom-coded websites for any industry. Live in 72 hours to a week, then looked after by your own
               developer team, 24/7.
@@ -63,7 +64,7 @@ export function WebsiteLanding({ s }: { s: Service }) {
             <p className="mt-6 text-[13.5px] text-white/50">The team behind {SITE.builtStores.join(" · ")} and more</p>
             <p className="mt-2 text-[13.5px] text-white/50">
               Looking for peptide wholesale?{" "}
-              <Link href="/supply#catalog" className="text-white/80 underline underline-offset-4 hover:text-white">
+              <Link href="/catalog" className="text-white/80 underline underline-offset-4 hover:text-white">
                 See our catalog
               </Link>
             </p>
@@ -96,6 +97,31 @@ export function WebsiteLanding({ s }: { s: Service }) {
               <li key={p.t} className="bg-white p-8 sm:p-10">
                 <p className="text-[22px] font-semibold tracking-[-0.03em] text-ink">{p.t}</p>
                 <p className="mt-3 text-[16px] leading-[1.65] text-body">{p.b}</p>
+              </li>
+            ))}
+          </ul>
+        </Container>
+      </section>
+
+      {/* What we build */}
+      <section className="mt-28 sm:mt-36">
+        <Container>
+          <div className="mx-auto max-w-[760px] text-center">
+            <h2 className="h-section text-[36px] text-ink sm:text-[54px]">
+              What we <span className="accent">build.</span>
+            </h2>
+            <p className="mt-4 text-[18px] leading-[1.6] text-body">Custom web development for any business, UI/UX design included. Pick the one closest to your project; each page shows the scope, the process and the questions to ask.</p>
+          </div>
+          <ul className="mx-auto mt-12 grid max-w-[1040px] gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            {DEV_SERVICES.map((d) => (
+              <li key={d.slug}>
+                <Link href={d.seo.route} className="group flex h-full flex-col rounded-2xl border border-line p-6 transition-colors hover:border-ink">
+                  <span className="text-[19px] font-semibold tracking-[-0.025em] text-ink">{d.seo.h1}</span>
+                  <span className="mt-2 text-[14.5px] leading-[1.55] text-body">{d.seo.description}</span>
+                  <span className="mt-auto inline-flex items-center gap-1.5 pt-4 text-[14px] font-medium text-ink">
+                    Read more <IconArrow className="transition-transform duration-200 group-hover:translate-x-0.5" />
+                  </span>
+                </Link>
               </li>
             ))}
           </ul>

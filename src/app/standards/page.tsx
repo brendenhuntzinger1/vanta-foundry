@@ -26,7 +26,7 @@ export default function StandardsPage() {
           <div className="max-w-2xl">
             <h1 className="h-display text-[42px] text-ink sm:text-[60px]">Our standards.</h1>
             <p className="mt-5 text-[18px] leading-[1.6] text-body">
-              Five rules for the research materials we supply. Short, so they can be kept.
+              Five rules for the research materials we supply: how we handle RUO compliance, lot documentation and the claims we won&rsquo;t make. Short, so they can be kept.
             </p>
           </div>
           <ol className="mt-12 divide-y divide-line border-y border-line">

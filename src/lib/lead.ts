@@ -1,10 +1,21 @@
 /**
- * The website-development inquiry, as sent by the guided form. Validated on
- * the server before it is emailed to the team; nothing is stored.
+ * An inquiry, validated on the server, saved (lead-store.ts) and, for
+ * website briefs, emailed to the team.
+ *
+ * - website_brief: the guided form at /start/website-development. A lead.
+ * - wholesale_handoff: the catalog list, logged as the visitor opens WhatsApp
+ *   or their email app. Not a lead until the message actually arrives.
  */
+export type LeadKind = "website_brief" | "wholesale_handoff";
+
 export type Lead = {
+  /** Client-made UUID; the same brief retried keeps the same id. */
+  id: string;
+  kind: LeadKind;
   service: string;
   answers: { label: string; value: string }[];
+  /** Landing page, referrer, campaign and last page viewed (no personal data). */
+  source: { label: string; value: string }[];
   name: string;
   email: string;
   phone: string;
@@ -18,6 +29,7 @@ export type Lead = {
 };
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 
 const clip = (v: unknown, n: number) => (typeof v === "string" ? v.trim().slice(0, n) : "");
 
@@ -25,11 +37,15 @@ const clip = (v: unknown, n: number) => (typeof v === "string" ? v.trim().slice(
 export function parseLead(raw: unknown): { lead: Lead } | { error: string } {
   if (!raw || typeof raw !== "object") return { error: "Invalid request." };
   const r = raw as Record<string, unknown>;
+  const rows = (v: unknown, max: number) =>
+    Array.isArray(v) ? v.slice(0, max).map((a) => ({ label: clip((a as Record<string, unknown>)?.label, 80), value: clip((a as Record<string, unknown>)?.value, 400) })).filter((a) => a.label) : [];
+  const id = clip(r.id, 64);
   const lead: Lead = {
+    id: UUID_RE.test(id) ? id.toLowerCase() : crypto.randomUUID(),
+    kind: r.kind === "wholesale_handoff" ? "wholesale_handoff" : "website_brief",
     service: clip(r.service, 80),
-    answers: Array.isArray(r.answers)
-      ? r.answers.slice(0, 20).map((a) => ({ label: clip((a as Record<string, unknown>)?.label, 80), value: clip((a as Record<string, unknown>)?.value, 400) }))
-      : [],
+    answers: rows(r.answers, 40),
+    source: rows(r.source, 6),
     name: clip(r.name, 120),
     email: clip(r.email, 200),
     phone: clip(r.phone, 40),
@@ -39,11 +55,15 @@ export function parseLead(raw: unknown): { lead: Lead } | { error: string } {
     company_url: clip(r.company_url, 200),
     elapsed: typeof r.elapsed === "number" ? r.elapsed : 0,
   };
+  if (lead.kind === "wholesale_handoff") return lead.answers.length ? { lead } : { error: "No products listed." };
   if (!lead.name) return { error: "Please add your name." };
   if (!EMAIL_RE.test(lead.email)) return { error: "Please add a valid email address." };
   if (lead.phone.replace(/\D/g, "").length < 10) return { error: "Please add a phone number." };
   return { lead };
 }
+
+/** A short reference the visitor and the team can both quote. */
+export const leadRef = (lead: Lead) => `VF-${lead.id.replace(/-/g, "").slice(0, 8).toUpperCase()}`;
 
 /** Bots fill hidden fields and submit instantly. */
 export function looksLikeBot(lead: Lead) {
@@ -60,8 +80,10 @@ export function leadEmail(lead: Lead) {
     ["Phone", lead.phone],
     ...(lead.business ? [["Business", lead.business] as [string, string]] : []),
     ...(lead.website ? [["Current site", lead.website] as [string, string]] : []),
+    ...lead.source.map((a) => [a.label, a.value] as [string, string]),
+    ["Reference", leadRef(lead)],
   ];
-  const subject = `New ${lead.service.toLowerCase()} lead: ${lead.name}${lead.business ? ` (${lead.business})` : ""}`;
+  const subject = `New ${lead.service.toLowerCase()} lead: ${lead.name}${lead.business ? ` (${lead.business})` : ""} [${leadRef(lead)}]`;
   const text = [`New ${lead.service} brief from vantafoundry.com`, "", ...rows.map(([k, v]) => `${k}: ${v}`), ...(lead.details ? ["", lead.details] : [])].join("\n");
   const html = `<div style="font-family:system-ui,sans-serif;font-size:15px;color:#0c0c0d">
 <p style="font-size:18px;font-weight:600;margin:0 0 12px">New ${esc(lead.service)} brief</p>

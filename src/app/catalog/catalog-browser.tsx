@@ -1,10 +1,13 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useId, useMemo, useState } from "react";
-import { CATALOG, type CatalogProduct } from "@/lib/catalog";
-import { SITE, emailLink, whatsappLink } from "@/lib/site";
+import { CATALOG, QUANTITY_NOTE, productPath, reportBadge, type CatalogProduct } from "@/lib/catalog";
+import { emailLink, whatsappLink } from "@/lib/site";
+import { track } from "@/lib/track";
 import { IconMail, IconWhatsApp } from "@/components/icons";
+import { AddToInquiry } from "@/components/inquiry";
 
 const ALL = "All";
 
@@ -12,9 +15,10 @@ function inquiry(p: CatalogProduct) {
   return [
     `Hi Vanta Foundry, I'd like wholesale pricing for ${p.name} (${p.sizes.join(" / ")}).`,
     "",
-    "Size: ",
-    "Approximate quantity: ",
+    "Vial size: ",
+    "Number of vials: ",
     "Business name: ",
+    "Ship to: ",
   ].join("\n");
 }
 
@@ -23,6 +27,9 @@ function inquiry(p: CatalogProduct) {
  * product already written in. Shown straight away, no click-through
  * (owner, 2026-10-23), with the research-use notice above the grid. No prices
  * are shown; we reply with them. Wholesale lots come with a COA.
+ *
+ * For several products, "Add to list" builds one inquiry (the bar at the
+ * bottom of the screen). Each name opens the product's own page.
  */
 export function CatalogBrowser() {
   const searchId = useId();
@@ -39,9 +46,9 @@ export function CatalogBrowser() {
     <div>
       <div className="mb-6 flex flex-col gap-2 rounded-2xl border border-line bg-bg-2 px-5 py-4 text-[14px] leading-[1.55] text-body sm:flex-row sm:items-center sm:justify-between">
         <p>
-          <span className="font-semibold text-ink">Every wholesale lot comes with a certificate of analysis (COA).</span> Lot numbers on every unit.
+          <span className="font-semibold text-ink">Every wholesale lot comes with a certificate of analysis (COA).</span> Each product page shows the reports already published.
         </p>
-        <p className="text-[13px] text-muted sm:text-right">For laboratory research use only. Not for human or veterinary use.</p>
+        <p className="text-[13px] text-muted sm:text-right">{QUANTITY_NOTE} For laboratory research use only.</p>
       </div>
       <div className="flex flex-col gap-5">
         <div className="w-full sm:max-w-sm">
@@ -79,32 +86,35 @@ export function CatalogBrowser() {
             const mail = emailLink(`Wholesale inquiry: ${p.name}`, inquiry(p));
             return (
               <li key={p.slug} className="flex flex-col overflow-hidden rounded-2xl border border-line bg-white">
-                <div className="relative aspect-[4/5] bg-bg-2">
-                  <span className="absolute left-2.5 top-2.5 z-10 rounded-full bg-ink/85 px-2.5 py-1 text-[11px] font-medium text-white">COA included</span>
+                <Link href={productPath(p.slug)} className="relative block aspect-[4/5] bg-bg-2" tabIndex={-1} aria-hidden="true">
+                  {reportBadge(p.slug) && (
+                    <span className="absolute left-2.5 top-2.5 z-10 rounded-full bg-ink/85 px-2.5 py-1 text-[11px] font-medium text-white">{reportBadge(p.slug)}</span>
+                  )}
                   <Image
                     src={p.image}
-                    alt={p.name}
+                    alt=""
                     fill
                     sizes="(min-width: 1024px) 270px, 50vw"
                     className="object-cover"
                   />
-                </div>
+                </Link>
                 <div className="flex flex-1 flex-col p-3.5 sm:p-4">
                   <p className="text-[12px] text-muted">{p.category}</p>
-                  <p className="mt-0.5 text-[15.5px] font-semibold leading-snug tracking-[-0.02em] text-ink sm:text-[16.5px]">{p.name}</p>
+                  <Link href={productPath(p.slug)} className="mt-0.5 text-[15.5px] font-semibold leading-snug tracking-[-0.02em] text-ink underline-offset-2 hover:underline sm:text-[16.5px]">{p.name}</Link>
                   <p className="mt-1.5 font-mono text-[12px] text-body">{p.sizes.join(" · ")}</p>
                   <div className="mt-auto pt-4">
                     {wa ? (
-                      <a href={wa} target="_blank" rel="noopener noreferrer" className="btn btn-dark h-10 w-full text-[13.5px]">
+                      <a href={wa} target="_blank" rel="noopener noreferrer" onClick={() => track("contact_click", { channel: "whatsapp", form: "product_card", product: p.slug })} className="btn btn-dark h-10 w-full text-[13.5px]">
                         <IconWhatsApp className="text-wa" /> Inquire
                       </a>
                     ) : (
-                      <a href={mail} className="btn btn-dark h-10 w-full text-[13.5px]">
+                      <a href={mail} onClick={() => track("contact_click", { channel: "email", form: "product_card", product: p.slug })} className="btn btn-dark h-10 w-full text-[13.5px]">
                         <IconMail /> Inquire
                       </a>
                     )}
+                    <AddToInquiry slug={p.slug} sizes={p.sizes} compact className="mt-2" />
                     {wa && (
-                      <a href={mail} className="mt-2 block text-center text-[12.5px] text-muted underline-offset-2 hover:text-ink hover:underline">
+                      <a href={mail} onClick={() => track("contact_click", { channel: "email", form: "product_card", product: p.slug })} className="mt-2 block text-center text-[12.5px] text-muted underline-offset-2 hover:text-ink hover:underline">
                         or email
                       </a>
                     )}
@@ -117,17 +127,8 @@ export function CatalogBrowser() {
       )}
 
       <p className="mt-10 text-[13.5px] text-muted">
-        Want several products? Message us the list on{" "}
-        {SITE.whatsapp ? (
-          <a href={whatsappLink("Hi Vanta Foundry, I'd like wholesale pricing for these products:\n\n") ?? undefined} target="_blank" rel="noopener noreferrer" className="text-ink underline underline-offset-2">
-            WhatsApp
-          </a>
-        ) : null}
-        {SITE.whatsapp ? " or " : ""}
-        <a href={emailLink("Wholesale inquiry")} className="text-ink underline underline-offset-2">
-          {SITE.email}
-        </a>
-        .
+        Want several products? Tap <span className="font-medium text-ink">Add to list</span> on each one, then send the whole
+        list at once from the bar at the bottom of the screen.
       </p>
     </div>
   );

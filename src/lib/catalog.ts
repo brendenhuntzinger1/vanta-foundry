@@ -41,7 +41,7 @@ export const CATALOG: CatalogProduct[] = [
   { slug: "kpv", name: "KPV", category: "Peptides", sizes: ["10mg"], image: img("42944703-1e7f-4273-954f-3f65382119c9/1792687256336-e0123f2e-1fdc-442c-ac79-93fdfd7c5a98.webp") },
   { slug: "mots-c", name: "MOTS-C", category: "Peptides", sizes: ["10mg"], image: img("bd9c7436-3890-42ee-b6eb-4eb0798b917e/1792687263129-5aef431b-c99b-48a0-a5de-ff1ecc890767.webp") },
   { slug: "ss-31", name: "SS-31", category: "Peptides", sizes: ["10mg"], image: img("33ef1620-1dde-486a-a5e3-162e22e89f0e/1792687283430-dc528546-9ecd-4057-8a56-bf50ad32de62.webp") },
-  { slug: "thymosin-alpha-1", name: "Thymosin Alpha-1", category: "Peptides", sizes: ["5mg"], image: img("c064a13f-b431-4592-b24b-d1a85c517cdc/1792687289007-75b32ace-1793-49ab-96b9-bf5d45d5e79f.webp") },
+  { slug: "thymosin-alpha-1", name: "Thymosin Alpha-1", category: "Peptides", sizes: ["10mg"], image: img("c064a13f-b431-4592-b24b-d1a85c517cdc/1792687289007-75b32ace-1793-49ab-96b9-bf5d45d5e79f.webp") },
   { slug: "epithalon", name: "Epithalon", category: "Peptides", sizes: ["10mg"], image: img("9c6f03fd-a8bd-406b-8efe-bda40818ae11/1792687215854-c4968088-57a8-4205-93de-f578042d707c.webp") },
   { slug: "semax", name: "Semax", category: "Peptides", sizes: ["10mg"], image: img("65306ca9-31d6-4f65-83b2-92246b76c5af/1792687279378-b2d03ba8-a8a8-450d-a0c8-2600c7a4cb9c.webp") },
   { slug: "selank", name: "Selank", category: "Peptides", sizes: ["10mg"], image: img("8cdd7435-d630-4d54-88f5-cc0dc5dac230/1792687277349-b83b6124-2b55-421d-9db1-6318716c2964.webp") },
@@ -56,3 +56,39 @@ export const CATALOG: CatalogProduct[] = [
   { slug: "kisspeptin", name: "Kisspeptin", category: "Specialty", sizes: ["10mg"], image: img("82206dca-7c33-4442-87b1-cfcabfbf01ce/1792687252638-440f6683-bcec-453c-9c90-1e58b195797d.webp") },
   { slug: "snap-8", name: "SNAP-8", category: "Specialty", sizes: ["10mg"], image: img("f8d2e1a6-1259-4796-a5c7-88aacdcd8f02/1792687281440-91652444-0dbe-4472-b38c-1744f12812d5.webp") },
 ];
+
+export function getProduct(slug: string) {
+  return CATALOG.find((p) => p.slug === slug);
+}
+
+/** Up to `n` other products, same category first. */
+export function relatedProducts(p: CatalogProduct, n = 4) {
+  const same = CATALOG.filter((x) => x.category === p.category && x.slug !== p.slug);
+  const rest = CATALOG.filter((x) => x.category !== p.category);
+  return [...same, ...rest].slice(0, n);
+}
+
+export const productPath = (slug: string) => `/catalog/${slug}`;
+
+/** The one sentence that stops "per vial or per kit?" confusion. */
+export const QUANTITY_NOTE = "Sizes are the amount in one vial. Quantity is the number of vials you want.";
+
+/**
+ * Products with no laboratory report published by the store yet (2026-10-23).
+ * Must match the empty `reports` in product-facts.ts; `npm run check:seo`
+ * fails if the two disagree.
+ */
+export const NO_PUBLISHED_REPORT = ["hcg", "recon-water"];
+
+/**
+ * Products whose only published report doesn't document the size or lot sold
+ * (a partner lot, a size mismatch or no batch number). Must match the
+ * `reference` reports in product-facts.ts; checked by `npm run check:seo`.
+ */
+export const REFERENCE_REPORT_ONLY = ["cjc-1295-no-dac", "klow", "l-carnitine", "mots-c", "tesamorelin", "thymosin-alpha-1"];
+
+/** What the catalog card says about a product's documentation. */
+export function reportBadge(slug: string) {
+  if (NO_PUBLISHED_REPORT.includes(slug)) return null;
+  return REFERENCE_REPORT_ONLY.includes(slug) ? "Reference report" : "COA published";
+}

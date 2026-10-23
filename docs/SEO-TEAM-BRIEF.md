@@ -1,8 +1,9 @@
 # Vanta Foundry: brief for the SEO / GEO team
 
 Site: https://www.vantafoundry.com. Next.js on Vercel, deploys from `main`.
-Leads arrive on WhatsApp (+1 419-378-1139) and support@vantalabsresearch.com.
-There is no form backend.
+Leads arrive on WhatsApp (+1 419-378-1139) and support@vantalabsresearch.com;
+website briefs are emailed from the on-page form. Approved titles and H1s:
+`src/lib/seo-pages.ts`. Launch record and 60-day plan: `docs/LAUNCH-BASELINE.md`.
 
 ## What we sell (target customers)
 
@@ -14,8 +15,11 @@ There is no form backend.
 | Type | URLs | Notes |
 |---|---|---|
 | Services (7) | `/website-development`, `/payment-processing`, `/seo-ai-search`, `/wholesale`, `/factory-direct`, `/white-label`, `/fulfillment` | Service + FAQPage + Breadcrumb schema |
+| Website development (6) | `/website-development/<peptide-websites, ecommerce, b2b-portals, redesign, integrations, maintenance>` | One query each; no WhatsApp |
+| Wholesale | `/catalog`, `/catalog/<product>` (33), `/wholesale/testing`, `/wholesale/ordering` | Product + FAQPage; reports linked |
+| Case study | `/work/vanta-labs` | Article |
 | Industries (12) | `/industries/<slug>`, hub at `/industries` | Unique copy per industry, edit in `src/lib/industries.ts` |
-| Guides (9) | `/guides/<slug>` | Answer-first articles, edit in `src/lib/guides.ts` |
+| Guides (25) | `/guides/<slug>` | Answer-first articles, edit in `src/lib/guides.ts` |
 | Glossary | `/glossary` | DefinedTermSet schema |
 | Lead flows (7) | `/start/<service>` | One-minute guided inquiry; link campaigns here |
 | Company | `/about`, `/contact`, `/standards` | Organization schema with contact point |

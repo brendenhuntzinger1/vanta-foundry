@@ -2,7 +2,10 @@ import Image from "next/image";
 import Link from "next/link";
 import { Container, CtaBand, FaqList, SectionHead } from "@/components/blocks";
 import { IconArrow, IconWhatsApp } from "@/components/icons";
+import type { Metadata } from "next";
 import { JsonLd, faqPage } from "@/lib/jsonld";
+import { pageMetadata } from "@/lib/metadata";
+import { SEO_PAGES } from "@/lib/seo-pages";
 import { SITE, whatsappLink } from "@/lib/site";
 
 /*
@@ -10,6 +13,8 @@ import { SITE, whatsappLink } from "@/lib/site";
  * and wholesale & 3PL for research brands. Each opens its own premium page;
  * the homepage only helps a visitor pick the right one.
  */
+
+export const metadata: Metadata = pageMetadata({ path: "/", title: SEO_PAGES.home.title, description: SEO_PAGES.home.description });
 
 const FAQS = [
   {
@@ -38,11 +43,11 @@ export default function Home() {
         <Container>
           <div className="mx-auto max-w-[860px] text-center">
             <h1 className="h-display text-[44px] leading-[1] text-ink sm:text-[72px]">
-              Build your brand.
+              Build your brand.{" "}
               <span className="block text-muted">Or supply it.</span>
             </h1>
             <p className="mx-auto mt-6 max-w-[600px] text-[18px] leading-[1.6] text-body">
-              Premium website development for any business, and peptide wholesale &amp; 3PL for research brands. Pick where to start.
+              Premium website development for any business, and wholesale peptides, white label and 3PL for research brands. Pick where to start.
             </p>
           </div>
 

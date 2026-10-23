@@ -7,9 +7,13 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "typecheck": "next typegen && tsc --noEmit"
+    "typecheck": "next typegen && tsc --noEmit",
+    "check:seo": "node --experimental-strip-types --no-warnings scripts/check-seo.mjs",
+    "check:reports": "CHECK_EXTERNAL=1 node --experimental-strip-types --no-warnings scripts/check-seo.mjs",
+    "keywords": "node --experimental-strip-types --no-warnings scripts/dump-registry.mjs && python3 scripts/keyword-coverage.py docs/research/keyword-audit-records.json && python3 scripts/keyword-decisions.py"
   },
   "dependencies": {
+    "@vercel/analytics": "^2.0.1",
     "next": "16.3.8",
     "react": "19.2.4",
     "react-dom": "19.2.4"
