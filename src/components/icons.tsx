@@ -9,6 +9,7 @@ export const IconFactory = (p: P) => (<svg {...base} {...p}><path d="M3 20V10l5 
 export const IconTag = (p: P) => (<svg {...base} {...p}><path d="M3 12V4h8l10 10-8 8L3 12Z" /><circle cx="7.5" cy="8.5" r="1.3" /></svg>);
 export const IconTruck = (p: P) => (<svg {...base} {...p}><path d="M2.5 6.5h11v10h-11zM13.5 10h4l3 3.5v3h-7" /><circle cx="6.5" cy="17.5" r="1.8" /><circle cx="17" cy="17.5" r="1.8" /></svg>);
 export const IconBrowser = (p: P) => (<svg {...base} {...p}><rect x="2.5" y="4" width="19" height="16" rx="2.5" /><path d="M2.5 8.5h19M6 6.3h.01M8.5 6.3h.01" /></svg>);
+export const IconSearch = (p: P) => (<svg {...base} {...p}><circle cx="10.5" cy="10.5" r="6" /><path d="m15 15 5.5 5.5M8 10.5h5M10.5 8v5" /></svg>);
 export const IconCheck = (p: P) => (<svg {...base} strokeWidth={2} {...p}><path d="m5 12.5 4.2 4L19 7" /></svg>);
 export const IconArrow = (p: P) => (<svg {...base} width={16} height={16} {...p}><path d="M5 12h14M13 6l6 6-6 6" /></svg>);
 export const IconMail = (p: P) => (<svg {...base} {...p}><rect x="3" y="5" width="18" height="14" rx="2.5" /><path d="m3.5 7 8.5 6 8.5-6" /></svg>);

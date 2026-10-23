@@ -11,7 +11,7 @@ export const SITE = {
   builtStores: ["Vanta Labs", "Genesis Biomapping", "Remade Clinic"],
   url: (process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.vantafoundry.com").replace(/\/$/, ""),
   description:
-    "Payment processing, wholesale and factory-direct supply, white label, 3PL fulfillment and website development, from the team behind Vanta Labs.",
+    "Payment processing, wholesale and factory-direct supply, white label, 3PL fulfillment, website development and SEO & AI search, from the team behind Vanta Labs.",
   /** Every email link and prefilled request goes here (owner, 2026-10-23). */
   email: "support@vantalabsresearch.com",
   /**
@@ -45,4 +45,4 @@ export const NAV = [
 ] as const;
 
 export const RUO_NOTICE =
-  "Research materials supplied by Vanta Foundry are for laboratory research use only. They are not for human or veterinary use and are not drugs, foods, cosmetics or dietary supplements. Payment processing and website development are available to any lawful business.";
+  "Research materials supplied by Vanta Foundry are for laboratory research use only. They are not for human or veterinary use and are not drugs, foods, cosmetics or dietary supplements. Payment processing, website development and SEO & AI search are available to any lawful business.";

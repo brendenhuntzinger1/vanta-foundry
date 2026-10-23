@@ -5,6 +5,7 @@ import { FactoryDemo } from "./factory-demo";
 import { LabelDemo } from "./label-demo";
 import { FulfillmentDemo } from "./fulfillment-demo";
 import { WebsiteDemo } from "./website-demo";
+import { SeoDemo } from "./seo-demo";
 
 export function Demo({ which }: { which: DemoKey }) {
   switch (which) {
@@ -20,5 +21,7 @@ export function Demo({ which }: { which: DemoKey }) {
       return <FulfillmentDemo />;
     case "website":
       return <WebsiteDemo />;
+    case "seo":
+      return <SeoDemo />;
   }
 }

@@ -5,10 +5,10 @@ const DAYS = [
   { d: "Day 2", t: "Design and labels started", b: "Your site design and label proofs are underway. Payment processing application goes in, with a backup." },
   { d: "Day 3", t: "Site design approved", b: "You review the design. Our developers start coding it, page by page." },
   { d: "Day 4", t: "Labels and files ready", b: "Label art approved and printed. Product files and certificates of analysis lined up." },
-  { d: "Day 5", t: "Website live for review", b: "Your custom site is built and on a preview link. Any change you ask for gets made." },
+  { d: "Day 5", t: "Website live for review", b: "Your custom site is built and on a preview link. Pages, structured data and listings set up for Google and AI search." },
   { d: "Day 6", t: "Stock at our warehouse", b: "Product is received, labelled and shelved. Fulfillment is connected to your store." },
   { d: "Day 7", t: "Checkout tested", b: "Processing connected, Apple Pay and cards tested end to end, backup ready." },
-  { d: "Day 8", t: "Launch", b: "Your site goes live. Orders come in, we pack and ship them under your brand." },
+  { d: "Day 8", t: "Launch", b: "Your site goes live and is submitted to Google. Orders come in, we pack and ship them under your brand." },
 ];
 
 // Illustrative orders per day for the two weeks after a launch.
