@@ -15,16 +15,15 @@ It's a standalone Next.js app with its own repository, Vercel project and domain
 
 | What | Where |
 | --- | --- |
-| WhatsApp number | Vercel env `NEXT_PUBLIC_WHATSAPP_NUMBER`, digits only with country code, e.g. `18135550123`. Rebuild after setting it. Until it's set, every WhatsApp button is hidden and email is used instead. |
+| WhatsApp number | `src/lib/site.ts`, `whatsapp` (now +1 419-378-1139). The Vercel env `NEXT_PUBLIC_WHATSAPP_NUMBER` overrides it. |
 | Contact email | `src/lib/site.ts`, `email` (now `support@vantalabsresearch.com`) |
-| Wholesale prices | `src/lib/catalog.ts`. Set a % off retail per quantity tier (`PRICE_TIERS`), or an exact `wholesale` price on any size. Anything left `null` shows "Ask us". |
-| Catalog products and retail prices | `src/lib/catalog.ts`. Read from the live store on 2026-10-23; update when the store changes. |
+| Catalog products and sizes | `src/lib/catalog.ts`. Read from the live store on 2026-10-23; update when the store changes. No prices are shown: customers send an inquiry. |
 | Service wording | `src/lib/services.ts` |
 | Site name | `src/lib/site.ts`. "Vanta Foundry" is a working name. |
 
 ## How a customer gets in touch
 
-There's no form and no backend. A visitor taps the services they want, or enters quantities in the catalog, then presses **Send on WhatsApp** or **Send by email**. The message opens in their own app, already written and addressed to us. Nothing can get lost on a server.
+There's no form and no backend. A visitor taps the services they want, or the product sizes they want in the catalog, then presses **Send on WhatsApp** or **Send by email**. The message opens in their own app, already written and addressed to us. Nothing can get lost on a server.
 
 ## Run
 
@@ -35,7 +34,7 @@ There's no form and no backend. A visitor taps the services they want, or enters
 ## Deploy
 
 1. Import this repository into Vercel as a new project (framework: Next.js, root directory: the repository root).
-2. Set `NEXT_PUBLIC_SITE_URL` (e.g. `https://www.vantafoundry.com`) and `NEXT_PUBLIC_WHATSAPP_NUMBER`.
+2. Set `NEXT_PUBLIC_SITE_URL` to `https://www.vantafoundry.com`.
 3. Add the domain.
 
 ## Search and AI search

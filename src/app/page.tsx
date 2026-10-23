@@ -17,7 +17,7 @@ const FAQS = [
   },
   {
     q: "How much does it cost?",
-    a: "Each service is quoted for your business. Wholesale prices are in the catalog. Everything else depends on what you need, so we quote it after a quick conversation.",
+    a: "Each service is quoted for your business. For products, pick what you want in the catalog and send an inquiry; we reply with pricing. Everything else depends on what you need, so we quote it after a quick conversation.",
   },
   {
     q: "Do you only work with peptide or research companies?",
@@ -146,10 +146,10 @@ export default function Home() {
         <Container>
           <div className="grid items-center gap-8 rounded-[28px] border border-line bg-bg-2 p-7 sm:p-12 lg:grid-cols-[1.2fr_1fr]">
             <div>
-              <p className="text-[14px] font-medium text-gold">Catalog & pricing</p>
-              <h2 className="h-section mt-2 text-[32px] text-ink sm:text-[42px]">See the full catalog, with wholesale prices.</h2>
+              <p className="text-[14px] font-medium text-gold">Catalog</p>
+              <h2 className="h-section mt-2 text-[32px] text-ink sm:text-[42px]">See everything you can order.</h2>
               <p className="mt-4 text-[17px] leading-[1.6] text-body">
-                Every product and size in the Vanta Labs catalog. Add quantities and send the list to us in one tap.
+                Every product and size in the Vanta Labs catalog. Tap what you want and send us an inquiry. We reply with pricing on WhatsApp or by email.
               </p>
             </div>
             <div className="flex lg:justify-end">

@@ -55,7 +55,7 @@ export default async function ServicePage(props: PageProps<"/[service]">) {
                   Get started <IconArrow />
                 </Link>
                 {supply && (
-                  <Link href="/catalog" className="btn btn-light h-12 px-6 text-[15px]">See catalog & pricing</Link>
+                  <Link href="/catalog" className="btn btn-light h-12 px-6 text-[15px]">See the catalog</Link>
                 )}
               </div>
             </div>
