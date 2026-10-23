@@ -3,9 +3,9 @@ import Link from "next/link";
 import { Container, CtaBand, FaqList, SectionHead } from "@/components/blocks";
 import { PayVisual, SupplyBento, VialRow, WebBento } from "@/components/service-bento";
 import { DAYS } from "@/components/launch-timeline";
-import { IconArrow } from "@/components/icons";
+import { IconArrow, IconWhatsApp } from "@/components/icons";
 import { JsonLd, faqPage } from "@/lib/jsonld";
-import { SITE } from "@/lib/site";
+import { SITE, whatsappLink } from "@/lib/site";
 
 /*
  * The homepage does one job: say what we do, show it, and get the visitor
@@ -41,6 +41,7 @@ const WORK = [
 ];
 
 export default function Home() {
+  const wa = whatsappLink("Hi Vanta Foundry, I have a question.");
   return (
     <>
       {/* Hero: what we sell, in one line */}
@@ -92,6 +93,15 @@ export default function Home() {
               cta="Browse the catalog"
             />
           </div>
+
+          {wa && (
+            <div className="mt-8 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
+              <p className="text-[15px] text-body">Questions first? Talk to a person.</p>
+              <a href={wa} target="_blank" rel="noopener noreferrer" className="btn btn-light h-11 px-5 text-[14.5px]">
+                <IconWhatsApp className="text-wa" /> Chat on WhatsApp
+              </a>
+            </div>
+          )}
 
           <div className="mt-14 flex flex-col items-center gap-3 sm:flex-row sm:justify-center sm:gap-10">
             <p className="text-[13px] text-muted">The team behind</p>
