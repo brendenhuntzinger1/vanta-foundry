@@ -26,6 +26,10 @@ Website development and payment processing are offered to any lawful business.
   glass, gradient text, tracked eyebrow labels or numbered grids.
 - Make it dummy-proof. Visitors pick services and send the request on WhatsApp
   or by email (`support@vantalabsresearch.com`).
+- The homepage is two front doors: Website development (/website-development,
+  for any business) and Wholesale & 3PL (/supply, for research brands). Keep
+  them visibly separate so no one thinks they need a peptide brand to get a
+  website.
 - Website development is the exception: its pages are a premium, ad-ready
   funnel with no WhatsApp. The brief is submitted on the page to
   `/api/lead`, which emails it to the team through Resend
