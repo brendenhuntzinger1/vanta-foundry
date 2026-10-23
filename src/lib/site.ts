@@ -7,6 +7,8 @@ export const SITE = {
   name: "Vanta Foundry",
   parent: "Vanta Labs",
   parentUrl: "https://www.vantalabsresearch.com",
+  /** Stores the team has built, named in the hero (owner, 2026-10-23). */
+  builtStores: ["Vanta Labs", "Genesis Biomapping"],
   url: (process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.vantafoundry.com").replace(/\/$/, ""),
   description:
     "Payment processing, wholesale and factory-direct supply, white label, 3PL fulfillment and website development, from the team behind Vanta Labs.",
