@@ -80,6 +80,25 @@ export default function Home() {
               </Link>
             </div>
             <p className="mt-6 text-[13.5px] text-muted">The team behind {SITE.builtStores.join(" · ")}</p>
+
+            {/* Second line of business, visible above the fold */}
+            <div className="mx-auto mt-8 flex max-w-[640px] flex-col items-center gap-4 rounded-2xl border border-line bg-bg-2 p-4 text-left sm:flex-row sm:p-3 sm:pr-4">
+              <div className="flex shrink-0 -space-x-3" aria-hidden="true">
+                {["/labels/halo.webp", "/labels/kinetic.webp", "/labels/ember.webp"].map((v) => (
+                  <span key={v} className="relative h-14 w-11 overflow-hidden rounded-lg border-2 border-white">
+                    <Image src={v} alt="" fill sizes="44px" className="object-cover" />
+                  </span>
+                ))}
+              </div>
+              <p className="flex-1 text-center text-[14.5px] leading-[1.45] text-body sm:text-left">
+                <span className="font-semibold text-ink">Selling research products?</span> Peptide wholesale with COAs, white label,
+                factory-direct and 3PL.
+              </p>
+              <div className="flex shrink-0 gap-2">
+                <Link href="/wholesale#catalog" className="btn btn-dark h-10 px-4 text-[13.5px]">Catalog</Link>
+                <Link href="/start/ruo-brand" className="btn btn-light h-10 px-4 text-[13.5px]">RUO scaling</Link>
+              </div>
+            </div>
           </div>
 
           {/* A real site we built, front and centre */}
@@ -104,6 +123,35 @@ export default function Home() {
           <SectionHead center title="Everything to sell online." lede="Your website, how you get paid and how you get found. For any industry, from one team." />
           <div className="mt-12">
             <WebBento />
+          </div>
+        </Container>
+      </section>
+
+      {/* Separate line of business: RUO scaling & resources */}
+      <section id="research" className="mt-28 scroll-mt-20 sm:mt-36">
+        <Container>
+          <div className="rounded-[32px] bg-ink p-6 text-white sm:p-12">
+            <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+              <div className="max-w-[640px]">
+                <p className="text-[14px] font-medium text-gold-fill">Also from our team · for research brands</p>
+                <h2 className="h-section mt-2 text-[34px] sm:text-[50px]">Peptide wholesale &amp; RUO scaling.</h2>
+                <p className="mt-4 text-[17px] leading-[1.6] text-white/70">
+                  For research-use-only brands: wholesale and factory-direct supply with a COA for every wholesale lot, your own
+                  label, and fulfillment. A separate service. You don&rsquo;t need a research brand to work with us on a website.
+                </p>
+              </div>
+              <div className="flex flex-wrap gap-3">
+                <Link href="/wholesale#catalog" className="btn h-12 bg-white px-6 text-[15px] text-ink hover:bg-white/90">
+                  Browse the catalog <IconArrow />
+                </Link>
+                <Link href="/start/ruo-brand" className="btn h-12 border border-white/20 px-6 text-[15px] text-white hover:bg-white/10">
+                  Scale an RUO brand
+                </Link>
+              </div>
+            </div>
+            <div className="mt-10">
+              <SupplyBento />
+            </div>
           </div>
         </Container>
       </section>
@@ -152,35 +200,6 @@ export default function Home() {
             <Link href={START} className="btn btn-dark h-14 px-8 text-[16px]">
               Start your project <IconArrow />
             </Link>
-          </div>
-        </Container>
-      </section>
-
-      {/* Separate line of business: RUO scaling & resources */}
-      <section id="research" className="mt-28 scroll-mt-20 sm:mt-36">
-        <Container>
-          <div className="rounded-[32px] border border-line bg-bg-2 p-6 sm:p-12">
-            <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
-              <div className="max-w-[640px]">
-                <p className="text-[14px] font-medium text-gold">Also from our team</p>
-                <h2 className="h-section mt-2 text-[32px] text-ink sm:text-[46px]">RUO scaling &amp; resources.</h2>
-                <p className="mt-4 text-[17px] leading-[1.6] text-body">
-                  For research-use-only brands: wholesale and factory-direct supply with a COA for every wholesale lot, your own
-                  label, and fulfillment. A separate service. You don&rsquo;t need a research brand to work with us on a website.
-                </p>
-              </div>
-              <div className="flex flex-wrap gap-3">
-                <Link href="/start/ruo-brand" className="btn btn-dark h-12 px-6 text-[15px]">
-                  Scale an RUO brand <IconArrow />
-                </Link>
-                <Link href="/wholesale#catalog" className="btn btn-light h-12 px-6 text-[15px]">
-                  Browse the catalog
-                </Link>
-              </div>
-            </div>
-            <div className="mt-10">
-              <SupplyBento />
-            </div>
           </div>
         </Container>
       </section>
