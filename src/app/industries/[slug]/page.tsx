@@ -56,7 +56,7 @@ export default async function IndustryPage(props: PageProps<"/industries/[slug]"
                 </a>
               )}
             </div>
-            <p className="mt-6 text-[13.5px] text-muted">From the team behind {SITE.builtStores.join(", ")}.</p>
+            <p className="mt-6 text-[13.5px] text-muted">From the team behind {SITE.builtStores.join(", ")} and more.</p>
           </div>
         </Container>
       </section>

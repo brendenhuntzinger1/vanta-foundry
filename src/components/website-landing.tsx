@@ -60,7 +60,13 @@ export function WebsiteLanding({ s }: { s: Service }) {
                 See our work
               </Link>
             </div>
-            <p className="mt-6 text-[13.5px] text-white/50">The team behind {SITE.builtStores.join(" · ")}</p>
+            <p className="mt-6 text-[13.5px] text-white/50">The team behind {SITE.builtStores.join(" · ")} and more</p>
+            <p className="mt-2 text-[13.5px] text-white/50">
+              Looking for peptide wholesale?{" "}
+              <Link href="/supply#catalog" className="text-white/80 underline underline-offset-4 hover:text-white">
+                See our catalog
+              </Link>
+            </p>
           </div>
           <div className="relative mx-auto mt-16 max-w-[1080px] translate-y-px overflow-hidden rounded-t-2xl border border-b-0 border-white/10 shadow-[0_-20px_80px_-30px_rgba(0,0,0,0.8)]">
             <div className="flex items-center gap-2 border-b border-white/10 bg-[#1b1b1e] px-4 py-2.5">
@@ -186,6 +192,30 @@ export function WebsiteLanding({ s }: { s: Service }) {
               </li>
             ))}
           </ul>
+        </Container>
+      </section>
+
+      {/* The other front door: wholesale & 3PL */}
+      <section className="mt-28 sm:mt-36">
+        <Container>
+          <Link href="/supply" className="group grid overflow-hidden rounded-[32px] border border-line bg-bg-2 lg:grid-cols-[1.1fr_1fr]">
+            <div className="flex flex-col justify-center p-8 sm:p-12">
+              <p className="text-[14px] font-medium text-gold">Also from our team · for research brands</p>
+              <h2 className="h-section mt-3 text-[32px] text-ink sm:text-[46px]">
+                Peptide wholesale <span className="accent">&amp; 3PL.</span>
+              </h2>
+              <p className="mt-4 max-w-[480px] text-[17px] leading-[1.6] text-body">
+                Browse our full catalog with a COA for every wholesale lot. Factory-direct supply, white label, and storage,
+                packing and shipping as your brand.
+              </p>
+              <span className="btn mt-8 h-14 w-fit bg-ink px-8 text-[16px] text-white">
+                See the catalog &amp; wholesale <IconArrow className="transition-transform duration-200 group-hover:translate-x-0.5" />
+              </span>
+            </div>
+            <div className="relative min-h-[260px]">
+              <Image src="/supply/bulk.webp" alt="Cartons of vials packed for a bulk order" fill sizes="(min-width: 1024px) 520px, 100vw" className="object-cover" />
+            </div>
+          </Link>
         </Container>
       </section>
 

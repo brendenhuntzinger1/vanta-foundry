@@ -99,6 +99,7 @@ export default function Home() {
               {SITE.builtStores.map((b) => (
                 <li key={b} className="text-[18px] font-semibold tracking-[-0.025em] text-ink/75">{b}</li>
               ))}
+              <li className="text-[18px] tracking-[-0.025em] text-muted">and more</li>
             </ul>
           </div>
         </Container>
