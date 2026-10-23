@@ -53,13 +53,13 @@ export function ServiceBento() {
 function Tile({ slug, title, body, children }: { slug: string; title: string; body: string; children: React.ReactNode }) {
   return (
     <li>
-      <Link href={`/${slug}`} className="group flex h-full flex-col overflow-hidden rounded-2xl border border-line bg-white transition-[border-color,box-shadow] duration-200 hover:border-line-2 hover:shadow-[0_14px_36px_-20px_rgba(0,0,0,0.3)]">
+      <Link href={`/start/${slug}`} className="group flex h-full flex-col overflow-hidden rounded-2xl border border-line bg-white transition-[border-color,box-shadow] duration-200 hover:border-line-2 hover:shadow-[0_14px_36px_-20px_rgba(0,0,0,0.3)]">
         <div className="relative h-[200px] overflow-hidden bg-[#141416]" aria-hidden="true">{children}</div>
         <div className="flex flex-1 flex-col p-5">
           <p className="text-[17px] font-semibold tracking-[-0.02em] text-ink">{title}</p>
           <p className="mt-1 text-[14.5px] leading-[1.5] text-muted">{body}</p>
           <span className="mt-4 inline-flex items-center gap-1.5 text-[13.5px] font-medium text-ink">
-            Learn more <IconArrow className="transition-transform duration-200 group-hover:translate-x-0.5" />
+            Get started <IconArrow className="transition-transform duration-200 group-hover:translate-x-0.5" />
           </span>
         </div>
       </Link>
@@ -119,7 +119,7 @@ function PayVisual() {
 function SeoTile() {
   return (
     <li className="sm:col-span-2 lg:col-span-3">
-      <Link href="/seo-ai-search" className="group grid overflow-hidden rounded-2xl border border-line bg-white transition-[border-color,box-shadow] duration-200 hover:border-line-2 hover:shadow-[0_14px_36px_-20px_rgba(0,0,0,0.3)] lg:grid-cols-[1fr_1.35fr]">
+      <Link href="/start/seo-ai-search" className="group grid overflow-hidden rounded-2xl border border-line bg-white transition-[border-color,box-shadow] duration-200 hover:border-line-2 hover:shadow-[0_14px_36px_-20px_rgba(0,0,0,0.3)] lg:grid-cols-[1fr_1.35fr]">
         <div className="flex flex-col justify-center p-6 sm:p-8">
           <p className="text-[13px] font-medium text-gold">New · SEO & AI search</p>
           <p className="mt-2 text-[24px] font-semibold leading-tight tracking-[-0.03em] text-ink sm:text-[28px]">Found on Google. Recommended by AI.</p>
@@ -127,7 +127,7 @@ function SeoTile() {
             SEO and GEO for any industry, so customers find you on Google, Maps, ChatGPT, Gemini and Perplexity. On its own or in a launch package.
           </p>
           <span className="mt-5 inline-flex items-center gap-1.5 text-[13.5px] font-medium text-ink">
-            Learn more <IconArrow className="transition-transform duration-200 group-hover:translate-x-0.5" />
+            Get started <IconArrow className="transition-transform duration-200 group-hover:translate-x-0.5" />
           </span>
         </div>
         <div className="grid gap-3 bg-[#141416] p-5 sm:grid-cols-2 sm:p-6" aria-hidden="true">
