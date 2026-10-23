@@ -20,6 +20,8 @@ export type Showcase = {
     /** "serif" for editorial brands, "bold" for sport, "sans" otherwise. */
     type: "serif" | "bold" | "sans";
     dark?: boolean;
+    /** How the top of the store is laid out, so no two builds look alike. */
+    layout?: "split" | "immersive";
   };
   nav: string[];
   hero: { src: string; eyebrow: string; title: [string, string]; body: string; cta: string };
@@ -34,7 +36,7 @@ export const SHOWCASE: Showcase[] = [
     brand: "Solenne",
     industry: "Skincare",
     summary: "An editorial skincare store with routines, subscriptions and ingredient pages.",
-    theme: { bg: "#f6f1ea", ink: "#2a241e", accent: "#2a241e", accentInk: "#f6f1ea", type: "serif" },
+    theme: { bg: "#f6f1ea", ink: "#2a241e", accent: "#2a241e", accentInk: "#f6f1ea", type: "serif", layout: "split" },
     nav: ["Shop", "Rituals", "Ingredients", "About"],
     hero: { src: "/solenne/hero.webp", eyebrow: "New · The Renewal Ritual", title: ["Skin, quietly", "restored."], body: "Botanical formulas for calm, strong skin. Made in small batches.", cta: "Shop the ritual" },
     products: [
@@ -50,9 +52,9 @@ export const SHOWCASE: Showcase[] = [
     brand: "Halcyon",
     industry: "Coffee & food",
     summary: "A roaster's store with subscriptions, gift boxes and wholesale ordering for cafés.",
-    theme: { bg: "#14201b", ink: "#efe9dd", accent: "#c9a66b", accentInk: "#14201b", type: "serif", dark: true },
+    theme: { bg: "#0f1512", ink: "#ece6da", accent: "#c9a66b", accentInk: "#0f1512", type: "sans", dark: true, layout: "immersive" },
     nav: ["Shop", "Subscribe", "Wholesale", "Visit"],
-    hero: { src: "/sites/halcyon-hero.webp", eyebrow: "Roasted every Monday", title: ["Coffee worth", "waking up for."], body: "Small-lot beans, roasted to order and shipped the same week.", cta: "Shop coffee" },
+    hero: { src: "/sites/halcyon-hero.webp", eyebrow: "Roasted every Monday", title: ["Roasted Monday.", "In your cup by Friday."], body: "Small-lot beans, roasted to order and shipped the same week.", cta: "Shop this week's roast" },
     products: [
       { name: "Ethiopia Guji", note: "Peach, jasmine · Light", price: "$22", src: "/sites/halcyon-bag.webp" },
       { name: "Colombia Huila", note: "Caramel, cherry · Medium", price: "$20", src: "/sites/halcyon-huila.webp" },
