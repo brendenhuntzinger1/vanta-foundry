@@ -6,6 +6,7 @@ import { Container, CtaBand, FaqList, SectionHead } from "@/components/blocks";
 import { ContactButtons } from "@/components/contact-buttons";
 import { IconArrow, IconCheck } from "@/components/icons";
 import { ServiceIcon } from "@/components/service-icon";
+import { LabelGallery } from "@/components/label-gallery";
 import { SERVICES, getService } from "@/lib/services";
 import { getGuide } from "@/lib/guides";
 import { JsonLd, ORG_ID, breadcrumbs, faqPage } from "@/lib/jsonld";
@@ -98,6 +99,17 @@ export default async function ServicePage(props: PageProps<"/[service]">) {
           </div>
         </Container>
       </section>
+
+      {s.slug === "white-label" && (
+        <section className="mt-28">
+          <Container>
+            <SectionHead label="Label styles" title="Make it look like yours." lede="Our own Vanta Labs label, and three other directions a brand can take. Every label carries the lot number and the research-use statement." />
+            <div className="mt-10">
+              <LabelGallery />
+            </div>
+          </Container>
+        </section>
+      )}
 
       <section className="mt-28">
         <Container className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr]">

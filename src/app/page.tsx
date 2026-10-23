@@ -29,7 +29,7 @@ const FAQS = [
   },
   {
     q: "Who is behind Vanta Foundry?",
-    a: `${SITE.name} is run by ${SITE.parent}. The supply, payments and website setup we offer are the same ones we use ourselves.`,
+    a: `${SITE.name} is run by the team behind ${SITE.builtStores.join(" and ")}. The supply, payments and website setup we offer are the same ones we use ourselves.`,
   },
   {
     q: "How do I reach you?",
@@ -52,13 +52,10 @@ export default function Home() {
       <section className="pt-16 sm:pt-24">
         <Container>
           <div className="mx-auto max-w-[860px] text-center">
-            <Link
-              href={SITE.parentUrl}
-              className="inline-flex items-center gap-2 rounded-full border border-line px-3.5 py-1.5 text-[13.5px] text-body transition-colors hover:border-line-2"
-            >
+            <p className="inline-flex items-center gap-2 rounded-full border border-line px-3.5 py-1.5 text-[12.5px] text-body sm:text-[13.5px]">
               <span className="h-1.5 w-1.5 rounded-full bg-gold-fill" aria-hidden="true" />
-              From the team behind {SITE.parent}
-            </Link>
+              The team behind {SITE.builtStores.join(" & ")}
+            </p>
             <h1 className="h-display mt-7 text-[44px] text-ink sm:text-[72px]">
               Payments, supply, shipping and websites.
               <span className="block text-muted">One team for all of it.</span>
