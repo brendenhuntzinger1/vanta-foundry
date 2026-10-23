@@ -12,7 +12,7 @@ import { SITE } from "@/lib/site";
 export const metadata: Metadata = pageMetadata({
   path: "/about",
   title: "About us",
-  description: `${SITE.name} is the team behind ${SITE.builtStores.join(", ")}. We build websites, set up payments and SEO, and supply, label and ship research products, for our own brands and for yours.`,
+  description: `${SITE.name} is the team behind ${SITE.builtStores.join(", ")} and more. We build websites, set up payments and SEO, and supply, label and ship research products, for our own brands and for yours.`,
 });
 
 const HOW = [
@@ -30,8 +30,8 @@ export default function AboutPage() {
           <div className="max-w-[820px]">
             <h1 className="h-display text-[42px] text-ink sm:text-[60px]">The team behind the brands.</h1>
             <p className="mt-6 text-[18px] leading-[1.65] text-body">
-              {SITE.name} is run by the people who build and operate {SITE.builtStores.slice(0, -1).join(", ")} and{" "}
-              {SITE.builtStores.at(-1)}. We started by building what our own brands needed: custom websites, payment processing that
+              {SITE.name} is run by the people who build and operate {SITE.builtStores.join(", ")} and
+              more. We started by building what our own brands needed: custom websites, payment processing that
               stays up, search visibility, and a supply chain for research products. {SITE.name} offers the same setup to other
               businesses, in any industry.
             </p>

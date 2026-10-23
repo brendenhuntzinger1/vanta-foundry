@@ -72,7 +72,7 @@ export default function SupplyPage() {
                 )}
               </div>
               <p className="mt-6 text-[13.5px] text-white/50">
-                {CATALOG.length} products in stock · From the team behind {SITE.builtStores.slice(0, 2).join(" & ")}
+                {CATALOG.length} products in stock · From the team behind {SITE.builtStores.slice(0, 2).join(", ")} and more
               </p>
             </div>
             <div className="grid grid-cols-2 gap-3">

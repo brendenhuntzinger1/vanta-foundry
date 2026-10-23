@@ -39,7 +39,7 @@ export function GET() {
     `- [Wholesale & 3PL](${SITE.url}/supply): Research peptides wholesale or factory-direct with a COA for every wholesale lot, white label and 3PL fulfillment. Research use only.`,
     `- [Our work](${SITE.url}/work): Storefronts our team designed and coded: research supply (Vanta Labs and Genesis Biomapping, both live), skincare, coffee and athletic apparel.`,
     `- [Glossary](${SITE.url}/glossary): Plain-English definitions of payments, SEO/GEO and supply terms.`,
-    `- [About](${SITE.url}/about): The team behind ${SITE.builtStores.join(", ")}.`,
+    `- [About](${SITE.url}/about): The team behind ${SITE.builtStores.join(", ")} and more.`,
     `- [Contact](${SITE.url}/contact): WhatsApp +${SITE.whatsapp} or ${SITE.email}.`,
     "",
   ];
