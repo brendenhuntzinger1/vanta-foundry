@@ -51,13 +51,13 @@ const FAQS = [
 ];
 
 const WANTS = [
-  { label: "A custom website", href: "/website-development" },
-  { label: "Payment processing", href: "/payment-processing" },
-  { label: "Wholesale research products", href: "/wholesale" },
-  { label: "Products under my own label", href: "/white-label" },
-  { label: "3PL & shipping", href: "/fulfillment" },
-  { label: "To show up on Google & AI", href: "/seo-ai-search" },
-  { label: "Factory-direct supply", href: "/factory-direct" },
+  { label: "A custom website", href: "/start/website-development" },
+  { label: "Payment processing", href: "/start/payment-processing" },
+  { label: "To show up on Google & AI", href: "/start/seo-ai-search" },
+  { label: "Wholesale research products", href: "/start/wholesale" },
+  { label: "Products under my own label", href: "/start/white-label" },
+  { label: "3PL & shipping", href: "/start/fulfillment" },
+  { label: "Factory-direct supply", href: "/start/factory-direct" },
 ];
 
 const WHY = [
@@ -95,7 +95,7 @@ export default function Home() {
               And if you sell research products: wholesale or factory-direct supply, your own label, stored and shipped for you.
             </p>
             <div className="mx-auto mt-9 max-w-[760px]">
-              <p className="text-[14px] font-medium text-muted">I want…</p>
+              <p className="text-[14px] font-medium text-muted">I want… <span className="font-normal">(tap one, it takes a minute)</span></p>
               <ul className="mt-3 flex flex-wrap justify-center gap-2">
                 {WANTS.map((w) => (
                   <li key={w.href}>
@@ -202,7 +202,7 @@ export default function Home() {
                     ))}
                   </ul>
                   <div className="mt-8 flex flex-wrap gap-3">
-                    <Link href={`/get-started?services=${s.slug}`} className="btn btn-dark h-11 px-5 text-[14.5px]">
+                    <Link href={`/start/${s.slug}`} className="btn btn-dark h-11 px-5 text-[14.5px]">
                       Get started with {s.name.toLowerCase()}
                     </Link>
                     <Link href={`/${s.slug}`} className="btn btn-light h-11 px-5 text-[14.5px]">

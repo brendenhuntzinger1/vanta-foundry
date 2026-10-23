@@ -2,7 +2,11 @@ import type { Metadata } from "next";
 import { Container } from "@/components/blocks";
 import { ServicePicker } from "@/components/service-picker";
 import { pageMetadata } from "@/lib/metadata";
+import Link from "next/link";
 import { SITE } from "@/lib/site";
+import { SERVICES } from "@/lib/services";
+import { ServiceIcon } from "@/components/service-icon";
+import { IconArrow } from "@/components/icons";
 
 export const metadata: Metadata = pageMetadata({
   path: "/get-started",
@@ -24,7 +28,24 @@ export default async function GetStarted(props: PageProps<"/get-started">) {
             Tap the services you want, then send them to us. Your message opens already written. No forms, no account.
           </p>
         </div>
-        <div className="mt-12">
+        {initial.length === 0 && (
+          <div className="mt-10">
+            <p className="text-[14px] font-medium text-muted">Need one thing? Start there. It takes a minute.</p>
+            <ul className="mt-3 grid gap-2.5 sm:grid-cols-2 lg:grid-cols-3">
+              {SERVICES.map((s) => (
+                <li key={s.slug}>
+                  <Link href={`/start/${s.slug}`} className="group flex items-center gap-3 rounded-2xl border border-line p-4 transition-colors hover:border-ink">
+                    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-bg-2 text-ink"><ServiceIcon slug={s.slug} /></span>
+                    <span className="min-w-0 flex-1 text-[15.5px] font-medium text-ink">{s.name}</span>
+                    <IconArrow className="text-muted transition-transform group-hover:translate-x-0.5" />
+                  </Link>
+                </li>
+              ))}
+            </ul>
+            <p className="mt-12 text-[14px] font-medium text-muted">Need several? Pick them all below and send one request.</p>
+          </div>
+        )}
+        <div className={initial.length === 0 ? "mt-4" : "mt-12"}>
           <ServicePicker initial={initial} />
         </div>
       </Container>

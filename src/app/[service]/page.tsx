@@ -55,7 +55,7 @@ export default async function ServicePage(props: PageProps<"/[service]">) {
               <p className="mt-5 text-[18px] leading-[1.6] text-body">{s.answer}</p>
               {s.slug === "payment-processing" && <CardBrands className="mt-5" />}
               <div className="mt-8 flex flex-wrap gap-3">
-                <Link href={`/get-started?services=${s.slug}`} className="btn btn-dark h-12 px-6 text-[15px]">
+                <Link href={`/start/${s.slug}`} className="btn btn-dark h-12 px-6 text-[15px]">
                   Get started <IconArrow />
                 </Link>
                 {supply && (
