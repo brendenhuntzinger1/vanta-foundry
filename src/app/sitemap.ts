@@ -1,3 +1,4 @@
+import { FLOWS } from "@/lib/flows";
 import { INDUSTRIES } from "@/lib/industries";
 import type { MetadataRoute } from "next";
 import { SERVICES } from "@/lib/services";
@@ -9,7 +10,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return [
     { url: u("/"), changeFrequency: "weekly", priority: 1 },
     ...SERVICES.map((s) => ({ url: u(`/${s.slug}`), changeFrequency: "monthly" as const, priority: 0.9 })),
-    ...SERVICES.map((s) => ({ url: u(`/start/${s.slug}`), changeFrequency: "yearly" as const, priority: 0.6 })),
+    ...Object.keys(FLOWS).map((k) => ({ url: u(`/start/${k}`), changeFrequency: "yearly" as const, priority: 0.6 })),
     { url: u("/get-started"), changeFrequency: "yearly", priority: 0.8 },
     { url: u("/work"), changeFrequency: "monthly", priority: 0.8 },
     { url: u("/industries"), changeFrequency: "monthly", priority: 0.8 },

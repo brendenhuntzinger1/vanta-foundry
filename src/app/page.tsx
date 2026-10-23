@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Container, CtaBand, FaqList, SectionHead } from "@/components/blocks";
-import { SupplyBento, WebBento } from "@/components/service-bento";
+import { PayVisual, SupplyBento, VialRow, WebBento } from "@/components/service-bento";
 import { DAYS } from "@/components/launch-timeline";
 import { IconArrow } from "@/components/icons";
 import { JsonLd, faqPage } from "@/lib/jsonld";
@@ -57,23 +57,39 @@ export default function Home() {
             </p>
           </div>
 
-          {/* The two lanes */}
-          <div className="mx-auto mt-12 grid max-w-[1000px] gap-3 md:grid-cols-2">
-            <Lane
-              href="#websites"
-              eyebrow="For any business"
-              title="Websites, payments & SEO"
-              items={["Custom-coded sites", "Payment processing", "Google & AI search"]}
+          {/* Four doors: pick one, get walked through it */}
+          <p className="mt-14 text-center text-[14px] font-medium text-muted">Where do you want to start?</p>
+          <div className="mx-auto mt-4 grid max-w-[1040px] gap-3 md:grid-cols-2">
+            <Door
+              href="/start/website-development"
+              eyebrow="Any industry"
+              title="Premium websites"
+              items={["Custom design", "SEO & AI search", "Developer team 24/7"]}
               src="/showcase/genesis-desktop.webp"
               top
               dark
             />
-            <Lane
-              href="#peptides"
-              eyebrow="For research brands"
-              title="Peptide supply"
-              items={["Wholesale & factory-direct", "White label", "3PL fulfillment", "COA with every lot"]}
+            <Door
+              href="/start/payment-processing"
+              eyebrow="Any business, including high-risk"
+              title="Payment processing"
+              items={["Cards & Apple Pay", "Backup processor", "Subscriptions"]}
+              visual={<PayVisual />}
+            />
+            <Door
+              href="/start/ruo-brand"
+              eyebrow="Research brands"
+              title="RUO brand scaling"
+              items={["Your label", "Factory-direct", "3PL", "Website & payments"]}
+              visual={<VialRow />}
+            />
+            <Door
+              href="/wholesale#catalog"
+              eyebrow="In stock now"
+              title="Wholesale catalog"
+              items={["Browse every product", "COA with every lot", "Inquire for pricing"]}
               src="/supply/bulk.webp"
+              cta="Browse the catalog"
             />
           </div>
 
@@ -173,20 +189,21 @@ export default function Home() {
   );
 }
 
-function Lane({ href, eyebrow, title, items, src, top, dark }: { href: string; eyebrow: string; title: string; items: string[]; src: string; top?: boolean; dark?: boolean }) {
+function Door({ href, eyebrow, title, items, src, visual, top, dark, cta = "Start" }: { href: string; eyebrow: string; title: string; items: string[]; src?: string; visual?: React.ReactNode; top?: boolean; dark?: boolean; cta?: string }) {
   return (
     <Link href={href} className={`group flex flex-col overflow-hidden rounded-2xl border text-left transition-shadow duration-200 hover:shadow-[0_18px_40px_-24px_rgba(0,0,0,0.35)] ${dark ? "border-ink bg-ink text-white" : "border-line bg-white text-ink"}`}>
-      <div className="relative aspect-[16/8] overflow-hidden">
-        <Image src={src} alt="" fill sizes="(min-width: 768px) 500px, 100vw" className={`object-cover transition-transform duration-500 group-hover:scale-[1.03] ${top ? "object-left-top" : ""}`} />
+      <div className="relative h-[190px] overflow-hidden bg-[#141416] sm:h-[220px]">
+        {src ? <Image src={src} alt="" fill sizes="(min-width: 768px) 520px, 100vw" className={`object-cover transition-transform duration-500 group-hover:scale-[1.03] ${top ? "object-left-top" : ""}`} /> : visual}
       </div>
       <div className="flex flex-1 flex-col p-6">
         <p className={`text-[13px] font-medium ${dark ? "text-gold-fill" : "text-gold"}`}>{eyebrow}</p>
-        <p className="mt-1 text-[24px] font-semibold tracking-[-0.03em]">{title}</p>
+        <p className="mt-1 text-[26px] font-semibold tracking-[-0.03em]">{title}</p>
         <p className={`mt-2 text-[14.5px] ${dark ? "text-white/65" : "text-muted"}`}>{items.join(" · ")}</p>
-        <span className="mt-5 inline-flex items-center gap-1.5 text-[14px] font-medium">
-          Explore <IconArrow className="transition-transform duration-200 group-hover:translate-x-0.5" />
+        <span className={`mt-6 inline-flex w-fit items-center gap-1.5 rounded-full px-5 py-2.5 text-[14px] font-medium ${dark ? "bg-white text-ink" : "bg-ink text-white"}`}>
+          {cta} <IconArrow className="transition-transform duration-200 group-hover:translate-x-0.5" />
         </span>
       </div>
     </Link>
   );
 }
+
