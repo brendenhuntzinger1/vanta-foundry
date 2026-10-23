@@ -1,18 +1,26 @@
 "use client";
 
 import { useId, useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
-import type { Flow } from "@/lib/flows";
+import { type Flow, type FlowOption, optLabel } from "@/lib/flows";
 import { SERVICES } from "@/lib/services";
 import { SITE, emailLink, whatsappLink } from "@/lib/site";
 import { IconArrow, IconCheck, IconMail, IconWhatsApp } from "./icons";
 
 export type FlowSubject = { slug: string; name: string; title: string; includes: string[] };
 
+const WORK = [
+  { name: "Vanta Labs", src: "/showcase/vanta-labs-desktop.webp", top: true },
+  { name: "Genesis Biomapping", src: "/showcase/genesis-desktop.webp", top: true },
+  { name: "Solenne", src: "/solenne/hero.webp" },
+  { name: "Halcyon", src: "/sites/halcyon-hero.webp" },
+];
+
 /**
- * A guided path, one question per screen: what you get, then each question
- * as big tap targets (single answers move on by themselves), then name and
- * phone, then the inquiry opens in WhatsApp or email, already written.
+ * A guided path, one question per screen, with a live "Your project" summary
+ * beside it on desktop. Single answers move on by themselves; the last
+ * screen is the written brief, sent on WhatsApp or by email.
  */
 export function ServiceFlow({ subject, flow, learnMore }: { subject: FlowSubject; flow: Flow; learnMore?: string }) {
   const uid = useId();
@@ -28,6 +36,7 @@ export function ServiceFlow({ subject, flow, learnMore }: { subject: FlowSubject
   const phoneOk = t("phone").replace(/\D/g, "").length >= 10;
   const detailsOk = t("name").length > 0 && phoneOk;
   const others = SERVICES.filter((s) => s.slug !== subject.slug);
+  const summary = flow.questions.map((q, i) => ({ label: q.label ?? q.q, value: (answers[i] ?? []).join(", ") }));
 
   const message = [
     `Hi Vanta Foundry, I'd like to get started with ${subject.name.toLowerCase()}.`,
@@ -55,145 +64,238 @@ export function ServiceFlow({ subject, flow, learnMore }: { subject: FlowSubject
       const next = multi ? (cur.includes(o) ? cur.filter((x) => x !== o) : [...cur, o]) : [o];
       return { ...a, [qi]: next };
     });
-    if (!multi) setTimeout(() => go(qi + 2), 180);
+    if (!multi) setTimeout(() => go(qi + 2), 200);
   };
 
   const q = step >= 1 && step <= Q ? flow.questions[step - 1] : null;
   const qi = step - 1;
+  const rich = (opts: FlowOption[]) => opts.some((o) => typeof o !== "string" && o.desc);
 
   return (
     <div id={`${uid}-top`} className="scroll-mt-24">
       {/* Progress */}
       <div className="flex items-center gap-3">
-        <div className="h-1.5 flex-1 overflow-hidden rounded-full bg-line" aria-hidden="true">
-          <div className="h-full rounded-full bg-ink transition-[width] duration-300" style={{ width: `${(step / last) * 100}%` }} />
+        <div className="h-1 flex-1 overflow-hidden rounded-full bg-line" aria-hidden="true">
+          <div className="h-full rounded-full bg-ink transition-[width] duration-500" style={{ width: `${(step / last) * 100}%` }} />
         </div>
-        <span className="shrink-0 text-[12.5px] text-muted">
-          {step === 0 ? "About a minute" : step <= Q ? `Question ${step} of ${Q}` : step === Q + 1 ? "Almost done" : step === Q + 2 ? "Your details" : "Send"}
+        <span className="shrink-0 text-[12.5px] tabular-nums text-muted">
+          {step === 0 ? "About a minute" : step <= Q ? `${step} / ${Q}` : step === Q + 1 ? "Almost done" : step === Q + 2 ? "Your details" : "Ready to send"}
         </span>
       </div>
 
-      <div key={step} className="fade-in mt-10">
-        {step === 0 && (
-          <div>
-            <h2 className="h-section text-[34px] text-ink sm:text-[44px]">{subject.title}</h2>
-            <p className="mt-4 text-[17px] leading-[1.6] text-body">{flow.promise}</p>
-            <button type="button" onClick={() => go(1)} className="btn btn-dark mt-8 h-14 w-full px-7 text-[16px] sm:w-auto">
-              Start <IconArrow />
-            </button>
-            <div className="mt-12 rounded-2xl bg-bg-2 p-6">
-              <p className="text-[14px] font-medium text-muted">What you get</p>
-              <ul className="mt-4 space-y-2.5">
-                {subject.includes.map((x) => (
-                  <li key={x} className="flex gap-3 text-[15.5px] text-ink">
-                    <IconCheck className="mt-0.5 shrink-0 text-gold" /> {x}
-                  </li>
-                ))}
-              </ul>
-              <p className="mt-5 text-[13.5px] text-muted">No prices to guess: we quote it after this, in writing.</p>
-            </div>
-          </div>
-        )}
+      <div className="mt-10 grid gap-10 lg:grid-cols-[1fr_300px] lg:gap-14">
+        <div key={step} className="fade-in min-w-0">
+          {step === 0 && (
+            <div>
+              <h2 className="h-display text-[38px] leading-[1.02] text-ink sm:text-[54px]">{subject.title}</h2>
+              <p className="mt-5 max-w-[560px] text-[17.5px] leading-[1.6] text-body">{flow.promise}</p>
 
-        {q && (
-          <fieldset>
-            <legend className="text-[28px] font-semibold leading-tight tracking-[-0.03em] text-ink sm:text-[36px]">{q.q}</legend>
-            {q.hint && <p className="mt-2 text-[14.5px] text-muted">{q.hint}</p>}
-            <div className="mt-7 grid gap-2.5 sm:grid-cols-2">
-              {q.options.map((o) => {
-                const on = (answers[qi] ?? []).includes(o);
-                return (
-                  <button
-                    key={o}
-                    type="button"
-                    aria-pressed={on}
-                    onClick={() => pick(qi, o, q.multi)}
-                    className={`flex min-h-[60px] items-center justify-between gap-3 rounded-2xl border px-5 py-3.5 text-left text-[16px] transition-colors ${on ? "border-ink bg-ink text-white" : "border-line-2 bg-white text-ink hover:border-ink"}`}
-                  >
-                    {o}
-                    <span className={`flex h-6 w-6 shrink-0 items-center justify-center rounded-full border ${on ? "border-white bg-white text-ink" : "border-line-2"}`} aria-hidden="true">
-                      {on && <IconCheck width={14} height={14} />}
-                    </span>
-                  </button>
-                );
-              })}
-            </div>
-            <Nav
-              back={() => go(step - 1)}
-              next={q.multi || (answers[qi] ?? []).length > 0 ? () => go(step + 1) : undefined}
-              disabled={(answers[qi] ?? []).length === 0}
-              hint={(answers[qi] ?? []).length === 0 ? (q.multi ? "Tap at least one." : "Tap an answer to continue.") : undefined}
-            />
-          </fieldset>
-        )}
-
-        {step === Q + 1 && (
-          <fieldset>
-            <legend className="text-[28px] font-semibold leading-tight tracking-[-0.03em] text-ink sm:text-[36px]">Anything else with it?</legend>
-            <p className="mt-2 text-[14.5px] text-muted">Optional. One team handles all of it.</p>
-            <div className="mt-7 grid gap-2.5 sm:grid-cols-2">
-              {others.map((o) => {
-                const on = extra.includes(o.name);
-                return (
-                  <button
-                    key={o.slug}
-                    type="button"
-                    aria-pressed={on}
-                    onClick={() => setExtra((e) => (on ? e.filter((x) => x !== o.name) : [...e, o.name]))}
-                    className={`flex min-h-[56px] items-center justify-between gap-3 rounded-2xl border px-5 py-3 text-left text-[15.5px] transition-colors ${on ? "border-ink bg-ink text-white" : "border-line bg-bg-2 text-ink hover:border-ink"}`}
-                  >
-                    {o.name}
-                    {on && <IconCheck width={16} height={16} />}
-                  </button>
-                );
-              })}
-            </div>
-            <Nav back={() => go(step - 1)} next={() => go(step + 1)} nextLabel={extra.length ? "Continue" : "Skip"} />
-          </fieldset>
-        )}
-
-        {step === Q + 2 && (
-          <div>
-            <h2 className="text-[28px] font-semibold leading-tight tracking-[-0.03em] text-ink sm:text-[36px]">Where should we reply?</h2>
-            <div className="mt-7 grid gap-3 sm:grid-cols-2">
-              <Field id={`${uid}-name`} label="Your name" required value={f.name} onChange={(v) => setF({ ...f, name: v })} autoComplete="name" />
-              <Field id={`${uid}-phone`} label="Phone number" required type="tel" inputMode="tel" value={f.phone} onChange={(v) => setF({ ...f, phone: v })} autoComplete="tel" />
-              <Field id={`${uid}-email`} label="Email (optional)" type="email" value={f.email} onChange={(v) => setF({ ...f, email: v })} autoComplete="email" />
-              <Field id={`${uid}-business`} label="Business name (optional)" value={f.business} onChange={(v) => setF({ ...f, business: v })} autoComplete="organization" />
-              <div className="sm:col-span-2">
-                <label htmlFor={`${uid}-details`} className="text-[13px] text-muted">Anything else we should know? (optional)</label>
-                <textarea id={`${uid}-details`} rows={3} value={f.details} onChange={(e) => setF({ ...f, details: e.target.value })} className="mt-1.5 w-full rounded-xl border border-line-2 bg-white px-3.5 py-3 text-[16px] outline-none focus:border-ink" />
-              </div>
-            </div>
-            <Nav back={() => go(step - 1)} next={() => go(step + 1)} nextLabel="Review and send" disabled={!detailsOk} hint={detailsOk ? undefined : "Add your name and a phone number to continue."} />
-          </div>
-        )}
-
-        {step === last && (
-          <div>
-            <h2 className="text-[28px] font-semibold leading-tight tracking-[-0.03em] text-ink sm:text-[36px]">Send it. We reply with a quote.</h2>
-            <p className="mt-2 text-[15.5px] text-body">Your message is written. Tap a button and it opens ready to send.</p>
-            <pre className="mt-6 max-h-[260px] overflow-auto whitespace-pre-wrap rounded-2xl border border-line bg-bg-2 p-5 font-sans text-[13.5px] leading-[1.6] text-ink">{message}</pre>
-            <div className="mt-6 flex flex-col gap-3 sm:flex-row">
-              {wa && (
-                <a href={wa} target="_blank" rel="noopener noreferrer" className="btn btn-dark h-14 px-7 text-[16px]">
-                  <IconWhatsApp className="text-wa" /> Send on WhatsApp
-                </a>
+              {flow.pillars ? (
+                <ul className="mt-9 grid gap-3 sm:grid-cols-2">
+                  {flow.pillars.map((p, i) => (
+                    <li key={p.t} className={`rounded-2xl p-5 ${i === 2 ? "bg-ink text-white" : "border border-line bg-white"}`}>
+                      <p className="text-[16.5px] font-semibold tracking-[-0.02em]">{p.t}</p>
+                      <p className={`mt-1.5 text-[14px] leading-[1.55] ${i === 2 ? "text-white/70" : "text-body"}`}>{p.b}</p>
+                    </li>
+                  ))}
+                </ul>
+              ) : (
+                <ul className="mt-9 space-y-2.5">
+                  {subject.includes.map((x) => (
+                    <li key={x} className="flex gap-3 text-[15.5px] text-ink">
+                      <IconCheck className="mt-0.5 shrink-0 text-gold" /> {x}
+                    </li>
+                  ))}
+                </ul>
               )}
-              <a href={mail} className={`btn ${wa ? "btn-light" : "btn-dark"} h-14 px-7 text-[16px]`}>
-                <IconMail /> Send by email
-              </a>
+
+              <button type="button" onClick={() => go(1)} className="btn btn-dark mt-9 h-14 w-full px-8 text-[16px] sm:w-auto">
+                Start your project <IconArrow />
+              </button>
+              <p className="mt-3 text-[13.5px] text-muted">{Q} quick questions. No account, no prices to guess: we quote in writing.</p>
+
+              {flow.showcase && (
+                <div className="mt-14">
+                  <div className="flex items-baseline justify-between">
+                    <p className="text-[14px] font-medium text-ink">Sites we&rsquo;ve built</p>
+                    <Link href="/work" className="text-[13.5px] text-muted underline underline-offset-2 hover:text-ink">See all</Link>
+                  </div>
+                  <ul className="mt-3 grid grid-cols-2 gap-2.5 sm:grid-cols-4">
+                    {WORK.map((w) => (
+                      <li key={w.name} className="overflow-hidden rounded-xl border border-line">
+                        <div className="relative aspect-[4/3] bg-bg-2">
+                          <Image src={w.src} alt={`${w.name} website`} fill sizes="180px" className={`object-cover ${w.top ? "object-left-top" : ""}`} />
+                        </div>
+                        <p className="px-3 py-2 text-[12.5px] font-medium text-ink">{w.name}</p>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
             </div>
-            <p className="mt-4 text-[13px] text-muted">A person on our team replies. Prefer to write yourself? {SITE.email}</p>
-            <button type="button" onClick={() => go(step - 1)} className="mt-6 text-[14px] text-muted underline underline-offset-2 hover:text-ink">
-              Back
-            </button>
+          )}
+
+          {q && (
+            <fieldset>
+              <legend className="text-[30px] font-semibold leading-[1.1] tracking-[-0.035em] text-ink sm:text-[40px]">{q.q}</legend>
+              {q.hint && <p className="mt-3 text-[15px] text-muted">{q.hint}</p>}
+              <div className={`mt-8 grid gap-2.5 ${rich(q.options) && q.options.length <= 3 ? "" : "sm:grid-cols-2"}`}>
+                {q.options.map((o) => {
+                  const label = optLabel(o);
+                  const desc = typeof o === "string" ? undefined : o.desc;
+                  const tag = typeof o === "string" ? undefined : o.tag;
+                  const on = (answers[qi] ?? []).includes(label);
+                  return (
+                    <button
+                      key={label}
+                      type="button"
+                      aria-pressed={on}
+                      onClick={() => pick(qi, label, q.multi)}
+                      className={`group flex items-center justify-between gap-4 rounded-2xl border px-5 text-left transition-[border-color,background,box-shadow] duration-150 ${desc ? "min-h-[84px] py-4" : "min-h-[62px] py-3.5"} ${
+                        on ? "border-ink bg-ink text-white shadow-[0_10px_30px_-18px_rgba(0,0,0,0.6)]" : "border-line-2 bg-white text-ink hover:border-ink hover:shadow-[0_8px_24px_-18px_rgba(0,0,0,0.4)]"
+                      }`}
+                    >
+                      <span className="min-w-0">
+                        <span className="flex flex-wrap items-center gap-2 text-[16.5px] font-medium tracking-[-0.01em]">
+                          {label}
+                          {tag && <span className={`rounded-full px-2 py-0.5 text-[11px] font-semibold ${on ? "bg-white/15 text-gold-fill" : "bg-gold-tint text-gold"}`}>{tag}</span>}
+                        </span>
+                        {desc && <span className={`mt-1 block text-[13.5px] leading-[1.45] ${on ? "text-white/70" : "text-muted"}`}>{desc}</span>}
+                      </span>
+                      <span className={`flex h-6 w-6 shrink-0 items-center justify-center ${q.multi ? "rounded-md" : "rounded-full"} border ${on ? "border-white bg-white text-ink" : "border-line-2 group-hover:border-ink"}`} aria-hidden="true">
+                        {on && <IconCheck width={14} height={14} />}
+                      </span>
+                    </button>
+                  );
+                })}
+              </div>
+              <Nav
+                back={() => go(step - 1)}
+                next={() => go(step + 1)}
+                disabled={(answers[qi] ?? []).length === 0}
+                hint={(answers[qi] ?? []).length === 0 ? (q.multi ? "Tap at least one." : "Tap an answer to continue.") : undefined}
+              />
+            </fieldset>
+          )}
+
+          {step === Q + 1 && (
+            <fieldset>
+              <legend className="text-[30px] font-semibold leading-[1.1] tracking-[-0.035em] text-ink sm:text-[40px]">Anything else with it?</legend>
+              <p className="mt-3 text-[15px] text-muted">Optional. One team handles all of it.</p>
+              <div className="mt-8 grid gap-2.5 sm:grid-cols-2">
+                {others.map((o) => {
+                  const on = extra.includes(o.name);
+                  return (
+                    <button
+                      key={o.slug}
+                      type="button"
+                      aria-pressed={on}
+                      onClick={() => setExtra((e) => (on ? e.filter((x) => x !== o.name) : [...e, o.name]))}
+                      className={`flex min-h-[58px] items-center justify-between gap-3 rounded-2xl border px-5 py-3 text-left text-[15.5px] font-medium transition-colors ${on ? "border-ink bg-ink text-white" : "border-line bg-bg-2 text-ink hover:border-ink"}`}
+                    >
+                      {o.name}
+                      {on && <IconCheck width={16} height={16} />}
+                    </button>
+                  );
+                })}
+              </div>
+              <Nav back={() => go(step - 1)} next={() => go(step + 1)} nextLabel={extra.length ? "Continue" : "Skip"} />
+            </fieldset>
+          )}
+
+          {step === Q + 2 && (
+            <div>
+              <h2 className="text-[30px] font-semibold leading-[1.1] tracking-[-0.035em] text-ink sm:text-[40px]">Where should we reply?</h2>
+              <p className="mt-3 text-[15px] text-muted">A person on our team reads every request.</p>
+              <div className="mt-8 grid gap-3 sm:grid-cols-2">
+                <Field id={`${uid}-name`} label="Your name" required value={f.name} onChange={(v) => setF({ ...f, name: v })} autoComplete="name" />
+                <Field id={`${uid}-phone`} label="Phone number" required type="tel" inputMode="tel" value={f.phone} onChange={(v) => setF({ ...f, phone: v })} autoComplete="tel" />
+                <Field id={`${uid}-email`} label="Email (optional)" type="email" value={f.email} onChange={(v) => setF({ ...f, email: v })} autoComplete="email" />
+                <Field id={`${uid}-business`} label="Business name (optional)" value={f.business} onChange={(v) => setF({ ...f, business: v })} autoComplete="organization" />
+                <div className="sm:col-span-2">
+                  <label htmlFor={`${uid}-details`} className="text-[13px] text-muted">Anything else we should know? (optional)</label>
+                  <textarea id={`${uid}-details`} rows={3} value={f.details} onChange={(e) => setF({ ...f, details: e.target.value })} className="mt-1.5 w-full rounded-xl border border-line-2 bg-white px-3.5 py-3 text-[16px] outline-none focus:border-ink" />
+                </div>
+              </div>
+              <Nav back={() => go(step - 1)} next={() => go(step + 1)} nextLabel="Review your brief" disabled={!detailsOk} hint={detailsOk ? undefined : "Add your name and a phone number to continue."} />
+            </div>
+          )}
+
+          {step === last && (
+            <div>
+              <h2 className="text-[30px] font-semibold leading-[1.1] tracking-[-0.035em] text-ink sm:text-[40px]">Your brief is ready.</h2>
+              <p className="mt-3 text-[15.5px] text-body">Send it and we reply with a quote and a timeline, in writing.</p>
+              <div className="mt-8 overflow-hidden rounded-2xl border border-line">
+                <div className="flex items-center justify-between bg-ink px-5 py-4 text-white">
+                  <span className="text-[15px] font-semibold">{subject.name}</span>
+                  <span className="text-[12.5px] text-white/60">Project brief</span>
+                </div>
+                <dl className="divide-y divide-line">
+                  {summary.map((r) => (
+                    <div key={r.label} className="grid grid-cols-[120px_1fr] gap-3 px-5 py-3 text-[14.5px]">
+                      <dt className="text-muted">{r.label}</dt>
+                      <dd className="text-ink">{r.value || "-"}</dd>
+                    </div>
+                  ))}
+                  {extra.length > 0 && (
+                    <div className="grid grid-cols-[120px_1fr] gap-3 px-5 py-3 text-[14.5px]">
+                      <dt className="text-muted">Also</dt>
+                      <dd className="text-ink">{extra.join(", ")}</dd>
+                    </div>
+                  )}
+                  <div className="grid grid-cols-[120px_1fr] gap-3 px-5 py-3 text-[14.5px]">
+                    <dt className="text-muted">Contact</dt>
+                    <dd className="text-ink">{[t("name"), t("phone"), t("email"), t("business")].filter(Boolean).join(" · ")}</dd>
+                  </div>
+                </dl>
+              </div>
+              <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+                {wa && (
+                  <a href={wa} target="_blank" rel="noopener noreferrer" className="btn btn-dark h-14 px-8 text-[16px]">
+                    <IconWhatsApp className="text-wa" /> Send on WhatsApp
+                  </a>
+                )}
+                <a href={mail} className={`btn ${wa ? "btn-light" : "btn-dark"} h-14 px-8 text-[16px]`}>
+                  <IconMail /> Send by email
+                </a>
+              </div>
+              <p className="mt-4 text-[13px] text-muted">Opens with everything above written in. Prefer to write yourself? {SITE.email}</p>
+              <button type="button" onClick={() => go(step - 1)} className="mt-6 text-[14px] text-muted underline underline-offset-2 hover:text-ink">
+                Back
+              </button>
+            </div>
+          )}
+        </div>
+
+        {/* Live summary, desktop */}
+        <aside className="hidden lg:block">
+          <div className="sticky top-24 space-y-3">
+            <div className="rounded-2xl border border-line p-5">
+              <p className="text-[13px] font-medium text-muted">Your project</p>
+              <p className="mt-1 text-[17px] font-semibold tracking-[-0.02em] text-ink">{subject.name}</p>
+              <dl className="mt-4 space-y-2.5">
+                {summary.map((r, i) => (
+                  <div key={r.label} className="text-[13.5px]">
+                    <dt className={i + 1 === step ? "font-medium text-ink" : "text-muted"}>{r.label}</dt>
+                    <dd className={`mt-0.5 ${r.value ? "text-ink" : "text-line-2"}`}>{r.value || "—"}</dd>
+                  </div>
+                ))}
+              </dl>
+            </div>
+            {subject.slug === "website-development" && (
+              <div className="rounded-2xl bg-ink p-5 text-white">
+                <p className="text-[15px] font-semibold">Your developer team</p>
+                <p className="mt-1.5 text-[13.5px] leading-[1.55] text-white/70">
+                  After launch, a team stays on call 24/7 on a monthly plan. Message us on WhatsApp and it gets fixed, changed or built.
+                </p>
+              </div>
+            )}
           </div>
-        )}
+        </aside>
       </div>
 
       {learnMore && (
-        <p className="mt-14 border-t border-line pt-5 text-[13.5px] text-muted">
+        <p className="mt-16 border-t border-line pt-5 text-[13.5px] text-muted">
           Want to read more first?{" "}
           <Link href={learnMore} className="text-ink underline underline-offset-2">
             Everything about {subject.name.toLowerCase()}
@@ -206,18 +308,18 @@ export function ServiceFlow({ subject, flow, learnMore }: { subject: FlowSubject
 
 function Nav({ back, next, nextLabel = "Continue", disabled, hint }: { back?: () => void; next?: () => void; nextLabel?: string; disabled?: boolean; hint?: string }) {
   return (
-    <div className="mt-8">
+    <div className="mt-9">
       <div className="flex items-center gap-3">
         {back && (
           <button type="button" onClick={back} className="btn btn-light h-12 px-5 text-[15px]">
             Back
           </button>
         )}
-        {next !== undefined || disabled ? (
+        {next && (
           <button type="button" onClick={next} disabled={disabled} className="btn btn-dark h-12 flex-1 px-6 text-[15px] disabled:opacity-40 sm:flex-none">
             {nextLabel} <IconArrow />
           </button>
-        ) : null}
+        )}
       </div>
       {hint && <p className="mt-3 text-[13px] text-muted">{hint}</p>}
     </div>
