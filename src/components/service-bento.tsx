@@ -1,88 +1,48 @@
 import Image from "next/image";
 import Link from "next/link";
-import { CATALOG } from "@/lib/catalog";
 import { SERVICES } from "@/lib/services";
-import { CardBrands } from "./card-brands";
-import { IconArrow, IconCheck } from "./icons";
-import { Vial } from "./demos/vial";
+import { IconArrow } from "./icons";
+import { LABEL_LOOKS } from "@/lib/labels";
+import { SiteRotator } from "./site-rotator";
 
 /**
  * The first thing under the headline: every service as a tile with its own
  * picture, so a visitor knows what we offer before scrolling.
  */
 export function ServiceBento() {
-  const pick = (slug: string) => CATALOG.find((p) => p.slug === slug)?.image;
-  const vials = ["bpc-157", "nad", "ghk-cu"].map(pick).filter((x): x is string => !!x);
   const svc = (slug: string) => SERVICES.find((s) => s.slug === slug)!;
+  const look = (key: string) => LABEL_LOOKS.find((l) => l.key === key)!.src;
 
   return (
     <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-      <Tile slug="payment-processing" title={svc("payment-processing").name} body="Accept cards online, with a backup processor ready if one goes down.">
-        <div className="flex h-full flex-col items-center justify-center gap-4">
-          <CardBrands />
-          <div className="w-full max-w-[230px] space-y-1.5 text-[12px]">
-            <Row label="Main processor" tone="ok" status="Active" />
-            <Row label="Backup processor" tone="muted" status="Ready" />
-          </div>
-        </div>
+      <Tile slug="website-development" title="Custom websites, any industry" body="Custom-coded and live in 72 hours to a week, with your own developer team on call.">
+        <SiteRotator />
       </Tile>
 
-      <Tile slug="wholesale" title={svc("wholesale").name} body="Our in-stock products in bulk, at wholesale prices.">
-        <div className="relative h-full">
-          {vials.map((src, i) => (
-            <div
-              key={src}
-              className="absolute top-1/2 h-[150px] w-[112px] overflow-hidden rounded-xl border border-line bg-white shadow-[0_10px_24px_-14px_rgba(0,0,0,0.35)]"
-              style={{ left: `calc(50% - 56px + ${(i - 1) * 74}px)`, zIndex: i === 1 ? 2 : 1, transform: `translateY(-50%) rotate(${(i - 1) * 6}deg) scale(${i === 1 ? 1.06 : 0.94})` }}
-            >
-              <Image src={src} alt="" fill sizes="120px" className="object-cover" />
+      <Tile slug="payment-processing" title="Payment processing, any industry" body="Cards, Apple Pay and Google Pay, with a backup processor always ready.">
+        <PayVisual />
+      </Tile>
+
+      <Tile slug="wholesale" title={svc("wholesale").name} body="Research products by the case, at wholesale prices that leave room for your margin.">
+        <Photo src="/supply/bulk.webp" alt="Cartons of vials packed for a bulk order" chip="Bulk quantities · wholesale pricing" />
+      </Tile>
+
+      <Tile slug="factory-direct" title={svc("factory-direct").name} body="Made to order at the manufacturer. A certificate of analysis comes with every wholesale lot.">
+        <Photo src="/supply/factory-coa.webp" alt="A vial filling line with a certificate of analysis on a clipboard" chip="COA included with wholesale" />
+      </Tile>
+
+      <Tile slug="white-label" title={svc("white-label").name} body="Your brand on every vial, in any look you want.">
+        <div className="flex h-full items-end justify-center gap-2 bg-[#141416] px-4 pt-5">
+          {["halo", "kinetic", "ember", "polar"].map((k, i) => (
+            <div key={k} className={`relative w-[22%] overflow-hidden rounded-t-lg ${i % 2 ? "h-[150px]" : "h-[165px]"}`}>
+              <Image src={look(k)} alt="" fill sizes="100px" className="object-cover" />
             </div>
           ))}
         </div>
       </Tile>
 
-      <Tile slug="factory-direct" title={svc("factory-direct").name} body="Large orders made to order at the manufacturer, at the lowest unit price.">
-        <div className="flex h-full items-center justify-center">
-          <ol className="flex items-center gap-2 text-[12px] text-ink">
-            {["Factory", "Lot documented", "You"].map((s, i) => (
-              <li key={s} className="flex items-center gap-2">
-                <span className={`rounded-lg px-3 py-2 font-medium ${i === 0 ? "bg-ink text-white" : i === 2 ? "bg-gold-tint text-gold" : "bg-white shadow-[0_1px_2px_rgba(0,0,0,0.08)]"}`}>{s}</span>
-                {i < 2 && <IconArrow className="text-muted" />}
-              </li>
-            ))}
-          </ol>
-        </div>
-      </Tile>
-
-      <Tile slug="white-label" title={svc("white-label").name} body="Your brand on every unit, with your own label design.">
-        <div className="flex h-full items-end justify-center gap-1 pb-1">
-          <Vial brand="Your Brand" product="BPC-157" size="10 mg" style="noir" width={92} />
-          <Vial brand="Your Brand" product="NAD+" size="500 mg" style="clinical" width={92} />
-          <Vial brand="Your Brand" product="Semax" size="10 mg" style="bold" width={92} />
-        </div>
-      </Tile>
-
       <Tile slug="fulfillment" title={svc("fulfillment").name} body="We store your stock, pack every order and ship it as your brand.">
-        <div className="flex h-full items-center justify-center">
-          <div className="w-full max-w-[240px] rounded-xl bg-white p-4 text-[12px] shadow-[0_1px_2px_rgba(0,0,0,0.08)]">
-            <p className="font-semibold text-ink">Order #1042 · Your Brand</p>
-            <ul className="mt-2.5 space-y-1.5">
-              {["Received", "Packed with your slip", "Shipped · tracking sent"].map((s) => (
-                <li key={s} className="flex items-center gap-2 text-body">
-                  <IconCheck width={14} height={14} className="text-ok" /> {s}
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-      </Tile>
-
-      <Tile slug="website-development" title="Custom websites" body="Hand-coded sites and stores, plus a developer team on call 24/7.">
-        <div className="relative h-full overflow-hidden">
-          <div className="absolute inset-x-3 top-3 overflow-hidden rounded-t-lg border border-b-0 border-line bg-white shadow-[0_10px_24px_-14px_rgba(0,0,0,0.35)]">
-            <Image src="/showcase/vanta-labs-desktop.webp" alt="" width={2160} height={1147} sizes="360px" className="h-auto w-full" />
-          </div>
-        </div>
+        <Photo src="/supply/fulfillment.webp" alt="A packing station with branded boxes ready to ship" chip="Packed & shipped as your brand" />
       </Tile>
     </ul>
   );
@@ -92,7 +52,7 @@ function Tile({ slug, title, body, children }: { slug: string; title: string; bo
   return (
     <li>
       <Link href={`/${slug}`} className="group flex h-full flex-col overflow-hidden rounded-2xl border border-line bg-white transition-[border-color,box-shadow] duration-200 hover:border-line-2 hover:shadow-[0_14px_36px_-20px_rgba(0,0,0,0.3)]">
-        <div className="h-[190px] bg-bg-2" aria-hidden="true">{children}</div>
+        <div className="relative h-[200px] overflow-hidden bg-[#141416]" aria-hidden="true">{children}</div>
         <div className="flex flex-1 flex-col p-5">
           <p className="text-[17px] font-semibold tracking-[-0.02em] text-ink">{title}</p>
           <p className="mt-1 text-[14.5px] leading-[1.5] text-muted">{body}</p>
@@ -105,14 +65,50 @@ function Tile({ slug, title, body, children }: { slug: string; title: string; bo
   );
 }
 
-function Row({ label, tone, status }: { label: string; tone: "ok" | "muted"; status: string }) {
+function Photo({ src, alt, chip }: { src: string; alt: string; chip: string }) {
   return (
-    <div className="flex items-center justify-between rounded-lg bg-white px-3 py-2 shadow-[0_1px_2px_rgba(0,0,0,0.06)]">
-      <span className="text-ink">{label}</span>
-      <span className={`inline-flex items-center gap-1.5 ${tone === "ok" ? "text-ok" : "text-muted"}`}>
-        <span className={`h-1.5 w-1.5 rounded-full ${tone === "ok" ? "bg-ok" : "bg-line-2"}`} />
-        {status}
-      </span>
+    <>
+      <Image src={src} alt={alt} fill sizes="(min-width: 1024px) 380px, (min-width: 640px) 50vw, 100vw" className="object-cover transition-transform duration-500 group-hover:scale-[1.03]" />
+      <span className="absolute bottom-3 left-3 rounded-full bg-ink/85 px-3 py-1.5 text-[12px] font-medium text-white">{chip}</span>
+    </>
+  );
+}
+
+function ApplePay({ className = "" }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 52 20" className={className} aria-hidden="true">
+      <path d="M10.6 5.2c-.6.7-1.5 1.2-2.4 1.1-.1-.9.3-1.9.9-2.5.6-.7 1.6-1.2 2.4-1.2.1.9-.3 1.8-.9 2.6Zm.9 1.4c-1.3-.1-2.5.8-3.1.8-.6 0-1.6-.7-2.7-.7-1.4 0-2.7.8-3.4 2.1-1.5 2.5-.4 6.2 1 8.3.7 1 1.5 2.1 2.6 2 1-.1 1.4-.7 2.7-.7 1.2 0 1.6.7 2.7.6 1.1 0 1.8-1 2.5-2 .8-1.1 1.1-2.2 1.1-2.3 0 0-2.1-.8-2.2-3.3 0-2.1 1.7-3 1.8-3.1-1-1.4-2.5-1.6-3-1.7Z" fill="currentColor" />
+      <text x="17" y="15" fontFamily="-apple-system, BlinkMacSystemFont, Arial, sans-serif" fontWeight="600" fontSize="12" fill="currentColor">Pay</text>
+    </svg>
+  );
+}
+
+/** A dark checkout sheet: Apple Pay front and centre, cards and backup below. */
+function PayVisual() {
+  return (
+    <div className="flex h-full items-center justify-center px-5">
+      <div className="w-full max-w-[260px] rounded-2xl border border-white/10 bg-[#1d1d20] p-4 text-white shadow-[0_18px_40px_-20px_rgba(0,0,0,0.8)]">
+        <div className="flex items-center justify-between text-[11.5px] text-white/60">
+          <span>Checkout</span>
+          <span className="inline-flex items-center gap-1.5 text-[#5fd08f]">
+            <span className="h-1.5 w-1.5 rounded-full bg-[#5fd08f]" /> Processor active
+          </span>
+        </div>
+        <div className="mt-3 flex h-11 items-center justify-center rounded-xl bg-white text-black">
+          <ApplePay className="h-[22px]" />
+        </div>
+        <div className="mt-2 grid grid-cols-4 gap-1.5">
+          {["VISA", "MC", "AMEX", "G Pay"].map((b) => (
+            <span key={b} className="flex h-7 items-center justify-center rounded-md border border-white/12 text-[10px] font-semibold tracking-wide text-white/80">
+              {b}
+            </span>
+          ))}
+        </div>
+        <p className="mt-3 flex items-center justify-between border-t border-white/10 pt-2.5 text-[11px] text-white/55">
+          <span>Backup processor</span>
+          <span className="text-white/80">Ready</span>
+        </p>
+      </div>
     </div>
   );
 }

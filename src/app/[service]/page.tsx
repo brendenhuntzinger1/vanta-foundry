@@ -108,7 +108,7 @@ export default async function ServicePage(props: PageProps<"/[service]">) {
       {s.slug === "white-label" && (
         <section className="mt-28">
           <Container>
-            <SectionHead label="Label styles" title="Make it look like yours." lede="Our own Vanta Labs label, and three other directions a brand can take. Every label carries the lot number and the research-use statement." />
+            <SectionHead label="Label styles" title="Make it look like yours." lede="Our own Vanta Labs label, and five other directions a brand can take. Every label carries the lot number and the research-use statement." />
             <div className="mt-10">
               <LabelGallery />
             </div>

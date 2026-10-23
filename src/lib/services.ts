@@ -33,13 +33,13 @@ export const SERVICES: Service[] = [
   {
     slug: "payment-processing",
     name: "Payment processing",
-    short: "Take card payments online, with a backup processor ready if one goes down.",
-    title: "Card payments that keep working.",
+    short: "Processing that keeps you taking payments: cards, Apple Pay and Google Pay, with a backup ready.",
+    title: "Processing that keeps you taking payments.",
     answer:
       "Vanta Foundry sets up payment processing for online businesses: a merchant account to accept card payments, connected to your checkout, with a second processor on standby so a closure or outage doesn't stop your sales. Declined and abandoned checkouts get a follow-up text or email.",
-    forWho: "Online businesses, including the ones mainstream processors are quick to turn down.",
+    forWho: "Businesses in any industry, including the ones mainstream processors are quick to turn down.",
     includes: [
-      "A merchant account to accept card payments",
+      "Accept Visa, Mastercard, Amex, Discover, Apple Pay and Google Pay",
       "A backup processor connected and ready",
       "Switching processors is a setting, not a new website",
       "Follow-up texts and emails for declined and abandoned checkouts",
@@ -146,12 +146,13 @@ export const SERVICES: Service[] = [
   {
     slug: "website-development",
     name: "Website development",
-    short: "Custom-coded sites and stores, plus a developer team on call 24/7.",
-    title: "Custom-coded websites. Not templates.",
+    short: "Premium custom-coded sites for any industry, live in 72 hours to a week, with your own developer team.",
+    title: "A custom website, with its own developer team.",
     answer:
-      "Vanta Foundry designs and hand-codes custom websites and online stores for any kind of business: no page-builder templates, no AI-generated filler. We design it, build it, connect payments and launch it. Add a monthly developer team on call 24/7 to fix issues, change code and keep it running.",
-    forWho: "Any business that needs a new website or a better one.",
+      "Vanta Foundry designs and hand-codes custom websites and online stores for any kind of business: no page-builder templates, no AI-generated filler. Most sites are fully built and live within 72 hours to a week, and our developer team handles any specific request. We design it, build it, connect payments and launch it. Then keep your own developer team on a monthly plan, on call 24/7, so you never touch the maintenance.",
+    forWho: "Any business in any industry that needs a new website or a better one: skincare, coffee, apparel, services, supplements, research supply and more.",
     includes: [
+      "Live in 72 hours to a week, built by our developer team",
       "Custom design, built from scratch for your brand",
       "Hand-written code: fast, secure and yours",
       "Online store, booking site or company site, with payments connected",
@@ -160,7 +161,8 @@ export const SERVICES: Service[] = [
     ],
     steps: ["Tell us what the site needs to do", "We design it and you sign off", "We build it, test it and launch it"],
     faqs: [
-      { q: "Do you only build for peptide or research companies?", a: "No. We build for any lawful business." },
+      { q: "Do you only build for peptide or research companies?", a: "No. We build websites for every industry and any lawful business. Research supply is one of the things we also offer." },
+      { q: "How fast can my site be live?", a: "Most sites are fully built and live within 72 hours to a week, depending on what it needs to do. Any specific request, feature or integration is handled by our developer team." },
       { q: "Can you redo my current site?", a: "Yes. We can rebuild it or improve what you have, whichever makes more sense." },
       { q: "How much is a website?", a: "It depends on what the site needs to do. Tell us and we'll quote it." },
       { q: "What is the monthly developer team?", a: "A monthly plan that gives you a development team on call 24/7. Anything breaks, needs changing or needs adding, you message us and it gets fixed. It covers sites we build and, after a review, sites you already have." },

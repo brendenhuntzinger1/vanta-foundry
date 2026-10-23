@@ -1,3 +1,4 @@
+import Image from "next/image";
 import type { ReactNode } from "react";
 
 /**
@@ -9,12 +10,15 @@ export function Screen({
   subtitle,
   status,
   children,
+  image,
   className = "",
 }: {
   title: string;
   subtitle?: string;
   status?: ReactNode;
   children: ReactNode;
+  /** Optional photo shown above the screen content. */
+  image?: { src: string; alt: string };
   className?: string;
 }) {
   return (
@@ -26,6 +30,11 @@ export function Screen({
         </div>
         <div className="flex shrink-0 items-center gap-2">{status}</div>
       </div>
+      {image && (
+        <div className="relative aspect-[16/7] border-b border-line">
+          <Image src={image.src} alt={image.alt} fill sizes="(min-width: 1024px) 560px, 92vw" className="object-cover" />
+        </div>
+      )}
       <div className="p-5">{children}</div>
       <p className="border-t border-line bg-bg-2 px-5 py-2 text-[11px] text-muted">Example account</p>
     </div>

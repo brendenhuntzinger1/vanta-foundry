@@ -6,6 +6,8 @@ import { IconArrow, IconCheck } from "@/components/icons";
 import { ServiceIcon } from "@/components/service-icon";
 import { ServicePicker } from "@/components/service-picker";
 import { ServiceBento } from "@/components/service-bento";
+import { LaunchTimeline } from "@/components/launch-timeline";
+import { Agreements } from "@/components/agreements";
 import { JsonLd, faqPage } from "@/lib/jsonld";
 import { SERVICES } from "@/lib/services";
 import { SITE } from "@/lib/site";
@@ -21,11 +23,19 @@ const FAQS = [
   },
   {
     q: "Do you only work with peptide or research companies?",
-    a: "No. Payment processing and website development are for any lawful business. Wholesale, factory-direct and white-label supply are research materials, for research use only.",
+    a: "No. Websites and payment processing are for every industry and any lawful business. We also offer research supply: wholesale, factory-direct and white-label research materials, for research use only.",
+  },
+  {
+    q: "How fast can I be up and running?",
+    a: "A full launch (website, payments, product, labels and shipping) typically takes about eight days. A website on its own is usually live in 72 hours to a week. Processor approval can affect timing.",
   },
   {
     q: "Do I have to use every service?",
     a: "No. Pick one or pick them all. Each service works on its own.",
+  },
+  {
+    q: "Can we sign an agreement before we start?",
+    a: "Yes. We put the scope, timeline and pricing in a written agreement that both parties sign, and we sign an NDA when you need one. Ask for it in your first message.",
   },
   {
     q: "Who is behind Vanta Foundry?",
@@ -37,6 +47,24 @@ const FAQS = [
       ? `On WhatsApp, using the green button on any page, or by email at ${SITE.email}.`
       : `By email at ${SITE.email}.`,
   },
+];
+
+const WANTS = [
+  { label: "A custom website", href: "/website-development" },
+  { label: "Payment processing", href: "/payment-processing" },
+  { label: "Wholesale research products", href: "/wholesale" },
+  { label: "Products under my own label", href: "/white-label" },
+  { label: "3PL & shipping", href: "/fulfillment" },
+  { label: "Factory-direct supply", href: "/factory-direct" },
+];
+
+const WHY = [
+  { t: "We use everything we sell", b: "Our own store, Vanta Labs, runs on the same supply, payments and code we offer you." },
+  { t: "Websites live in 72 hours to a week", b: "Designed for your brand and hand-coded for any industry. Never a template, never AI filler." },
+  { t: "Payments that stay up, any industry", b: "A main and a backup processor. If one closes, you switch and keep selling." },
+  { t: "Your own developer team", b: "A monthly plan with a team on call 24/7 for fixes, changes and updates." },
+  { t: "Documented research products", b: "Lot numbers on every unit and certificates of analysis matched to each lot." },
+  { t: "One team, one conversation", b: "Website, payments, supply and shipping, handled in one WhatsApp thread." },
 ];
 
 const STEPS = [
@@ -57,14 +85,26 @@ export default function Home() {
               The team behind {SITE.builtStores.join(" & ")}
             </p>
             <h1 className="h-display mt-7 text-[44px] text-ink sm:text-[72px]">
-              Payments, supply, shipping and websites.
-              <span className="block text-muted">One team for all of it.</span>
+              Everything your brand needs to sell online.
+              <span className="block text-muted">Built properly, by one team.</span>
             </h1>
-            <p className="mx-auto mt-6 max-w-[620px] text-[18px] leading-[1.6] text-body">
-              Payment processing, wholesale and factory-direct supply, white label, 3PL fulfillment and website
-              development. Pick what you need. We set it up.
+            <p className="mx-auto mt-6 max-w-[680px] text-[18px] leading-[1.6] text-body">
+              Custom-coded websites and payment processing for any industry, live in days, with your own developer team.
+              And if you sell research products: wholesale or factory-direct supply, your own label, stored and shipped for you.
             </p>
-            <div className="mt-9 flex flex-wrap justify-center gap-3">
+            <div className="mx-auto mt-9 max-w-[760px]">
+              <p className="text-[14px] font-medium text-muted">I want…</p>
+              <ul className="mt-3 flex flex-wrap justify-center gap-2">
+                {WANTS.map((w) => (
+                  <li key={w.href}>
+                    <Link href={w.href} className="inline-flex h-10 items-center gap-1.5 rounded-full border border-line-2 bg-white px-4 text-[14.5px] text-ink transition-colors hover:border-ink">
+                      {w.label} <IconArrow className="text-muted" />
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="mt-8 flex flex-wrap justify-center gap-3">
               <Link href="#services" className="btn btn-dark h-12 px-6 text-[15px]">
                 Choose your services <IconArrow />
               </Link>
@@ -76,6 +116,38 @@ export default function Home() {
           </div>
         </Container>
       </section>
+
+      {/* Launch timeline */}
+      <section id="timeline" className="mt-28 scroll-mt-20">
+        <Container>
+          <SectionHead
+            label="Launch in 8 days"
+            title="From nothing to selling in eight days."
+            lede="Website, payments, product, labels and shipping, handled by one team at the same time. This is how a full launch runs."
+          />
+          <div className="mt-12">
+            <LaunchTimeline />
+          </div>
+        </Container>
+      </section>
+
+      {/* Why us */}
+      <section className="mt-28">
+        <Container>
+          <SectionHead label="Why Vanta Foundry" title="We run it ourselves first." lede="Everything we sell, we use on our own store, Vanta Labs. That's why it works." />
+          <ul className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {WHY.map((w) => (
+              <li key={w.t} className="rounded-2xl border border-line p-6">
+                <IconCheck className="text-gold" />
+                <p className="mt-4 text-[18px] font-semibold tracking-[-0.02em] text-ink">{w.t}</p>
+                <p className="mt-2 text-[15px] leading-[1.6] text-body">{w.b}</p>
+              </li>
+            ))}
+          </ul>
+        </Container>
+      </section>
+
+      <Agreements />
 
       {/* The picker: the main way in */}
       <section id="services" className="mt-28 scroll-mt-20">

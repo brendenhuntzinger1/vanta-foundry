@@ -2,7 +2,8 @@ import { ContactButtons } from "./contact-buttons";
 import { IconCheck } from "./icons";
 
 const BUILD = [
-  { t: "Designed for your brand", b: "A design made for you, not a theme everyone else is using." },
+  { t: "Live in 72 hours to a week", b: "Our developer team builds it fast, without cutting corners. Any specific request gets built." },
+  { t: "Designed for your brand", b: "A design made for you, not a theme everyone else is using. Any industry." },
   { t: "Custom-coded", b: "Hand-written code on a modern stack. No page builders, no bloated plugins, no AI filler." },
   { t: "Fast on every phone", b: "Built mobile-first, because that is where most of your customers are." },
   { t: "Found on Google and in AI search", b: "Clean structure, structured data and answers written to be quoted." },
@@ -17,7 +18,7 @@ export function WebDevExtras() {
       <section className="mt-28">
         <div className="mx-auto max-w-[1160px] px-5">
           <p className="text-[14px] font-medium text-gold">What we build</p>
-          <h2 className="h-section mt-2 max-w-2xl text-[34px] text-ink sm:text-[46px]">Quality you can feel. Not AI-made templates.</h2>
+          <h2 className="h-section mt-2 max-w-2xl text-[34px] text-ink sm:text-[46px]">Custom-coded. Not templates, not AI filler.</h2>
           <ul className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {BUILD.map((x) => (
               <li key={x.t} className="rounded-2xl border border-line p-6">
@@ -49,6 +50,7 @@ export function WebDevExtras() {
             </div>
             <ul className="space-y-3">
               {[
+                "Any specific request: features, integrations, pages",
                 "24/7 access to the developer team",
                 "Bug fixes and code changes, as they come up",
                 "Updates, new pages and new features",

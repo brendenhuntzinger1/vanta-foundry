@@ -9,7 +9,7 @@ const LINES = [
 /** A wholesale order request: items, quantities, lots. No prices: they are confirmed per order. */
 export function WholesaleDemo() {
   return (
-    <Screen title="Wholesale order #W-3318" subtitle={`${EXAMPLE_BRAND} · sent on WhatsApp`} status={<Pill tone="ok">Confirmed</Pill>}>
+    <Screen image={{ src: "/supply/bulk.webp", alt: "Cartons of vials for a bulk order" }} title="Wholesale order #W-3318" subtitle={`${EXAMPLE_BRAND} · sent on WhatsApp`} status={<Pill tone="ok">Confirmed</Pill>}>
       <div className="overflow-hidden rounded-xl border border-line">
         <div className="grid grid-cols-[1fr_auto_auto] gap-4 border-b border-line bg-bg-2 px-4 py-2.5 text-[12px] font-medium text-muted">
           <span>Item</span>
