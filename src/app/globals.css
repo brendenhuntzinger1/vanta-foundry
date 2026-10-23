@@ -192,3 +192,8 @@ body {
   color: var(--ink);
   font-weight: 600;
 }
+
+/* The wholesale inquiry bar replaces the floating WhatsApp button while it shows. */
+body[data-inquiry="1"] .floating-wa {
+  display: none;
+}

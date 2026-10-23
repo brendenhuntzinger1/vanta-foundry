@@ -44,12 +44,17 @@ export function emailLink(subject?: string, body?: string) {
  */
 export const NO_WHATSAPP_PATHS = ["/website-development", "/start/website-development", "/work"];
 
+/** True on every website-development page, including the service pages under it and each case study. */
+export function isWebsitePath(pathname: string) {
+  return NO_WHATSAPP_PATHS.some((p) => pathname === p || pathname.startsWith(`${p}/`));
+}
+
 export const NAV = [
-  { href: "/website-development", label: "Websites" },
+  { href: "/website-development", label: "Website development" },
   { href: "/supply", label: "Wholesale & 3PL" },
+  { href: "/catalog", label: "Catalog" },
   { href: "/work", label: "Our work" },
-  { href: "/industries", label: "Industries" },
-  { href: "/about", label: "About" },
+  { href: "/guides", label: "Guides" },
   { href: "/contact", label: "Contact" },
 ] as const;
 

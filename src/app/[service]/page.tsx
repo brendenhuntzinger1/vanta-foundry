@@ -7,53 +7,46 @@ import { ContactButtons } from "@/components/contact-buttons";
 import { IconArrow, IconCheck } from "@/components/icons";
 import { ServiceIcon } from "@/components/service-icon";
 import { LabelGallery } from "@/components/label-gallery";
-import { WebDevExtras } from "@/components/web-dev-extras";
-import { WebsiteLanding } from "@/components/website-landing";
 import { CardBrands } from "@/components/card-brands";
-import { CatalogBrowser } from "@/app/catalog/catalog-browser";
+import { OfferView } from "@/components/page-tracker";
 import { SERVICES, getService } from "@/lib/services";
 import { getGuide } from "@/lib/guides";
-import { JsonLd, ORG_ID, breadcrumbs, faqPage } from "@/lib/jsonld";
+import { JsonLd, breadcrumbs, faqPage, service } from "@/lib/jsonld";
 import { pageMetadata } from "@/lib/metadata";
-import { SITE } from "@/lib/site";
+import { SEO_PAGES, type SeoPage } from "@/lib/seo-pages";
 
 export const dynamicParams = false;
 
+/** Services with their own route folder (src/app/<slug>), not this template. */
+const DEDICATED = new Set(["website-development", "wholesale"]);
+
+/** Approved title and H1 for the services the search brief covers. */
+const SEO: Record<string, SeoPage> = {
+  "white-label": SEO_PAGES.privateLabel,
+  fulfillment: SEO_PAGES.fulfillment,
+  "factory-direct": SEO_PAGES.factoryDirect,
+};
+
 export function generateStaticParams() {
-  return SERVICES.map((s) => ({ service: s.slug }));
+  return SERVICES.filter((s) => !DEDICATED.has(s.slug)).map((s) => ({ service: s.slug }));
 }
 
 export async function generateMetadata(props: PageProps<"/[service]">): Promise<Metadata> {
   const { service } = await props.params;
   const s = getService(service);
   if (!s) return {};
-  return pageMetadata({ path: `/${s.slug}`, title: s.name, description: s.answer });
+  const seo = SEO[s.slug];
+  return pageMetadata({ path: `/${s.slug}`, title: seo?.title ?? s.name, description: seo?.description ?? s.answer });
 }
 
 export default async function ServicePage(props: PageProps<"/[service]">) {
-  const { service } = await props.params;
-  const s = getService(service);
-  if (!s) notFound();
+  const { service: slug } = await props.params;
+  const s = getService(slug);
+  if (!s || DEDICATED.has(s.slug)) notFound();
+  const seo = SEO[s.slug];
   const guides = s.guides.map(getGuide).filter((g) => g !== undefined);
   const others = SERVICES.filter((x) => x.slug !== s.slug);
-  const supply = ["wholesale", "factory-direct", "white-label"].includes(s.slug);
-  const schema = (
-    <>
-      <JsonLd data={{ "@context": "https://schema.org", "@type": "Service", name: `${SITE.name} ${s.name}`, description: s.answer, url: `${SITE.url}/${s.slug}`, provider: { "@id": ORG_ID } }} />
-      <JsonLd data={faqPage(s.faqs)} />
-      <JsonLd data={breadcrumbs([{ name: "Home", path: "/" }, { name: s.name, path: `/${s.slug}` }])} />
-    </>
-  );
-
-  // Website development has its own premium landing page (ready for ads).
-  if (s.slug === "website-development") {
-    return (
-      <>
-        <WebsiteLanding s={s} />
-        {schema}
-      </>
-    );
-  }
+  const supply = ["factory-direct", "white-label", "fulfillment"].includes(s.slug);
 
   return (
     <>
@@ -62,6 +55,12 @@ export default async function ServicePage(props: PageProps<"/[service]">) {
           <nav aria-label="Breadcrumb" className="text-[13.5px] text-muted">
             <Link href="/" className="hover:text-ink">Home</Link>
             <span className="mx-2" aria-hidden="true">/</span>
+            {supply && (
+              <>
+                <Link href="/supply" className="hover:text-ink">Wholesale &amp; 3PL</Link>
+                <span className="mx-2" aria-hidden="true">/</span>
+              </>
+            )}
             <span className="text-ink">{s.name}</span>
           </nav>
           <div className="mt-10 grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
@@ -70,12 +69,13 @@ export default async function ServicePage(props: PageProps<"/[service]">) {
                 <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-bg-2"><ServiceIcon slug={s.slug} /></span>
                 {s.name}
               </p>
-              <h1 className="h-display mt-6 text-[42px] text-ink sm:text-[60px]">{s.title}</h1>
+              <h1 className="h-display mt-6 text-[40px] text-ink sm:text-[56px]">{seo?.h1 ?? s.title}</h1>
+              {seo && <p className="mt-4 text-[21px] font-medium tracking-[-0.02em] text-ink">{s.title}</p>}
               <p className="mt-5 text-[18px] leading-[1.6] text-body">{s.answer}</p>
               {s.slug === "payment-processing" && <CardBrands className="mt-5" />}
               <div className="mt-8 flex flex-wrap gap-3">
                 <Link href={`/start/${s.slug}`} className="btn btn-dark h-12 px-6 text-[15px]">
-                  Get started <IconArrow />
+                  {seo?.cta ?? "Get started"} <IconArrow />
                 </Link>
                 {supply && (
                   <Link href="/catalog" className="btn btn-light h-12 px-6 text-[15px]">See the catalog</Link>
@@ -88,21 +88,6 @@ export default async function ServicePage(props: PageProps<"/[service]">) {
           </div>
         </Container>
       </section>
-
-      {s.slug === "wholesale" && (
-        <section id="catalog" className="mt-24 scroll-mt-20">
-          <Container>
-            <SectionHead
-              label="Catalog"
-              title="Everything you can order, right here."
-              lede="Tap Inquire on any product and WhatsApp opens with it filled in. We reply with wholesale pricing. Every wholesale lot comes with a certificate of analysis."
-            />
-            <div className="mt-10">
-              <CatalogBrowser />
-            </div>
-          </Container>
-        </section>
-      )}
 
       <section className="mt-28">
         <Container className="grid gap-6 md:grid-cols-2">
@@ -137,8 +122,6 @@ export default async function ServicePage(props: PageProps<"/[service]">) {
         </Container>
       </section>
 
-      {s.slug === "website-development" && <WebDevExtras />}
-
       {s.slug === "white-label" && (
         <section className="mt-28">
           <Container>
@@ -146,6 +129,19 @@ export default async function ServicePage(props: PageProps<"/[service]">) {
             <div className="mt-10">
               <LabelGallery />
             </div>
+          </Container>
+        </section>
+      )}
+
+      {supply && (
+        <section className="mt-24">
+          <Container>
+            <p className="max-w-2xl text-[16px] leading-[1.65] text-body">
+              Supply starts from the{" "}
+              <Link href="/catalog" className="text-ink underline underline-offset-2">wholesale peptide catalog</Link>. Each lot is documented: see{" "}
+              <Link href="/wholesale/testing" className="text-ink underline underline-offset-2">batch testing documentation</Link> and{" "}
+              <Link href="/wholesale/ordering" className="text-ink underline underline-offset-2">how wholesale ordering works</Link>.
+            </p>
           </Container>
         </section>
       )}
@@ -189,9 +185,16 @@ export default async function ServicePage(props: PageProps<"/[service]">) {
 
       <CtaBand />
 
-      <JsonLd data={{ "@context": "https://schema.org", "@type": "Service", name: `${SITE.name} ${s.name}`, description: s.answer, url: `${SITE.url}/${s.slug}`, provider: { "@id": ORG_ID } }} />
+      <OfferView id={s.slug} type={supply ? "wholesale" : "website"} label={s.name} />
+      <JsonLd data={service({ name: seo?.h1 ?? s.name, description: s.answer, path: `/${s.slug}` })} />
       <JsonLd data={faqPage(s.faqs)} />
-      <JsonLd data={breadcrumbs([{ name: "Home", path: "/" }, { name: s.name, path: `/${s.slug}` }])} />
+      <JsonLd
+        data={breadcrumbs([
+          { name: "Home", path: "/" },
+          ...(supply ? [{ name: "Wholesale & 3PL", path: "/supply" }] : []),
+          { name: s.name, path: `/${s.slug}` },
+        ])}
+      />
     </>
   );
 }

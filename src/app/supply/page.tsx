@@ -7,16 +7,12 @@ import { CatalogBrowser } from "@/app/catalog/catalog-browser";
 import { IconArrow, IconCheck, IconWhatsApp } from "@/components/icons";
 import { CATALOG } from "@/lib/catalog";
 import { getService } from "@/lib/services";
-import { JsonLd, ORG_ID, breadcrumbs, faqPage } from "@/lib/jsonld";
+import { JsonLd, breadcrumbs, faqPage, service } from "@/lib/jsonld";
 import { pageMetadata } from "@/lib/metadata";
+import { SEO_PAGES } from "@/lib/seo-pages";
 import { RUO_NOTICE, SITE, whatsappLink } from "@/lib/site";
 
-export const metadata: Metadata = pageMetadata({
-  path: "/supply",
-  title: "Peptide wholesale, white label & 3PL",
-  description:
-    "Research peptides wholesale or factory-direct with a COA for every wholesale lot, your own label on every vial, and storage, packing and shipping as your brand. Research use only.",
-});
+export const metadata: Metadata = pageMetadata({ path: "/supply", title: SEO_PAGES.supply.title, description: SEO_PAGES.supply.description });
 
 const STEPS = [
   { t: "Pick your products", b: "Browse the catalog below and tap Inquire, or send us your list." },
@@ -52,7 +48,7 @@ export default function SupplyPage() {
             <div>
               <p className="text-[14px] font-medium text-gold-fill">Wholesale &amp; 3PL · for research brands</p>
               <h1 className="h-display mt-5 text-[46px] leading-[0.98] sm:text-[76px]">
-                Peptide supply,
+                Peptide supply,{" "}
                 <span className="block text-white/45">
                   done <span className="accent text-white">for you.</span>
                 </span>
@@ -114,9 +110,14 @@ export default function SupplyPage() {
               <p className="mt-4 text-[17px] leading-[1.6] text-body">
                 Every wholesale lot comes with its certificate of analysis, matched by lot number to the units you receive.
               </p>
-              <Link href="/standards" className="mt-6 inline-flex items-center gap-1.5 text-[15px] font-medium text-ink underline underline-offset-4">
-                Our standards <IconArrow />
-              </Link>
+              <div className="mt-6 flex flex-wrap gap-x-6 gap-y-2">
+                <Link href="/wholesale/testing" className="inline-flex items-center gap-1.5 text-[15px] font-medium text-ink underline underline-offset-4">
+                  Published reports <IconArrow />
+                </Link>
+                <Link href="/standards" className="inline-flex items-center gap-1.5 text-[15px] font-medium text-ink underline underline-offset-4">
+                  Our standards <IconArrow />
+                </Link>
+              </div>
             </div>
             <ul className="space-y-3">
               {PROOF.map((p) => (
@@ -135,7 +136,8 @@ export default function SupplyPage() {
           <div className="mx-auto max-w-[760px] text-center">
             <h2 className="h-section text-[36px] text-ink sm:text-[54px]">The catalog.</h2>
             <p className="mt-4 text-[18px] leading-[1.6] text-body">
-              Tap Inquire on any product and WhatsApp opens with it filled in. We reply with wholesale pricing.
+              Tap Inquire on any product and WhatsApp opens with it filled in. We reply with wholesale pricing. Or open the full{" "}
+              <Link href="/catalog" className="text-ink underline underline-offset-2">wholesale peptide catalog</Link>, with a page per product.
             </p>
           </div>
           <div className="mt-12">
@@ -201,7 +203,7 @@ export default function SupplyPage() {
         lede="Send us what you need on WhatsApp or by email. A person on our team replies with pricing."
         primary={{ href: "#catalog", label: "Browse the catalog" }}
       />
-      <JsonLd data={{ "@context": "https://schema.org", "@type": "Service", name: "Peptide wholesale, white label & 3PL", description: "Research peptides wholesale or factory-direct with COAs, white label and fulfillment. Research use only.", url: `${SITE.url}/supply`, provider: { "@id": ORG_ID } }} />
+      <JsonLd data={service({ name: "Wholesale, white label & 3PL for research brands", description: "Research peptides wholesale or factory-direct with COAs, white label and fulfillment. Research use only.", path: "/supply" })} />
       <JsonLd data={faqPage(faqs)} />
       <JsonLd data={breadcrumbs([{ name: "Home", path: "/" }, { name: "Wholesale & 3PL", path: "/supply" }])} />
     </>

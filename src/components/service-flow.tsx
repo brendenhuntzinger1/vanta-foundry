@@ -6,6 +6,8 @@ import Link from "next/link";
 import { type Flow, type FlowOption, optLabel } from "@/lib/flows";
 import { SERVICES } from "@/lib/services";
 import { SITE, emailLink, whatsappLink } from "@/lib/site";
+import { attributionRows } from "@/lib/attribution";
+import { track } from "@/lib/track";
 import { IconArrow, IconCheck, IconMail, IconWhatsApp } from "./icons";
 
 /** Wall-clock time, read only in effects and event handlers. */
@@ -39,9 +41,16 @@ export function ServiceFlow({ subject, flow, learnMore }: { subject: FlowSubject
   const [send, setSend] = useState<"idle" | "sending" | "sent" | "fallback" | "error">("idle");
   const [sendError, setSendError] = useState("");
   const started = useRef(0);
+  // One reference per brief: a retry after a failure reuses it, so the team
+  // never gets the same brief twice (the server passes it to Resend as an
+  // idempotency key).
+  const leadId = useRef("");
+  const [ref, setRef] = useState("");
   useEffect(() => {
     started.current = now();
-  }, []);
+    leadId.current = typeof crypto !== "undefined" && "randomUUID" in crypto ? crypto.randomUUID() : `${now()}-${Math.random().toString(36).slice(2)}`;
+    track("inquiry_start", { form: subject.slug });
+  }, [subject.slug]);
 
   const phoneOk = t("phone").replace(/\D/g, "").length >= 10;
   const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(t("email"));
@@ -71,8 +80,10 @@ export function ServiceFlow({ subject, flow, learnMore }: { subject: FlowSubject
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
+          id: leadId.current,
           service: subject.name,
           answers: [...summary, ...(extra.length ? [{ label: "Also", value: extra.join(", ") }] : [])],
+          source: attributionRows(),
           name: t("name"),
           email: t("email"),
           phone: t("phone"),
@@ -83,15 +94,22 @@ export function ServiceFlow({ subject, flow, learnMore }: { subject: FlowSubject
           elapsed: now() - started.current,
         }),
       });
-      const data = (await res.json().catch(() => ({}))) as { ok?: boolean; fallback?: boolean; error?: string };
-      if (data.ok) setSend("sent");
-      else if (data.fallback) setSend("fallback");
-      else {
+      const data = (await res.json().catch(() => ({}))) as { ok?: boolean; fallback?: boolean; error?: string; ref?: string };
+      if (data.ok) {
+        setSend("sent");
+        setRef(data.ref ?? "");
+        track("inquiry_submitted", { form: subject.slug, ref: data.ref ?? "" });
+      } else if (data.fallback) {
+        setSend("fallback");
+        track("inquiry_error", { form: subject.slug, code: `fallback_${res.status}` });
+      } else {
         setSend("error");
         setSendError(data.error ?? "Something went wrong. Please try again.");
+        track("inquiry_error", { form: subject.slug, code: `validation_${res.status}` });
       }
     } catch {
       setSend("fallback");
+      track("inquiry_error", { form: subject.slug, code: "network" });
     }
   };
   const wa = whatsappLink(message);
@@ -305,13 +323,14 @@ export function ServiceFlow({ subject, flow, learnMore }: { subject: FlowSubject
                     <div className="rounded-2xl bg-ink p-6 text-white">
                       <p className="flex items-center gap-2 text-[18px] font-semibold"><IconCheck className="text-gold-fill" /> Brief received. Thank you, {t("name").split(" ")[0]}.</p>
                       <p className="mt-2 text-[14.5px] leading-[1.6] text-white/70">A project lead will review it and reach out at {t("email")} or {t("phone")} with next steps, a quote and a timeline.</p>
+                      {ref && <p className="mt-2 text-[13px] text-white/50">Your reference: <span className="font-mono">{ref}</span></p>}
                       <Link href="/work" className="mt-5 inline-flex items-center gap-1.5 text-[14px] font-medium text-white underline underline-offset-4">While you wait, see our work <IconArrow /></Link>
                     </div>
                   ) : send === "fallback" ? (
                     <div className="rounded-2xl border border-line p-6">
                       <p className="text-[16px] font-semibold text-ink">One more tap.</p>
                       <p className="mt-1.5 text-[14.5px] text-body">Send your brief from your email app. It opens with everything written in.</p>
-                      <a href={mail} className="btn btn-dark mt-5 h-14 px-8 text-[16px]"><IconMail /> Send by email</a>
+                      <a href={mail} onClick={() => track("contact_click", { channel: "email", form: `${subject.slug}_fallback` })} className="btn btn-dark mt-5 h-14 px-8 text-[16px]"><IconMail /> Send by email</a>
                     </div>
                   ) : (
                     <>

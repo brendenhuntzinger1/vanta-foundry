@@ -76,7 +76,7 @@ export const SERVICES: Service[] = [
       { q: "Who can buy wholesale?", a: "Businesses that sell or use these materials for research. We don't supply businesses that market them for human or veterinary use." },
     ],
     demo: "wholesale",
-    guides: ["what-a-certificate-of-analysis-should-show"],
+    guides: ["choose-wholesale-peptide-supplier", "prepare-wholesale-order", "read-peptide-coa", "what-a-certificate-of-analysis-should-show"],
   },
   {
     slug: "factory-direct",
@@ -120,7 +120,7 @@ export const SERVICES: Service[] = [
       { q: "Can I put my own claims on the label?", a: "Labels carry what the product is, the lot and the research-use statement. We don't print usage, dosing or effect claims." },
     ],
     demo: "label",
-    guides: ["how-white-label-research-supply-works", "white-label-vs-private-label-vs-factory-direct"],
+    guides: ["private-label-vs-unbranded", "how-white-label-research-supply-works", "white-label-vs-private-label-vs-factory-direct"],
   },
   {
     slug: "fulfillment",
@@ -171,7 +171,7 @@ export const SERVICES: Service[] = [
       { q: "What is the monthly developer team?", a: "A monthly plan that gives you a development team on call 24/7. Anything breaks, needs changing or needs adding, you message us and it gets fixed. It covers sites we build and, after a review, sites you already have." },
     ],
     demo: "website",
-    guides: ["research-use-only-storefront-copy"],
+    guides: ["peptide-website-features", "peptide-website-cost", "shopify-vs-custom-peptide-website", "research-use-only-storefront-copy"],
   },
   {
     slug: "seo-ai-search",

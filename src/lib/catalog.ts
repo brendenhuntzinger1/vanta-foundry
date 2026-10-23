@@ -56,3 +56,26 @@ export const CATALOG: CatalogProduct[] = [
   { slug: "kisspeptin", name: "Kisspeptin", category: "Specialty", sizes: ["10mg"], image: img("82206dca-7c33-4442-87b1-cfcabfbf01ce/1792687252638-440f6683-bcec-453c-9c90-1e58b195797d.webp") },
   { slug: "snap-8", name: "SNAP-8", category: "Specialty", sizes: ["10mg"], image: img("f8d2e1a6-1259-4796-a5c7-88aacdcd8f02/1792687281440-91652444-0dbe-4472-b38c-1744f12812d5.webp") },
 ];
+
+export function getProduct(slug: string) {
+  return CATALOG.find((p) => p.slug === slug);
+}
+
+/** Up to `n` other products, same category first. */
+export function relatedProducts(p: CatalogProduct, n = 4) {
+  const same = CATALOG.filter((x) => x.category === p.category && x.slug !== p.slug);
+  const rest = CATALOG.filter((x) => x.category !== p.category);
+  return [...same, ...rest].slice(0, n);
+}
+
+export const productPath = (slug: string) => `/catalog/${slug}`;
+
+/** The one sentence that stops "per vial or per kit?" confusion. */
+export const QUANTITY_NOTE = "Sizes are the amount in one vial. Quantity is the number of vials you want.";
+
+/**
+ * Products with no laboratory report published by the store yet (2026-10-23).
+ * Must match the empty `reports` in product-facts.ts; `npm run check:seo`
+ * fails if the two disagree.
+ */
+export const NO_PUBLISHED_REPORT = ["hcg", "recon-water"];

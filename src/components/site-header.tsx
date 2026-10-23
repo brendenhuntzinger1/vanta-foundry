@@ -5,13 +5,13 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Logo } from "./logo";
 import { IconWhatsApp } from "./icons";
-import { NAV, NO_WHATSAPP_PATHS, whatsappLink } from "@/lib/site";
+import { NAV, isWebsitePath, whatsappLink } from "@/lib/site";
 
 export function SiteHeader() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const wa = NO_WHATSAPP_PATHS.includes(pathname) ? null : whatsappLink("Hi Vanta Foundry, I have a question.");
+  const wa = isWebsitePath(pathname) ? null : whatsappLink("Hi Vanta Foundry, I have a question.");
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 4);
@@ -35,7 +35,7 @@ export function SiteHeader() {
     >
       <div className="mx-auto flex h-16 max-w-[1160px] items-center justify-between px-5">
         <Logo />
-        <nav aria-label="Primary" className="hidden items-center gap-8 md:flex">
+        <nav aria-label="Primary" className="hidden items-center gap-6 whitespace-nowrap xl:flex">
           {NAV.map((item) => (
             <Link key={item.href} href={item.href} className="text-[14.5px] text-body transition-colors hover:text-ink">
               {item.label}
@@ -52,18 +52,18 @@ export function SiteHeader() {
             Get started
           </Link>
           {/* The other front door, always one tap away on a phone. */}
-          {pathname.startsWith("/supply") ? (
-            <Link href="/website-development" className="btn btn-dark h-10 px-4 text-[13.5px] md:hidden">
+          {pathname.startsWith("/supply") || pathname.startsWith("/wholesale") || pathname.startsWith("/catalog") ? (
+            <Link href="/website-development" className="btn btn-dark h-10 px-4 text-[13.5px] xl:hidden">
               Websites
             </Link>
           ) : (
-            <Link href="/supply" className="btn h-10 bg-gold-fill px-4 text-[13.5px] text-ink md:hidden">
+            <Link href="/supply" className="btn h-10 bg-gold-fill px-4 text-[13.5px] text-ink xl:hidden">
               Wholesale
             </Link>
           )}
           <button
             type="button"
-            className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-line-2 md:hidden"
+            className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-line-2 xl:hidden"
             aria-expanded={open}
             aria-controls="mobile-nav"
             aria-label={open ? "Close menu" : "Open menu"}
@@ -76,7 +76,7 @@ export function SiteHeader() {
         </div>
       </div>
       {open && (
-        <nav id="mobile-nav" aria-label="Mobile" className="fade-in border-t border-line bg-white px-5 pb-6 md:hidden">
+        <nav id="mobile-nav" aria-label="Mobile" className="fade-in border-t border-line bg-white px-5 pb-6 xl:hidden">
           <ul className="divide-y divide-line">
             {NAV.map((item) => (
               <li key={item.href}>
