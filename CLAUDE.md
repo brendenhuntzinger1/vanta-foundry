@@ -43,9 +43,12 @@ Website development and payment processing are offered to any lawful business.
 - Both front doors share the top, equal (owner, 2026-10-23): "put them both at
   the top ... look like what we offer is like a complete build." The homepage
   hero is "Build it. Stock it. Ship it." with Websites & SEO (incl. AEO/GEO)
-  and Wholesale & 3PL side by side, two columns even on a phone, then the
-  complete build (website, SEO/AEO/GEO, payments, product & label, warehouse
-  & shipping). Never let one door push the other below the first screen.
+  and Wholesale & 3PL side by side, two columns even on a phone. Never let
+  one door push the other below the first screen.
+- Calm, not cluttered (owner, 2026-10-23: "Not cluttered, people can see the
+  wholesale"). Homepage: the two doors, the catalog (8 products, COA badges),
+  websites + developer team "for any brand", three why-us points, FAQ. One
+  idea per section; no long checklists in the doors.
 
 ## Verify in a browser
 
