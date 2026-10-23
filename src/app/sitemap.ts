@@ -13,6 +13,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...Object.keys(FLOWS).map((k) => ({ url: u(`/start/${k}`), changeFrequency: "yearly" as const, priority: 0.6 })),
     { url: u("/get-started"), changeFrequency: "yearly", priority: 0.8 },
     { url: u("/work"), changeFrequency: "monthly", priority: 0.8 },
+    { url: u("/supply"), changeFrequency: "monthly", priority: 0.9 },
     { url: u("/industries"), changeFrequency: "monthly", priority: 0.8 },
     ...INDUSTRIES.map((i) => ({ url: u(`/industries/${i.slug}`), changeFrequency: "monthly" as const, priority: 0.8 })),
     { url: u("/about"), changeFrequency: "yearly", priority: 0.6 },

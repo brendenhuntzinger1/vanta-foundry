@@ -45,10 +45,10 @@ export function emailLink(subject?: string, body?: string) {
 export const NO_WHATSAPP_PATHS = ["/website-development", "/start/website-development", "/work"];
 
 export const NAV = [
-  { href: "/#services", label: "Services" },
+  { href: "/website-development", label: "Websites" },
+  { href: "/supply", label: "Wholesale & 3PL" },
   { href: "/work", label: "Our work" },
   { href: "/industries", label: "Industries" },
-  { href: "/wholesale#catalog", label: "Peptide wholesale" },
   { href: "/about", label: "About" },
   { href: "/contact", label: "Contact" },
 ] as const;
