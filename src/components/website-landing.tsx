@@ -9,8 +9,7 @@ import { SITE } from "@/lib/site";
 const START = "/start/website-development";
 
 const WORK = [
-  { name: "Genesis Biomapping", kind: "Research supply · live", src: "/showcase/genesis-desktop.webp", top: true, wide: true },
-  { name: "Remade Clinic", kind: "Telehealth · live", src: "/showcase/remade-desktop.webp", top: true },
+  { name: "Genesis Biomapping", kind: "Research supply · live", src: "/showcase/genesis-desktop.webp", top: true },
   { name: "Vanta Labs", kind: "Research supply · live", src: "/showcase/vanta-labs-desktop.webp", top: true },
   { name: "Solenne", kind: "Skincare", src: "/solenne/hero.webp" },
   { name: "Halcyon", kind: "Coffee & food", src: "/sites/halcyon-hero.webp" },
@@ -113,12 +112,12 @@ export function WebsiteLanding({ s }: { s: Service }) {
               See every site <IconArrow />
             </Link>
           </div>
-          <ul className="mt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+          <ul className="mt-12 grid gap-4 md:grid-cols-2">
             {WORK.map((w) => (
-              <li key={w.name} className={w.wide ? "md:col-span-2 lg:row-span-2" : ""}>
+              <li key={w.name}>
                 <Link href="/work" className="group block h-full overflow-hidden rounded-2xl border border-line">
-                  <div className={`relative overflow-hidden bg-bg-2 ${w.wide ? "aspect-[4/3] lg:aspect-auto lg:h-[calc(100%-68px)]" : "aspect-[4/3]"}`}>
-                    <Image src={w.src} alt={`${w.name} website`} fill sizes={w.wide ? "(min-width: 1024px) 560px, 100vw" : "(min-width: 1024px) 280px, 50vw"} className={`object-cover transition-transform duration-700 group-hover:scale-[1.03] ${w.top ? "object-left-top" : ""}`} />
+                  <div className="relative aspect-[16/10] overflow-hidden bg-bg-2">
+                    <Image src={w.src} alt={`${w.name} website`} fill sizes="(min-width: 768px) 560px, 100vw" className={`object-cover transition-transform duration-700 group-hover:scale-[1.03] ${w.top ? "object-left-top" : ""}`} />
                   </div>
                   <div className="flex h-[68px] flex-col justify-center px-5">
                     <p className="text-[16px] font-semibold tracking-[-0.02em] text-ink">{w.name}</p>

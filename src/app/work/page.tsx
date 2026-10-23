@@ -30,22 +30,13 @@ const LIVE = [
     desktop: "/showcase/genesis-desktop.webp",
     phone: "/showcase/genesis-phone.webp",
   },
-  {
-    brand: "Remade Clinic",
-    industry: "Telehealth · live",
-    summary: "A telehealth clinic site with a goal-based plan builder, treatment pages for weight loss, TRT, hair loss and menopause, pricing and a member portal. Built by us, live today.",
-    features: ["Live site", "Plan builder", "Member portal", "Treatment pages"],
-    domain: "remadeclinic.com",
-    href: "https://remadeclinic.com",
-    desktop: "/showcase/remade-desktop.webp",
-    phone: "/showcase/remade-phone.webp",
-  },
+
 ];
 
 export const metadata: Metadata = pageMetadata({
   path: "/work",
   title: "Our work",
-  description: "Storefronts designed and hand-coded by the Vanta Foundry team: Vanta Labs, Genesis Biomapping, Remade Clinic, skincare, coffee and athletic apparel. Custom websites for any industry.",
+  description: "Storefronts designed and hand-coded by the Vanta Foundry team: Vanta Labs, Genesis Biomapping, skincare, coffee and athletic apparel. Custom websites for any industry.",
 });
 
 export default function WorkPage() {

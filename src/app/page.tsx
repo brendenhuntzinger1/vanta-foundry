@@ -57,7 +57,18 @@ export default function Home() {
               points={["Custom design", "SEO & AI search", "Payments", "Developer team 24/7"]}
               cta="Explore website development"
             >
-              <Image src="/showcase/remade-desktop.webp" alt="The Remade Clinic website, built by our team" fill sizes="(min-width: 1024px) 560px, 100vw" className="object-cover object-left-top" priority />
+              <div className="grid h-full grid-cols-2 gap-1 bg-ink p-1">
+                {[
+                  { src: "/showcase/genesis-desktop.webp", alt: "Genesis Biomapping website", top: true },
+                  { src: "/showcase/vanta-labs-desktop.webp", alt: "Vanta Labs website", top: true },
+                  { src: "/solenne/hero.webp", alt: "Solenne skincare website" },
+                  { src: "/sites/halcyon-hero.webp", alt: "Halcyon coffee website" },
+                ].map((x) => (
+                  <div key={x.src} className="relative overflow-hidden rounded-[14px]">
+                    <Image src={x.src} alt={x.alt} fill sizes="(min-width: 1024px) 280px, 50vw" className={`object-cover ${x.top ? "object-left-top" : ""}`} priority />
+                  </div>
+                ))}
+              </div>
             </Door>
             <Door
               href="/supply"

@@ -16,8 +16,8 @@ export type FlowSubject = { slug: string; name: string; title: string; includes:
 const WORK = [
   { name: "Vanta Labs", src: "/showcase/vanta-labs-desktop.webp", top: true },
   { name: "Genesis Biomapping", src: "/showcase/genesis-desktop.webp", top: true },
-  { name: "Remade Clinic", src: "/showcase/remade-desktop.webp", top: true },
   { name: "Solenne", src: "/solenne/hero.webp" },
+  { name: "Halcyon", src: "/sites/halcyon-hero.webp" },
 ];
 
 /**
