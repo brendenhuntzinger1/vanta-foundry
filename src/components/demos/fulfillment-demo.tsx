@@ -25,7 +25,7 @@ export function FulfillmentDemo() {
 
   const done = step === STEPS.length - 1;
   return (
-    <Screen image={{ src: "/supply/fulfillment.webp", alt: "Packing station with branded boxes" }} title="Order #1042" subtitle={`${EXAMPLE_BRAND} · shipped by us`} status={done ? <Pill tone="ok">Delivered</Pill> : <Pill>On its way</Pill>}>
+    <Screen image={{ src: "/supply/unboxing.webp", alt: "A premium branded mailer opened to show vials in a foam insert" }} title="Order #1042" subtitle={`${EXAMPLE_BRAND} · shipped by us`} status={done ? <Pill tone="ok">Delivered</Pill> : <Pill>On its way</Pill>}>
       <ol aria-live="polite">
         {STEPS.map((s, i) => (
           <li key={s.label} className="relative flex gap-4 pb-5 last:pb-0">

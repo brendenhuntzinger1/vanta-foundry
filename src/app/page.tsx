@@ -39,7 +39,7 @@ const FAQS = [
   },
   {
     q: "Who is behind Vanta Foundry?",
-    a: `${SITE.name} is run by the team behind ${SITE.builtStores.join(" and ")}. The supply, payments and website setup we offer are the same ones we use ourselves.`,
+    a: `${SITE.name} is run by the team behind several brands, including ${SITE.builtStores.slice(0, -1).join(", ")} and ${SITE.builtStores.at(-1)}. The supply, payments and website setup we offer are the same ones we use ourselves.`,
   },
   {
     q: "How do I reach you?",
@@ -82,7 +82,7 @@ export default function Home() {
           <div className="mx-auto max-w-[860px] text-center">
             <p className="inline-flex items-center gap-2 rounded-full border border-line px-3.5 py-1.5 text-[12.5px] text-body sm:text-[13.5px]">
               <span className="h-1.5 w-1.5 rounded-full bg-gold-fill" aria-hidden="true" />
-              The team behind {SITE.builtStores.join(" & ")}
+              A few of the brands we&rsquo;re behind: {SITE.builtStores.join(" · ")}
             </p>
             <h1 className="h-display mt-7 text-[44px] text-ink sm:text-[72px]">
               Everything your brand needs to sell online.

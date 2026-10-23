@@ -19,9 +19,17 @@ export function Agreements() {
             <p className="text-[14px] font-medium text-gold-fill">A real business, on paper</p>
             <h2 className="h-section mt-2 text-[34px] sm:text-[46px]">The team behind the brands.</h2>
             <p className="mt-4 text-[17px] leading-[1.6] text-white/75">
-              We&rsquo;re the team behind {SITE.builtStores.join(" and ")}: we build, run and supply our own stores every
-              day. When you work with us, it&rsquo;s in writing, and both sides sign.
+              We build, run and supply our own brands every day. When you work with us, it&rsquo;s in writing, and both
+              sides sign.
             </p>
+            <p className="mt-6 text-[13px] text-white/55">A few of the brands we&rsquo;re behind</p>
+            <ul className="mt-2 flex flex-wrap gap-2">
+              {SITE.builtStores.map((b) => (
+                <li key={b} className="rounded-full border border-white/15 px-3.5 py-1.5 text-[14px] text-white">
+                  {b}
+                </li>
+              ))}
+            </ul>
             <ContactButtons
               single
               size="lg"
