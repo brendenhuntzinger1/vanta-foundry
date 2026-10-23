@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Container, CtaBand, FaqList, SectionHead } from "@/components/blocks";
-import { ServiceBento } from "@/components/service-bento";
+import { SupplyBento, WebBento } from "@/components/service-bento";
 import { DAYS } from "@/components/launch-timeline";
 import { IconArrow } from "@/components/icons";
 import { JsonLd, faqPage } from "@/lib/jsonld";
@@ -16,7 +16,7 @@ import { SITE } from "@/lib/site";
 const FAQS = [
   {
     q: "What do you do?",
-    a: "We build custom websites, set up payment processing and get businesses found on Google and in AI search, for any industry. For research-supply brands we also supply peptides wholesale or factory-direct, label them with your brand and ship them for you.",
+    a: "Two things. For any business: custom websites, payment processing and SEO. For research brands: peptide supply, wholesale or factory-direct, under your own label, stored and shipped for you, with a COA for every wholesale lot.",
   },
   {
     q: "How fast is it?",
@@ -43,27 +43,41 @@ const WORK = [
 export default function Home() {
   return (
     <>
-      {/* Hero: one line, one action */}
-      <section className="pt-20 sm:pt-32">
+      {/* Hero: what we sell, in one line */}
+      <section className="pt-16 sm:pt-28">
         <Container>
-          <div className="mx-auto max-w-[900px] text-center">
-            <h1 className="h-display text-[52px] leading-[0.98] text-ink sm:text-[96px]">
-              Build. Get paid.
-              <span className="block text-muted">Get found.</span>
+          <div className="mx-auto max-w-[1080px] text-center">
+            <h1 className="h-display text-[46px] leading-[1] text-ink sm:text-[64px] lg:text-[80px]">
+              Websites &amp; peptide supply.
+              <span className="block text-muted">Built by one team.</span>
             </h1>
-            <p className="mx-auto mt-7 max-w-[600px] text-[18px] leading-[1.6] text-body sm:text-[20px]">
-              Custom websites, payment processing and SEO for any business. Plus peptide supply, labels and shipping. One team.
+            <p className="mx-auto mt-7 max-w-[640px] text-[18px] leading-[1.6] text-body">
+              Custom websites, payments and SEO for any business. Wholesale, white-label and factory-direct peptides with COAs,
+              stored and shipped for you.
             </p>
-            <div className="mt-10 flex flex-wrap justify-center gap-3">
-              <Link href="/get-started" className="btn btn-dark h-12 px-7 text-[15px]">
-                Start a project <IconArrow />
-              </Link>
-              <Link href="/work" className="btn btn-light h-12 px-7 text-[15px]">
-                See our work
-              </Link>
-            </div>
           </div>
-          <div className="mt-20 flex flex-col items-center gap-4 sm:flex-row sm:justify-center sm:gap-10">
+
+          {/* The two lanes */}
+          <div className="mx-auto mt-12 grid max-w-[1000px] gap-3 md:grid-cols-2">
+            <Lane
+              href="#websites"
+              eyebrow="For any business"
+              title="Websites, payments & SEO"
+              items={["Custom-coded sites", "Payment processing", "Google & AI search"]}
+              src="/showcase/genesis-desktop.webp"
+              top
+              dark
+            />
+            <Lane
+              href="#peptides"
+              eyebrow="For research brands"
+              title="Peptide supply"
+              items={["Wholesale & factory-direct", "White label", "3PL fulfillment", "COA with every lot"]}
+              src="/supply/bulk.webp"
+            />
+          </div>
+
+          <div className="mt-14 flex flex-col items-center gap-3 sm:flex-row sm:justify-center sm:gap-10">
             <p className="text-[13px] text-muted">The team behind</p>
             <ul className="flex flex-wrap justify-center gap-x-8 gap-y-2">
               {SITE.builtStores.map((b) => (
@@ -74,18 +88,18 @@ export default function Home() {
         </Container>
       </section>
 
-      {/* Services */}
-      <section id="services" className="mt-32 scroll-mt-20 sm:mt-40">
+      {/* Lane 1 */}
+      <section id="websites" className="mt-28 scroll-mt-20 sm:mt-36">
         <Container>
-          <SectionHead center title="What we do." lede="Tap one. It takes about a minute to start." />
+          <SectionHead center label="For any business" title="Websites, payments & SEO." lede="Everything to sell online and get found, in any industry. Tap one to start." />
           <div className="mt-12">
-            <ServiceBento />
+            <WebBento />
           </div>
         </Container>
       </section>
 
       {/* Work */}
-      <section id="work" className="mt-32 scroll-mt-20 sm:mt-40">
+      <section id="work" className="mt-28 scroll-mt-20 sm:mt-36">
         <Container>
           <SectionHead center title="Look what we built." lede="Designed and hand-coded by our team." />
           <ul className="mt-12 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
@@ -106,6 +120,21 @@ export default function Home() {
           <div className="mt-8 text-center">
             <Link href="/work" className="inline-flex items-center gap-1.5 text-[15px] font-medium text-ink underline underline-offset-4">
               See every store <IconArrow />
+            </Link>
+          </div>
+        </Container>
+      </section>
+
+      {/* Lane 2 */}
+      <section id="peptides" className="mt-28 scroll-mt-20 sm:mt-36">
+        <Container>
+          <SectionHead center label="For research brands" title="Peptide supply." lede="Buy wholesale, go factory-direct, put your label on it and let us ship it. A COA with every wholesale lot. Research use only." />
+          <div className="mt-12">
+            <SupplyBento />
+          </div>
+          <div className="mt-8 text-center">
+            <Link href="/wholesale#catalog" className="btn btn-dark h-12 px-6 text-[15px]">
+              Browse the catalog <IconArrow />
             </Link>
           </div>
         </Container>
@@ -141,5 +170,23 @@ export default function Home() {
       <CtaBand />
       <JsonLd data={faqPage(FAQS)} />
     </>
+  );
+}
+
+function Lane({ href, eyebrow, title, items, src, top, dark }: { href: string; eyebrow: string; title: string; items: string[]; src: string; top?: boolean; dark?: boolean }) {
+  return (
+    <Link href={href} className={`group flex flex-col overflow-hidden rounded-2xl border text-left transition-shadow duration-200 hover:shadow-[0_18px_40px_-24px_rgba(0,0,0,0.35)] ${dark ? "border-ink bg-ink text-white" : "border-line bg-white text-ink"}`}>
+      <div className="relative aspect-[16/8] overflow-hidden">
+        <Image src={src} alt="" fill sizes="(min-width: 768px) 500px, 100vw" className={`object-cover transition-transform duration-500 group-hover:scale-[1.03] ${top ? "object-left-top" : ""}`} />
+      </div>
+      <div className="flex flex-1 flex-col p-6">
+        <p className={`text-[13px] font-medium ${dark ? "text-gold-fill" : "text-gold"}`}>{eyebrow}</p>
+        <p className="mt-1 text-[24px] font-semibold tracking-[-0.03em]">{title}</p>
+        <p className={`mt-2 text-[14.5px] ${dark ? "text-white/65" : "text-muted"}`}>{items.join(" · ")}</p>
+        <span className="mt-5 inline-flex items-center gap-1.5 text-[14px] font-medium">
+          Explore <IconArrow className="transition-transform duration-200 group-hover:translate-x-0.5" />
+        </span>
+      </div>
+    </Link>
   );
 }
