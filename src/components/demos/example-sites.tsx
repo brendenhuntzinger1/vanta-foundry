@@ -83,6 +83,7 @@ export function AtlasSite() {
 export const SITES = [
   { key: "vanta", name: "Vanta Labs", industry: "Research supply · live store", url: "vantalabsresearch.com", real: true, href: "https://www.vantalabsresearch.com" },
   { key: "genesis", name: "Genesis Biomapping", industry: "Research supply · live store", url: "genesisbiomapping.co", real: true, href: "https://genesisbiomapping.co" },
+  { key: "remade", name: "Remade Clinic", industry: "Telehealth · live site", url: "remadeclinic.com", real: true, href: "https://remadeclinic.com" },
   { key: "solenne", name: "Solenne", industry: "Skincare", url: "Solenne · Skincare", real: false, href: "/work" },
   { key: "halcyon", name: "Halcyon", industry: "Specialty coffee", url: "Halcyon · Coffee", real: false, href: "/work" },
   { key: "atlas", name: "Atlas", industry: "Athletic apparel", url: "Atlas · Apparel", real: false, href: "/work" },
@@ -95,6 +96,8 @@ export function SiteView({ which }: { which: SiteKey }) {
     return <Image src="/showcase/vanta-labs-desktop.webp" alt="The live Vanta Labs store" width={2160} height={1147} sizes="(min-width: 1024px) 560px, 92vw" className="h-auto w-full" />;
   if (which === "genesis")
     return <Image src="/showcase/genesis-desktop.webp" alt="The live Genesis Biomapping store" width={2160} height={1148} sizes="(min-width: 1024px) 560px, 92vw" className="h-auto w-full" />;
+  if (which === "remade")
+    return <Image src="/showcase/remade-desktop.webp" alt="The live Remade Clinic site" width={2160} height={1148} sizes="(min-width: 1024px) 560px, 92vw" className="h-auto w-full" />;
   if (which === "solenne") return <SolenneSite />;
   if (which === "halcyon") return <HalcyonSite />;
   return <AtlasSite />;

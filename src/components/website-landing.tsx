@@ -10,10 +10,10 @@ const START = "/start/website-development";
 
 const WORK = [
   { name: "Genesis Biomapping", kind: "Research supply · live", src: "/showcase/genesis-desktop.webp", top: true, wide: true },
+  { name: "Remade Clinic", kind: "Telehealth · live", src: "/showcase/remade-desktop.webp", top: true },
   { name: "Vanta Labs", kind: "Research supply · live", src: "/showcase/vanta-labs-desktop.webp", top: true },
   { name: "Solenne", kind: "Skincare", src: "/solenne/hero.webp" },
   { name: "Halcyon", kind: "Coffee & food", src: "/sites/halcyon-hero.webp" },
-  { name: "Atlas", kind: "Athletic apparel", src: "/sites/atlas-hero.webp" },
 ];
 
 const PILLARS = [
