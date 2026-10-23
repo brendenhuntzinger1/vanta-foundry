@@ -1,5 +1,5 @@
 /**
- * The six services. The home page, the service pages, the "choose your
+ * The seven services. The home page, the service pages, the "choose your
  * services" picker, the sitemap, JSON-LD and llms.txt all read from here.
  *
  * WRITE FOR SOMEONE IN A HURRY. Every service answers three questions in plain
@@ -9,7 +9,7 @@
  * usage or outcome claims).
  */
 
-export type DemoKey = "payments" | "wholesale" | "factory" | "label" | "fulfillment" | "website";
+export type DemoKey = "payments" | "wholesale" | "factory" | "label" | "fulfillment" | "website" | "seo";
 
 export type Service = {
   slug: string;
@@ -169,6 +169,31 @@ export const SERVICES: Service[] = [
     ],
     demo: "website",
     guides: ["research-use-only-storefront-copy"],
+  },
+  {
+    slug: "seo-ai-search",
+    name: "SEO & AI search",
+    short: "Get found on Google and recommended by ChatGPT, Gemini and other AI answers. Local and national.",
+    title: "Found on Google. Recommended by AI.",
+    answer:
+      "Vanta Foundry runs search engine optimisation and generative engine optimisation (GEO) for your business: the work that gets you found on Google, in Google Maps and in the answers ChatGPT, Gemini, Perplexity and Google's AI Overviews give. We fix the technical side of your site, write pages that answer what your customers ask, set up your Google Business Profile and build the local and industry listings AI tools read. Sold on its own or as part of a full launch package.",
+    forWho: "Any business in any industry that wants more customers from search without paying for every click.",
+    includes: [
+      "Technical SEO: speed, structure, structured data and indexing",
+      "Pages written to answer what your customers search and ask AI",
+      "GEO: content, llms.txt and citations so AI answers can find and quote you",
+      "Google Business Profile and local listings for the areas you serve",
+      "Monthly report: rankings, AI mentions and leads, in plain words",
+    ],
+    steps: ["Tell us your business and the areas you serve", "We audit your site and plan the pages and listings", "We build it out and report every month"],
+    faqs: [
+      { q: "What is GEO?", a: "Generative engine optimisation: making your business easy for AI tools like ChatGPT, Gemini and Perplexity to find, understand and recommend. It sits on top of normal SEO." },
+      { q: "Do you guarantee rankings?", a: "No one honest can. Google and AI tools decide what they show. We do the work that gives you the best chance and show you what changed each month." },
+      { q: "Do I need a website from you?", a: "No. We can work on the site you have. If it holds you back, we will tell you, and we can rebuild it." },
+      { q: "Is it part of a package?", a: "It can be. Website, payment processing and SEO & AI search are offered together as a launch package, with supply, white label and 3PL added if you sell research products." },
+    ],
+    demo: "seo",
+    guides: [],
   },
 ];
 

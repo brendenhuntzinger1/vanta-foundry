@@ -8,6 +8,7 @@ import { ServicePicker } from "@/components/service-picker";
 import { ServiceBento } from "@/components/service-bento";
 import { LaunchTimeline } from "@/components/launch-timeline";
 import { Agreements } from "@/components/agreements";
+import { LaunchPackage } from "@/components/launch-package";
 import { JsonLd, faqPage } from "@/lib/jsonld";
 import { SERVICES } from "@/lib/services";
 import { SITE } from "@/lib/site";
@@ -55,6 +56,7 @@ const WANTS = [
   { label: "Wholesale research products", href: "/wholesale" },
   { label: "Products under my own label", href: "/white-label" },
   { label: "3PL & shipping", href: "/fulfillment" },
+  { label: "To show up on Google & AI", href: "/seo-ai-search" },
   { label: "Factory-direct supply", href: "/factory-direct" },
 ];
 
@@ -68,7 +70,7 @@ const WHY = [
 ];
 
 const STEPS = [
-  { title: "Pick your services", body: "Tap what you need. One service or all six." },
+  { title: "Pick your services", body: "Tap what you need. One service or all of them." },
   { title: "Send it to us", body: "Your request opens in WhatsApp or email, already written." },
   { title: "We set it up", body: "We confirm the details and the price, then get you running." },
 ];
@@ -117,6 +119,13 @@ export default function Home() {
         </Container>
       </section>
 
+      {/* Launch package */}
+      <section id="package" className="mt-28 scroll-mt-20">
+        <Container>
+          <LaunchPackage />
+        </Container>
+      </section>
+
       {/* Launch timeline */}
       <section id="timeline" className="mt-28 scroll-mt-20">
         <Container>
@@ -155,7 +164,7 @@ export default function Home() {
           <SectionHead
             label="Services"
             title="What do you need?"
-            lede="Six services. Use one, or use them together. Tap what you need and send it to us. It takes about ten seconds."
+            lede="Seven services. Use one, or use them together. Tap what you need and send it to us. It takes about ten seconds."
           />
           <div className="mt-10">
             <ServicePicker />

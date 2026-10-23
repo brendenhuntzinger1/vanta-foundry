@@ -1,4 +1,4 @@
-import { IconBoxes, IconBrowser, IconCard, IconFactory, IconTag, IconTruck } from "./icons";
+import { IconBoxes, IconBrowser, IconCard, IconFactory, IconSearch, IconTag, IconTruck } from "./icons";
 
 const MAP = {
   "payment-processing": IconCard,
@@ -7,6 +7,7 @@ const MAP = {
   "white-label": IconTag,
   fulfillment: IconTruck,
   "website-development": IconBrowser,
+  "seo-ai-search": IconSearch,
 } as const;
 
 export function ServiceIcon({ slug, className = "" }: { slug: string; className?: string }) {

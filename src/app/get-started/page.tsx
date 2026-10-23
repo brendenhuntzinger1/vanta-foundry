@@ -7,7 +7,7 @@ import { SITE } from "@/lib/site";
 export const metadata: Metadata = pageMetadata({
   path: "/get-started",
   title: "Get started",
-  description: `Choose the ${SITE.name} services you need — payment processing, wholesale, factory-direct, white label, 3PL or website development — and send your request on WhatsApp or by email.`,
+  description: `Choose the ${SITE.name} services you need — payment processing, wholesale, factory-direct, white label, 3PL, website development or SEO & AI search — and send your request on WhatsApp or by email.`,
 });
 
 export default async function GetStarted(props: PageProps<"/get-started">) {

@@ -44,6 +44,8 @@ export function ServiceBento() {
       <Tile slug="fulfillment" title={svc("fulfillment").name} body="We store your stock, pack every order and ship it as your brand.">
         <Photo src="/supply/warehouse.webp" alt="Aisles of racked, labelled stock in a clean warehouse" chip="Stored, packed & shipped as your brand" />
       </Tile>
+
+      <SeoTile />
     </ul>
   );
 }
@@ -110,5 +112,40 @@ function PayVisual() {
         </p>
       </div>
     </div>
+  );
+}
+
+/** Full-width tile: the brand on Google, and named in an AI answer. */
+function SeoTile() {
+  return (
+    <li className="sm:col-span-2 lg:col-span-3">
+      <Link href="/seo-ai-search" className="group grid overflow-hidden rounded-2xl border border-line bg-white transition-[border-color,box-shadow] duration-200 hover:border-line-2 hover:shadow-[0_14px_36px_-20px_rgba(0,0,0,0.3)] lg:grid-cols-[1fr_1.35fr]">
+        <div className="flex flex-col justify-center p-6 sm:p-8">
+          <p className="text-[13px] font-medium text-gold">New · SEO & AI search</p>
+          <p className="mt-2 text-[24px] font-semibold leading-tight tracking-[-0.03em] text-ink sm:text-[28px]">Found on Google. Recommended by AI.</p>
+          <p className="mt-2 text-[15px] leading-[1.55] text-muted">
+            SEO and GEO for any industry, so customers find you on Google, Maps, ChatGPT, Gemini and Perplexity. On its own or in a launch package.
+          </p>
+          <span className="mt-5 inline-flex items-center gap-1.5 text-[13.5px] font-medium text-ink">
+            Learn more <IconArrow className="transition-transform duration-200 group-hover:translate-x-0.5" />
+          </span>
+        </div>
+        <div className="grid gap-3 bg-[#141416] p-5 sm:grid-cols-2 sm:p-6" aria-hidden="true">
+          <div className="rounded-xl bg-white p-4">
+            <p className="text-[11px] text-muted">Google · &ldquo;best coffee subscription&rdquo;</p>
+            <p className="mt-2 text-[11px] text-body">halcyoncoffee.com</p>
+            <p className="text-[14px] font-medium leading-snug text-[#1a0dab]">Halcyon Coffee · Fresh-Roasted Subscriptions</p>
+            <p className="mt-1 text-[12px] leading-[1.45] text-body">Small-lot beans roasted every Monday, shipped the same week.</p>
+          </div>
+          <div className="rounded-xl border border-white/10 bg-[#1d1d20] p-4 text-white">
+            <p className="text-[11px] text-white/55">AI answer</p>
+            <p className="mt-2 text-[12.5px] leading-[1.5] text-white/85">
+              For a fresh-roasted subscription, <span className="font-semibold text-white">Halcyon Coffee</span> roasts small lots weekly and ships the same week.
+            </p>
+            <p className="mt-2 inline-flex rounded-full border border-white/15 px-2 py-0.5 text-[10.5px] text-white/65">Source: halcyoncoffee.com</p>
+          </div>
+        </div>
+      </Link>
+    </li>
   );
 }
