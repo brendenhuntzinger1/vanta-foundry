@@ -264,26 +264,26 @@ Only phrases found in the rendered page. *Anchor* lists other pages whose intern
 
 | Foundry URL | Title | H1 | Primary phrase | Supporting phrases rendered | Audit pages served |
 |---|---|---|---|---|---|
-| `/` | Website Development & Wholesale Peptides | Vanta Foundry | Build your brand. Or supply it. | wholesale peptides | website development | 2: BELK-009, BELK-010 |
-| `/website-development` | Website Development | Vanta Foundry | Website development | website development | custom web development | 9: BELK-001, BELK-002, BELK-006, BELK-041, BELK-043, BELK-047, BELK-055, BELK-058 … |
-| `/website-development/peptide-websites` | Peptide Website Development | Vanta Foundry | Peptide Website Development | peptide website development | B2B ecommerce portal; COA pages; peptide website design; product catalog | 4: BELK-037, BELK-052, BELK-054, 99PW-024 |
-| `/website-development/ecommerce` | Ecommerce Website Development | Vanta Foundry | Ecommerce Website Development | ecommerce website development | custom ecommerce website | 3: BELK-051, BELK-063, BELK-065 |
-| `/website-development/b2b-portals` | B2B Ecommerce Portal Development | Vanta Foundry | B2B Ecommerce Portal Development | B2B ecommerce portal | B2B buyer portal; wholesale ordering system | 1: BELK-036 |
-| `/website-development/redesign` | Website Redesign & Migration | Vanta Foundry | Website Redesign & Migration | website redesign | website migration | 1: BELK-056 |
-| `/website-development/integrations` | Ecommerce Integration Development | Vanta Foundry | Ecommerce Integration Development | ecommerce integrations | inventory integration; shipping integration | 1: BELK-073 |
-| `/website-development/maintenance` | Website Maintenance & Support | Vanta Foundry | Website Maintenance & Support | website maintenance | website support | 1: BELK-061 |
-| `/wholesale` | Wholesale Peptides & Bulk Supply | Vanta Foundry | Wholesale Peptides & Bulk Supply | wholesale peptides | bulk research peptides; wholesale peptide supplier; wholesale research peptides | 1: 99PW-001 |
-| `/catalog` | Wholesale Peptide Catalog | Vanta Foundry | Wholesale Peptide Catalog | wholesale peptide catalog | bulk peptide supply; certificate of analysis | 9: 99PW-009, 99PW-014, 99PW-015, 99PW-016, 99PW-017, 99PW-018, 99PW-019, 99PW-020 … |
-| `/wholesale/testing` | Peptide Testing & Batch COAs | Vanta Foundry | Peptide Testing & Batch COAs | peptide testing | batch COA; certificate of analysis; HPLC; third-party testing | 1: 99PW-004 |
-| `/wholesale/ordering` | Wholesale Peptide Ordering | Vanta Foundry | Wholesale Peptide Ordering | wholesale peptide ordering | minimum order quantity; MOQ; tiered pricing; wholesale pricing | 2: 99PW-012, 99PW-450 |
-| `/white-label` | Private Label Peptides & White Label Supply | Vanta Foundry | Private Label Peptides & White Label Supply | private label peptides | custom branded peptides; white label research compounds | 1: 99PW-026 |
-| `/fulfillment` | Peptide Dropshipping & Order Fulfillment | Vanta Foundry | Peptide Dropshipping & Order Fulfillment | peptide dropshipping | 3PL; order fulfillment | 3: 99PW-022, 99PW-027, 99PW-453 |
-| `/factory-direct` | Factory-Direct Peptide Supply | Vanta Foundry | Factory-Direct Peptide Supply | factory-direct peptide supply | lot documentation | 0:  |
-| `/supply` | Wholesale, White Label & 3PL for Research Brands | Vanta Foundry | Peptide supply, done for you. | white label | 3PL | 1: 99PW-011 |
-| `/work` | Website Development Portfolio | Vanta Foundry | Website development portfolio | website development portfolio | — | 1: BELK-008 |
-| `/work/vanta-labs` | Vanta Labs Website Development Case Study | Vanta Foundry | Vanta Labs Website Development Case Study | website development case study | COA library | 0:  |
-| `/about` | About Vanta Foundry | Vanta Foundry | About Vanta Foundry | Vanta Foundry | — | 2: BELK-003, 99PW-002 |
-| `/contact` | Contact Vanta Foundry | Vanta Foundry | Contact Vanta Foundry | contact Vanta Foundry | wholesale inquiry | 1: 99PW-006 |
+| `/` | Website Development & Wholesale Peptides \| Vanta Foundry | Build your brand. Or supply it. | wholesale peptides | website development | 2: BELK-009, BELK-010 |
+| `/website-development` | Website Development \| Vanta Foundry | Website development | website development | custom web development | 9: BELK-001, BELK-002, BELK-006, BELK-041, BELK-043, BELK-047, BELK-055, BELK-058 … |
+| `/website-development/peptide-websites` | Peptide Website Development \| Vanta Foundry | Peptide Website Development | peptide website development | B2B ecommerce portal; COA pages; peptide website design; product catalog | 4: BELK-037, BELK-052, BELK-054, 99PW-024 |
+| `/website-development/ecommerce` | Ecommerce Website Development \| Vanta Foundry | Ecommerce Website Development | ecommerce website development | custom ecommerce website | 3: BELK-051, BELK-063, BELK-065 |
+| `/website-development/b2b-portals` | B2B Ecommerce Portal Development \| Vanta Foundry | B2B Ecommerce Portal Development | B2B ecommerce portal | B2B buyer portal; wholesale ordering system | 1: BELK-036 |
+| `/website-development/redesign` | Website Redesign & Migration \| Vanta Foundry | Website Redesign & Migration | website redesign | website migration | 1: BELK-056 |
+| `/website-development/integrations` | Ecommerce Integration Development \| Vanta Foundry | Ecommerce Integration Development | ecommerce integrations | inventory integration; shipping integration | 1: BELK-073 |
+| `/website-development/maintenance` | Website Maintenance & Support \| Vanta Foundry | Website Maintenance & Support | website maintenance | website support | 1: BELK-061 |
+| `/wholesale` | Wholesale Peptides & Bulk Supply \| Vanta Foundry | Wholesale Peptides & Bulk Supply | wholesale peptides | bulk research peptides; wholesale peptide supplier; wholesale research peptides | 1: 99PW-001 |
+| `/catalog` | Wholesale Peptide Catalog \| Vanta Foundry | Wholesale Peptide Catalog | wholesale peptide catalog | bulk peptide supply; certificate of analysis | 9: 99PW-009, 99PW-014, 99PW-015, 99PW-016, 99PW-017, 99PW-018, 99PW-019, 99PW-020 … |
+| `/wholesale/testing` | Peptide Testing & Batch COAs \| Vanta Foundry | Peptide Testing & Batch COAs | peptide testing | batch COA; certificate of analysis; HPLC; third-party testing | 1: 99PW-004 |
+| `/wholesale/ordering` | Wholesale Peptide Ordering \| Vanta Foundry | Wholesale Peptide Ordering | wholesale peptide ordering | minimum order quantity; MOQ; tiered pricing; wholesale pricing | 2: 99PW-012, 99PW-450 |
+| `/white-label` | Private Label Peptides & White Label Supply \| Vanta Foundry | Private Label Peptides & White Label Supply | private label peptides | custom branded peptides; white label research compounds | 1: 99PW-026 |
+| `/fulfillment` | Peptide Dropshipping & Order Fulfillment \| Vanta Foundry | Peptide Dropshipping & Order Fulfillment | peptide dropshipping | 3PL; order fulfillment | 3: 99PW-022, 99PW-027, 99PW-453 |
+| `/factory-direct` | Factory-Direct Peptide Supply \| Vanta Foundry | Factory-Direct Peptide Supply | factory-direct peptide supply | lot documentation | 0:  |
+| `/supply` | Wholesale, White Label & 3PL for Research Brands \| Vanta Foundry | Peptide supply, done for you. | white label | 3PL | 1: 99PW-011 |
+| `/work` | Website Development Portfolio \| Vanta Foundry | Website development portfolio | website development portfolio | — | 1: BELK-008 |
+| `/work/vanta-labs` | Vanta Labs Website Development Case Study \| Vanta Foundry | Vanta Labs Website Development Case Study | website development case study | COA library | 0:  |
+| `/about` | About Vanta Foundry \| Vanta Foundry | About Vanta Foundry | Vanta Foundry | — | 2: BELK-003, 99PW-002 |
+| `/contact` | Contact Vanta Foundry \| Vanta Foundry | Contact Vanta Foundry | contact Vanta Foundry | wholesale inquiry | 1: 99PW-006 |
 | `/catalog/glow` | GLOW Wholesale \| Vanta Foundry | GLOW Wholesale | GLOW wholesale | — | 2: 99PW-088, 99PW-284 |
 | `/catalog/klow` | KLOW Wholesale \| Vanta Foundry | KLOW Wholesale | KLOW wholesale | — | 2: 99PW-092, 99PW-286 |
 | `/catalog/bpc-157-tb-500` | BPC-157 + TB-500 Wholesale \| Vanta Foundry | BPC-157 + TB-500 Wholesale | BPC-157 + TB-500 wholesale | — | 2: 99PW-048, 99PW-052 |
@@ -316,18 +316,18 @@ Only phrases found in the rendered page. *Anchor* lists other pages whose intern
 | `/catalog/mt-2-melanotan-ii` | MT-II Wholesale \| Vanta Foundry | MT-II Wholesale | MT-II wholesale | — | 1: 99PW-308 |
 | `/catalog/kisspeptin` | Kisspeptin Wholesale \| Vanta Foundry | Kisspeptin Wholesale | Kisspeptin wholesale | — | 1: 99PW-256 |
 | `/catalog/snap-8` | SNAP-8 Wholesale \| Vanta Foundry | SNAP-8 Wholesale | SNAP-8 wholesale | — | 1: 99PW-142 |
-| `/glossary` | Glossary | Vanta Foundry | Glossary. | (guide/hub) | — | 1: 99PW-007 |
-| `/guides` | Guides | Vanta Foundry | Guides. | (guide/hub) | — | 2: BELK-004, 99PW-013 |
-| `/guides/choose-website-development-partner` | How to Choose a Website Development Partner | Vanta Foundry | How to Choose a Website Development Partner | (guide/hub) | — | 1: BELK-042 |
-| `/guides/choose-wholesale-peptide-supplier` | How to Choose a Wholesale Peptide Supplier | Vanta Foundry | How to Choose a Wholesale Peptide Supplier | (guide/hub) | — | 2: 99PW-440, 99PW-457 |
-| `/guides/core-web-vitals-explained` | Core Web Vitals Explained for Business Owners | Vanta Foundry | Core Web Vitals Explained for Business Owners | (guide/hub) | — | 1: BELK-048 |
-| `/guides/prepare-wholesale-order` | How to Prepare a Wholesale Peptide Order | Vanta Foundry | How to Prepare a Wholesale Peptide Order | (guide/hub) | — | 1: 99PW-436 |
-| `/guides/private-label-vs-unbranded` | Private Label vs. Unbranded Wholesale Peptides | Vanta Foundry | Private Label vs. Unbranded Wholesale Peptides | (guide/hub) | — | 1: 99PW-456 |
-| `/guides/read-peptide-coa` | How to Read a Peptide Certificate of Analysis | Vanta Foundry | How to Read a Peptide Certificate of Analysis | (guide/hub) | — | 2: 99PW-431, 99PW-447 |
-| `/guides/seo-vs-geo` | SEO vs GEO: what's the difference? | Vanta Foundry | SEO vs GEO: what's the difference? | (guide/hub) | — | 1: BELK-049 |
-| `/guides/shopify-vs-custom-peptide-website` | Shopify vs. Custom Development for a Peptide Website | Vanta Foundry | Shopify vs. Custom Development for a Peptide Website | (guide/hub) | — | 1: BELK-035 |
-| `/guides/start-a-research-peptide-business` | How to Start a Research Peptide Business | Vanta Foundry | How to Start a Research Peptide Business | (guide/hub) | — | 2: 99PW-023, 99PW-446 |
-| `/guides/why-nextjs-site-is-slow` | Why Is My Next.js Site Slow? | Vanta Foundry | Why Is My Next.js Site Slow? | (guide/hub) | — | 1: BELK-038 |
-| `/seo-ai-search` | SEO & AI search | Vanta Foundry | Found on Google. Recommended by AI. | (guide/hub) | — | 7: BELK-034, BELK-040, BELK-045, BELK-050, BELK-060, BELK-070, BELK-071 |
-| `/standards` | Our standards | Vanta Foundry | Our standards. | (guide/hub) | — | 1: 99PW-005 |
-| `/start/website-development` | Get started: Website development | Vanta Foundry | Get started: Website development | (guide/hub) | — | 2: BELK-005, BELK-057 |
+| `/glossary` | Glossary \| Vanta Foundry | Glossary. | (guide/hub) | — | 1: 99PW-007 |
+| `/guides` | Guides \| Vanta Foundry | Guides. | (guide/hub) | — | 2: BELK-004, 99PW-013 |
+| `/guides/choose-website-development-partner` | How to Choose a Website Development Partner \| Vanta Foundry | How to Choose a Website Development Partner | (guide/hub) | — | 1: BELK-042 |
+| `/guides/choose-wholesale-peptide-supplier` | How to Choose a Wholesale Peptide Supplier \| Vanta Foundry | How to Choose a Wholesale Peptide Supplier | (guide/hub) | — | 2: 99PW-440, 99PW-457 |
+| `/guides/core-web-vitals-explained` | Core Web Vitals Explained for Business Owners \| Vanta Foundry | Core Web Vitals Explained for Business Owners | (guide/hub) | — | 1: BELK-048 |
+| `/guides/prepare-wholesale-order` | How to Prepare a Wholesale Peptide Order \| Vanta Foundry | How to Prepare a Wholesale Peptide Order | (guide/hub) | — | 1: 99PW-436 |
+| `/guides/private-label-vs-unbranded` | Private Label vs. Unbranded Wholesale Peptides \| Vanta Foundry | Private Label vs. Unbranded Wholesale Peptides | (guide/hub) | — | 1: 99PW-456 |
+| `/guides/read-peptide-coa` | How to Read a Peptide Certificate of Analysis \| Vanta Foundry | How to Read a Peptide Certificate of Analysis | (guide/hub) | — | 2: 99PW-431, 99PW-447 |
+| `/guides/seo-vs-geo` | SEO vs GEO: what's the difference? \| Vanta Foundry | SEO vs GEO: what's the difference? | (guide/hub) | — | 1: BELK-049 |
+| `/guides/shopify-vs-custom-peptide-website` | Shopify vs. Custom Development for a Peptide Website \| Vanta Foundry | Shopify vs. Custom Development for a Peptide Website | (guide/hub) | — | 1: BELK-035 |
+| `/guides/start-a-research-peptide-business` | How to Start a Research Peptide Business \| Vanta Foundry | How to Start a Research Peptide Business | (guide/hub) | — | 2: 99PW-023, 99PW-446 |
+| `/guides/why-nextjs-site-is-slow` | Why Is My Next.js Site Slow? \| Vanta Foundry | Why Is My Next.js Site Slow? | (guide/hub) | — | 1: BELK-038 |
+| `/seo-ai-search` | SEO & AI search \| Vanta Foundry | Found on Google. Recommended by AI. | (guide/hub) | — | 7: BELK-034, BELK-040, BELK-045, BELK-050, BELK-060, BELK-070, BELK-071 |
+| `/standards` | Our standards \| Vanta Foundry | Our standards. | (guide/hub) | — | 1: 99PW-005 |
+| `/start/website-development` | Get started: Website development \| Vanta Foundry | Get started: Website development | (guide/hub) | — | 2: BELK-005, BELK-057 |

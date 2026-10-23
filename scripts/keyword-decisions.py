@@ -269,6 +269,9 @@ def main():
         w(f"- {t['phrase']} → `{t['dest']}`: {t['note']}")
 
     # ---- URL map
+    def cell(v):
+        return v.replace("|", "\\|")
+
     w("\n## Final URL-to-keyword map\n")
     served = defaultdict(list)
     for x in implemented_pages:
@@ -278,7 +281,7 @@ def main():
     for pg in REG["pages"]:
         rendered = [i["phrase"] for i in impl if i["route"] == pg["route"] and i["where"] and i["phrase"] != pg["primaryPhrase"]]
         ids = served.get(pg["route"], [])
-        w(f"| `{pg['route']}` | {pg['title']} | {pg['h1']} | {pg['primaryPhrase']} | {'; '.join(rendered) or '—'} | {len(ids)}: {', '.join(ids[:8])}{' …' if len(ids) > 8 else ''} |")
+        w(f"| `{pg['route']}` | {cell(pg['title'])} | {cell(pg['h1'])} | {cell(pg['primaryPhrase'])} | {'; '.join(rendered) or '—'} | {len(ids)}: {', '.join(ids[:8])}{' …' if len(ids) > 8 else ''} |")
     for c in CATALOG:
         route = f"/catalog/{c['slug']}"
         ids = served.get(route, [])
@@ -289,7 +292,7 @@ def main():
         title = " ".join(p.parts.get("title", []))
         h1 = " ".join(p.parts.get("H1", []))
         ids = served[route]
-        w(f"| `{route}` | {title} | {h1} | (guide/hub) | — | {len(ids)}: {', '.join(ids[:8])}{' …' if len(ids) > 8 else ''} |")
+        w(f"| `{route}` | {cell(title)} | {cell(h1)} | (guide/hub) | — | {len(ids)}: {', '.join(ids[:8])}{' …' if len(ids) > 8 else ''} |")
 
     open("docs/KEYWORD-DECISIONS.md", "w").write("\n".join(out) + "\n")
     print(by_status, "| tag phrases rendered:", len(tag_impl), "intent-only:", len(tag_intent_only), "| registry phrases missing:", len(missing))
