@@ -36,6 +36,7 @@ export function GET() {
     "",
     `- [Standards](${SITE.url}/standards): How supply is documented, and the research-use-only line partners are held to.`,
     `- [Get started](${SITE.url}/get-started): Pick services and send the request on WhatsApp or by email.`,
+    `- [Our work](${SITE.url}/work): Storefronts our team designed and coded: research supply (Vanta Labs, live), skincare, coffee and athletic apparel.`,
     `- [Glossary](${SITE.url}/glossary): Plain-English definitions of payments, SEO/GEO and supply terms.`,
     `- [About](${SITE.url}/about): The team behind ${SITE.builtStores.join(", ")}.`,
     `- [Contact](${SITE.url}/contact): WhatsApp +${SITE.whatsapp} or ${SITE.email}.`,

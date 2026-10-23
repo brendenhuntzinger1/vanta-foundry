@@ -39,6 +39,7 @@ export function emailLink(subject?: string, body?: string) {
 
 export const NAV = [
   { href: "/#services", label: "Services" },
+  { href: "/work", label: "Our work" },
   { href: "/industries", label: "Industries" },
   { href: "/catalog", label: "Catalog" },
   { href: "/about", label: "About" },
