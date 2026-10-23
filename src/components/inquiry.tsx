@@ -3,7 +3,8 @@
 import Link from "next/link";
 import { useEffect, useId, useState } from "react";
 import { CATALOG, QUANTITY_NOTE, productPath } from "@/lib/catalog";
-import { inquiry, inquiryLinks, useInquiry } from "@/lib/inquiry";
+import { inquiry, inquiryLinks, logHandoff, useInquiry } from "@/lib/inquiry";
+import { refFor, uuid } from "@/lib/uuid";
 import { track } from "@/lib/track";
 import { SITE } from "@/lib/site";
 import { IconCheck, IconMail, IconPlus, IconWhatsApp } from "./icons";
@@ -71,6 +72,8 @@ export function InquiryBar() {
   const [open, setOpen] = useState(false);
   const [business, setBusiness] = useState("");
   const [shipTo, setShipTo] = useState("");
+  // One reference per opening of the list; it goes in the message and the saved record.
+  const [handoffId, setHandoffId] = useState("");
   const uid = useId();
 
   useEffect(() => {
@@ -88,8 +91,15 @@ export function InquiryBar() {
   }, [open]);
 
   if (!items.length) return null;
-  const { whatsapp, email } = inquiryLinks(items, { business, shipTo });
-  const sent = (channel: string) => track("contact_click", { channel, form: "wholesale_inquiry", products: items.length });
+  const { whatsapp, email } = inquiryLinks(items, { business, shipTo, id: handoffId });
+  const sent = (channel: string) => {
+    track("contact_click", { channel, form: "wholesale_inquiry", products: items.length });
+    if (handoffId) logHandoff(handoffId, items, channel, { business, shipTo });
+  };
+  const openList = () => {
+    setHandoffId(uuid());
+    setOpen(true);
+  };
 
   return (
     <>
@@ -157,12 +167,12 @@ export function InquiryBar() {
               </a>
             </div>
             <p className="mt-3 text-[12.5px] leading-5 text-muted">
-              Your message opens in {whatsapp ? "WhatsApp or your email app" : "your email app"}, addressed to {SITE.email}{whatsapp ? " or our WhatsApp" : ""}. Selecting products reserves nothing. For laboratory research use only.
+              Your message opens in {whatsapp ? "WhatsApp or your email app" : "your email app"}, addressed to {SITE.email}{whatsapp ? " or our WhatsApp" : ""}, with reference {handoffId ? refFor(handoffId) : ""}. Press send there to reach us. Selecting products reserves nothing. For laboratory research use only.
             </p>
             <button type="button" onClick={() => { inquiry.clear(); setOpen(false); }} className="mt-3 text-[12.5px] text-muted underline underline-offset-2 hover:text-ink">Clear the list</button>
           </section>
         ) : (
-          <button type="button" onClick={() => setOpen(true)} className="flex w-full items-center justify-between gap-3 rounded-full bg-ink py-2.5 pl-5 pr-2.5 text-left text-white shadow-[0_18px_40px_-16px_rgba(0,0,0,0.55)]">
+          <button type="button" onClick={openList} className="flex w-full items-center justify-between gap-3 rounded-full bg-ink py-2.5 pl-5 pr-2.5 text-left text-white shadow-[0_18px_40px_-16px_rgba(0,0,0,0.55)]">
             <span className="text-[14.5px]">
               <span className="font-semibold">{items.length} product{items.length === 1 ? "" : "s"}</span> in your inquiry
             </span>

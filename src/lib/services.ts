@@ -76,7 +76,7 @@ export const SERVICES: Service[] = [
       { q: "Who can buy wholesale?", a: "Businesses that sell or use these materials for research. We don't supply businesses that market them for human or veterinary use." },
     ],
     demo: "wholesale",
-    guides: ["choose-wholesale-peptide-supplier", "prepare-wholesale-order", "read-peptide-coa", "what-a-certificate-of-analysis-should-show"],
+    guides: ["choose-wholesale-peptide-supplier", "prepare-wholesale-order", "read-peptide-coa", "start-a-research-peptide-business"],
   },
   {
     slug: "factory-direct",
@@ -106,7 +106,7 @@ export const SERVICES: Service[] = [
     short: "Sell under your own brand. We put your label on every unit.",
     title: "Your brand on every label.",
     answer:
-      "White label (also called private label) means you sell our products under your own brand. We print labels to your design, apply them, and keep every unit traceable to its lot. You approve a proof before anything is printed.",
+      "White label (also called private label) means you sell our products under your own brand: custom branded peptides and other white label research compounds from the Vanta catalog. We print labels to your design, apply them, and keep every unit traceable to its lot. You approve a proof before anything is printed.",
     forWho: "Anyone starting or growing their own brand without making the product themselves.",
     includes: [
       "Labels designed to your brand, or by us",

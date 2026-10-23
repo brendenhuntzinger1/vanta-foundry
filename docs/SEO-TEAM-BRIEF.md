@@ -19,7 +19,7 @@ website briefs are emailed from the on-page form. Approved titles and H1s:
 | Wholesale | `/catalog`, `/catalog/<product>` (33), `/wholesale/testing`, `/wholesale/ordering` | Product + FAQPage; reports linked |
 | Case study | `/work/vanta-labs` | Article |
 | Industries (12) | `/industries/<slug>`, hub at `/industries` | Unique copy per industry, edit in `src/lib/industries.ts` |
-| Guides (21) | `/guides/<slug>` | Answer-first articles, edit in `src/lib/guides.ts` |
+| Guides (22) | `/guides/<slug>` | Answer-first articles, edit in `src/lib/guides.ts` |
 | Glossary | `/glossary` | DefinedTermSet schema |
 | Lead flows (7) | `/start/<service>` | One-minute guided inquiry; link campaigns here |
 | Company | `/about`, `/contact`, `/standards` | Organization schema with contact point |

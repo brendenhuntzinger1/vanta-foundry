@@ -22,8 +22,8 @@ const STEPS = [
   },
   {
     h: "Receive Quote",
-    p: "A person on our team replies with a written quote. It covers:",
-    list: ["Unit pricing for your products, sizes and quantities", "Availability, and anything we'd source factory-direct instead", "The lot you'll receive and its laboratory report", "Shipping and lead time to your destination", "How long the quote holds, and payment terms"],
+    p: "A person on our team replies with a written quote: pricing for your products, sizes and quantities, availability, and the timing. Before you approve it, make sure you have answers to these, and ask about anything the quote doesn't state:",
+    list: ["The unit price for each product, size and quantity", "Whether everything is available, or what would be sourced factory-direct instead", "The lot you'll receive and its laboratory report", "Shipping method and lead time to your destination", "How long the price holds, and how and when payment is made"],
   },
   {
     h: "Confirm Details",
@@ -40,9 +40,10 @@ const STEPS = [
 ];
 
 const FAQS = [
-  { q: "What is the minimum order quantity?", a: "No minimum order quantity (MOQ) is published. Minimums depend on the products and quantities; your quote confirms it." },
+  { q: "What is the minimum order quantity?", a: "No minimum order quantity (MOQ) is published. Minimums depend on the products and quantities; ask, and confirm it on your quote." },
+  { q: "What are the payment terms?", a: "None are published. Ask how and when payment is made before you approve a quote, and get the answer in writing." },
   { q: "Is there tiered pricing?", a: "Yes. Wholesale pricing improves with quantity, and your quote shows the price for the quantities you ask about." },
-  { q: "How long is a quote valid?", a: "The quote states it. Ask if you need longer to decide." },
+  { q: "How long is a quote valid?", a: "Ask when you receive it, and confirm it in writing before you rely on the price. Pricing depends on current availability, so a quote isn't open-ended." },
   { q: "What determines lead time?", a: "The products, quantities, whether they're in stock or made to order (factory-direct), labelling, and the destination. The quote states the lead time before you commit." },
   { q: "Do I need an account to ask for pricing?", a: "No. Send your list on WhatsApp or by email; there's nothing to sign up for." },
   { q: "Which units are quantities in?", a: `Vials. ${QUANTITY_NOTE}` },

@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import { Container, CtaBand, FaqList } from "@/components/blocks";
 import { CatalogBrowser } from "./catalog-browser";
 import { pageMetadata } from "@/lib/metadata";
-import { CATALOG, NO_PUBLISHED_REPORT, QUANTITY_NOTE, productPath } from "@/lib/catalog";
+import { CATALOG, NO_PUBLISHED_REPORT, QUANTITY_NOTE, REFERENCE_REPORT_ONLY, productPath } from "@/lib/catalog";
 import { ContactButtons } from "@/components/contact-buttons";
 import { OfferView } from "@/components/page-tracker";
 import { JsonLd, breadcrumbs, faqPage, itemList } from "@/lib/jsonld";
@@ -25,7 +25,7 @@ const FAQS = [
 
 export default function CatalogPage() {
   const sizes = CATALOG.reduce((n, p) => n + p.sizes.length, 0);
-  const documented = CATALOG.filter((p) => !NO_PUBLISHED_REPORT.includes(p.slug)).length;
+  const documented = CATALOG.filter((p) => !NO_PUBLISHED_REPORT.includes(p.slug) && !REFERENCE_REPORT_ONLY.includes(p.slug)).length;
   return (
     <>
       <section className="pt-16 sm:pt-20">
@@ -40,8 +40,8 @@ export default function CatalogPage() {
           <div className="mt-8 max-w-2xl">
             <h1 className="h-display text-[42px] text-ink sm:text-[60px]">{P.h1}</h1>
             <p className="mt-5 text-[18px] leading-[1.6] text-body">
-              {CATALOG.length} products in {sizes} vial sizes, ready to supply in bulk. {documented} have a published laboratory
-              report. No prices are listed: tap <strong className="font-semibold text-ink">Inquire</strong> on any product, or add
+              {CATALOG.length} products in {sizes} vial sizes, ready for bulk peptide supply. {documented} have a published batch report that
+              matches the size we supply. No prices are listed: tap <strong className="font-semibold text-ink">Inquire</strong> on any product, or add
               several to one list, and we reply with wholesale pricing.
             </p>
             <p className="mt-4 text-[15px] text-body">

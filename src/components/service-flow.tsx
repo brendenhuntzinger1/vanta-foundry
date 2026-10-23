@@ -8,6 +8,7 @@ import { SERVICES } from "@/lib/services";
 import { SITE, emailLink, whatsappLink } from "@/lib/site";
 import { attributionRows } from "@/lib/attribution";
 import { track } from "@/lib/track";
+import { uuid } from "@/lib/uuid";
 import { IconArrow, IconCheck, IconMail, IconWhatsApp } from "./icons";
 
 /** Wall-clock time, read only in effects and event handlers. */
@@ -48,7 +49,7 @@ export function ServiceFlow({ subject, flow, learnMore }: { subject: FlowSubject
   const [ref, setRef] = useState("");
   useEffect(() => {
     started.current = now();
-    leadId.current = typeof crypto !== "undefined" && "randomUUID" in crypto ? crypto.randomUUID() : `${now()}-${Math.random().toString(36).slice(2)}`;
+    leadId.current = uuid();
     track("inquiry_start", { form: subject.slug });
   }, [subject.slug]);
 
@@ -81,6 +82,7 @@ export function ServiceFlow({ subject, flow, learnMore }: { subject: FlowSubject
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           id: leadId.current,
+          kind: "website_brief",
           service: subject.name,
           answers: [...summary, ...(extra.length ? [{ label: "Also", value: extra.join(", ") }] : [])],
           source: attributionRows(),

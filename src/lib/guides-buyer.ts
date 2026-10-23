@@ -834,4 +834,66 @@ export const BUYER_GUIDES: Guide[] = [
     ],
     services: ["website-development", "wholesale"],
   },
+  {
+    slug: "start-a-research-peptide-business",
+    title: "How to Start a Research Peptide Business",
+    question: "What do you need to start a research peptide business?",
+    description: "The parts of a research-use-only peptide business, in order: catalog, documented supply, labels, website, payments and fulfillment.",
+    answer:
+      "A research peptide business needs six things working together: a catalog you can document, a supplier that gives you a laboratory report for every lot, labels and copy that stay research use only, a website buyers can trust, payment processing that accepts the category, and a way to ship. Get advice from your own lawyer on how the rules apply to you; this guide covers the operating parts, not legal questions.",
+    updated: "2026-10-23",
+    sections: [
+      {
+        h: "Decide What You'll Sell",
+        p: [
+          "Start with a short catalog you can document well rather than a long one you can't. For each product, know its identity data (name, sequence where it applies, CAS number, formula), the vial sizes you'll offer and whether a laboratory report exists for the lot you'll sell.",
+          "Research-use-only means exactly that. Every page, label, email and social post describes what a material is, never what it does or how a person might use it.",
+        ],
+      },
+      {
+        h: "Supply and Documentation",
+        list: [
+          "A supplier who names the lot you'll receive and gives you its certificate of analysis before you pay.",
+          "Reports from a named laboratory that state the method, the result and the batch, and that you can verify with the laboratory.",
+          "Clear quantities: the amount in one vial, and how many vials you're buying.",
+          "Written terms for minimums, lead time and payment, confirmed on the quote.",
+        ],
+        p: [
+          "Our [wholesale peptide catalog](/catalog) lists sizes and the reports already published, and the [testing page](/wholesale/testing) explains what each report does and doesn't show.",
+        ],
+      },
+      {
+        h: "Brand and Labels",
+        p: [
+          "Selling under your own name is private label (we call it white label). Each label should carry the material, the quantity, the lot number and a research-use-only statement, and you should approve a printed proof first. Labels never carry usage, dosing or effect claims. See [private label peptides](/white-label).",
+        ],
+      },
+      {
+        h: "Website and Copy",
+        p: [
+          "Buyers judge a research supplier by its documentation. Plan a page per product with its identity data, the report for each size one tap away, a research-use access gate, and an ordering path that suits your buyers: checkout, a wholesale request form, or both.",
+          "Read [peptide website development](/website-development/peptide-websites) for what the build covers, and [how much a peptide website costs](/guides/peptide-website-cost) for what drives the price.",
+        ],
+      },
+      {
+        h: "Payments",
+        p: [
+          "Research supply is a category many payment processors review closely or decline. Apply with a provider that accepts the category, describe what you sell accurately, and keep a second processor ready. Every merchant account is subject to the provider's approval; no website or agency can promise it.",
+        ],
+      },
+      {
+        h: "Fulfillment",
+        p: [
+          "Decide who stores stock and ships orders: you, a 3PL, or a supplier that dropships. Whoever ships needs your packing slip, tracking emails and a way to handle damaged or missing items. See [dropshipping and 3PL](/fulfillment).",
+        ],
+      },
+      {
+        h: "Launch Checklist",
+        p: [
+          "Before you take the first order, run through the [wholesale business website launch checklist](/guides/wholesale-business-launch-checklist). You can buy each part from us separately; website and supply are quoted separately even when you buy both.",
+        ],
+      },
+    ],
+    services: ["wholesale", "white-label", "website-development", "fulfillment"],
+  },
 ];

@@ -5,7 +5,7 @@ import { Container, CtaBand, FaqList } from "@/components/blocks";
 import { IconArrow, IconCheck, IconMail, IconWhatsApp } from "@/components/icons";
 import { OfferView } from "@/components/page-tracker";
 import { TrackedLink } from "@/components/tracked-link";
-import { CATALOG, NO_PUBLISHED_REPORT, QUANTITY_NOTE, productPath } from "@/lib/catalog";
+import { CATALOG, NO_PUBLISHED_REPORT, QUANTITY_NOTE, REFERENCE_REPORT_ONLY, productPath } from "@/lib/catalog";
 import { allReports } from "@/lib/reports";
 import { JsonLd, breadcrumbs, faqPage, service } from "@/lib/jsonld";
 import { pageMetadata } from "@/lib/metadata";
@@ -40,7 +40,7 @@ export default function WholesalePage() {
   const mail = emailLink("Wholesale pricing request", msg);
   const categories = [...new Set(CATALOG.map((p) => p.category))];
   const reports = allReports();
-  const documented = CATALOG.filter((p) => !NO_PUBLISHED_REPORT.includes(p.slug)).length;
+  const documented = CATALOG.filter((p) => !NO_PUBLISHED_REPORT.includes(p.slug) && !REFERENCE_REPORT_ONLY.includes(p.slug)).length;
 
   return (
     <>
@@ -92,7 +92,7 @@ export default function WholesalePage() {
           <div className="flex flex-wrap items-end justify-between gap-4">
             <div className="max-w-2xl">
               <h2 className="h-section text-[32px] text-ink sm:text-[44px]">Wholesale Peptide Catalog</h2>
-              <p className="mt-3 text-[17px] leading-[1.6] text-body">{CATALOG.length} products. Each one has its own page with vial sizes, specifications and published reports.</p>
+              <p className="mt-3 text-[17px] leading-[1.6] text-body">{CATALOG.length} wholesale research peptides and related research materials. Each one has its own page with vial sizes, specifications and published reports.</p>
             </div>
             <Link href="/catalog" className="inline-flex items-center gap-1.5 text-[15px] font-medium text-ink underline underline-offset-4">
               View the wholesale catalog <IconArrow />
@@ -128,8 +128,9 @@ export default function WholesalePage() {
           <div className="rounded-2xl border border-line bg-bg-2 p-7 sm:p-9">
             <h2 className="text-[24px] font-semibold tracking-[-0.025em] text-ink">Testing and Batch Documentation</h2>
             <p className="mt-3 text-[16px] leading-[1.65] text-body">
-              {documented} of {CATALOG.length} products have a published laboratory report, {reports.length} reports in all, from named
-              third-party laboratories. Every wholesale lot comes with its certificate of analysis, matched by lot number.
+              {documented} of {CATALOG.length} products have a published batch report from a named third-party laboratory that matches the
+              size we supply; {REFERENCE_REPORT_ONLY.length} have a reference report only, and {NO_PUBLISHED_REPORT.length} have none yet ({reports.length} reports
+              in all). Every wholesale lot comes with its certificate of analysis, matched by lot number.
             </p>
             <Link href="/wholesale/testing" className="mt-5 inline-flex items-center gap-1.5 text-[15px] font-medium text-ink underline underline-offset-4">
               View available documentation <IconArrow />
@@ -147,7 +148,7 @@ export default function WholesalePage() {
                 "Quoted for your products, vial sizes and number of vials",
                 "Tiered pricing: the unit price improves with quantity",
                 "Labelling (white label) and fulfillment (3PL) quoted alongside, if you want them",
-                "Factory-direct for large planned orders, at our lowest unit price",
+                "Large planned orders of bulk research peptides can be made factory-direct, at our lowest unit price",
                 "In writing, before you commit",
               ].map((x) => (
                 <li key={x} className="flex gap-3 text-[16px] text-ink"><IconCheck className="mt-0.5 shrink-0 text-gold" />{x}</li>

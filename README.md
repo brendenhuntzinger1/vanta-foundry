@@ -27,14 +27,17 @@ It's a standalone Next.js app with its own repository, Vercel project and domain
 ## How a customer gets in touch
 
 - **Wholesale:** tap **Inquire** on a product, or **Add to list** on several (the list follows the buyer between catalog and product pages), then **Send on WhatsApp** or **Send by email**. The message opens in their own app, already written, with sizes, number of vials and where they found us.
-- **Website projects:** the brief at `/start/website-development` is sent from the page to `/api/lead`, which emails it through Resend with a reference number (`RESEND_API_KEY`, `LEAD_FROM`, optional `LEAD_TO`). Without them, or if sending fails, the visitor gets their email app with the brief written in.
+- **Website projects:** the brief at `/start/website-development` is sent from the page to `/api/lead`, which saves it to `foundry.leads` (Vanta Labs Supabase project, `supabase/foundry_leads.sql`) and emails it through Resend with a reference number (`RESEND_API_KEY`, `LEAD_FROM`, optional `LEAD_TO`). If it can be neither saved nor emailed, the visitor gets their email app with the brief written in.
+- Wholesale lists are logged to the same table as `wholesale_handoff` rows, with the reference that appears in the message.
 
 ## Run
 
     npm install
     npm run build && npm start      # check against a production build, not `next dev`
     npm run lint && npm run typecheck
-    npm run check:seo               # with `npm start` running: titles, H1s, canonicals, sitemap, links
+    npm run check:seo               # with `npm start` running: titles, H1s, canonicals, phrases, sitemap, links
+    npm run check:reports           # the same, plus every lab report link (needs internet)
+    python3 scripts/keyword-coverage.py docs/research/keyword-audit-records.json   # rebuilds docs/KEYWORD-COVERAGE.md
 
 ## Deploy
 

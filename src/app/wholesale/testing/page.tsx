@@ -63,7 +63,8 @@ export default function TestingPage() {
             <section>
               <h2>Find Documentation</h2>
               <p>
-                Every product page in the <Link href="/catalog">wholesale catalog</Link> lists its published reports, one per vial size
+                Every report here comes from third-party testing by a named laboratory, not an in-house test. Every product page in
+                the <Link href="/catalog">wholesale catalog</Link> lists its published reports, one per vial size
                 where the laboratory reports sizes separately. The full list is below. The same reports are published in the Vanta Labs{" "}
                 <a href={`${SITE.parentUrl}/coa-library`} target="_blank" rel="noopener noreferrer">COA library</a>, which can be searched by
                 product, batch or lot number.
@@ -73,8 +74,13 @@ export default function TestingPage() {
               <h2>Match the Batch</h2>
               <p>
                 A report covers the batch it names, never another. Each Kovera Labs report has a report number (for example
-                KVR-2026-6B1171); Horizon Analytical reports are identified by lot. When your order arrives, check that the lot on the
-                vials matches the report named on your quote.
+                KVR-2026-6B1171) and prints the batch and labelled size it tested; Horizon Analytical reports are identified by lot.
+                When your order arrives, check that the lot on the vials matches the report named on your quote.
+              </p>
+              <p>
+                Below, a <strong>batch report</strong> matches the product and size we supply. A <strong>reference</strong> report is
+                published but doesn&rsquo;t document the size or lot sold: a partner&rsquo;s lot, a different labelled size, or no batch
+                number. Each one says which. Ask for the report for your own lot whenever you rely on a reference report.
               </p>
             </section>
             <section>

@@ -34,7 +34,7 @@ export const DEV_SERVICES: DevService[] = [
     seo: SEO_PAGES.peptideWebsites,
     name: "Peptide websites",
     answer:
-      "A peptide website needs a clear catalog, testing documentation a buyer can find in one tap, and an ordering process that works. We start from the workflow your business runs, retail checkout, wholesale requests or both, then scope the design, development and integrations around it. It's what we built for Vanta Labs, our own research-supply store.",
+      "A peptide website needs a clear catalog, testing documentation a buyer can find in one tap, and an ordering process that works. We start from the workflow your business runs, retail checkout, wholesale requests or both, then scope the peptide website design, development and integrations around it. It's what we built for Vanta Labs, our own research-supply store.",
     sections: [
       {
         h: "What Your Peptide Website Needs",
@@ -72,7 +72,7 @@ export const DEV_SERVICES: DevService[] = [
         list: [
           "**Brief.** You tell us about the business in about a minute; a project lead follows up to plan the build.",
           "**Design.** We design the site and you sign off on every page before it's coded.",
-          "**Build.** Our developers hand-code it, load the catalog and documents, and connect payments and email.",
+          "**Build.** Our developers hand-code it in Next.js and React, load the catalog and documents, and connect payments and email.",
           "**Test and launch.** Every page, form and checkout path is tested on phones and desktop before it goes live.",
         ],
       },
@@ -111,7 +111,7 @@ export const DEV_SERVICES: DevService[] = [
     seo: SEO_PAGES.ecommerce,
     name: "Ecommerce websites",
     answer:
-      "Ecommerce website development is a custom online store built around your products: the catalog, product pages, cart and checkout, shipping and order emails, and the admin you use to run it. We design it for your brand, hand-code it, connect payments and test every path before launch. For any business, in any industry.",
+      "Ecommerce website development means building a custom ecommerce website around your products: the catalog, product pages, cart and checkout, shipping and order emails, and the admin you use to run it. We design it for your brand, hand-code it, connect payments and test every path before launch. For any business, in any industry.",
     sections: [
       {
         h: "Catalog",
@@ -154,7 +154,7 @@ export const DEV_SERVICES: DevService[] = [
       href: "/work",
     },
     faqs: [
-      { q: "Which platforms do you build on?", a: "We hand-code stores rather than adapting a theme, so the store is built around your products and workflow. If you're set on a hosted platform, tell us in the brief and we'll say honestly whether we're the right fit." },
+      { q: "Which platforms do you build on?", a: "We hand-code sites in Next.js and React, the stack Vanta Labs and this site run on, rather than adapting a theme. If you're set on WordPress, Shopify or another hosted platform, tell us in the brief and we'll say honestly whether we're the right fit." },
       { q: "Who supplies the content?", a: "You supply product details and photos, or we write the copy and plan the photography with you. Your quote says which." },
       { q: "What is tested before launch?", a: "Every page on phones and desktop, test orders through each payment method, every email the store sends, speed and search setup. Nothing goes live untested." },
       { q: "How long does it take?", a: "Most sites are fully built and live within 72 hours to a week. Larger catalogs and custom features take longer; your quote states the timeline." },
@@ -170,7 +170,7 @@ export const DEV_SERVICES: DevService[] = [
     seo: SEO_PAGES.b2bPortals,
     name: "B2B buyer portals",
     answer:
-      "Wholesale buyers need more than a retail cart. A B2B ecommerce portal gives approved buyers an account with their own pricing, quantity tiers, quote requests and one-tap reorders, and gives your team a queue to approve accounts and answer quotes. We scope it around how your buyers already order, then build only what that needs.",
+      "Wholesale buyers need more than a retail cart. A B2B ecommerce portal is a wholesale ordering system: it gives approved buyers an account with their own pricing, quantity tiers, quote requests and one-tap reorders, and gives your team a queue to approve accounts and answer quotes. We scope it around how your buyers already order, then build only what that needs.",
     sections: [
       {
         h: "Account Access and Buyer Approval",
@@ -243,7 +243,7 @@ export const DEV_SERVICES: DevService[] = [
       {
         h: "Migration Scope",
         p: [
-          "Products, variants, categories, customer accounts, orders and documents, page content and images. The proposal lists what moves, what's rebuilt and what's retired, so nothing is decided by accident.",
+          "A website migration moves products, variants, categories, customer accounts, orders and documents, page content and images. The proposal lists what moves, what's rebuilt and what's retired, so nothing is decided by accident.",
         ],
       },
       {
@@ -296,10 +296,10 @@ export const DEV_SERVICES: DevService[] = [
         h: "Systems to Connect",
         list: [
           "**Payments:** card, Apple Pay and Google Pay processing, with a backup processor connected",
-          "**Shipping:** rates, labels and tracking",
+          "**Shipping integration:** rates, labels and tracking",
           "**Fulfillment:** orders sent to your warehouse, a 3PL or ours",
           "**Email and SMS:** order emails, tracking messages, and follow-ups for declined or abandoned checkouts",
-          "**Inventory:** stock levels kept in step between the store and where stock is held",
+          "**Inventory integration:** stock levels kept in step between the store and where stock is held",
         ],
       },
       {
@@ -371,7 +371,7 @@ export const DEV_SERVICES: DevService[] = [
       {
         h: "Requests",
         p: [
-          "One thread to reach the team, not a ticket queue. Tell us what you need in plain words; we confirm what will change and when.",
+          "Website support runs through one thread to the team, not a ticket queue. Tell us what you need in plain words; we confirm what will change and when.",
         ],
       },
       {

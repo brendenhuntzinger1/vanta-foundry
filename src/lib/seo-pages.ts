@@ -52,7 +52,7 @@ export const SEO_PAGES = {
     h1: "Website development",
     description: "Custom-coded websites and online stores for any business, designed for your brand, live in 72 hours to a week, with your own developer team after launch.",
     cta: "Start your project",
-    phrases: ["custom web development", "custom web design"],
+    phrases: ["custom web development"],
     updated: D,
   },
   peptideWebsites: {
@@ -72,7 +72,7 @@ export const SEO_PAGES = {
     h1: "Ecommerce Website Development",
     description: "A custom online store: catalog, checkout, shipping and order emails, built for your products and tested on every device before launch.",
     cta: "Discuss Your Store",
-    phrases: ["ecommerce web design", "custom ecommerce website"],
+    phrases: ["custom ecommerce website"],
     updated: D,
   },
   b2bPortals: {
@@ -92,7 +92,7 @@ export const SEO_PAGES = {
     h1: "Website Redesign & Migration",
     description: "Rebuild or improve your current website without losing what works: product data, URLs and search visibility, moved with a redirect map and tested before launch.",
     cta: "Request a Website Review",
-    phrases: ["website migration", "ecommerce redesign"],
+    phrases: ["website migration"],
     updated: D,
   },
   integrations: {
@@ -112,7 +112,7 @@ export const SEO_PAGES = {
     h1: "Website Maintenance & Support",
     description: "A monthly plan with a developer team on call 24/7 for fixes, changes, new pages and features, speed, security and uptime. What's included is in your agreement.",
     cta: "Discuss Support",
-    phrases: ["website support", "ecommerce maintenance"],
+    phrases: ["website support"],
     updated: D,
   },
   wholesale: {
@@ -162,7 +162,7 @@ export const SEO_PAGES = {
     h1: "Private Label Peptides & White Label Supply",
     description: "Sell research peptides under your own brand. We print labels to your design, you approve a proof before anything prints, and every unit stays traceable to its lot.",
     cta: "Discuss Private Label",
-    phrases: ["white label peptides", "white label research compounds"],
+    phrases: ["white label research compounds", "custom branded peptides"],
     updated: D,
   },
   fulfillment: {
@@ -172,7 +172,7 @@ export const SEO_PAGES = {
     h1: "Peptide Dropshipping & Order Fulfillment",
     description: "We store your stock and pick, pack and ship every order as your brand (3PL), or dropship from our stock so you hold no inventory.",
     cta: "Discuss Fulfillment",
-    phrases: ["wholesale fulfillment", "order fulfillment", "3PL"],
+    phrases: ["order fulfillment", "3PL"],
     updated: D,
   },
   factoryDirect: {
@@ -182,7 +182,7 @@ export const SEO_PAGES = {
     h1: "Factory-Direct Peptide Supply",
     description: "Large research-peptide orders produced and shipped straight from the manufacturer, at our lowest unit price, with lot documentation. Quoted per order.",
     cta: "Get started",
-    phrases: ["bulk supply", "lot documentation"],
+    phrases: ["lot documentation"],
     updated: D,
   },
   supply: {
@@ -192,7 +192,7 @@ export const SEO_PAGES = {
     h1: "Peptide supply, done for you.",
     description: "Research peptides wholesale or factory-direct with a COA for every wholesale lot, your own label on every vial, and storage, packing and shipping as your brand. Research use only.",
     cta: "Browse the catalog",
-    phrases: ["peptide wholesale", "white label", "3PL fulfillment"],
+    phrases: ["white label", "3PL"],
     updated: D,
     note: "H1 is the owner's front-door headline; /wholesale owns 'wholesale peptides'.",
   },
@@ -203,7 +203,7 @@ export const SEO_PAGES = {
     h1: "Website development portfolio",
     description: "Websites designed and hand-coded by the Vanta Foundry team: two live research-supply stores, and concept stores for skincare, coffee and athletic apparel.",
     cta: "Start your project",
-    phrases: ["ecommerce projects"],
+    phrases: [],
     updated: D,
   },
   caseVantaLabs: {
@@ -213,7 +213,7 @@ export const SEO_PAGES = {
     h1: "Vanta Labs Website Development Case Study",
     description: "What our team built for Vanta Labs, our own research-supply store: catalog, specification pages, a searchable COA library, quantity pricing and wholesale requests.",
     cta: "Discuss a Similar Project",
-    phrases: ["ecommerce development", "COA library"],
+    phrases: ["COA library"],
     updated: D,
   },
   about: {
@@ -223,7 +223,7 @@ export const SEO_PAGES = {
     h1: "About Vanta Foundry",
     description: "Vanta Foundry is the team behind Vanta Labs, Genesis Biomapping and Remade Clinic. We build websites for any business and supply research brands wholesale.",
     cta: "Contact the Team",
-    phrases: ["website development and wholesale"],
+    phrases: [],
     updated: D,
   },
   contact: {
@@ -233,7 +233,7 @@ export const SEO_PAGES = {
     h1: "Contact Vanta Foundry",
     description: "Send a website brief on the site, or a wholesale inquiry on WhatsApp or by email to support@vantalabsresearch.com. A person on our team replies.",
     cta: "Send a website brief",
-    phrases: ["website quote", "wholesale inquiry"],
+    phrases: ["wholesale inquiry"],
     updated: D,
   },
 } satisfies Record<string, SeoPage>;

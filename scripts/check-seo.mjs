@@ -13,7 +13,7 @@
 // Exits 1 on any failure. Wording changes belong in src/lib/seo-pages.ts.
 
 import { SEO_PAGES, productSeo } from "../src/lib/seo-pages.ts";
-import { CATALOG, NO_PUBLISHED_REPORT } from "../src/lib/catalog.ts";
+import { CATALOG, NO_PUBLISHED_REPORT, REFERENCE_REPORT_ONLY } from "../src/lib/catalog.ts";
 import { PRODUCT_FACTS } from "../src/lib/product-facts.ts";
 
 const BASE = (process.env.BASE ?? "http://localhost:3000").replace(/\/$/, "");
@@ -61,6 +61,9 @@ async function checkPage(route, { title, h1, cta, phrase, mustContain = [] }) {
 
 for (const page of Object.values(SEO_PAGES)) {
   await checkPage(page.route, { title: page.title, h1: page.h1, cta: page.cta, phrase: page.primaryPhrase });
+  // Supporting phrases the registry promises must actually render on the page.
+  const text = parse((await get(page.route)).html).text.toLowerCase().replace(/[\s-]+/g, " ");
+  for (const ph of page.phrases) if (!text.includes(ph.toLowerCase().replace(/[\s-]+/g, " "))) fail(page.route, `supporting phrase "${ph}" not on the page`);
 }
 for (const p of CATALOG) {
   const seo = productSeo(p.name);
@@ -68,6 +71,12 @@ for (const p of CATALOG) {
   await checkPage(`/catalog/${p.slug}`, { title: seo.title, h1: seo.h1, cta: seo.cta, phrase: `${p.name} wholesale`, mustContain: reports.map((r) => r.id) });
   const noReport = reports.length === 0;
   if (noReport !== NO_PUBLISHED_REPORT.includes(p.slug)) fail(`/catalog/${p.slug}`, "NO_PUBLISHED_REPORT disagrees with product-facts.ts");
+  const referenceOnly = reports.length > 0 && reports.every((r) => r.status === "reference");
+  if (referenceOnly !== REFERENCE_REPORT_ONLY.includes(p.slug)) fail(`/catalog/${p.slug}`, "REFERENCE_REPORT_ONLY disagrees with product-facts.ts");
+  for (const r of reports) {
+    if (r.status === "reference" && !r.note) fail(`/catalog/${p.slug}`, `${r.id} is reference-only but has no note saying why`);
+    if (!r.batch) fail(`/catalog/${p.slug}`, `${r.id} has no batch as printed on the report`);
+  }
 }
 
 // Sitemap: every URL live, indexable, self-canonical. Guides: title is "<h1> | Vanta Foundry".
@@ -98,6 +107,16 @@ for (const href of linked) {
   if (r.status !== 200) fail(href, `linked internally but answers ${r.status}`);
 }
 for (const route of inSitemap) if (route !== "/" && !linked.has(route)) fail(route, "in the sitemap but no page links to it (orphan)");
+
+// Optional: every report link must open (CHECK_EXTERNAL=1; needs internet).
+if (process.env.CHECK_EXTERNAL) {
+  const urls = new Set(Object.values(PRODUCT_FACTS).flatMap((f) => f.reports.map((r) => r.url)));
+  for (const u of urls) {
+    const res = await fetch(u, { redirect: "follow" }).catch(() => null);
+    if (!res || res.status !== 200) fail(u, `report link answers ${res?.status ?? "no response"}`);
+  }
+  console.log(`Checked ${urls.size} report links.`);
+}
 
 const robots = await get("/robots.txt");
 if (!/Sitemap: /.test(robots.html)) fail("/robots.txt", "no Sitemap line");

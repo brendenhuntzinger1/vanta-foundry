@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useId, useMemo, useState } from "react";
-import { CATALOG, NO_PUBLISHED_REPORT, QUANTITY_NOTE, productPath, type CatalogProduct } from "@/lib/catalog";
+import { CATALOG, QUANTITY_NOTE, productPath, reportBadge, type CatalogProduct } from "@/lib/catalog";
 import { emailLink, whatsappLink } from "@/lib/site";
 import { track } from "@/lib/track";
 import { IconMail, IconWhatsApp } from "@/components/icons";
@@ -46,7 +46,7 @@ export function CatalogBrowser() {
     <div>
       <div className="mb-6 flex flex-col gap-2 rounded-2xl border border-line bg-bg-2 px-5 py-4 text-[14px] leading-[1.55] text-body sm:flex-row sm:items-center sm:justify-between">
         <p>
-          <span className="font-semibold text-ink">Every wholesale lot comes with a certificate of analysis (COA).</span> Lot numbers on every unit.
+          <span className="font-semibold text-ink">Every wholesale lot comes with a certificate of analysis (COA).</span> Each product page shows the reports already published.
         </p>
         <p className="text-[13px] text-muted sm:text-right">{QUANTITY_NOTE} For laboratory research use only.</p>
       </div>
@@ -87,8 +87,8 @@ export function CatalogBrowser() {
             return (
               <li key={p.slug} className="flex flex-col overflow-hidden rounded-2xl border border-line bg-white">
                 <Link href={productPath(p.slug)} className="relative block aspect-[4/5] bg-bg-2" tabIndex={-1} aria-hidden="true">
-                  {!NO_PUBLISHED_REPORT.includes(p.slug) && (
-                    <span className="absolute left-2.5 top-2.5 z-10 rounded-full bg-ink/85 px-2.5 py-1 text-[11px] font-medium text-white">COA published</span>
+                  {reportBadge(p.slug) && (
+                    <span className="absolute left-2.5 top-2.5 z-10 rounded-full bg-ink/85 px-2.5 py-1 text-[11px] font-medium text-white">{reportBadge(p.slug)}</span>
                   )}
                   <Image
                     src={p.image}

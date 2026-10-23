@@ -1,6 +1,7 @@
 /**
  * Product facts for the catalog pages, read from the Vanta Labs store's public
- * product pages and COA library on 2026-10-23 (generated, then checked by hand).
+ * product pages and COA library on 2026-10-23. Every report field was then
+ * checked against the report document itself (see docs/LAUNCH-BASELINE.md).
  * Identity data cites the store's own sources (PubChem, FDA GSRS). Reports are
  * the laboratory documents the store publishes for the batch it currently
  * supplies; a wholesale quote names the lot a buyer will receive.
@@ -8,7 +9,26 @@
  * Refresh when the store's catalog or reports change.
  */
 
-export type ProductReport = { id: string; size?: string; result: string; date: string; lab: string; url: string };
+/**
+ * One laboratory report, with every field read from the report itself (the
+ * PDF, or for Horizon reports the store's lot page) on 2026-10-23.
+ * - verified: product, labelled size and client match what we supply.
+ * - reference: published, but it doesn't document the size or lot sold
+ *   (`note` says why, and the page shows it).
+ */
+export type ProductReport = {
+  id: string;
+  /** Labelled quantity printed on the report. */
+  size?: string;
+  /** Batch or lot exactly as printed on the report. */
+  batch?: string;
+  result: string;
+  date: string;
+  lab: string;
+  url: string;
+  status: "verified" | "reference";
+  note?: string;
+};
 
 export type ProductFacts = {
   specs: [string, string][];
@@ -25,7 +45,7 @@ export const PRODUCT_FACTS: Record<string, ProductFacts> = {
   "b12": {
     specs: [["Name", "B12"], ["Synonyms and codes", "Vitamin B12, Cobalamin"], ["Description", "Cobalamin (vitamin B12) solution, 10 mL"], ["Available sizes", "10 mL"]],
     reports: [
-      { id: "KVR-2026-2E9BD6", result: "Identity screen (HPLC-UV with LC-MS/MS identity confirmation): lists the compounds detected in the vial, not their amounts", date: "Aug 24, 2026", lab: "Kovera Labs", url: "https://www.vantalabsresearch.com/coa/KVR-2026-2E9BD6.pdf" },
+      { id: "KVR-2026-2E9BD6", size: "10 mL", batch: "Vanta184290", result: "Identity screen (HPLC-UV with LC-MS/MS): lists the compounds detected in the vial, not their amounts", date: "Aug 24, 2026", lab: "Kovera Labs", url: "https://www.vantalabsresearch.com/coa/KVR-2026-2E9BD6.pdf", status: "verified" },
     ],
   },
   "bpc-157-tb-500": {
@@ -33,7 +53,7 @@ export const PRODUCT_FACTS: Record<string, ProductFacts> = {
     composition: [["BPC-157", "10 mg"], ["TB-500 (TB-4)", "10 mg"]],
     notes: ["The report labels one component \"TB-500 (TB-4)\". That name is used for more than one peptide related to thymosin beta-4, so no sequence is asserted for it here."],
     reports: [
-      { id: "KVR-2026-47D7CA", size: "20 mg", result: "Purity 99.163%", date: "Aug 24, 2026", lab: "Kovera Labs", url: "https://www.vantalabsresearch.com/coa/KVR-2026-47D7CA.pdf" },
+      { id: "KVR-2026-47D7CA", size: "20 mg", batch: "Vanta184290", result: "Blend average purity 99.163% (RP-HPLC, 214 nm) · Identity by LC-MS · Net content 19.28 mg", date: "Aug 24, 2026", lab: "Kovera Labs", url: "https://www.vantalabsresearch.com/coa/KVR-2026-47D7CA.pdf", status: "verified" },
     ],
     status: ["Neither BPC-157 nor TB-500 is listed as an approved drug in the FDA's Drugs@FDA database (searched 24 September 2026)."],
   },
@@ -41,8 +61,8 @@ export const PRODUCT_FACTS: Record<string, ProductFacts> = {
     specs: [["Name", "BPC-157"], ["Synonyms and codes", "Body Protection Compound-157, PL 14736, PL-10, PLD-116"], ["Description", "Synthetic pentadecapeptide (15 amino acids)"], ["Available sizes", "5 mg, 10 mg"], ["Supplied form", "Lyophilized powder"], ["CAS number", "137525-51-0"], ["Molecular formula", "C62H98N16O22"], ["Molecular weight", "1419.5 g/mol"], ["Sequence", "GEPPPGKPADDAGLV (Gly-Glu-Pro-Pro-Pro-Gly-Lys-Pro-Ala-Asp-Asp-Ala-Gly-Leu-Val)"]],
     sources: [["FDA GSRS UNII 8ED8NXK95P", "https://gsrs.ncats.nih.gov/ginas/app/beta/substances/8ED8NXK95P"], ["PubChem CID 9941957", "https://pubchem.ncbi.nlm.nih.gov/compound/9941957"]],
     reports: [
-      { id: "KVR-2026-6B1171", size: "5 mg", result: "Purity 99.736% (RP-HPLC, C18 column, DAD detection at 214 nm) · Identity by LC-MS", date: "Aug 24, 2026", lab: "Kovera Labs", url: "https://www.vantalabsresearch.com/coa/KVR-2026-6B1171.pdf" },
-      { id: "KVR-2026-C2D666", size: "10 mg", result: "Purity 99.759% (RP-HPLC, C18 column, DAD detection at 214 nm) · Identity by LC-MS", date: "Aug 24, 2026", lab: "Kovera Labs", url: "https://www.vantalabsresearch.com/coa/KVR-2026-C2D666.pdf" },
+      { id: "KVR-2026-6B1171", size: "5 mg", batch: "Vanta184290", result: "Purity 99.736% (RP-HPLC, 214 nm) · Identity by LC-MS · Net content 5.98 mg", date: "Aug 24, 2026", lab: "Kovera Labs", url: "https://www.vantalabsresearch.com/coa/KVR-2026-6B1171.pdf", status: "verified" },
+      { id: "KVR-2026-C2D666", size: "10 mg", batch: "Vanta184290", result: "Purity 99.759% (RP-HPLC, 214 nm) · Identity by LC-MS · Net content 11.63 mg", date: "Aug 24, 2026", lab: "Kovera Labs", url: "https://www.vantalabsresearch.com/coa/KVR-2026-C2D666.pdf", status: "verified" },
     ],
     status: ["Not approved by the U.S. Food and Drug Administration."],
   },
@@ -50,7 +70,7 @@ export const PRODUCT_FACTS: Record<string, ProductFacts> = {
     specs: [["Name", "Cagrilintide"], ["Description", "Acylated (lipidated) amylin analogue peptide"], ["Available sizes", "10 mg"], ["Supplied form", "Lyophilized powder"], ["CAS number", "1415456-99-3"], ["Molecular formula", "C194H312N54O59S2"], ["Molecular weight", "4409 g/mol"]],
     sources: [["PubChem CID 171397054", "https://pubchem.ncbi.nlm.nih.gov/compound/171397054"]],
     reports: [
-      { id: "KVR-2026-05B493", size: "10 mg", result: "Purity 99.718%", date: "Aug 24, 2026", lab: "Kovera Labs", url: "https://www.vantalabsresearch.com/coa/KVR-2026-05B493.pdf" },
+      { id: "KVR-2026-05B493", size: "10 mg", batch: "Vanta184290", result: "Purity 99.718% (RP-HPLC, 214 nm) · Identity by LC-MS · Net content 10.41 mg", date: "Aug 24, 2026", lab: "Kovera Labs", url: "https://www.vantalabsresearch.com/coa/KVR-2026-05B493.pdf", status: "verified" },
     ],
     status: ["Cagrilintide is not listed as an approved drug in the FDA's Drugs@FDA database (searched 24 September 2026)."],
   },
@@ -59,21 +79,21 @@ export const PRODUCT_FACTS: Record<string, ProductFacts> = {
     composition: [["Ipamorelin", "5 mg"], ["CJC-1295 (No DAC)", "5 mg"]],
     sources: [["PubChem CID 9831659", "https://pubchem.ncbi.nlm.nih.gov/compound/9831659"]],
     reports: [
-      { id: "KVR-2026-6AA733", size: "10 mg", result: "Blend average purity 99.459% (RP-HPLC, C18 column, DAD detection at 214 nm) · Identity by LC-MS", date: "Aug 24, 2026", lab: "Kovera Labs", url: "https://www.vantalabsresearch.com/coa/KVR-2026-6AA733.pdf" },
+      { id: "KVR-2026-6AA733", size: "10 mg", batch: "Vanta184290", result: "Blend average purity 99.459% (RP-HPLC, 214 nm) · Identity by LC-MS · Net content 10.28 mg", date: "Aug 24, 2026", lab: "Kovera Labs", url: "https://www.vantalabsresearch.com/coa/KVR-2026-6AA733.pdf", status: "verified" },
     ],
     status: ["Neither CJC-1295 nor ipamorelin is listed as an approved drug in the FDA's Drugs@FDA database (searched 24 September 2026)."],
   },
   "cjc-1295-no-dac": {
     specs: [["Name", "CJC-1295 no DAC"], ["Description", "Modified analogue of growth hormone-releasing hormone (GHRH), without the drug affinity complex (DAC)"], ["Available sizes", "10 mg"]],
     reports: [
-      { id: "Lot GB-5583809-P", size: "5 mg", result: "Identity by UPLC/MS", date: "Jul 3, 2026", lab: "Horizon Analytical", url: "https://www.vantalabsresearch.com/products/cjc-1295-no-dac" },
+      { id: "Lot GB-5583809-P", size: "5 mg", batch: "GB-5583809-P", result: "Identity by UPLC/MS (no purity figure on the report)", date: "Jul 3, 2026", lab: "Horizon Analytical", url: "https://www.vantalabsresearch.com/coa/lot/GB-5583809-P", status: "reference", note: "A batch shared with our partner Genesis Biomapping: the report names them as the client and carries their lot number. It covers a 5 mg vial; the product is sold as 10 mg." },
     ],
   },
   "dsip": {
     specs: [["Name", "DSIP"], ["Synonyms and codes", "Delta sleep-inducing peptide, Emideltide"], ["Description", "Nonapeptide (9 amino acids)"], ["Available sizes", "10 mg"], ["Supplied form", "Lyophilized powder"], ["CAS number", "62568-57-4"], ["Molecular formula", "C35H48N10O15"], ["Molecular weight", "848.8 g/mol"], ["Sequence", "WAGGDASGE (Trp-Ala-Gly-Gly-Asp-Ala-Ser-Gly-Glu)"]],
     sources: [["PubChem CID 68816", "https://pubchem.ncbi.nlm.nih.gov/compound/68816"]],
     reports: [
-      { id: "KVR-2026-FC43D5", size: "10 mg", result: "Purity 99.678% (RP-HPLC, C18 column, DAD detection at 214 nm) · Identity by LC-MS", date: "Aug 24, 2026", lab: "Kovera Labs", url: "https://www.vantalabsresearch.com/coa/KVR-2026-FC43D5.pdf" },
+      { id: "KVR-2026-FC43D5", size: "10 mg", batch: "Vanta184290", result: "Purity 99.678% (RP-HPLC, 214 nm) · Identity by LC-MS · Net content 10.24 mg", date: "Aug 24, 2026", lab: "Kovera Labs", url: "https://www.vantalabsresearch.com/coa/KVR-2026-FC43D5.pdf", status: "verified" },
     ],
     status: ["DSIP (emideltide) is not listed as an approved drug in the FDA's Drugs@FDA database (searched 24 September 2026)."],
   },
@@ -81,7 +101,7 @@ export const PRODUCT_FACTS: Record<string, ProductFacts> = {
     specs: [["Name", "Epithalon"], ["Synonyms and codes", "Epitalon, Epithalone, AEDG peptide"], ["Description", "Synthetic tetrapeptide (4 amino acids)"], ["Available sizes", "10 mg"], ["Supplied form", "Lyophilized powder"], ["CAS number", "307297-39-8"], ["Molecular formula", "C14H22N4O9"], ["Molecular weight", "390.35 g/mol"], ["Sequence", "AEDG (Ala-Glu-Asp-Gly)"]],
     sources: [["PubChem CID 219042", "https://pubchem.ncbi.nlm.nih.gov/compound/219042"]],
     reports: [
-      { id: "KVR-2026-CC3A66", size: "10 mg", result: "Purity 99.816% (RP-HPLC, C18 column, DAD detection at 214 nm) · Identity by LC-MS", date: "Aug 24, 2026", lab: "Kovera Labs", url: "https://www.vantalabsresearch.com/coa/KVR-2026-CC3A66.pdf" },
+      { id: "KVR-2026-CC3A66", size: "10 mg", batch: "Vanta184290", result: "Purity 99.816% (RP-HPLC, 214 nm) · Identity by LC-MS · Net content 9.13 mg", date: "Aug 24, 2026", lab: "Kovera Labs", url: "https://www.vantalabsresearch.com/coa/KVR-2026-CC3A66.pdf", status: "verified" },
     ],
     status: ["Epithalon is not listed as an approved drug in the FDA's Drugs@FDA database (searched 24 September 2026)."],
   },
@@ -90,7 +110,7 @@ export const PRODUCT_FACTS: Record<string, ProductFacts> = {
     notes: ["PubChem lists the formula and weight of the copper complex as a cation."],
     sources: [["PubChem CID 71587328", "https://pubchem.ncbi.nlm.nih.gov/compound/71587328"]],
     reports: [
-      { id: "KVR-2026-9039A3", size: "50 mg", result: "Purity 99.581% (RP-HPLC, C18 column, DAD detection at 214 nm) · Identity by LC-MS", date: "Aug 24, 2026", lab: "Kovera Labs", url: "https://www.vantalabsresearch.com/coa/KVR-2026-9039A3.pdf" },
+      { id: "KVR-2026-9039A3", size: "50 mg", batch: "Vanta184290", result: "Purity 99.581% (RP-HPLC, 214 nm) · Identity by LC-MS · Net content 53.91 mg", date: "Aug 24, 2026", lab: "Kovera Labs", url: "https://www.vantalabsresearch.com/coa/KVR-2026-9039A3.pdf", status: "verified" },
     ],
     status: ["GHK-Cu (prezatide copper) is not listed as an approved drug in the FDA's Drugs@FDA database (searched 24 September 2026)."],
   },
@@ -99,7 +119,7 @@ export const PRODUCT_FACTS: Record<string, ProductFacts> = {
     notes: ["2-Nal is 3-(2-naphthyl)alanine, a non-standard amino acid."],
     sources: [["PubChem CID 6918245", "https://pubchem.ncbi.nlm.nih.gov/compound/6918245"]],
     reports: [
-      { id: "KVR-2026-94AEDA", size: "5 mg", result: "Purity 99.412% (RP-HPLC, C18 column, DAD detection at 214 nm) · Identity by LC-MS", date: "Aug 24, 2026", lab: "Kovera Labs", url: "https://www.vantalabsresearch.com/coa/KVR-2026-94AEDA.pdf" },
+      { id: "KVR-2026-94AEDA", size: "5 mg", batch: "Vanta184290", result: "Purity 99.412% (RP-HPLC, 214 nm) · Identity by LC-MS · Net content 5.39 mg", date: "Aug 24, 2026", lab: "Kovera Labs", url: "https://www.vantalabsresearch.com/coa/KVR-2026-94AEDA.pdf", status: "verified" },
     ],
     status: ["GHRP-2 (pralmorelin) is not listed as an approved drug in the FDA's Drugs@FDA database (searched 24 September 2026)."],
   },
@@ -108,35 +128,35 @@ export const PRODUCT_FACTS: Record<string, ProductFacts> = {
     composition: [["BPC-157", "10 mg"], ["TB-500 (TB-4)", "10 mg"], ["GHK-Cu", "50 mg"]],
     notes: ["The report labels one component \"TB-500 (TB-4)\". That name is used for more than one peptide related to thymosin beta-4, so no sequence is asserted for it here."],
     reports: [
-      { id: "KVR-2026-153C34", size: "70 mg", result: "Purity 99.163%", date: "Aug 24, 2026", lab: "Kovera Labs", url: "https://www.vantalabsresearch.com/coa/KVR-2026-153C34.pdf" },
+      { id: "KVR-2026-153C34", size: "70 mg", batch: "Vanta184290", result: "Blend average purity 99.163% (RP-HPLC, 214 nm) · Identity by LC-MS · Net content 74.08 mg", date: "Aug 24, 2026", lab: "Kovera Labs", url: "https://www.vantalabsresearch.com/coa/KVR-2026-153C34.pdf", status: "verified" },
     ],
     status: ["None of BPC-157, TB-500 or GHK-Cu is listed as an approved drug in the FDA's Drugs@FDA database (searched 24 September 2026)."],
   },
   "glp-1": {
     specs: [["Name", "VLP-1 (SM)"], ["Description", "GLP-1 receptor agonist peptide"], ["Available sizes", "5 mg, 10 mg, 20 mg, 30 mg"], ["Supplied form", "Lyophilized powder"]],
     reports: [
-      { id: "KVR-2026-17DA9D", size: "5 mg", result: "Purity 99.419% (RP-HPLC, C18 column, DAD detection at 214 nm) · Identity by LC-MS", date: "Aug 24, 2026", lab: "Kovera Labs", url: "https://www.vantalabsresearch.com/coa/KVR-2026-17DA9D.pdf" },
-      { id: "KVR-2026-6BEBFB", size: "10 mg", result: "Purity 99.687% (RP-HPLC, C18 column, DAD detection at 214 nm) · Identity by LC-MS", date: "Aug 24, 2026", lab: "Kovera Labs", url: "https://www.vantalabsresearch.com/coa/KVR-2026-6BEBFB.pdf" },
-      { id: "KVR-2026-39F703", size: "20 mg", result: "Purity 99.423% (RP-HPLC, C18 column, DAD detection at 214 nm) · Identity by LC-MS", date: "Aug 24, 2026", lab: "Kovera Labs", url: "https://www.vantalabsresearch.com/coa/KVR-2026-39F703.pdf" },
-      { id: "KVR-2026-EAC2B7", size: "30 mg", result: "Purity 99.781% (RP-HPLC, C18 column, DAD detection at 214 nm) · Identity by LC-MS", date: "Aug 24, 2026", lab: "Kovera Labs", url: "https://www.vantalabsresearch.com/coa/KVR-2026-EAC2B7.pdf" },
+      { id: "KVR-2026-17DA9D", size: "5 mg", batch: "Vanta184290", result: "Purity 99.419% (RP-HPLC, 214 nm) · Identity by LC-MS · Net content 5.03 mg", date: "Aug 24, 2026", lab: "Kovera Labs", url: "https://www.vantalabsresearch.com/coa/KVR-2026-17DA9D.pdf", status: "verified" },
+      { id: "KVR-2026-6BEBFB", size: "10 mg", batch: "Vanta184290", result: "Purity 99.687% (RP-HPLC, 214 nm) · Identity by LC-MS · Net content 10.87 mg", date: "Aug 24, 2026", lab: "Kovera Labs", url: "https://www.vantalabsresearch.com/coa/KVR-2026-6BEBFB.pdf", status: "verified" },
+      { id: "KVR-2026-39F703", size: "20 mg", batch: "Vanta184290", result: "Purity 99.423% (RP-HPLC, 214 nm) · Identity by LC-MS · Net content 22.49 mg", date: "Aug 24, 2026", lab: "Kovera Labs", url: "https://www.vantalabsresearch.com/coa/KVR-2026-39F703.pdf", status: "verified" },
+      { id: "KVR-2026-EAC2B7", size: "30 mg", batch: "Vanta184290", result: "Purity 99.781% (RP-HPLC, 214 nm) · Identity by LC-MS · Net content 29.69 mg", date: "Aug 24, 2026", lab: "Kovera Labs", url: "https://www.vantalabsresearch.com/coa/KVR-2026-EAC2B7.pdf", status: "verified" },
     ],
   },
   "glp-2": {
     specs: [["Name", "VLP-2 (TR)"], ["Description", "Dual GIP and GLP-1 receptor agonist peptide"], ["Available sizes", "5 mg, 10 mg, 20 mg, 30 mg"], ["Supplied form", "Lyophilized powder"]],
     reports: [
-      { id: "KVR-2026-877D23", size: "5 mg", result: "Purity 99.581% (RP-HPLC, C18 column, DAD detection at 214 nm) · Identity by LC-MS", date: "Aug 24, 2026", lab: "Kovera Labs", url: "https://www.vantalabsresearch.com/coa/KVR-2026-877D23.pdf" },
-      { id: "KVR-2026-D52918", size: "10 mg", result: "Purity 99.708% (RP-HPLC, C18 column, DAD detection at 214 nm) · Identity by LC-MS", date: "Aug 24, 2026", lab: "Kovera Labs", url: "https://www.vantalabsresearch.com/coa/KVR-2026-D52918.pdf" },
-      { id: "KVR-2026-FDA407", size: "20 mg", result: "Purity 99.439% (RP-HPLC, C18 column, DAD detection at 214 nm) · Identity by LC-MS", date: "Aug 24, 2026", lab: "Kovera Labs", url: "https://www.vantalabsresearch.com/coa/KVR-2026-FDA407.pdf" },
-      { id: "KVR-2026-01E336", size: "30 mg", result: "Purity 99.874% (RP-HPLC, C18 column, DAD detection at 214 nm) · Identity by LC-MS", date: "Aug 24, 2026", lab: "Kovera Labs", url: "https://www.vantalabsresearch.com/coa/KVR-2026-01E336.pdf" },
+      { id: "KVR-2026-877D23", size: "5 mg", batch: "Vanta184290", result: "Purity 99.581% (RP-HPLC, 214 nm) · Identity by LC-MS · Net content 5.09 mg", date: "Aug 24, 2026", lab: "Kovera Labs", url: "https://www.vantalabsresearch.com/coa/KVR-2026-877D23.pdf", status: "verified" },
+      { id: "KVR-2026-D52918", size: "10 mg", batch: "Vanta184290", result: "Purity 99.708% (RP-HPLC, 214 nm) · Identity by LC-MS · Net content 10.27 mg", date: "Aug 24, 2026", lab: "Kovera Labs", url: "https://www.vantalabsresearch.com/coa/KVR-2026-D52918.pdf", status: "verified" },
+      { id: "KVR-2026-FDA407", size: "20 mg", batch: "Vanta184290", result: "Purity 99.439% (RP-HPLC, 214 nm) · Identity by LC-MS · Net content 22.06 mg", date: "Aug 24, 2026", lab: "Kovera Labs", url: "https://www.vantalabsresearch.com/coa/KVR-2026-FDA407.pdf", status: "verified" },
+      { id: "KVR-2026-01E336", size: "30 mg", batch: "Vanta184290", result: "Purity 99.874% (RP-HPLC, 214 nm) · Identity by LC-MS · Net content 30.78 mg", date: "Aug 24, 2026", lab: "Kovera Labs", url: "https://www.vantalabsresearch.com/coa/KVR-2026-01E336.pdf", status: "verified" },
     ],
   },
   "glp-3": {
     specs: [["Name", "VLP-3 (RT)"], ["Description", "GIP, GLP-1 and glucagon receptor triple agonist peptide"], ["Available sizes", "5 mg, 10 mg, 20 mg, 30 mg"], ["Supplied form", "Lyophilized powder"]],
     reports: [
-      { id: "KVR-2026-9D098C", size: "5 mg", result: "Purity 99.512% (RP-HPLC, C18 column, DAD detection at 214 nm) · Identity by LC-MS", date: "Aug 24, 2026", lab: "Kovera Labs", url: "https://www.vantalabsresearch.com/coa/KVR-2026-9D098C.pdf" },
-      { id: "KVR-2026-DEAE76", size: "10 mg", result: "Purity 99.778% (RP-HPLC, C18 column, DAD detection at 214 nm) · Identity by LC-MS", date: "Aug 24, 2026", lab: "Kovera Labs", url: "https://www.vantalabsresearch.com/coa/KVR-2026-DEAE76.pdf" },
-      { id: "KVR-2026-D6A2FA", size: "20 mg", result: "Purity 99.556% (RP-HPLC, C18 column, DAD detection at 214 nm) · Identity by LC-MS", date: "Aug 24, 2026", lab: "Kovera Labs", url: "https://www.vantalabsresearch.com/coa/KVR-2026-D6A2FA.pdf" },
-      { id: "KVR-2026-2B2E1C", size: "30 mg", result: "Purity 99.753% (RP-HPLC, C18 column, DAD detection at 214 nm) · Identity by LC-MS", date: "Aug 24, 2026", lab: "Kovera Labs", url: "https://www.vantalabsresearch.com/coa/KVR-2026-2B2E1C.pdf" },
+      { id: "KVR-2026-9D098C", size: "5 mg", batch: "Vanta184290", result: "Purity 99.512% (RP-HPLC, 214 nm) · Identity by LC-MS · Net content 5.39 mg", date: "Aug 24, 2026", lab: "Kovera Labs", url: "https://www.vantalabsresearch.com/coa/KVR-2026-9D098C.pdf", status: "verified" },
+      { id: "KVR-2026-DEAE76", size: "10 mg", batch: "Vanta184290", result: "Purity 99.778% (RP-HPLC, 214 nm) · Identity by LC-MS · Net content 11.94 mg", date: "Aug 24, 2026", lab: "Kovera Labs", url: "https://www.vantalabsresearch.com/coa/KVR-2026-DEAE76.pdf", status: "verified" },
+      { id: "KVR-2026-D6A2FA", size: "20 mg", batch: "Vanta184290", result: "Purity 99.556% (RP-HPLC, 214 nm) · Identity by LC-MS · Net content 21.34 mg", date: "Aug 24, 2026", lab: "Kovera Labs", url: "https://www.vantalabsresearch.com/coa/KVR-2026-D6A2FA.pdf", status: "verified" },
+      { id: "KVR-2026-2B2E1C", size: "30 mg", batch: "Vanta184290", result: "Purity 99.753% (RP-HPLC, 214 nm) · Identity by LC-MS · Net content 31.87 mg", date: "Aug 24, 2026", lab: "Kovera Labs", url: "https://www.vantalabsresearch.com/coa/KVR-2026-2B2E1C.pdf", status: "verified" },
     ],
   },
   "hcg": {
@@ -149,7 +169,7 @@ export const PRODUCT_FACTS: Record<string, ProductFacts> = {
     specs: [["Name", "IGF-1 LR3"], ["Synonyms and codes", "Long R3 IGF-I, Long-(Arg3) insulin-like growth factor-I"], ["Description", "Analogue of human insulin-like growth factor I: arginine at position 3 and a 13-residue N-terminal extension, 83 amino acids"], ["Available sizes", "1 mg"], ["Supplied form", "Lyophilized powder"], ["CAS number", "143045-27-6"], ["UNII", "M9L22Y19H9"]],
     sources: [["FDA GSRS UNII M9L22Y19H9", "https://gsrs.ncats.nih.gov/ginas/app/beta/substances/M9L22Y19H9"]],
     reports: [
-      { id: "KVR-2026-5454E3", size: "1 mg", result: "Purity 99.793%", date: "Aug 24, 2026", lab: "Kovera Labs", url: "https://www.vantalabsresearch.com/coa/KVR-2026-5454E3.pdf" },
+      { id: "KVR-2026-5454E3", size: "1 mg", batch: "Vanta184290", result: "Purity 99.793% (RP-HPLC, 214 nm) · Identity by LC-MS · Net content 1.06 mg", date: "Aug 24, 2026", lab: "Kovera Labs", url: "https://www.vantalabsresearch.com/coa/KVR-2026-5454E3.pdf", status: "verified" },
     ],
     status: ["IGF-1 LR3 is not listed as an approved drug in the FDA's Drugs@FDA database (searched 24 September 2026)."],
   },
@@ -157,7 +177,7 @@ export const PRODUCT_FACTS: Record<string, ProductFacts> = {
     specs: [["Name", "Kisspeptin-10"], ["Synonyms and codes", "KP-10, Metastin 45-54, Human kisspeptin-10"], ["Description", "Decapeptide corresponding to residues 45–54 of human metastin (kisspeptin)"], ["Available sizes", "10 mg"], ["Supplied form", "Lyophilized powder"], ["CAS number", "374675-21-5"], ["Molecular formula", "C63H83N17O14"], ["Molecular weight", "1302.4 g/mol"]],
     sources: [["PubChem CID 25240297", "https://pubchem.ncbi.nlm.nih.gov/compound/25240297"]],
     reports: [
-      { id: "KVR-2026-667662", size: "10 mg", result: "Purity 99.791%", date: "Aug 24, 2026", lab: "Kovera Labs", url: "https://www.vantalabsresearch.com/coa/KVR-2026-667662.pdf" },
+      { id: "KVR-2026-667662", size: "10 mg", batch: "Vanta184290", result: "Purity 99.791% (RP-HPLC, 214 nm) · Identity by LC-MS · Net content 10.38 mg", date: "Aug 24, 2026", lab: "Kovera Labs", url: "https://www.vantalabsresearch.com/coa/KVR-2026-667662.pdf", status: "verified" },
     ],
     status: ["Kisspeptin-10 is not listed as an approved drug in the FDA's Drugs@FDA database (searched 24 September 2026)."],
   },
@@ -166,7 +186,7 @@ export const PRODUCT_FACTS: Record<string, ProductFacts> = {
     composition: [["GHK-Cu", "50 mg"], ["KPV", "10 mg"], ["BPC-157", "10 mg"], ["TB-500 (TB-4)", "10 mg"]],
     notes: ["The report labels one component \"TB-500 (TB-4)\". That name is used for more than one peptide related to thymosin beta-4, so no sequence is asserted for it here."],
     reports: [
-      { id: "KVR-2026-E355F5", size: "80 mg", result: "Blend average purity 99.271% (RP-HPLC, C18 column, DAD detection at 214 nm) · Identity by LC-MS", date: "Aug 24, 2026", lab: "Kovera Labs", url: "https://www.vantalabsresearch.com/coa/KVR-2026-E355F5.pdf" },
+      { id: "KVR-2026-E355F5", size: "80 mg", batch: "N/A", result: "Blend average purity 99.271% (RP-HPLC, 214 nm) · Identity by LC-MS · Net content 85.58 mg", date: "Aug 24, 2026", lab: "Kovera Labs", url: "https://www.vantalabsresearch.com/coa/KVR-2026-E355F5.pdf", status: "reference", note: "The report prints no batch number (Batch: N/A), so it can't be matched to a lot." },
     ],
     status: ["None of GHK-Cu, KPV, BPC-157 or TB-500 is listed as an approved drug in the FDA's Drugs@FDA database (searched 24 September 2026)."],
   },
@@ -174,7 +194,7 @@ export const PRODUCT_FACTS: Record<string, ProductFacts> = {
     specs: [["Name", "KPV"], ["Synonyms and codes", "Lys-Pro-Val, alpha-MSH (11-13)"], ["Description", "Tripeptide corresponding to residues 11–13 of alpha-melanocyte-stimulating hormone"], ["Available sizes", "10 mg"], ["Supplied form", "Lyophilized powder"], ["CAS number", "67727-97-3"], ["Molecular formula", "C16H30N4O4"], ["Molecular weight", "342.43 g/mol"], ["Sequence", "KPV (Lys-Pro-Val)"]],
     sources: [["PubChem CID 125672", "https://pubchem.ncbi.nlm.nih.gov/compound/125672"]],
     reports: [
-      { id: "KVR-2026-FFA9DB", size: "10 mg", result: "Purity 99.896% (RP-HPLC, C18 column, DAD detection at 214 nm) · Identity by LC-MS", date: "Aug 24, 2026", lab: "Kovera Labs", url: "https://www.vantalabsresearch.com/coa/KVR-2026-FFA9DB.pdf" },
+      { id: "KVR-2026-FFA9DB", size: "10 mg", batch: "Vanta184290", result: "Purity 99.896% (RP-HPLC, 214 nm) · Identity by LC-MS · Net content 11.16 mg", date: "Aug 24, 2026", lab: "Kovera Labs", url: "https://www.vantalabsresearch.com/coa/KVR-2026-FFA9DB.pdf", status: "verified" },
     ],
     status: ["KPV is not listed as an approved drug in the FDA's Drugs@FDA database (searched 24 September 2026)."],
   },
@@ -182,21 +202,21 @@ export const PRODUCT_FACTS: Record<string, ProductFacts> = {
     specs: [["Name", "L-Carnitine"], ["Synonyms and codes", "Levocarnitine, (-)-Carnitine"], ["Description", "Quaternary ammonium compound; the L-isomer of carnitine"], ["Available sizes", "6,000 mg"], ["Supplied form", "Liquid"], ["CAS number", "541-15-1"], ["Molecular formula", "C7H15NO3"], ["Molecular weight", "161.20 g/mol"]],
     sources: [["PubChem CID 10917", "https://pubchem.ncbi.nlm.nih.gov/compound/10917"]],
     reports: [
-      { id: "KVR-2026-C2C983", result: "Purity 99.611%", date: "Aug 24, 2026", lab: "Kovera Labs", url: "https://www.vantalabsresearch.com/coa/KVR-2026-C2C983.pdf" },
+      { id: "KVR-2026-C2C983", size: "10 mg", batch: "Vanta184290", result: "Purity 99.611% (RP-HPLC, 214 nm) · Identity by LC-MS · Net content 10.58 mg", date: "Aug 24, 2026", lab: "Kovera Labs", url: "https://www.vantalabsresearch.com/coa/KVR-2026-C2C983.pdf", status: "reference", note: "The report is labelled 10 mg; the product is sold as 6,000 mg, so it doesn't document the size sold." },
     ],
     status: ["The material supplied here is a research chemical. It is not a drug product and is not for human or veterinary use."],
   },
   "lipo-c": {
     specs: [["Name", "LIPO-C"], ["Description", "Multi-component lipotropic solution, 10 mL"], ["Available sizes", "10 mL"]],
     reports: [
-      { id: "KVR-2026-02287A", result: "Identity screen (HPLC-UV with LC-MS/MS identity confirmation): lists the compounds detected in the vial, not their amounts", date: "Aug 24, 2026", lab: "Kovera Labs", url: "https://www.vantalabsresearch.com/coa/KVR-2026-02287A.pdf" },
+      { id: "KVR-2026-02287A", size: "10 mL", batch: "Vanta184290", result: "Identity screen (HPLC-UV with LC-MS/MS): lists the compounds detected in the vial, not their amounts", date: "Aug 24, 2026", lab: "Kovera Labs", url: "https://www.vantalabsresearch.com/coa/KVR-2026-02287A.pdf", status: "verified" },
     ],
   },
   "mots-c": {
     specs: [["Name", "MOTS-c"], ["Synonyms and codes", "Mitochondrial open reading frame of the 12S rRNA-c"], ["Description", "Mitochondrial-derived peptide of 16 amino acids"], ["Available sizes", "10 mg"], ["CAS number", "1627580-64-6"], ["Molecular formula", "C101H152N28O22S2"], ["Molecular weight", "2174.6 g/mol"], ["Sequence", "MRWQEMGYIFYPRKLR (Met-Arg-Trp-Gln-Glu-Met-Gly-Tyr-Ile-Phe-Tyr-Pro-Arg-Lys-Leu-Arg)"]],
     sources: [["PubChem CID 146675088", "https://pubchem.ncbi.nlm.nih.gov/compound/146675088"]],
     reports: [
-      { id: "Lot GB-7058391-P", size: "10 mg", result: "Purity 99.53% (UPLC/MS)", date: "May 25, 2026", lab: "Horizon Analytical", url: "https://www.vantalabsresearch.com/products/mots-c" },
+      { id: "Lot GB-7058391-P", size: "10 mg", batch: "GB-7058391-P", result: "Purity 99.53% (UPLC/MS)", date: "May 25, 2026", lab: "Horizon Analytical", url: "https://www.vantalabsresearch.com/coa/lot/GB-7058391-P", status: "reference", note: "A batch shared with our partner Genesis Biomapping: the report names them as the client and carries their lot number." },
     ],
     status: ["MOTS-c is not listed as an approved drug in the FDA's Drugs@FDA database (searched 24 September 2026)."],
   },
@@ -205,7 +225,7 @@ export const PRODUCT_FACTS: Record<string, ProductFacts> = {
     notes: ["Nle is norleucine. The ring is a lactam between Asp (position 2) and Lys (position 7)."],
     sources: [["PubChem CID 92432", "https://pubchem.ncbi.nlm.nih.gov/compound/92432"]],
     reports: [
-      { id: "KVR-2026-286BFF", size: "10 mg", result: "Purity 99.714% (RP-HPLC, C18 column, DAD detection at 214 nm) · Identity by LC-MS", date: "Aug 24, 2026", lab: "Kovera Labs", url: "https://www.vantalabsresearch.com/coa/KVR-2026-286BFF.pdf" },
+      { id: "KVR-2026-286BFF", size: "10 mg", batch: "Vanta184290", result: "Purity 99.714% (RP-HPLC, 214 nm) · Identity by LC-MS · Net content 10.31 mg", date: "Aug 24, 2026", lab: "Kovera Labs", url: "https://www.vantalabsresearch.com/coa/KVR-2026-286BFF.pdf", status: "verified" },
     ],
     status: ["Melanotan II is not listed as an approved drug in the FDA's Drugs@FDA database (searched 24 September 2026)."],
   },
@@ -213,8 +233,8 @@ export const PRODUCT_FACTS: Record<string, ProductFacts> = {
     specs: [["Name", "NAD+"], ["Synonyms and codes", "Nicotinamide adenine dinucleotide, Nadide, beta-NAD, Coenzyme I"], ["Description", "Dinucleotide coenzyme"], ["Available sizes", "500 mg, 1,000 mg"], ["Supplied form", "Lyophilized powder"], ["CAS number", "53-84-9"], ["Molecular formula", "C21H27N7O14P2"], ["Molecular weight", "663.4 g/mol"]],
     sources: [["PubChem CID 5892", "https://pubchem.ncbi.nlm.nih.gov/compound/5892"]],
     reports: [
-      { id: "KVR-2026-1BA750", size: "500 mg", result: "Purity 99.659% (RP-HPLC, C18 column, DAD detection at 260 nm) · Identity by LC-MS", date: "Aug 24, 2026", lab: "Kovera Labs", url: "https://www.vantalabsresearch.com/coa/KVR-2026-1BA750.pdf" },
-      { id: "KVR-2026-762363", size: "1000 mg", result: "Purity 99.718% (RP-HPLC, C18 column, DAD detection at 260 nm) · Identity by LC-MS", date: "Aug 24, 2026", lab: "Kovera Labs", url: "https://www.vantalabsresearch.com/coa/KVR-2026-762363.pdf" },
+      { id: "KVR-2026-1BA750", size: "500 mg", batch: "Vanta184290", result: "Purity 99.659% (RP-HPLC, 260 nm) · Identity by LC-MS · Net content 487.06 mg", date: "Aug 24, 2026", lab: "Kovera Labs", url: "https://www.vantalabsresearch.com/coa/KVR-2026-1BA750.pdf", status: "verified" },
+      { id: "KVR-2026-762363", size: "1000 mg", batch: "Vanta184290", result: "Purity 99.718% (RP-HPLC, 260 nm) · Identity by LC-MS · Net content 966.81 mg", date: "Aug 24, 2026", lab: "Kovera Labs", url: "https://www.vantalabsresearch.com/coa/KVR-2026-762363.pdf", status: "verified" },
     ],
     status: ["NAD+ (nadide) is not listed as an approved drug in the FDA's Drugs@FDA database (searched 24 September 2026)."],
   },
@@ -223,7 +243,7 @@ export const PRODUCT_FACTS: Record<string, ProductFacts> = {
     notes: ["Nle is norleucine. The ring is a lactam between Asp (position 2) and Lys (position 7)."],
     sources: [["PubChem CID 9941379", "https://pubchem.ncbi.nlm.nih.gov/compound/9941379"]],
     reports: [
-      { id: "KVR-2026-63018C", size: "10 mg", result: "Purity 99.422% (RP-HPLC, C18 column, DAD detection at 214 nm) · Identity by LC-MS", date: "Aug 24, 2026", lab: "Kovera Labs", url: "https://www.vantalabsresearch.com/coa/KVR-2026-63018C.pdf" },
+      { id: "KVR-2026-63018C", size: "10 mg", batch: "Vanta184290", result: "Purity 99.422% (RP-HPLC, 214 nm) · Identity by LC-MS · Net content 10.96 mg", date: "Aug 24, 2026", lab: "Kovera Labs", url: "https://www.vantalabsresearch.com/coa/KVR-2026-63018C.pdf", status: "verified" },
     ],
     status: ["The material supplied here is a research chemical. It is not a drug product and is not for human or veterinary use."],
   },
@@ -235,7 +255,7 @@ export const PRODUCT_FACTS: Record<string, ProductFacts> = {
     specs: [["Name", "Selank"], ["Description", "Synthetic heptapeptide: tuftsin (Thr-Lys-Pro-Arg) extended by Pro-Gly-Pro"], ["Available sizes", "10 mg"], ["Supplied form", "Lyophilized powder"], ["CAS number", "129954-34-3"], ["Molecular formula", "C33H57N11O9"], ["Molecular weight", "751.9 g/mol"], ["Sequence", "TKPRPGP (Thr-Lys-Pro-Arg-Pro-Gly-Pro)"]],
     sources: [["PubChem CID 11765600", "https://pubchem.ncbi.nlm.nih.gov/compound/11765600"], ["PubChem CID 156080", "https://pubchem.ncbi.nlm.nih.gov/compound/156080"]],
     reports: [
-      { id: "KVR-2026-90183D", size: "10 mg", result: "Purity 99.254% (RP-HPLC, C18 column, DAD detection at 214 nm) · Identity by LC-MS", date: "Aug 24, 2026", lab: "Kovera Labs", url: "https://www.vantalabsresearch.com/coa/KVR-2026-90183D.pdf" },
+      { id: "KVR-2026-90183D", size: "10 mg", batch: "Vanta184290", result: "Purity 99.254% (RP-HPLC, 214 nm) · Identity by LC-MS · Net content 12.69 mg", date: "Aug 24, 2026", lab: "Kovera Labs", url: "https://www.vantalabsresearch.com/coa/KVR-2026-90183D.pdf", status: "verified" },
     ],
     status: ["Selank is not listed as an approved drug in the FDA's Drugs@FDA database (searched 24 September 2026)."],
   },
@@ -243,7 +263,7 @@ export const PRODUCT_FACTS: Record<string, ProductFacts> = {
     specs: [["Name", "Semax"], ["Synonyms and codes", "ACTH(4-7)-Pro-Gly-Pro"], ["Description", "Synthetic heptapeptide: ACTH(4-7) extended by Pro-Gly-Pro"], ["Available sizes", "10 mg"], ["Supplied form", "Lyophilized powder"], ["CAS number", "80714-61-0"], ["Molecular formula", "C37H51N9O10S"], ["Molecular weight", "813.9 g/mol"], ["Sequence", "MEHFPGP (Met-Glu-His-Phe-Pro-Gly-Pro)"]],
     sources: [["PubChem CID 9811102", "https://pubchem.ncbi.nlm.nih.gov/compound/9811102"]],
     reports: [
-      { id: "KVR-2026-C95705", size: "10 mg", result: "Purity 99.436% (RP-HPLC, C18 column, DAD detection at 214 nm) · Identity by LC-MS", date: "Aug 24, 2026", lab: "Kovera Labs", url: "https://www.vantalabsresearch.com/coa/KVR-2026-C95705.pdf" },
+      { id: "KVR-2026-C95705", size: "10 mg", batch: "Vanta184290", result: "Purity 99.436% (RP-HPLC, 214 nm) · Identity by LC-MS · Net content 11.54 mg", date: "Aug 24, 2026", lab: "Kovera Labs", url: "https://www.vantalabsresearch.com/coa/KVR-2026-C95705.pdf", status: "verified" },
     ],
     status: ["Semax is not listed as an approved drug in the FDA's Drugs@FDA database (searched 24 September 2026)."],
   },
@@ -251,7 +271,7 @@ export const PRODUCT_FACTS: Record<string, ProductFacts> = {
     specs: [["Name", "SNAP-8"], ["Synonyms and codes", "Acetyl octapeptide-3"], ["Description", "Synthetic octapeptide, N-acetylated and C-terminally amidated"], ["Available sizes", "10 mg"], ["Supplied form", "Lyophilized powder"], ["Molecular formula", "C41H70N16O16S"], ["Molecular weight", "1075.2 g/mol"], ["Sequence", "Ac-Glu-Glu-Met-Gln-Arg-Arg-Ala-Asp-NH2"]],
     sources: [["PubChem CID 76283482", "https://pubchem.ncbi.nlm.nih.gov/compound/76283482"]],
     reports: [
-      { id: "KVR-2026-AFA5BD", size: "10 mg", result: "Purity 99.402%", date: "Aug 24, 2026", lab: "Kovera Labs", url: "https://www.vantalabsresearch.com/coa/KVR-2026-AFA5BD.pdf" },
+      { id: "KVR-2026-AFA5BD", size: "10 mg", batch: "Vanta184290", result: "Purity 99.402% (RP-HPLC, 214 nm) · Identity by LC-MS · Net content 10.83 mg", date: "Aug 24, 2026", lab: "Kovera Labs", url: "https://www.vantalabsresearch.com/coa/KVR-2026-AFA5BD.pdf", status: "verified" },
     ],
     status: ["SNAP-8 (acetyl octapeptide-3) is not listed as an approved drug in the FDA's Drugs@FDA database (searched 24 September 2026)."],
   },
@@ -260,7 +280,7 @@ export const PRODUCT_FACTS: Record<string, ProductFacts> = {
     notes: ["Dmt is 2′,6′-dimethyltyrosine, a non-standard amino acid."],
     sources: [["PubChem CID 11764719", "https://pubchem.ncbi.nlm.nih.gov/compound/11764719"]],
     reports: [
-      { id: "KVR-2026-FD7ADC", size: "10 mg", result: "Purity 99.476% (RP-HPLC, C18 column, DAD detection at 214 nm) · Identity by LC-MS", date: "Aug 24, 2026", lab: "Kovera Labs", url: "https://www.vantalabsresearch.com/coa/KVR-2026-FD7ADC.pdf" },
+      { id: "KVR-2026-FD7ADC", size: "10 mg", batch: "Vanta184290", result: "Purity 99.476% (RP-HPLC, 214 nm) · Identity by LC-MS · Net content 11.63 mg", date: "Aug 24, 2026", lab: "Kovera Labs", url: "https://www.vantalabsresearch.com/coa/KVR-2026-FD7ADC.pdf", status: "verified" },
     ],
     status: ["The material supplied here is a research chemical. It is not a drug product and is not for human or veterinary use."],
   },
@@ -268,7 +288,7 @@ export const PRODUCT_FACTS: Record<string, ProductFacts> = {
     specs: [["Name", "Tesamorelin"], ["Synonyms and codes", "TH9507"], ["Description", "Synthetic analogue of human growth hormone-releasing hormone, GHRH(1-44)"], ["Available sizes", "5 mg, 10 mg"], ["CAS number", "218949-48-5"], ["Molecular formula", "C221H366N72O67S"], ["Molecular weight", "5136 g/mol"]],
     sources: [["PubChem CID 16137828", "https://pubchem.ncbi.nlm.nih.gov/compound/16137828"]],
     reports: [
-      { id: "Lot GB-1700427-P", size: "10 mg", result: "Purity 99.39% (UPLC/MS)", date: "Jul 3, 2026", lab: "Horizon Analytical", url: "https://www.vantalabsresearch.com/products/tesamorelin" },
+      { id: "Lot GB-1700427-P", size: "10 mg", batch: "GB-1700427-P", result: "Purity 99.39% (UPLC/MS)", date: "Jul 3, 2026", lab: "Horizon Analytical", url: "https://www.vantalabsresearch.com/coa/lot/GB-1700427-P", status: "reference", note: "A batch shared with our partner Genesis Biomapping: the report names them as the client and carries their lot number. No report is published for the 5 mg size." },
     ],
     status: ["The material supplied here is a research chemical. It is not a drug product and is not for human or veterinary use."],
   },
@@ -276,7 +296,7 @@ export const PRODUCT_FACTS: Record<string, ProductFacts> = {
     specs: [["Name", "Thymosin Alpha-1"], ["Synonyms and codes", "Thymalfasin, Thymosin alpha 1"], ["Description", "Synthetic peptide of 28 amino acids"], ["Available sizes", "5 mg"], ["Supplied form", "Lyophilized powder"], ["CAS number", "62304-98-7"], ["Molecular formula", "C129H215N33O55"], ["Molecular weight", "3108.3 g/mol"]],
     sources: [["PubChem CID 16130571", "https://pubchem.ncbi.nlm.nih.gov/compound/16130571"]],
     reports: [
-      { id: "KVR-2026-4D316E", size: "5 mg", result: "Purity 99.764%", date: "Aug 24, 2026", lab: "Kovera Labs", url: "https://www.vantalabsresearch.com/coa/KVR-2026-4D316E.pdf" },
+      { id: "KVR-2026-4D316E", size: "5 mg", batch: "Vanta184290", result: "Purity 99.764% (RP-HPLC, 214 nm) · Identity by LC-MS · Net content 12.91 mg", date: "Aug 24, 2026", lab: "Kovera Labs", url: "https://www.vantalabsresearch.com/coa/KVR-2026-4D316E.pdf", status: "verified", note: "The report measured 12.91 mg net content against a 5 mg label." },
     ],
     status: ["Thymosin alpha-1 (thymalfasin) is not listed as an approved drug in the FDA's Drugs@FDA database (searched 24 September 2026)."],
   },

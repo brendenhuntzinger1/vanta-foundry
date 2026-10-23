@@ -47,7 +47,9 @@ function intro(p: CatalogProduct, f: ProductFacts) {
 }
 
 function productFaqs(p: CatalogProduct, f: ProductFacts) {
-  const n = f.reports.length;
+  const verified = f.reports.filter((r) => r.status === "verified");
+  const reference = f.reports.filter((r) => r.status === "reference");
+  const list = (rs: typeof f.reports) => rs.map((r) => `${r.id}${r.size ? ` (${r.size})` : ""}, ${r.lab}, ${r.date}`).join("; ");
   return [
     {
       q: `What sizes is ${p.name} available in for wholesale?`,
@@ -55,9 +57,11 @@ function productFaqs(p: CatalogProduct, f: ProductFacts) {
     },
     {
       q: `Is a certificate of analysis published for ${p.name}?`,
-      a: n
-        ? `Yes. Vanta Labs publishes ${n === 1 ? "a laboratory report" : `${n} laboratory reports`} for the batch it currently supplies: ${f.reports.map((r) => `${r.id}${r.size ? ` (${r.size})` : ""}, ${r.lab}, ${r.date}`).join("; ")}. Your quote names the lot you'll receive and its report.`
-        : `Not yet. No laboratory report has been published for ${p.name}. Ask for the documentation for your lot before you order.`,
+      a: verified.length
+        ? `Yes. Vanta Labs publishes ${verified.length === 1 ? "a laboratory report" : `${verified.length} laboratory reports`} for the batch it currently supplies: ${list(verified)}.${reference.length ? ` A further report is reference only: ${reference.map((r) => r.note).join(" ")}` : ""} Your quote names the lot you'll receive and its report.`
+        : reference.length
+          ? `Not for the size or lot sold. A reference report is published (${list(reference)}), but ${reference.map((r) => r.note?.replace(/^./, (c) => c.toLowerCase())).join(" ")} Ask for the report for your lot before you order.`
+          : `Not yet. No laboratory report has been published for ${p.name}. Ask for the documentation for your lot before you order.`,
     },
     {
       q: `Can I add ${p.name} to one inquiry with other products?`,
@@ -193,7 +197,7 @@ export default async function ProductPage(props: PageProps<"/catalog/[slug]">) {
             {f.reports.length ? (
               <>
                 <p className="mt-4 text-[15.5px] leading-[1.65] text-body">
-                  Laboratory reports Vanta Labs has published for the batch it currently supplies. Each report is the laboratory&rsquo;s own document for one vial size. Your quote names the lot you&rsquo;ll receive and its report.
+                  Laboratory reports Vanta Labs has published, with the size and batch printed on each. A <strong className="font-semibold text-ink">batch report</strong> matches the product and size we supply; a <strong className="font-semibold text-ink">reference</strong> report doesn&rsquo;t document the size or lot sold, and says why. Your quote names the lot you&rsquo;ll receive and its report.
                 </p>
                 <div className="mt-5">
                   <ReportList reports={f.reports} />

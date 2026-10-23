@@ -47,7 +47,7 @@ export default function Home() {
               <span className="block text-muted">Or supply it.</span>
             </h1>
             <p className="mx-auto mt-6 max-w-[600px] text-[18px] leading-[1.6] text-body">
-              Premium website development for any business, and peptide wholesale &amp; 3PL for research brands. Pick where to start.
+              Premium website development for any business, and wholesale peptides, white label and 3PL for research brands. Pick where to start.
             </p>
           </div>
 

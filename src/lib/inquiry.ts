@@ -4,6 +4,7 @@ import { useSyncExternalStore } from "react";
 import { CATALOG } from "./catalog";
 import { emailLink, whatsappLink } from "./site";
 import { attributionRows } from "./attribution";
+import { refFor } from "./uuid";
 
 /**
  * The wholesale inquiry a buyer builds while browsing: products, a vial size
@@ -82,7 +83,9 @@ export const inquiry = {
 };
 
 /** The message a buyer sends: one line per product, then the details we need to quote. */
-export function inquiryMessage(items: InquiryItem[], extra: { business?: string; shipTo?: string; notes?: string } = {}) {
+type Extra = { business?: string; shipTo?: string; notes?: string; id?: string };
+
+export function inquiryMessage(items: InquiryItem[], extra: Extra = {}) {
   const lines = items.map((i) => {
     const p = CATALOG.find((x) => x.slug === i.slug);
     const qty = i.qty.trim() ? `${i.qty.trim()} vials` : "quantity to confirm";
@@ -98,11 +101,42 @@ export function inquiryMessage(items: InquiryItem[], extra: { business?: string;
     ...(extra.notes?.trim() ? ["", extra.notes.trim()] : []),
     "",
     "For laboratory research use only.",
+    ...(extra.id ? [`Reference: ${refFor(extra.id)}`] : []),
     ...(source.length ? ["", "(Sent from vantafoundry.com)", ...source] : []),
   ].join("\n");
 }
 
-export function inquiryLinks(items: InquiryItem[], extra: Parameters<typeof inquiryMessage>[1] = {}) {
+/** One line per product, for the saved record of the handoff. */
+export function inquiryRows(items: InquiryItem[]) {
+  return items.map((i) => ({ label: CATALOG.find((x) => x.slug === i.slug)?.name ?? i.slug, value: `${i.size} vials: ${i.qty.trim() ? `${i.qty.trim()} vials` : "quantity to confirm"}` }));
+}
+
+/**
+ * Logs the list as the visitor hands it to WhatsApp or their email app, so
+ * the team can match the message by its reference. Uses sendBeacon so it
+ * survives the page navigating away; failure never blocks the visitor.
+ */
+export function logHandoff(id: string, items: InquiryItem[], channel: string, extra: Extra = {}) {
+  try {
+    const payload = JSON.stringify({
+      id,
+      kind: "wholesale_handoff",
+      service: `Wholesale inquiry (${channel})`,
+      answers: inquiryRows(items),
+      business: extra.business ?? "",
+      details: extra.shipTo ? `Ship to: ${extra.shipTo}` : "",
+      source: attributionRows(),
+    });
+    const blob = new Blob([payload], { type: "application/json" });
+    if (!navigator.sendBeacon?.("/api/lead", blob)) {
+      void fetch("/api/lead", { method: "POST", headers: { "Content-Type": "application/json" }, body: payload, keepalive: true });
+    }
+  } catch {
+    // Logging must never stop the inquiry.
+  }
+}
+
+export function inquiryLinks(items: InquiryItem[], extra: Extra = {}) {
   const msg = inquiryMessage(items, extra);
   const subject = `Wholesale inquiry: ${items.length} product${items.length === 1 ? "" : "s"}`;
   return { whatsapp: whatsappLink(msg), email: emailLink(subject, msg) };

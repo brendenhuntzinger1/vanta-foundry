@@ -1,11 +1,17 @@
 /**
- * The website-development inquiry, as sent by the guided form. Validated on
- * the server before it is emailed to the team. There is no database yet, so
- * the email (and Resend's log of it) is the record; see docs/LAUNCH-BASELINE.md.
+ * An inquiry, validated on the server, saved (lead-store.ts) and, for
+ * website briefs, emailed to the team.
+ *
+ * - website_brief: the guided form at /start/website-development. A lead.
+ * - wholesale_handoff: the catalog list, logged as the visitor opens WhatsApp
+ *   or their email app. Not a lead until the message actually arrives.
  */
+export type LeadKind = "website_brief" | "wholesale_handoff";
+
 export type Lead = {
-  /** Client-made reference; the same brief retried keeps the same id. */
+  /** Client-made UUID; the same brief retried keeps the same id. */
   id: string;
+  kind: LeadKind;
   service: string;
   answers: { label: string; value: string }[];
   /** Landing page, referrer, campaign and last page viewed (no personal data). */
@@ -23,6 +29,7 @@ export type Lead = {
 };
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 
 const clip = (v: unknown, n: number) => (typeof v === "string" ? v.trim().slice(0, n) : "");
 
@@ -34,9 +41,10 @@ export function parseLead(raw: unknown): { lead: Lead } | { error: string } {
     Array.isArray(v) ? v.slice(0, max).map((a) => ({ label: clip((a as Record<string, unknown>)?.label, 80), value: clip((a as Record<string, unknown>)?.value, 400) })).filter((a) => a.label) : [];
   const id = clip(r.id, 64);
   const lead: Lead = {
-    id: /^[A-Za-z0-9-]{8,64}$/.test(id) ? id : crypto.randomUUID(),
+    id: UUID_RE.test(id) ? id.toLowerCase() : crypto.randomUUID(),
+    kind: r.kind === "wholesale_handoff" ? "wholesale_handoff" : "website_brief",
     service: clip(r.service, 80),
-    answers: rows(r.answers, 20),
+    answers: rows(r.answers, 40),
     source: rows(r.source, 6),
     name: clip(r.name, 120),
     email: clip(r.email, 200),
@@ -47,6 +55,7 @@ export function parseLead(raw: unknown): { lead: Lead } | { error: string } {
     company_url: clip(r.company_url, 200),
     elapsed: typeof r.elapsed === "number" ? r.elapsed : 0,
   };
+  if (lead.kind === "wholesale_handoff") return lead.answers.length ? { lead } : { error: "No products listed." };
   if (!lead.name) return { error: "Please add your name." };
   if (!EMAIL_RE.test(lead.email)) return { error: "Please add a valid email address." };
   if (lead.phone.replace(/\D/g, "").length < 10) return { error: "Please add a phone number." };

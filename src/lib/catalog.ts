@@ -79,3 +79,16 @@ export const QUANTITY_NOTE = "Sizes are the amount in one vial. Quantity is the 
  * fails if the two disagree.
  */
 export const NO_PUBLISHED_REPORT = ["hcg", "recon-water"];
+
+/**
+ * Products whose only published report doesn't document the size or lot sold
+ * (a partner lot, a size mismatch or no batch number). Must match the
+ * `reference` reports in product-facts.ts; checked by `npm run check:seo`.
+ */
+export const REFERENCE_REPORT_ONLY = ["cjc-1295-no-dac", "klow", "l-carnitine", "mots-c", "tesamorelin"];
+
+/** What the catalog card says about a product's documentation. */
+export function reportBadge(slug: string) {
+  if (NO_PUBLISHED_REPORT.includes(slug)) return null;
+  return REFERENCE_REPORT_ONLY.includes(slug) ? "Reference report" : "COA published";
+}

@@ -19,7 +19,7 @@ The owner's decisions in `CLAUDE.md` (same date) win where they conflict:
 
 ## Route inventory
 
-**New pages (54)**
+**New pages (55)**
 
 | Route | Owns the query | Primary CTA |
 |---|---|---|
@@ -34,14 +34,14 @@ The owner's decisions in `CLAUDE.md` (same date) win where they conflict:
 | `/wholesale/ordering` | wholesale peptide ordering, MOQ | Start a Wholesale Inquiry |
 | `/catalog/{slug}` × 33 | "{compound} wholesale" | Add to inquiry / Request Product Pricing |
 | `/work/vanta-labs` | website development case study | Discuss a Similar Project |
-| `/guides/{slug}` × 12 new | one buyer question each | Related service |
+| `/guides/{slug}` × 13 new | one buyer question each | Related service |
 
 New guides: choose-wholesale-peptide-supplier, read-peptide-coa,
 peptide-website-features, retail-vs-wholesale-ordering,
 private-label-vs-unbranded, prepare-wholesale-order, peptide-website-cost,
 shopify-vs-custom-peptide-website, catalog-and-coa-library,
 wholesale-business-launch-checklist, catalog-url-migration,
-b2b-buyer-portal-features.
+b2b-buyer-portal-features, start-a-research-peptide-business.
 
 **Changed pages:** `/` (title and description only), `/website-development`
 (H1 "Website development", links to the six service pages), `/catalog` (now
@@ -60,77 +60,144 @@ separate website and wholesale paths). Every title now reads
 |---|---|
 | Website cost estimator | No approved price model; an estimator would invent prices |
 | Separate wholesale order planner page | The catalog's inquiry list is the planner; a second page would duplicate it |
-| Launch support page | `/industries/research-peptide-brands` and `/start/ruo-brand` already cover it |
+| Paid launch-support service | Not sold; a launch guide (`/guides/start-a-research-peptide-business`) and `/industries/research-peptide-brands` cover the intent |
 | Tampa and Florida location pages | No verified local facts (office, service area, local work) |
 | Translations | Plan defers them until English pages and lead handling are proven |
 | Research twins per compound | Plan: only with sourced, reviewed content |
 
-## Product data and its source
+## Report verification (2026-10-23, second pass)
 
-`src/lib/product-facts.ts` was read from the Vanta Labs store's public
-product pages and COA library on 2026-10-23: identity data (with the store's
-PubChem / FDA GSRS citations) and 41 published laboratory reports, each
-linked to the laboratory document. Facts for the owner to check:
+Every report the site links was downloaded and read: the 38 Kovera Labs PDFs
+(`pdftotext`) and the store's 3 Horizon Analytical lot pages. Each row in
+`src/lib/product-facts.ts` now carries the **labelled size and batch exactly
+as printed on the report**, and a status the pages show:
 
-- Every store report shows batch **Vanta184290**, across 30 products. That
-  looks like a placeholder, so this site shows report numbers, not the batch.
-- The L-Carnitine report is listed at **10 mg**; the product is sold as
-  6,000 mg. Shown without a size.
-- The CJC-1295 no DAC report covers a **5 mg** vial; the product is sold as
-  10 mg. Shown as published.
-- HCG and Recon water have **no published report**; their pages say so.
-- Existing copy says "every wholesale lot comes with a COA". Product pages
-  add that the published reports cover the store's current batch, and that a
-  quote names the buyer's lot.
-
-## Inquiry paths
-
-| Path | How it works | Counted as |
+| Status | Count | Meaning |
 |---|---|---|
-| Website brief (`/start/website-development`) | Validated on the server, emailed through Resend with a reference (VF-XXXXXXXX), the visitor's landing page, referrer, campaign and last page viewed | `inquiry_submitted` only after the server confirms |
-| Duplicates | One id per brief, sent to Resend as `Idempotency-Key` | One email per brief |
-| Email failure | Visitor gets the email-app fallback with the brief written in | `inquiry_error` |
-| Wholesale list (catalog, product pages) | Products, vial size and number of vials kept across pages; sent on WhatsApp or by email with business, destination and attribution | `catalog_product_select`, then `contact_click` |
+| Batch report | 36 | Product, labelled size and client (Vanta Labs Research) match what we supply |
+| Reference only | 5 | Published, but doesn't document the size or lot sold; the reason is shown on the page |
+| No report | 2 products | HCG and Recon water; their pages say so |
 
-**Blocker: no lead database.** The email and Resend's log are the only record
-of a brief. The plan asks for a saved lead; that needs a store chosen by the
-owner (for example a table in a new Supabase project, not the store's
-production database). Wholesale inquiries are WhatsApp/email by owner
-decision, so they are never stored by the site.
+The five reference reports:
+
+- **L-Carnitine (KVR-2026-C2C983):** the report is labelled 10 mg (liquid); the
+  product is sold as 6,000 mg.
+- **KLOW (KVR-2026-E355F5):** the report prints `Batch: N/A`.
+- **CJC-1295 no DAC (Lot GB-5583809-P):** a Horizon report for a batch shared
+  with Genesis Biomapping (it names Genesis as the client and carries their
+  lot number), covering a 5 mg vial, with an identity result only. The product
+  is sold as 10 mg.
+- **MOTS-c (Lot GB-7058391-P)** and **Tesamorelin (Lot GB-1700427-P):** Genesis
+  Biomapping partner lots, as above. No report covers Tesamorelin 5 mg.
+
+Other things the documents show, for the owner:
+
+- All 37 other Kovera reports print batch **Vanta184290**, across about 30
+  different compounds. It is on the lab documents, so the site shows it, but
+  one batch number for many compounds is worth confirming with the lab.
+- The VLP-1 (SM), VLP-2 (TR) and VLP-3 (RT) reports name the compound by its
+  research name. The site keeps the store's coded names and doesn't print the
+  drug names; whether to target those names is an owner decision.
+- Thymosin Alpha-1 (KVR-2026-4D316E) reports **12.91 mg net content against a
+  5 mg label**. Shown on the page as a note.
+- All 41 report links answer 200: 38 PDFs and 3 Horizon lot pages (the CJC-1295
+  no DAC link was the store product page before; it now opens its lot page).
+  `npm run check:reports` re-checks them.
+
+## Inquiry storage and delivery
+
+Leads are saved in the **Vanta Labs Supabase project** (`mlpimwgkwuqpsvsrlpqv`),
+in a separate `foundry` schema the API doesn't expose: migrations
+`foundry_leads` and `foundry_leads_ref_not_unique`, kept in
+`supabase/foundry_leads.sql`. No store table, checkout or payment object was
+touched. The site writes through two database functions using the project's
+publishable key, which can't read leads (checked: reading `foundry.leads`
+over the API is refused).
+
+| Path | What happens | Counted as |
+|---|---|---|
+| Website brief | Validated → saved (`status = new`) → emailed through Resend → `notified_at` recorded | `inquiry_submitted` only after the server confirms it was saved or emailed |
+| Same brief sent twice / double tap | Same id: one row; Resend gets the same Idempotency-Key | One lead |
+| Email fails after saving | Row kept with `notify_error`; the visitor still sees "Brief received" with the reference | Lead (in the table, un-notified) |
+| Storage unreachable, email works | Emailed; the email is the record | Lead |
+| Both fail | Visitor gets the email-app fallback with the brief written in | `inquiry_error` |
+| Wholesale list sent | Logged as `kind = wholesale_handoff`, `status = handoff`, with the same reference that appears in the WhatsApp/email message | `contact_click`; not a lead until the message arrives |
+
+Tested 2026-10-23 against the real table and a local production build:
+
+- Save, retry with the same id, three concurrent submits of one id (one row,
+  three attempts), and an email provider rejection (`resend 401` recorded,
+  brief kept).
+- Storage unreachable plus no email (fallback). Invalid payloads rejected
+  (422/400). A handoff saved. Browser run of the brief at 390×844
+  (attribution carried; fallback opens with the full brief).
+- **Not tested:** a real successful Resend send, because the Resend key lives
+  in the Vercel project.
+
+**Six test rows remain in `foundry.leads`.** The database connector holds
+deletes for your approval. Remove them with:
+`delete from foundry.leads where name = 'Claude test' or service like 'TEST%';`
+
+Working the leads: open Supabase → Table editor → schema `foundry` → `leads`.
+Move `status` through new → acknowledged → qualified → quoted → won/lost, and
+fill `lost_reason`, `quote_value` and `sale_value`. Find briefs whose email
+failed with `where notified_at is null and kind = 'website_brief'`.
 
 ## Analytics
 
-Events go to Vercel Web Analytics (`@vercel/analytics`): `offer_view`,
-`catalog_product_select`, `inquiry_start`, `inquiry_error`,
-`inquiry_submitted`, `contact_click`. **Action needed:** enable Web Analytics
-in the Vercel project (custom events need a plan that includes them). Until
-then the script answers 404 and nothing is recorded. No names, emails or
-phone numbers are sent.
+Application events (implemented, sent with `@vercel/analytics`):
+`offer_view`, `catalog_product_select`, `inquiry_start`, `inquiry_error`,
+`inquiry_submitted` (only after the server confirms), `contact_click`
+(WhatsApp/email opened: never counted as a lead). No names, emails or phone
+numbers are sent; the lead reference is.
 
-`lead_qualified`, `quote_sent`, `sale_won` and `repeat_order` happen outside
-the site; log them in a sheet keyed by the VF- reference or WhatsApp thread.
+What enabling **Vercel Web Analytics** gives: page views, referrers and
+countries from the script, plus the custom events above if the plan includes
+custom events. Until it's enabled, `/_vercel/insights/script.js` answers 404
+and nothing is recorded.
+
+Qualification, quotes, sales and repeat orders aren't site events. They are
+the `status`, `quote_value` and `sale_value` columns on `foundry.leads`.
 
 ## Technical SEO
 
-- Sitemap: 100 canonical URLs, `lastModified` only where a real revision date
+- Sitemap: 101 canonical URLs, `lastModified` only where a real revision date
   is recorded (never the build date).
 - `robots.txt` allows everything except `/api/`, including `/_next` assets.
   Preview deployments (`VERCEL_ENV=preview`) disallow all and send
-  `X-Robots-Tag: noindex`.
+  `X-Robots-Tag: noindex` (confirmed on the PR preview's response headers).
 - Structured data: Organization, WebSite, Service, Product (no offers, since
   no prices), ItemList, FAQPage (matching visible FAQs), Article, BreadcrumbList.
 - `npm run check:seo` (against `npm start`) checks every registry page,
-  product, guide and sitemap URL: 200, indexable, one H1, approved title/H1,
-  self-canonical, CTA present, report numbers present, no broken internal
-  links, no orphans. Passed on this build: 102 URLs, 0 problems.
+  product, guide and sitemap URL. It requires a 200, an indexable page, one H1,
+  the approved title and H1, a self-canonical, the CTA present, the supporting
+  phrases rendered, report numbers present, reference reports explained, no
+  broken internal links and no orphans.
+- What it can't establish: rankings, indexing, real-device behaviour, or that
+  copy is persuasive. It checks the registry against the rendered pages; the
+  registry itself was reviewed against the plan and the keyword audit by hand.
+- Keyword coverage: `docs/KEYWORD-COVERAGE.md` gives every one of the 531
+  audit pages and 122 tag phrases a disposition, checked against rendered pages.
+
+## Preview and environments
+
+- Everything above was tested on a **local production build**
+  (`npm run build && npm start`), with Playwright emulating a phone (390×844)
+  and desktops (1024, 1280). No real devices were used.
+- The PR's Vercel preview deployed (bot status Ready) but sits behind Vercel
+  Authentication. The connected Vercel account is refused
+  (`403 forbidden` reading deployment `dpl_J21wUgPNe3TLzgRhv2NWVkkniJ4R`), so
+  the rendered preview and its forms were **not** inspected. To allow it,
+  authorize the Foundry project (team `brendenhuntzinger1's projects`,
+  project `prj_h0c01RMILqTNP5Vc8PN7nrBnBDOU`) in the Vercel connection.
 
 ## Indexing status
 
 | Step | Status |
 |---|---|
+| Eligible / crawlable | Yes, on the local build (robots, 200s, self-canonicals, no unintended noindex) |
 | Sitemap submitted to Google Search Console / Bing | **Not done**: no webmaster access from this workspace |
-| Crawlable | Yes, on the build checked (robots, status, canonicals) |
-| Confirmed indexed | Unknown; check in Search Console after release |
+| Confirmed indexed | Unknown until Search Console shows it after release |
 
 After release: verify `https://www.vantafoundry.com` in Search Console and
 Bing Webmaster Tools, submit `/sitemap.xml`, and inspect `/wholesale`,
