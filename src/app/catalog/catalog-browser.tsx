@@ -91,7 +91,7 @@ export function CatalogBrowser() {
                 <div className="relative aspect-[4/5] bg-bg-2">
                   <Image
                     src={p.image}
-                    alt={`${p.name}, Vanta Labs`}
+                    alt={p.name}
                     fill
                     sizes="(min-width: 1024px) 270px, 50vw"
                     className="object-cover"
