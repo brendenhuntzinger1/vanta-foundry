@@ -9,7 +9,7 @@ The B2B site for Vanta Labs. It covers:
 - 3PL and fulfillment
 - website development, for any business
 
-It's a separate Next.js app, deployed as its own Vercel project on its own domain.
+It's a standalone Next.js app with its own repository, Vercel project and domain, separate from the Vanta Labs store.
 
 ## The things you'll change
 
@@ -34,7 +34,7 @@ There's no form and no backend. A visitor taps the services they want, or enters
 
 ## Deploy
 
-1. Create a Vercel project with **Root Directory** set to `foundry`.
+1. Import this repository into Vercel as a new project (framework: Next.js, root directory: the repository root).
 2. Set `NEXT_PUBLIC_SITE_URL` (e.g. `https://www.vantafoundry.com`) and `NEXT_PUBLIC_WHATSAPP_NUMBER`.
 3. Add the domain.
 
@@ -47,7 +47,7 @@ There's no form and no backend. A visitor taps the services they want, or enters
 
 ## Copy rules
 
-Research-supply copy follows `.claude/skills/vanta-creative-director/references/compliance.md`:
+Research-supply copy follows [`docs/COMPLIANCE.md`](docs/COMPLIANCE.md):
 
 - Research use only.
 - No usage, dosing or outcome claims.

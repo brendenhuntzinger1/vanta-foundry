@@ -5,8 +5,8 @@
  * WRITE FOR SOMEONE IN A HURRY. Every service answers three questions in plain
  * words: what is it, is it for me, what do I get. No prices, rates, minimums
  * or lead times are stated, because none has been set; each is quoted.
- * Research-supply copy follows .claude/skills/vanta-creative-director/
- * references/compliance.md (research use only, no usage or outcome claims).
+ * Research-supply copy follows docs/COMPLIANCE.md (research use only, no
+ * usage or outcome claims).
  */
 
 export type DemoKey = "payments" | "wholesale" | "factory" | "label" | "fulfillment" | "website";
