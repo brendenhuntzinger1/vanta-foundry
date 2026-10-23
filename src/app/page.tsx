@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Container, CtaBand, FaqList, SectionHead } from "@/components/blocks";
+import { FeaturedWork, StackRow } from "@/components/featured-work";
 import { IconArrow, IconWhatsApp } from "@/components/icons";
 import { JsonLd, faqPage } from "@/lib/jsonld";
 import { SITE, whatsappLink } from "@/lib/site";
@@ -30,6 +31,14 @@ const FAQS = [
   },
 ];
 
+const WHY = [
+  { t: "Hand-coded, never templated", b: "Every site is designed for your brand and written by our developers. No page builders, no themes." },
+  { t: "Yours to keep", b: "You own the website, the code and the domain. No lock-in." },
+  { t: "Everything in writing", b: "Your quote, timeline and agreement are written down and signed by both sides before work starts." },
+  { t: "One team, start to finish", b: "Design, development, payments, SEO and, for research brands, supply and fulfillment. One thread to reach us." },
+  { t: "Operated by Vanta Labs", b: "The same team runs its own live store, so we build what we know works." },
+];
+
 export default function Home() {
   const wa = whatsappLink("Hi Vanta Foundry, I have a question.");
   return (
@@ -37,9 +46,11 @@ export default function Home() {
       <section className="pt-14 sm:pt-24">
         <Container>
           <div className="mx-auto max-w-[860px] text-center">
-            <h1 className="h-display text-[44px] leading-[1] text-ink sm:text-[72px]">
+            <h1 className="h-display text-[46px] leading-[1] text-ink sm:text-[84px]">
               Build your brand.
-              <span className="block text-muted">Or supply it.</span>
+              <span className="block">
+                Or <span className="accent">supply</span> it.
+              </span>
             </h1>
             <p className="mx-auto mt-6 max-w-[600px] text-[18px] leading-[1.6] text-body">
               Premium website development for any business, and peptide wholesale &amp; 3PL for research brands. Pick where to start.
@@ -82,11 +93,56 @@ export default function Home() {
             </Door>
           </div>
 
-          <div className="mt-12 flex flex-col items-center gap-3 sm:flex-row sm:justify-center sm:gap-10">
-            <p className="text-[13px] text-muted">The team behind</p>
-            <ul className="flex flex-wrap justify-center gap-x-8 gap-y-2">
+          <div className="mx-auto mt-14 flex max-w-[1120px] flex-col items-center gap-3 border-y border-line py-6 sm:flex-row sm:justify-between">
+            <p className="text-[13.5px] text-muted">The team behind</p>
+            <ul className="flex flex-wrap justify-center gap-x-9 gap-y-2">
               {SITE.builtStores.map((b) => (
-                <li key={b} className="text-[17px] font-semibold tracking-[-0.02em] text-ink/70">{b}</li>
+                <li key={b} className="text-[18px] font-semibold tracking-[-0.025em] text-ink/75">{b}</li>
+              ))}
+            </ul>
+          </div>
+        </Container>
+      </section>
+
+      {/* Work */}
+      <section className="mt-28 sm:mt-36">
+        <Container>
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+            <div className="max-w-[640px]">
+              <h2 className="h-section text-[38px] text-ink sm:text-[60px]">
+                Work that&rsquo;s <span className="accent">live.</span>
+              </h2>
+              <p className="mt-4 text-[18px] leading-[1.6] text-body">Real stores, taking real orders. Visit them yourself.</p>
+            </div>
+            <Link href="/work" className="inline-flex items-center gap-1.5 text-[15px] font-medium text-ink underline underline-offset-4">
+              See all our work <IconArrow />
+            </Link>
+          </div>
+          <div className="mt-12">
+            <FeaturedWork />
+          </div>
+          <div className="mt-14">
+            <StackRow />
+          </div>
+        </Container>
+      </section>
+
+      {/* Why us */}
+      <section className="mt-28 sm:mt-36">
+        <Container>
+          <div className="grid gap-12 lg:grid-cols-[1fr_1.3fr]">
+            <h2 className="h-section text-[38px] text-ink sm:text-[56px]">
+              A real team,
+              <span className="block">
+                <span className="accent">in writing.</span>
+              </span>
+            </h2>
+            <ul className="divide-y divide-line border-y border-line">
+              {WHY.map((w) => (
+                <li key={w.t} className="grid gap-2 py-6 sm:grid-cols-[220px_1fr] sm:gap-8">
+                  <p className="text-[17px] font-semibold tracking-[-0.02em] text-ink">{w.t}</p>
+                  <p className="text-[16px] leading-[1.6] text-body">{w.b}</p>
+                </li>
               ))}
             </ul>
           </div>

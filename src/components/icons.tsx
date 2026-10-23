@@ -12,6 +12,7 @@ export const IconBrowser = (p: P) => (<svg {...base} {...p}><rect x="2.5" y="4" 
 export const IconSearch = (p: P) => (<svg {...base} {...p}><circle cx="10.5" cy="10.5" r="6" /><path d="m15 15 5.5 5.5M8 10.5h5M10.5 8v5" /></svg>);
 export const IconCheck = (p: P) => (<svg {...base} strokeWidth={2} {...p}><path d="m5 12.5 4.2 4L19 7" /></svg>);
 export const IconArrow = (p: P) => (<svg {...base} width={16} height={16} {...p}><path d="M5 12h14M13 6l6 6-6 6" /></svg>);
+export const IconArrowUpRight = (p: P) => (<svg {...base} width={16} height={16} {...p}><path d="M7 17 17 7M8 7h9v9" /></svg>);
 export const IconMail = (p: P) => (<svg {...base} {...p}><rect x="3" y="5" width="18" height="14" rx="2.5" /><path d="m3.5 7 8.5 6 8.5-6" /></svg>);
 export const IconPlus = (p: P) => (<svg {...base} width={16} height={16} {...p}><path d="M12 5v14M5 12h14" /></svg>);
 export const IconMinus = (p: P) => (<svg {...base} width={16} height={16} {...p}><path d="M5 12h14" /></svg>);

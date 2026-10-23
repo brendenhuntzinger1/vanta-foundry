@@ -9,8 +9,8 @@ import { SITE } from "@/lib/site";
 
 const geist = Geist({ subsets: ["latin"], variable: "--font-geist", display: "swap" });
 const geistMono = Geist_Mono({ subsets: ["latin"], variable: "--font-geist-mono", display: "swap" });
-// Only used inside the example storefront we show off (Solenne).
-const cormorant = Cormorant_Garamond({ subsets: ["latin"], weight: ["400", "500", "600"], variable: "--font-cormorant", display: "swap" });
+// The italic accent word in headlines, and the Solenne example storefront.
+const cormorant = Cormorant_Garamond({ subsets: ["latin"], weight: ["400", "500", "600"], style: ["normal", "italic"], variable: "--font-cormorant", display: "swap" });
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),

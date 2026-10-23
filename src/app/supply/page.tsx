@@ -53,7 +53,9 @@ export default function SupplyPage() {
               <p className="text-[14px] font-medium text-gold-fill">Wholesale &amp; 3PL · for research brands</p>
               <h1 className="h-display mt-5 text-[46px] leading-[0.98] sm:text-[76px]">
                 Peptide supply,
-                <span className="block text-white/45">done for you.</span>
+                <span className="block text-white/45">
+                  done <span className="accent text-white">for you.</span>
+                </span>
               </h1>
               <p className="mt-7 max-w-[560px] text-[18px] leading-[1.6] text-white/70">
                 Wholesale or factory-direct research peptides with a COA for every wholesale lot, your own label on every vial,
@@ -106,7 +108,9 @@ export default function SupplyPage() {
         <Container>
           <div className="grid gap-10 rounded-[32px] border border-line bg-bg-2 p-8 sm:p-12 lg:grid-cols-[1fr_1fr] lg:items-center">
             <div>
-              <h2 className="h-section text-[32px] text-ink sm:text-[46px]">Documented, lot by lot.</h2>
+              <h2 className="h-section text-[32px] text-ink sm:text-[46px]">
+                Documented, <span className="accent">lot by lot.</span>
+              </h2>
               <p className="mt-4 text-[17px] leading-[1.6] text-body">
                 Every wholesale lot comes with its certificate of analysis, matched by lot number to the units you receive.
               </p>
