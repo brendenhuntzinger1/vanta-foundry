@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { EXAMPLE_BRAND, Pill, Screen } from "./frame";
+import { CardBrands } from "../card-brands";
 
 type Phase = "healthy" | "closed" | "switched";
 
@@ -17,6 +18,10 @@ export function PaymentsDemo() {
       subtitle={`${EXAMPLE_BRAND} · checkout`}
       status={phase === "closed" ? <Pill tone="warn">Action needed</Pill> : <Pill tone="ok">Taking payments</Pill>}
     >
+      <div className="mb-4 flex flex-wrap items-center justify-between gap-2">
+        <p className="text-[12.5px] font-medium text-muted">Accepts</p>
+        <CardBrands size="sm" />
+      </div>
       <div className="divide-y divide-line rounded-xl border border-line">
         <Row name="Main processor" {...primary} />
         <Row name="Backup processor" {...backup} />

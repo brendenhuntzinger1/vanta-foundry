@@ -5,7 +5,7 @@ import { Demo } from "@/components/demos";
 import { IconArrow, IconCheck } from "@/components/icons";
 import { ServiceIcon } from "@/components/service-icon";
 import { ServicePicker } from "@/components/service-picker";
-import { Showcase } from "@/components/showcase";
+import { ServiceBento } from "@/components/service-bento";
 import { JsonLd, faqPage } from "@/lib/jsonld";
 import { SERVICES } from "@/lib/services";
 import { SITE } from "@/lib/site";
@@ -71,8 +71,8 @@ export default function Home() {
               <ContactButtons size="lg" single />
             </div>
           </div>
-          <div className="mx-auto mt-16 max-w-[1000px] sm:mt-20">
-            <Showcase />
+          <div className="mt-14 sm:mt-16">
+            <ServiceBento />
           </div>
         </Container>
       </section>

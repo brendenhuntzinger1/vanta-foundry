@@ -5,6 +5,7 @@ import { SERVICES } from "@/lib/services";
 import { SITE, emailLink, whatsappLink } from "@/lib/site";
 import { ServiceIcon } from "./service-icon";
 import { IconCheck, IconMail, IconWhatsApp } from "./icons";
+import { CardBrands } from "./card-brands";
 
 /**
  * Step 1: tap the services you want. Step 2: send the list on WhatsApp or by
@@ -66,6 +67,7 @@ export function ServicePicker({ initial = [] }: { initial?: string[] }) {
               </span>
               <span className="mt-4 text-[16.5px] font-semibold tracking-[-0.02em] text-ink">{s.name}</span>
               <span className="mt-1.5 text-[14px] leading-[1.5] text-muted">{s.short}</span>
+              {s.slug === "payment-processing" && <CardBrands size="sm" className="mt-3" />}
             </button>
           );
         })}
