@@ -35,6 +35,7 @@ const FAQS = [
 const WORK = [
   { brand: "Vanta Labs", industry: "Research supply · live", src: "/showcase/vanta-labs-desktop.webp", top: true },
   { brand: "Genesis Biomapping", industry: "Research supply · live", src: "/showcase/genesis-desktop.webp", top: true },
+  { brand: "Remade Clinic", industry: "Telehealth · live", src: "/showcase/remade-desktop.webp", top: true },
   { brand: "Solenne", industry: "Skincare", src: "/solenne/hero.webp" },
   { brand: "Halcyon", industry: "Coffee & food", src: "/sites/halcyon-hero.webp" },
   { brand: "Atlas", industry: "Athletic apparel", src: "/sites/atlas-hero.webp" },
@@ -128,7 +129,7 @@ export default function Home() {
       <section id="work" className="mt-28 scroll-mt-20 sm:mt-36">
         <Container>
           <SectionHead center title="Look what we built." lede="Designed and hand-coded by our team." />
-          <ul className="mt-12 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
+          <ul className="mt-12 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {WORK.map((w) => (
               <li key={w.brand}>
                 <Link href="/work" className="group block overflow-hidden rounded-2xl border border-line">
