@@ -16,13 +16,6 @@ const PILLARS = [
   { t: "Checkout that converts", b: "Cards, Apple Pay and Google Pay, connected to processing with a backup ready, if you sell online." },
 ];
 
-const PROCESS = [
-  { when: "Day 1", t: "Brief", b: "You tell us about your business in about a minute. A project lead calls to plan the build." },
-  { when: "Days 1–3", t: "Design", b: "We design your site and you sign off on every page before we code it." },
-  { when: "Days 2–6", t: "Build", b: "Our developers hand-code it, connect payments and set up SEO and GEO." },
-  { when: "72 hours to a week", t: "Launch", b: "Tested on every device and launched. Any change you ask for gets made." },
-];
-
 const TEAM = [
   "On call 24/7 for fixes and changes",
   "New pages, features and integrations",
@@ -32,9 +25,10 @@ const TEAM = [
 ];
 
 /**
- * /website-development: a premium landing page, ready for paid traffic. One
- * idea per section, real work up front, and every call to action leads into
- * the guided brief (submitted on the page, no WhatsApp).
+ * /website-development: a premium landing page, ready for paid traffic. Kept
+ * simple (owner, 2026-10-24: "people want simplicity"): real work up front,
+ * no step-by-step process, and every call to action leads into the short
+ * brief (two taps and your details, submitted on the page, no WhatsApp).
  */
 export function WebsiteLanding({ s }: { s: Service }) {
   return (
@@ -102,31 +96,6 @@ export function WebsiteLanding({ s }: { s: Service }) {
         </Container>
       </section>
 
-      {/* What we build */}
-      <section className="mt-28 sm:mt-36">
-        <Container>
-          <div className="mx-auto max-w-[760px] text-center">
-            <h2 className="h-section text-[36px] text-ink sm:text-[54px]">
-              What we <span className="accent">build.</span>
-            </h2>
-            <p className="mt-4 text-[18px] leading-[1.6] text-body">Custom web development for research brands, UI/UX design included. Pick the one closest to your project; each page shows the scope, the process and the questions to ask.</p>
-          </div>
-          <ul className="mx-auto mt-12 grid max-w-[1040px] gap-3 sm:grid-cols-2 lg:grid-cols-3">
-            {DEV_SERVICES.map((d) => (
-              <li key={d.slug}>
-                <Link href={d.seo.route} className="group flex h-full flex-col rounded-2xl border border-line p-6 transition-colors hover:border-ink">
-                  <span className="text-[19px] font-semibold tracking-[-0.025em] text-ink">{d.seo.h1}</span>
-                  <span className="mt-2 text-[14.5px] leading-[1.55] text-body">{d.seo.description}</span>
-                  <span className="mt-auto inline-flex items-center gap-1.5 pt-4 text-[14px] font-medium text-ink">
-                    Read more <IconArrow className="transition-transform duration-200 group-hover:translate-x-0.5" />
-                  </span>
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </Container>
-      </section>
-
       {/* Work */}
       <section className="mt-28 sm:mt-36">
         <Container>
@@ -147,27 +116,6 @@ export function WebsiteLanding({ s }: { s: Service }) {
           <div className="mt-14">
             <StackRow />
           </div>
-        </Container>
-      </section>
-
-      {/* Process */}
-      <section className="mt-28 sm:mt-36">
-        <Container>
-          <div className="mx-auto max-w-[760px] text-center">
-            <h2 className="h-section text-[36px] text-ink sm:text-[54px]">
-              Live in 72 hours to a <span className="accent">week.</span>
-            </h2>
-            <p className="mt-4 text-[18px] leading-[1.6] text-body">A clear process, with you signing off at every step.</p>
-          </div>
-          <ol className="mt-14 grid gap-4 md:grid-cols-4">
-            {PROCESS.map((p, i) => (
-              <li key={p.t} className={`rounded-2xl p-7 ${i === PROCESS.length - 1 ? "bg-ink text-white" : "border border-line"}`}>
-                <p className={`text-[13px] font-medium ${i === PROCESS.length - 1 ? "text-gold-fill" : "text-gold"}`}>{p.when}</p>
-                <p className="mt-2 text-[22px] font-semibold tracking-[-0.03em]">{p.t}</p>
-                <p className={`mt-2 text-[15px] leading-[1.6] ${i === PROCESS.length - 1 ? "text-white/70" : "text-body"}`}>{p.b}</p>
-              </li>
-            ))}
-          </ol>
         </Container>
       </section>
 
@@ -223,6 +171,22 @@ export function WebsiteLanding({ s }: { s: Service }) {
         </Container>
       </section>
 
+      {/* What we build: the detail pages, one row of links */}
+      <section className="mt-20">
+        <Container>
+          <p className="text-center text-[14px] text-muted">What we build</p>
+          <ul className="mx-auto mt-4 flex max-w-[900px] flex-wrap justify-center gap-2">
+            {DEV_SERVICES.map((d) => (
+              <li key={d.slug}>
+                <Link href={d.seo.route} className="inline-flex h-10 items-center rounded-full border border-line-2 px-4 text-[14px] text-ink transition-colors hover:border-ink">
+                  {d.seo.h1}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </Container>
+      </section>
+
       {/* FAQ */}
       <section className="mt-28 sm:mt-36">
         <Container>
@@ -237,7 +201,7 @@ export function WebsiteLanding({ s }: { s: Service }) {
 
       <CtaBand
         title="Let's build yours."
-        lede="Tell us about your project in about a minute. A project lead replies with a quote and a timeline, in writing."
+        lede="Two taps and your details. A project lead replies with a quote and a timeline, in writing."
         primary={{ href: START, label: "Start your project" }}
         contact={false}
       />
