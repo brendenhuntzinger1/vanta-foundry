@@ -3,14 +3,14 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { Container, CtaBand, FaqList } from "@/components/blocks";
 import { FeaturedWork } from "@/components/featured-work";
-import { SupplyBento, WebBento } from "@/components/service-bento";
+import { CatalogVisual, PayVisual, SupplyBento, WebBento } from "@/components/service-bento";
 import { SupplyShowcase } from "@/components/supply-showcase";
 import { IconArrow, IconWhatsApp } from "@/components/icons";
 import { JsonLd, faqPage } from "@/lib/jsonld";
 import { pageMetadata } from "@/lib/metadata";
 import { SEO_PAGES } from "@/lib/seo-pages";
 import { RUO_NOTICE, SITE, whatsappLink } from "@/lib/site";
-import { CATALOG, productPath } from "@/lib/catalog";
+import { CATALOG } from "@/lib/catalog";
 
 /*
  * Vanta Foundry is the research-brand company (owner, 2026-10-24): wholesale
@@ -46,8 +46,6 @@ const FAQS = [
 
 export default function Home() {
   const wa = whatsappLink("Hi Vanta Foundry, I'd like wholesale pricing.");
-  const sourceWa = whatsappLink("Hi Vanta Foundry, I'm looking for a product that isn't in your catalog: ");
-  const HERO = ["bpc-157", "ghk-cu", "tesamorelin"].map((slug) => CATALOG.find((p) => p.slug === slug)).filter((p) => p !== undefined);
   return (
     <>
       {/* Hero */}
@@ -77,29 +75,24 @@ export default function Home() {
                 Starting a brand from scratch? Plan it with us <IconArrow />
               </Link>
             </div>
-            <div>
-              <ul className="grid grid-cols-3 gap-2.5 sm:gap-3">
-                {HERO.map((p) => (
-                  <li key={p.slug}>
-                    <Link href={productPath(p.slug)} className="group block overflow-hidden rounded-2xl border border-line bg-white">
-                      <div className="relative aspect-[3/4] bg-bg-2">
-                        <Image src={p.image} alt={p.name} fill sizes="(min-width: 1024px) 190px, 33vw" className="object-cover transition-transform duration-500 group-hover:scale-[1.03]" priority />
-                      </div>
-                      <div className="px-3 py-2.5">
-                        <p className="truncate text-[13.5px] font-semibold tracking-[-0.02em] text-ink sm:text-[15px]">{p.name}</p>
-                        <p className="text-[11.5px] text-muted sm:text-[12.5px]">COA included</p>
-                      </div>
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-              <a href={sourceWa ?? "/contact"} target={sourceWa ? "_blank" : undefined} rel={sourceWa ? "noopener noreferrer" : undefined} className="group mt-2.5 flex items-center justify-between gap-4 rounded-2xl bg-ink px-5 py-4 text-white sm:mt-3">
-                <span>
-                  <span className="block text-[16px] font-semibold tracking-[-0.02em]">Not in the catalog?</span>
-                  <span className="block text-[14px] text-white/65">Tell us what you need. We source it.</span>
-                </span>
-                <IconArrow className="shrink-0 transition-transform duration-200 group-hover:translate-x-0.5" />
-              </a>
+            <div className="grid gap-2.5 sm:grid-cols-2 sm:gap-3">
+              <HeroCard href="/website-development" title="Website development" note="Live: Vanta Labs" wide>
+                <div className="absolute inset-x-4 top-4 overflow-hidden rounded-t-lg border border-b-0 border-white/10 sm:inset-x-6 sm:top-6">
+                  <div className="flex items-center gap-1 bg-[#1d1d20] px-2.5 py-1.5" aria-hidden="true">
+                    <span className="h-1.5 w-1.5 rounded-full bg-white/25" />
+                    <span className="h-1.5 w-1.5 rounded-full bg-white/25" />
+                    <span className="h-1.5 w-1.5 rounded-full bg-white/25" />
+                    <span className="ml-2 text-[9.5px] text-white/50">vantalabsresearch.com</span>
+                  </div>
+                  <Image src="/showcase/vanta-labs-desktop.webp" alt="The Vanta Labs store, built by our team" width={2160} height={1147} sizes="(min-width: 1024px) 520px, 90vw" className="h-auto w-full" priority />
+                </div>
+              </HeroCard>
+              <HeroCard href="/catalog" title="Wholesale catalog" note="Not listed? We source it.">
+                <CatalogVisual />
+              </HeroCard>
+              <HeroCard href="/payment-processing" title="Payment processing" note="Backup processor ready">
+                <PayVisual />
+              </HeroCard>
             </div>
           </div>
 
@@ -177,5 +170,22 @@ export default function Home() {
       <CtaBand title="Get wholesale pricing." lede="Tell us what you need, in the catalog or not. A person on our team replies." primary={{ href: "/catalog", label: "Browse the catalog" }} />
       <JsonLd data={faqPage(FAQS)} />
     </>
+  );
+}
+
+function HeroCard({ href, title, note, wide, children }: { href: string; title: string; note: string; wide?: boolean; children: React.ReactNode }) {
+  return (
+    <Link href={href} className={`group flex flex-col overflow-hidden rounded-2xl bg-[#141416] ${wide ? "sm:col-span-2" : ""}`}>
+      <div className={`relative overflow-hidden ${wide ? "h-[170px] sm:h-[230px]" : "h-[190px] sm:h-[210px]"}`} aria-hidden="true">
+        {children}
+      </div>
+      <div className="flex items-center justify-between gap-2 border-t border-white/10 px-4 py-3 text-white">
+        <span>
+          <span className="block text-[14px] font-semibold tracking-[-0.02em] sm:text-[15px]">{title}</span>
+          <span className="block text-[11.5px] text-white/55 sm:text-[12.5px]">{note}</span>
+        </span>
+        <IconArrow className="shrink-0 transition-transform duration-200 group-hover:translate-x-0.5" />
+      </div>
+    </Link>
   );
 }
