@@ -76,7 +76,7 @@ export default function Home() {
               </Link>
             </div>
             <div className="grid gap-2.5 sm:grid-cols-2 sm:gap-3">
-              <HeroCard href="/website-development" title="Website development" note="Live: Vanta Labs" wide>
+              <HeroCard href="/website-development" title="Website development" note="SEO, AEO & GEO · your own developer team 24/7" wide>
                 <div className="absolute inset-x-4 top-4 overflow-hidden rounded-t-lg border border-b-0 border-white/10 sm:inset-x-6 sm:top-6">
                   <div className="flex items-center gap-1 bg-[#1d1d20] px-2.5 py-1.5" aria-hidden="true">
                     <span className="h-1.5 w-1.5 rounded-full bg-white/25" />
@@ -86,10 +86,22 @@ export default function Home() {
                   </div>
                   <Image src="/showcase/vanta-labs-desktop.webp" alt="The Vanta Labs store, built by our team" width={2160} height={1147} sizes="(min-width: 1024px) 520px, 90vw" className="h-auto w-full" priority />
                 </div>
+                <ul className="absolute bottom-3 left-3 right-3 flex flex-wrap gap-1.5 sm:bottom-4 sm:left-6">
+                  {["Google SEO", "AEO", "GEO", "Developer team 24/7"].map((x) => (
+                    <li key={x} className="rounded-full bg-ink/90 px-2.5 py-1 text-[11px] font-medium text-white shadow-[0_4px_14px_-4px_rgba(0,0,0,0.6)] sm:text-[12px]">{x}</li>
+                  ))}
+                </ul>
               </HeroCard>
-              <HeroCard href="/catalog" title="Wholesale catalog" note="Not listed? We source it.">
-                <Image src="/supply/case.webp" alt="Rows of research vials in a black foam-lined case" fill sizes="(min-width: 1024px) 270px, 100vw" className="object-cover transition-transform duration-700 group-hover:scale-[1.04]" />
-                <span className="absolute left-3 top-3 rounded-full bg-white/90 px-2.5 py-1 text-[11px] font-medium text-ink">{CATALOG.length} in stock · COA every lot</span>
+              <HeroCard href="/catalog" title="Wholesale catalog" note={`${CATALOG.length} in stock · we source the rest`}>
+                <div className="absolute inset-x-3 top-3 overflow-hidden rounded-t-lg border border-b-0 border-white/10 bg-white">
+                  <div className="flex items-center gap-1 bg-[#1d1d20] px-2.5 py-1.5" aria-hidden="true">
+                    <span className="h-1.5 w-1.5 rounded-full bg-white/25" />
+                    <span className="h-1.5 w-1.5 rounded-full bg-white/25" />
+                    <span className="h-1.5 w-1.5 rounded-full bg-white/25" />
+                    <span className="ml-1.5 truncate text-[9px] text-white/50">vantafoundry.com/catalog</span>
+                  </div>
+                  <Image src="/showcase/catalog-desktop.webp" alt="Our wholesale catalog: products with COA badges and Inquire buttons" width={1179} height={1308} sizes="(min-width: 1024px) 260px, 90vw" className="h-auto w-full" />
+                </div>
               </HeroCard>
               <HeroCard href="/payment-processing" title="Payment processing" note="Cards, Apple Pay, Google Pay · backup ready">
                 <CheckoutPhone />
