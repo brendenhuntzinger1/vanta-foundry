@@ -113,7 +113,32 @@ export function WebsiteLanding({ s }: { s: Service }) {
             <p className="mt-4 text-[18px] leading-[1.6] text-body">Custom web development for any business, UI/UX design included. Pick the one closest to your project; each page shows the scope, the process and the questions to ask.</p>
           </div>
           <ul className="mx-auto mt-12 grid max-w-[1040px] gap-3 sm:grid-cols-2 lg:grid-cols-3">
-            {DEV_SERVICES.map((d) => (
+            {DEV_SERVICES.filter((d) => d.group !== "grow").map((d) => (
+              <li key={d.slug}>
+                <Link href={d.seo.route} className="group flex h-full flex-col rounded-2xl border border-line p-6 transition-colors hover:border-ink">
+                  <span className="text-[19px] font-semibold tracking-[-0.025em] text-ink">{d.seo.h1}</span>
+                  <span className="mt-2 text-[14.5px] leading-[1.55] text-body">{d.seo.description}</span>
+                  <span className="mt-auto inline-flex items-center gap-1.5 pt-4 text-[14px] font-medium text-ink">
+                    Read more <IconArrow className="transition-transform duration-200 group-hover:translate-x-0.5" />
+                  </span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </Container>
+      </section>
+
+      {/* Grow it */}
+      <section className="mt-20 sm:mt-24">
+        <Container>
+          <div className="mx-auto max-w-[760px] text-center">
+            <h2 className="h-section text-[32px] text-ink sm:text-[46px]">
+              Then we help it <span className="accent">grow.</span>
+            </h2>
+            <p className="mt-4 text-[18px] leading-[1.6] text-body">Ads, social media and lead follow-up, run by the same team that built the site, tracked to the inquiries and sales they produce.</p>
+          </div>
+          <ul className="mx-auto mt-10 grid max-w-[1040px] gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            {DEV_SERVICES.filter((d) => d.group === "grow").map((d) => (
               <li key={d.slug}>
                 <Link href={d.seo.route} className="group flex h-full flex-col rounded-2xl border border-line p-6 transition-colors hover:border-ink">
                   <span className="text-[19px] font-semibold tracking-[-0.025em] text-ink">{d.seo.h1}</span>
