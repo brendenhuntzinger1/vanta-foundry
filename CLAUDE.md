@@ -31,12 +31,14 @@ Websites and payment processing are offered to research-supply brands only (owne
   (they redirect home), no skincare/coffee/apparel concept stores, no "any
   business" copy.
 - Homepage, direct (owner, 2026-10-24: "more direct"): "Wholesale research
-  peptides. Your label. We ship it." with Browse the catalog and WhatsApp
+  peptides. Everything to scale your brand." Wholesale is the biggest thing,
+  but we're a full startup partner, not just 3PL (owner rejected "Your label.
+  We ship it." for implying 3PL only). With Browse the catalog and WhatsApp
   "Get wholesale pricing". No stock photos anywhere on the homepage (owner
   rejected them twice). The hero shows three cards: Website development (the
-  live Vanta Labs store), Wholesale catalog (real products, "we source it")
-  and Payment processing (a coded checkout). The service tiles use coded
-  visuals too: price list, COA checklist, label looks, shipped order. Then the brand
+  live Vanta Labs store, with SEO, AEO, GEO and developer team 24/7),
+  Wholesale catalog (a screenshot of our real catalog page) and Payment
+  processing (a phone checkout, no prices). Then the brand
   row, what we do (supply, label and ship; sell it), the catalog preview,
   the two live stores, FAQ.
 - We source beyond the catalog (owner: "if they need anything else we can

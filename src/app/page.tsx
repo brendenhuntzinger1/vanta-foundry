@@ -3,7 +3,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { Container, CtaBand, FaqList } from "@/components/blocks";
 import { FeaturedWork } from "@/components/featured-work";
-import { CatalogVisual, PayVisual, SupplyBento, WebBento } from "@/components/service-bento";
+import { SupplyBento, WebBento } from "@/components/service-bento";
 import { SupplyShowcase } from "@/components/supply-showcase";
 import { IconArrow, IconWhatsApp } from "@/components/icons";
 import { JsonLd, faqPage } from "@/lib/jsonld";
@@ -55,11 +55,11 @@ export default function Home() {
             <div>
               <h1 className="h-display text-[42px] leading-[1] text-ink sm:text-[60px] xl:text-[66px]">
                 Wholesale research peptides.{" "}
-                <span className="accent block">Your label. We ship it.</span>
+                <span className="accent block">Everything to scale your brand.</span>
               </h1>
               <p className="mt-6 max-w-[560px] text-[17px] leading-[1.6] text-body sm:text-[19px]">
-                {CATALOG.length} peptides in stock with a COA for every lot. Need something we don&rsquo;t list? We source it.
-                White label, 3PL fulfillment, and the website and payments to sell it.
+                {CATALOG.length} peptides in stock with a COA for every lot, and anything else we source. Plus the website,
+                payment processing, white label and 3PL to launch and scale your peptide company. One team.
               </p>
               <div className="mt-9 flex flex-wrap gap-3">
                 <Link href="/catalog" className="btn btn-dark h-14 px-8 text-[16px]">
@@ -76,7 +76,7 @@ export default function Home() {
               </Link>
             </div>
             <div className="grid gap-2.5 sm:grid-cols-2 sm:gap-3">
-              <HeroCard href="/website-development" title="Website development" note="Live: Vanta Labs" wide>
+              <HeroCard href="/website-development" title="Website development" note="SEO, AEO & GEO · your own developer team 24/7" wide>
                 <div className="absolute inset-x-4 top-4 overflow-hidden rounded-t-lg border border-b-0 border-white/10 sm:inset-x-6 sm:top-6">
                   <div className="flex items-center gap-1 bg-[#1d1d20] px-2.5 py-1.5" aria-hidden="true">
                     <span className="h-1.5 w-1.5 rounded-full bg-white/25" />
@@ -86,12 +86,25 @@ export default function Home() {
                   </div>
                   <Image src="/showcase/vanta-labs-desktop.webp" alt="The Vanta Labs store, built by our team" width={2160} height={1147} sizes="(min-width: 1024px) 520px, 90vw" className="h-auto w-full" priority />
                 </div>
+                <ul className="absolute bottom-3 left-3 right-3 flex flex-wrap gap-1.5 sm:bottom-4 sm:left-6">
+                  {["Google SEO", "AEO", "GEO", "Developer team 24/7"].map((x) => (
+                    <li key={x} className="rounded-full bg-ink/90 px-2.5 py-1 text-[11px] font-medium text-white shadow-[0_4px_14px_-4px_rgba(0,0,0,0.6)] sm:text-[12px]">{x}</li>
+                  ))}
+                </ul>
               </HeroCard>
-              <HeroCard href="/catalog" title="Wholesale catalog" note="Not listed? We source it.">
-                <CatalogVisual />
+              <HeroCard href="/catalog" title="Wholesale catalog" note={`${CATALOG.length} in stock · we source the rest`}>
+                <div className="absolute inset-x-3 top-3 overflow-hidden rounded-t-lg border border-b-0 border-white/10 bg-white">
+                  <div className="flex items-center gap-1 bg-[#1d1d20] px-2.5 py-1.5" aria-hidden="true">
+                    <span className="h-1.5 w-1.5 rounded-full bg-white/25" />
+                    <span className="h-1.5 w-1.5 rounded-full bg-white/25" />
+                    <span className="h-1.5 w-1.5 rounded-full bg-white/25" />
+                    <span className="ml-1.5 truncate text-[9px] text-white/50">vantafoundry.com/catalog</span>
+                  </div>
+                  <Image src="/showcase/catalog-desktop.webp" alt="Our wholesale catalog: products with COA badges and Inquire buttons" width={1179} height={1308} sizes="(min-width: 1024px) 260px, 90vw" className="h-auto w-full" />
+                </div>
               </HeroCard>
-              <HeroCard href="/payment-processing" title="Payment processing" note="Backup processor ready">
-                <PayVisual />
+              <HeroCard href="/payment-processing" title="Payment processing" note="Cards, Apple Pay, Google Pay · backup ready">
+                <CheckoutPhone />
               </HeroCard>
             </div>
           </div>
@@ -187,5 +200,47 @@ function HeroCard({ href, title, note, wide, children }: { href: string; title: 
         <IconArrow className="shrink-0 transition-transform duration-200 group-hover:translate-x-0.5" />
       </div>
     </Link>
+  );
+}
+
+/** A phone checkout, as a buyer on a store we build sees it. No prices: those are quoted. */
+function CheckoutPhone() {
+  const vial = CATALOG.find((p) => p.slug === "bpc-157");
+  return (
+    <div className="absolute inset-0 flex justify-center bg-gradient-to-b from-[#1f1f23] to-[#141416] pt-5">
+      <div className="w-[190px] rounded-t-[30px] border-[6px] border-b-0 border-[#2b2b30] bg-white px-3.5 pt-3 shadow-[0_-10px_40px_-10px_rgba(0,0,0,0.6)]">
+        <div className="mx-auto h-1.5 w-12 rounded-full bg-[#e7e7e4]" />
+        <div className="mt-3 flex items-center justify-between">
+          <span className="text-[11px] font-semibold text-ink">Checkout</span>
+          <span className="flex items-center gap-1 text-[9px] text-[#2f9e5b]">
+            <span className="h-1.5 w-1.5 rounded-full bg-[#2f9e5b]" /> Secure
+          </span>
+        </div>
+        {vial && (
+          <div className="mt-2.5 flex items-center gap-2 rounded-lg border border-line p-1.5">
+            <span className="relative h-8 w-8 shrink-0 overflow-hidden rounded-md bg-bg-2">
+              <Image src={vial.image} alt="" fill sizes="32px" className="object-cover" />
+            </span>
+            <span className="min-w-0">
+              <span className="block truncate text-[10.5px] font-medium text-ink">{vial.name}</span>
+              <span className="block text-[9px] text-muted">Wholesale order</span>
+            </span>
+          </div>
+        )}
+        <div className="mt-2.5 flex h-8 items-center justify-center gap-1 rounded-lg bg-black text-[11px] font-semibold text-white">
+          <svg width="10" height="12" viewBox="0 0 14 17" aria-hidden="true"><path fill="currentColor" d="M11.6 9c0-2 1.6-2.9 1.7-3-.9-1.4-2.4-1.5-2.9-1.6-1.2-.1-2.4.7-3 .7s-1.6-.7-2.6-.7C3.4 4.5 2.1 5.3 1.4 6.6c-1.4 2.4-.4 6 1 8 .7 1 1.5 2 2.5 2s1.4-.6 2.6-.6 1.5.6 2.6.6c1.1 0 1.8-1 2.4-2 .8-1.1 1.1-2.2 1.1-2.3 0 0-2-.8-2-3.3ZM9.7 3.1c.5-.7.9-1.6.8-2.5-.8 0-1.7.5-2.3 1.2-.5.6-.9 1.5-.8 2.4.9.1 1.8-.4 2.3-1.1Z" /></svg>
+          Pay
+        </div>
+        <div className="mt-1.5 grid grid-cols-3 gap-1">
+          {["Card", "G Pay", "Link"].map((x) => (
+            <span key={x} className="flex h-6 items-center justify-center rounded-md border border-line text-[9px] font-medium text-body">{x}</span>
+          ))}
+        </div>
+        <div className="mt-2.5 rounded-lg bg-bg-2 px-2 py-1.5 text-[9px] text-body">
+          <span className="flex justify-between"><span>Processor</span><span className="font-medium text-ink">Active</span></span>
+          <span className="mt-0.5 flex justify-between"><span>Backup</span><span className="font-medium text-ink">Ready</span></span>
+        </div>
+      </div>
+    </div>
   );
 }
