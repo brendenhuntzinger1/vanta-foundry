@@ -246,18 +246,23 @@ If that setting isn't there, open the latest preview deployment in Vercel, click
 
 ## Deployed verification log
 
-Fill one row per check on the **latest deployed commit**. "Accepted" (Resend answered 200 with an email id) isn't "delivered" (Resend shows the email as delivered, or it's in the support@ inbox).
+Run on **production** (`https://www.vantafoundry.com`) after PR #31 was squash-merged to `main` as **c3492c6** on 2026-10-24 (UTC). The preview couldn't be reached (Vercel access), and production is public, so the checks ran there. Browsers were Playwright Chromium at 390×844 and 1280×900, not real devices. "Accepted" means the provider answered 200; "delivered" means Resend's status reads *delivered* (the receiving mail server accepted it; inbox placement wasn't checked).
 
 | Check | Commit | Environment | Result | Evidence |
 |---|---|---|---|---|
-| Rendering and navigation, 390×844 and 1280 | | Preview | Not run | |
-| Preview noindex (header and robots) | | Preview | Not run | |
-| Brief saved with reference | | Preview + `foundry.leads` | Not run | |
-| Notification accepted by Resend | | Preview + Resend | Not run | |
-| Notification delivered | | Resend + inbox | Not run | |
-| Retry: no second row, no second email | | Preview + both | Not run | |
-| Wholesale handoff keeps products, quantities, reference | | Preview + `foundry.leads` | Not run | |
-| Analytics: `inquiry_submitted` separate from `contact_click`, `wholesale_handoff` | | Production or preview with Web Analytics on | Not run | |
+| Rendering, 15 key pages × phone and desktop | c3492c6 | Production | **Pass** | All 200, one H1 each, no horizontal overflow, no page errors |
+| Navigation | c3492c6 | Production | **Pass** | Home → `/website-development` and home → `/supply` doors land on the right H1, both widths; mobile menu present |
+| Indexable in production | c3492c6 | Production | **Pass** | robots allows all but `/api/` and names the sitemap; no `X-Robots-Tag`; self-canonicals; 104 sitemap URLs, all on `https://www.vantafoundry.com` |
+| Preview noindex | 65cf9b9 build | Local builds with `VERCEL_ENV=preview` | Pass (local) | Disallow-all robots and `X-Robots-Tag: noindex, nofollow`; not re-checked on the Vercel preview itself (access) |
+| Brief saved with reference | c3492c6 | Production + `foundry.leads` | **Pass** | VF-9AD6ECDD shown as "Brief received"; one row with that ref; attribution (landing page, campaign, last page) stored |
+| Notification accepted | c3492c6 | Production + Resend | **Pass** | Row `notified_at` set, `notify_error` empty |
+| Notification delivered, exactly once | c3492c6 | Resend | **Pass** | One email "New website development lead: LAUNCH TEST (delete me) [VF-9AD6ECDD]", status *delivered*; the same for VF-5B1BBC59 |
+| Retry: no second lead, no second email | c3492c6 | Production + both | **Pass** | Same payload re-sent: same ref, `notified: true`; still one row, `notify_attempts` 1, one email |
+| Wholesale handoff | c3492c6 | Production + `foundry.leads` | **Pass** | BPC-157 10mg × 40 and KPV 10mg × 25, business, "Ship to: Tampa, FL" and VF-64586DB4 identical in the WhatsApp message and the saved row |
+| Analytics delivery | c3492c6 | Production, Vercel Web Analytics (enabled; script at the project's own path) | **Accepted** | Separate event requests answered 200: `inquiry_start`, `inquiry_submitted` (with ref), `contact_click`, `catalog_product_select`, `wholesale_handoff` (with ref), plus page views. The dashboard wasn't viewed (no Vercel access), so display there isn't confirmed. Vercel's script skips automated browsers, so the test ran unflagged |
+| Search engine submission | c3492c6 | IndexNow | **Accepted** | All 104 sitemap URLs: `api.indexnow.org` 202, Bing 200. Google: not submitted (needs Search Console) |
+
+Production test rows to delete (exact ids): `9ad6ecdd-896a-4b77-8e5c-1441468e2cf3`, `64586db4-f16e-498b-aed9-20a689ad74e5`, `b559cb0c-c4e7-4ab5-a70b-490c26e76ba7`, `1245d157-09f0-47b1-888c-979386fffea2`, `5b1bbc59-dd61-4775-8ed9-57d93923c664`. The two test emails in support@ can be deleted too.
 
 ## Launch preparation (checked)
 
@@ -274,19 +279,21 @@ Fill one row per check on the **latest deployed commit**. "Accepted" (Resend ans
 
 ## Launch blockers
 
-1. **No deployed functional test has run** (Vercel access, above). Rendering, brief storage, notification delivery, duplicate protection, handoff contents and analytics are verified locally only.
-2. **Web Analytics not enabled** (Project → Analytics → Enable), so inquiries couldn't be measured from day one.
-3. **Test rows** in `foundry.leads`: the delete waited for approval and timed out, so the 8 rows (the statement above) are still the only rows.
+None left for the launched scope. Checked on production after merge (above).
 
-Not blockers: the owner questions (each has a safe display meanwhile); sitemap submission and indexing; deferred research content; the 122 location pages (`docs/SEO-BACKLOG.md`).
+Still to do (not blocking):
+1. Delete the 5 production test rows by the ids above (approval timed out).
+2. Google Search Console: verify the domain and submit the sitemap (steps below).
+3. Correct the Vanta Labs store's Thymosin Alpha-1 listing (5 mg) to match the owner's 10 mg.
+4. Optional: give the Vercel connection access to `vanta-foundry` so the analytics dashboard and previews can be checked.
 
 ## Indexing status
 
 | Step | Status |
 |---|---|
-| Eligible / crawlable | On the local build only (robots, 200s, self-canonicals, no unintended noindex); unknown on production |
-| Sitemap submitted to Google Search Console / Bing | **Not done**: no webmaster access from this workspace |
-| Indexed | **Unknown** (not verified). Nothing is deployed to production from this PR yet |
+| Eligible / crawlable | **Yes on production** (robots, 200s, self-canonicals, no noindex) |
+| Submitted | **IndexNow (Bing and other IndexNow engines): accepted** for all 104 URLs on 2026-10-24. **Google: not submitted**; needs the owner's Search Console |
+| Indexed | **Unknown** until Search Console and Bing Webmaster Tools report it |
 
 ### Submitting the sitemap after release
 

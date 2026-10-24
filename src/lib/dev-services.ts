@@ -21,11 +21,13 @@ export type DevService = {
   sections: { h: string; p?: string[]; list?: string[] }[];
   /** What the build includes and what is quoted separately. */
   scope?: { included: string[]; separate: string[] };
-  proof: { title: string; body: string; href?: string };
+  proof: { title: string; body: string; href?: string; image?: { src: string; alt: string } };
   faqs: { q: string; a: string }[];
   guides: string[];
   /** Other pages to point to, in a sentence. */
   related: { href: string; label: string }[];
+  /** "grow" for marketing services (ads, social, lead generation); builds otherwise. */
+  group?: "grow";
 };
 
 export const DEV_SERVICES: DevService[] = [
@@ -156,7 +158,7 @@ export const DEV_SERVICES: DevService[] = [
       href: "/work",
     },
     faqs: [
-      { q: "Which platforms do you build on?", a: "Custom Next.js development: we hand-code sites in Next.js and React, the stack Vanta Labs and this site run on, rather than adapting a theme. If you're set on WordPress, Shopify or another hosted platform, tell us in the brief and we'll say honestly whether we're the right fit." },
+      { q: "Which platforms do you build on?", a: "Custom Next.js development: we hand-code sites in Next.js and React, the stack Vanta Labs and this site run on, rather than adapting a theme. When Shopify suits the business better, we build on Shopify instead. If you're set on WordPress or another hosted platform, tell us in the brief and we'll say honestly whether we're the right fit." },
       { q: "Who supplies the content?", a: "You supply product details and photos, or we write the copy and plan the photography with you. Your quote says which." },
       { q: "What is tested before launch?", a: "Every page on phones and desktop, test orders through each payment method, every email the store sends, speed and search setup. Nothing goes live untested." },
       { q: "How long does it take?", a: "Most sites are fully built and live within 72 hours to a week. Larger catalogs and custom features take longer; your quote states the timeline." },
@@ -398,6 +400,409 @@ export const DEV_SERVICES: DevService[] = [
     related: [
       { href: "/website-development", label: "website development" },
       { href: "/contact", label: "contact the team" },
+    ],
+  },
+  {
+    slug: "shopify",
+    seo: SEO_PAGES.shopify,
+    name: "Shopify development",
+    answer:
+      "Shopify development means setting up and customizing a Shopify store around your products: the theme, products and collections, checkout and shipping settings, apps, and connections to email and your other tools. We build on Shopify when it fits the business, and say so when a custom-coded store would fit better. For any lawful business whose products Shopify accepts.",
+    sections: [
+      {
+        h: "When Shopify Fits",
+        p: [
+          "Shopify suits a business that wants a hosted platform, with apps for most needs and hosting and updates handled for it. A custom-coded store suits a business that needs a specific catalog, ordering or documentation feature that would take several workarounds on a platform. Our guide on [Shopify vs. custom development](/guides/shopify-vs-custom-peptide-website) walks through the decision.",
+        ],
+      },
+      {
+        h: "Store Setup",
+        list: [
+          "**A theme designed for your brand**, or an existing theme customized properly rather than patched.",
+          "**Products, variants and collections** organized the way your customers shop.",
+          "**Checkout, shipping and tax settings**, tested with real orders before launch.",
+          "**Apps chosen for what you need**, not installed by default, so the Shopify store stays fast.",
+          "**Email, SMS, reviews and fulfillment** connected to the store.",
+        ],
+      },
+      {
+        h: "Shopify Migration",
+        p: [
+          "Moving to Shopify, or off it, means carrying over products, customers and the order history the platforms allow, and redirecting every old URL to its new page so search rankings aren't lost. We map that before launch, not after.",
+        ],
+      },
+      {
+        h: "Platform Rules",
+        p: [
+          "Shopify and Shopify Payments set their own rules about what can be sold, and those rules change. Some categories, including research chemicals and some supplements, may not be allowed. We check your products against the current policy before we start building.",
+        ],
+      },
+    ],
+    proof: {
+      title: "See what we build",
+      body: "Our published work includes two live research-supply stores and concept stores for skincare, coffee and apparel. A Shopify store is designed and tested to the same standard.",
+      href: "/work",
+      image: { src: "/showcase/halcyon-desktop.webp", alt: "Halcyon, a concept coffee store designed by our team" },
+    },
+    faqs: [
+      { q: "Do you design custom Shopify themes?", a: "Yes. We design the theme for your brand, or customize an existing one properly. Your quote says which." },
+      { q: "Can you move my store to Shopify, or off it?", a: "Yes, either way. We move products and customers, keep the order history the platforms allow, and redirect old URLs one-to-one." },
+      { q: "Who owns the store?", a: "You do. The Shopify account is in your name, and so are the domain and content." },
+      { q: "How much does a Shopify store cost?", a: "It depends on the design, the catalog and the apps and integrations it needs. Tell us in the brief and we quote it in writing." },
+    ],
+    guides: ["shopify-vs-custom-peptide-website", "catalog-url-migration", "choose-website-development-partner"],
+    related: [
+      { href: "/website-development/ecommerce", label: "custom ecommerce website development" },
+      { href: "/website-development/integrations", label: "ecommerce integrations" },
+    ],
+  },
+  {
+    slug: "telehealth",
+    seo: SEO_PAGES.telehealth,
+    name: "Telehealth & medical websites",
+    answer:
+      "Telehealth website development covers the public site and the patient's path into care: service and condition pages, eligibility questions, online intake, booking, and payment for consultations or memberships. Where health information is collected, we connect HIPAA-ready intake, scheduling or EHR providers instead of storing it on the website. The same approach works for a medical practice website, a clinic or a med spa.",
+    sections: [
+      {
+        h: "What the Build Covers",
+        list: [
+          "**Service and condition pages** in plain language, reviewed by your clinicians before launch.",
+          "**Eligibility and patient intake** flows that hand off to your intake or EHR provider.",
+          "**Booking** for consultations and follow-ups, connected to your scheduling system.",
+          "**Payments** for consultations, packages and memberships.",
+          "**A patient portal or video-visit integration** when your practice needs one, scoped in your proposal.",
+        ],
+      },
+      {
+        h: "Patient Data and HIPAA",
+        p: [
+          "Marketing pages don't need to hold patient data, and shouldn't. Forms that collect health information go to a provider that signs a Business Associate Agreement with your practice; we connect it and keep health information out of website analytics and notification emails.",
+          "We don't certify HIPAA compliance. Your practice and its compliance adviser decide what's required, and we build to that.",
+        ],
+      },
+      {
+        h: "Payments",
+        p: [
+          "Consultation fees, packages and recurring memberships are set up with a processor that accepts medical and telehealth businesses. Every merchant account is subject to the provider's approval.",
+        ],
+      },
+      {
+        h: "Copy and Claims",
+        p: [
+          "Health copy is written plainly, without outcome promises, and every medical statement is approved by your clinicians before it goes live.",
+        ],
+      },
+    ],
+    proof: {
+      title: "Clinic and telehealth sites",
+      body: "See how we approach med spas, clinics and telehealth practices: treatment pages, intake, booking and memberships.",
+      href: "/industries/med-spas-clinics",
+      image: { src: "/showcase/solenne-desktop.webp", alt: "Solenne, a concept skincare store designed by our team" },
+    },
+    faqs: [
+      { q: "Is the website HIPAA compliant?", a: "Marketing pages don't hold patient data. Where intake collects health information, we connect a HIPAA-ready intake or EHR provider rather than storing it on the website. Your compliance adviser signs off on what's required." },
+      { q: "Can patients book and pay online?", a: "Yes. Booking connects to your scheduling system, and consultations, packages and memberships can be paid online." },
+      { q: "Do you build the video-visit platform itself?", a: "Usually we integrate an existing HIPAA-ready video and EHR platform, which is faster and already reviewed. A custom patient portal can be scoped when you need one; your proposal says which." },
+      { q: "Can you build for a medical practice that isn't telehealth?", a: "Yes. A medical practice website gets the same structure: service pages, intake, booking and payments, with patient data kept off the website." },
+    ],
+    guides: ["high-risk-vs-standard-merchant-account", "choose-website-development-partner"],
+    related: [
+      { href: "/industries/med-spas-clinics", label: "websites for med spas, clinics and telehealth" },
+      { href: "/website-development/integrations", label: "intake, booking and payment integrations" },
+    ],
+  },
+  {
+    slug: "mobile-apps",
+    seo: SEO_PAGES.mobileApps,
+    name: "Mobile apps",
+    answer:
+      "Mobile app development means designing and building an app for iPhone and Android: the screens, accounts, ordering or booking, notifications, and the connection to your website, store or database. We recommend cross-platform or fully native based on what the app needs, then build it, test it and submit it to the App Store and Google Play.",
+    sections: [
+      {
+        h: "Do You Need an App?",
+        p: [
+          "Many businesses are better served by a fast mobile website, which customers can use without installing anything. An app earns its place with repeat use: reorders, bookings, loyalty, notifications or a tool your team uses every day. If a mobile-first website does the job, we'll say so.",
+        ],
+      },
+      {
+        h: "What We Build",
+        list: [
+          "**Customer apps** for ordering, booking, accounts and loyalty.",
+          "**Team apps** for orders, inventory, scheduling or field work.",
+          "**Notifications** for orders, appointments and offers, sent only to people who opt in.",
+          "**Connections** to your website, store, payments and database, so everything shows the same data.",
+        ],
+      },
+      {
+        h: "App Store Review",
+        p: [
+          "Apple and Google review every app against their own guidelines, and approval is their decision. We prepare the listing, screenshots and privacy details and handle review feedback. Health and research-supply apps get closer scrutiny, and we plan for that from the start.",
+        ],
+      },
+      {
+        h: "After Launch",
+        p: [
+          "Phones get new operating systems every year, so apps need updates to keep working. The monthly developer plan can cover that; your agreement lists what's included.",
+        ],
+      },
+    ],
+    proof: {
+      title: "See what we build",
+      body: "We haven't published an app case study yet. Our web work, including the live Vanta Labs store, shows the design and testing standard we build to.",
+      href: "/work",
+    },
+    faqs: [
+      { q: "Native or cross-platform?", a: "Cross-platform suits most business apps, with one codebase for iOS and Android. Fully native makes sense for apps that lean heavily on the phone's hardware. We recommend one in your proposal and say why." },
+      { q: "Who owns the app and the store listings?", a: "You do. The App Store and Google Play accounts are in your name, and so is the code." },
+      { q: "How long does an app take?", a: "Longer than a website, and it depends on the features. Your quote states the timeline before you commit." },
+      { q: "Can the app use my website's data?", a: "Yes. The app and the website can share the same products, accounts and orders." },
+    ],
+    guides: ["choose-website-development-partner"],
+    related: [
+      { href: "/website-development/ecommerce", label: "ecommerce website development" },
+      { href: "/website-development/maintenance", label: "maintenance and support" },
+    ],
+  },
+  {
+    slug: "ai-solutions",
+    seo: SEO_PAGES.aiSolutions,
+    name: "AI solutions",
+    answer:
+      "AI solutions here means practical automation built around your business: an AI chatbot that answers customer questions from your own content, inquiry sorting and reply drafts, data pulled out of documents, and workflows that move information between your tools. We start with one task worth automating, build it so a person can review and override it, and check that it helps before adding more.",
+    sections: [
+      {
+        h: "Where AI Helps",
+        list: [
+          "**Customer questions** answered from your own pages, policies and documents, with a hand-off to a person.",
+          "**Inquiries** sorted, summarized and routed, with a draft reply ready for your team.",
+          "**Documents** such as invoices, orders and forms read into your systems.",
+          "**AI automation** between your website, email, CRM and spreadsheets, so nobody re-types data.",
+        ],
+      },
+      {
+        h: "Where It Doesn't",
+        p: [
+          "AI makes mistakes. We don't use it where a wrong answer can't be caught in time: medical, legal or financial advice, product claims, or decisions about a customer without a person involved.",
+        ],
+      },
+      {
+        h: "Your Data",
+        p: [
+          "Before we build, we agree in writing which data the AI can see, which provider processes it, and what is kept. Customer-facing answers are drawn from content you approve.",
+        ],
+      },
+      {
+        h: "Testing Before Launch",
+        p: [
+          "Each automation is tested on real examples from your business before it goes live, and you see what it gets wrong as well as what it gets right.",
+        ],
+      },
+    ],
+    proof: {
+      title: "What you'll get in writing",
+      body: "We haven't published an AI case study yet. Your proposal describes exactly what will be built, which data it uses and how it's tested before launch.",
+    },
+    faqs: [
+      { q: "Will an AI chatbot replace my team?", a: "It handles the repetitive questions and hands the rest to a person. Most businesses use it to answer faster, not to remove people." },
+      { q: "Which AI models do you use?", a: "We choose for the task and for the provider's data terms, and name the provider in your proposal." },
+      { q: "Can it answer from my own documents?", a: "Yes. Answers come from content you approve, and it says when it doesn't know." },
+      { q: "What does it cost to run?", a: "AI providers charge by usage. Your quote estimates the running cost alongside the build." },
+    ],
+    guides: ["seo-vs-geo", "choose-website-development-partner"],
+    related: [
+      { href: "/website-development/ai-lead-generation", label: "AI lead generation" },
+      { href: "/website-development/integrations", label: "integrations with your tools" },
+    ],
+  },
+  {
+    slug: "cloud-infrastructure",
+    seo: SEO_PAGES.cloud,
+    name: "Cloud infrastructure",
+    answer:
+      "Cloud infrastructure and DevOps cover where your website, apps and data run, and how changes reach them safely: website hosting, databases, automated deployments with previews, backups, monitoring and alerts, and access control. We set it up in accounts you own, document it, and can run it for you on the monthly developer plan.",
+    sections: [
+      {
+        h: "What We Set Up",
+        list: [
+          "**Hosting** for websites, apps and APIs, sized for your traffic.",
+          "**Databases** with access rules, so customer data is readable only by the people and systems that need it.",
+          "**Automated deployments**: every change builds a private preview before it reaches the live site.",
+          "**Backups and recovery**, tested by actually restoring them.",
+          "**Monitoring and alerts** for uptime, errors and slow pages.",
+        ],
+      },
+      {
+        h: "Costs and Access",
+        p: [
+          "Accounts are opened in your name, so you can see every bill and control who has access. We document what runs where, so another team could take it over.",
+        ],
+      },
+      {
+        h: "Migrations",
+        p: [
+          "Moving to new hosting is planned in advance: what moves, in what order, how it's tested, and how to roll back if something goes wrong.",
+        ],
+      },
+    ],
+    proof: {
+      title: "How this site runs",
+      body: "Vanta Foundry runs on the setup we'd give you: every change builds a private preview, live pages are checked for search settings before release, and inquiries are stored in a database no visitor can read.",
+    },
+    faqs: [
+      { q: "Which cloud providers do you use?", a: "Managed platforms such as Vercel and Supabase for most websites, which is what this site runs on. We recommend others when a project needs them." },
+      { q: "Can you move my site to new hosting?", a: "Yes, with a written plan for what moves, how it's tested and how to roll back." },
+      { q: "Who owns the accounts?", a: "You do. They're opened in your name, and we're given access." },
+      { q: "Is running it included in the monthly plan?", a: "It can be. Your agreement lists what the plan covers." },
+    ],
+    guides: ["why-nextjs-site-is-slow", "core-web-vitals-explained"],
+    related: [
+      { href: "/website-development/maintenance", label: "website maintenance and support" },
+      { href: "/website-development/integrations", label: "integrations" },
+    ],
+  },
+  {
+    slug: "paid-ads",
+    seo: SEO_PAGES.paidAds,
+    group: "grow",
+    name: "Paid ads",
+    answer:
+      "Performance marketing means paid ads judged by what they produce: sales, booked calls or qualified leads, not clicks. We set up tracking first, build landing pages that match each campaign, launch on the platforms where your buyers are, and adjust budget and creative from the results. Ad platforms restrict some categories, so we check yours before spending anything.",
+    sections: [
+      {
+        h: "Tracking First",
+        p: [
+          "Before any budget goes out, conversion tracking is set up and tested, so every sale, booking or lead can be traced back to the campaign that produced it.",
+        ],
+      },
+      {
+        h: "Campaigns",
+        list: [
+          "**Google Ads**: search, shopping and remarketing.",
+          "**Meta**: Facebook and Instagram ads.",
+          "**TikTok** ads, where your buyers are.",
+          "**Landing pages** built to match each campaign's offer and wording.",
+        ],
+      },
+      {
+        h: "Restricted Categories",
+        p: [
+          "Google, Meta and TikTok restrict or prohibit ads for some products, including many health, supplement and research-chemical categories. We check your products against each platform's current policy before launch, and we don't run ads that break those policies. When paid ads aren't an option, [SEO and AI search](/seo-ai-search) usually is.",
+        ],
+      },
+      {
+        h: "Reporting",
+        p: [
+          "You see spend, results and cost per lead or sale for each campaign. The ad accounts are in your name, so the history stays yours.",
+        ],
+      },
+    ],
+    proof: {
+      title: "Your accounts, your data",
+      body: "We haven't published an ad case study yet. Every ad account is opened in your name, so all spend and results stay visible to you.",
+      image: { src: "/showcase/halcyon-desktop.webp", alt: "Halcyon, a concept coffee store designed by our team" },
+    },
+    faqs: [
+      { q: "Can you run ads for peptides or research products?", a: "The major platforms restrict or prohibit most of these products. We check what's allowed before spending anything, and usually recommend search visibility instead." },
+      { q: "Who owns the ad accounts?", a: "You do. They're opened in your name, and we're given access." },
+      { q: "What budget do I need?", a: "There's no published minimum. Tell us about the business in the brief and we recommend a starting budget in writing." },
+      { q: "Do you guarantee results?", a: "No one can honestly guarantee ad results. We report exactly what each campaign produces and change what isn't working." },
+    ],
+    guides: ["seo-vs-geo"],
+    related: [
+      { href: "/website-development/social-media", label: "social media and UGC content" },
+      { href: "/seo-ai-search", label: "SEO and AI search" },
+    ],
+  },
+  {
+    slug: "social-media",
+    seo: SEO_PAGES.socialMedia,
+    group: "grow",
+    name: "Social media & UGC",
+    answer:
+      "Social media management covers the plan, the posts and the day-to-day: a content calendar for your brand, posts written and designed for each platform, replies and community management, and a monthly review of what worked. UGC content is short, creator-style video and photography made for ads and organic posts. Both are planned around what you sell and the rules each platform sets for your category.",
+    sections: [
+      {
+        h: "What's Managed",
+        list: [
+          "**A monthly content calendar**, approved by you before anything posts.",
+          "**Posts** written, designed and scheduled for Instagram, TikTok, Facebook or LinkedIn, wherever your buyers are.",
+          "**Replies and comments** handled in your brand's voice.",
+          "**A monthly review** of what drove visits, inquiries and sales.",
+        ],
+      },
+      {
+        h: "UGC Content",
+        p: [
+          "Creators film your product the way a customer would, for ads and organic posts. Usage rights are agreed in writing, and paid partnerships are disclosed the way the FTC requires.",
+        ],
+      },
+      {
+        h: "Claims and Approvals",
+        p: [
+          "You approve every post. We don't publish health, outcome or usage claims, and research-use-only brands get research-use-only content.",
+        ],
+      },
+    ],
+    proof: {
+      title: "Every post approved by you",
+      body: "We haven't published a social media case study yet. Nothing posts without your approval, and the accounts stay in your name.",
+      image: { src: "/showcase/solenne-desktop.webp", alt: "Solenne, a concept skincare store designed by our team" },
+    },
+    faqs: [
+      { q: "Which platforms do you manage?", a: "Instagram, TikTok, Facebook and LinkedIn, chosen by where your buyers spend time." },
+      { q: "Who owns the content?", a: "Your agreement sets the usage rights for every photo and video, including creator content." },
+      { q: "Do creators disclose paid posts?", a: "Yes. Paid partnerships are disclosed the way the FTC requires." },
+      { q: "Can you post for a research peptide brand?", a: "Carefully. Platforms restrict the category, and posts stay research use only, with no usage or outcome claims." },
+    ],
+    guides: ["research-use-only-storefront-copy"],
+    related: [
+      { href: "/website-development/paid-ads", label: "performance marketing and paid ads" },
+      { href: "/seo-ai-search", label: "SEO and AI search" },
+    ],
+  },
+  {
+    slug: "ai-lead-generation",
+    seo: SEO_PAGES.aiLeadGen,
+    group: "grow",
+    name: "AI lead generation",
+    answer:
+      "AI lead generation, done properly, is a system for capturing and following up with people who already show interest: forms and chat that ask the right qualifying questions, an instant first reply, routing to the right person, reminders so no inquiry goes cold, and tracking from first visit to sale. It runs on your own website and campaigns. We don't buy lists or send unsolicited bulk messages.",
+    sections: [
+      {
+        h: "Lead Capture",
+        list: [
+          "**Forms and chat** on the pages people already visit, asking only what you need to know.",
+          "**Lead qualification** questions you choose: need, timing, budget, location.",
+          "**An instant first reply** by email or text, so a lead hears from you while they're still interested.",
+        ],
+      },
+      {
+        h: "Routing and Follow-Up",
+        p: [
+          "Each lead goes to the right person with a summary, and reminders go out when nobody has replied. Follow-up emails and texts go only to people who agreed to receive them, with the consent the law and the carriers require.",
+        ],
+      },
+      {
+        h: "Tracking",
+        p: [
+          "Every lead keeps where it came from: the landing page, the campaign and the last page viewed. You see which pages and campaigns produce leads that turn into sales, not just form fills.",
+        ],
+      },
+    ],
+    proof: {
+      title: "How this site does it",
+      body: "Vanta Foundry's own forms save every inquiry with a reference, notify the team once, and record the landing page and campaign, and saved inquiries are tracked separately from clicks.",
+    },
+    faqs: [
+      { q: "Do you buy or scrape lead lists?", a: "No. The system works with people who come to you through your website and campaigns." },
+      { q: "Will it work with my CRM?", a: "Yes. Leads can go straight into your CRM, email or a shared inbox." },
+      { q: "How fast does a lead get a reply?", a: "The first reply can go out as soon as the form is sent. Your team follows up from there." },
+      { q: "Can it qualify leads for us?", a: "Yes, with the questions you choose. Leads are scored and routed so your team calls the best ones first." },
+    ],
+    guides: ["choose-website-development-partner"],
+    related: [
+      { href: "/website-development/ai-solutions", label: "AI solutions and automation" },
+      { href: "/website-development/paid-ads", label: "performance marketing and paid ads" },
     ],
   },
 ];

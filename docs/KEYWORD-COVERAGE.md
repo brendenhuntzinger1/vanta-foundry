@@ -7,17 +7,17 @@ Competitor phrases are research evidence, not Vanta claims. A meta-keyword tag s
 ## Totals
 
 - Source pages: **531**, undispositioned: **0**
-  - unavailable offer: 229
+  - unavailable offer: 220
   - location intent: needs local facts: 122
-  - covered and verified: 72
+  - covered and verified: 80
   - deferred (needs sourced content): 47
-  - merged into an existing page: 40
+  - merged into an existing page: 41
   - excluded by compliance: 11
   - unresolved fact (owner): 6
   - not relevant: 4
 - Explicit tag phrases: **122**
-  - covered and verified: 35
-  - unavailable offer: 20
+  - covered and verified: 36
+  - unavailable offer: 19
   - merged into an existing page: 19
   - excluded by compliance: 18
   - not relevant: 13
@@ -146,7 +146,7 @@ Status meanings: *covered and verified*: a Foundry page owns the intent and answ
 | scale peptide business | `/supply` | merged into an existing page | Omitted: not grammatical as written, and there is no scaling service to describe beyond supply and 3PL. | /supply 200 |
 | semaglutide research | — | unresolved fact (owner) | Coded-name policy; owner decision. | no destination (by design) |
 | SEO services United States | `/seo-ai-search` | merged into an existing page | Omitted: the US service area for website clients isn't confirmed (the Organization JSON-LD areaServed 'US' predates this PR and needs the same confirmation). | /seo-ai-search 200 |
-| Shopify development | — | unavailable offer | Not offered (stated on the ecommerce page). | no destination (by design) |
+| Shopify development | `/website-development/shopify` | covered and verified | Primary phrase of the Shopify page. | /website-development/shopify 200; phrase rendered |
 | short chain peptide gene expression | — | excluded by compliance | Mechanism/effect claim. | no destination (by design) |
 | signal-to-noise ratio | — | not relevant | Assay term. | no destination (by design) |
 | solid phase peptide synthesis | — | deferred (needs sourced content) | Synthesis article not written. | no destination (by design) |
@@ -236,7 +236,7 @@ Exact competitor titles are kept as research reference. Product titles on Foundr
 | BELK-050 | https://www.belkdigital.com/en/blog/generative-engine-optimization-geo-guide | GUIDE | Generative Engine Optimization (GEO): The Enterprise Guide for AI Search Visibility / Belk Digital | `/seo-ai-search` | merged into an existing page | GEO explained on the SEO & AI search service and guide. | /seo-ai-search 200 |
 | BELK-051 | https://www.belkdigital.com/en/blog/nextjs-headless-cms-enterprise-playbook | GUIDE | Next.js & Headless CMS: The Enterprise Playbook for Speed, Security, and Scalability / Belk Digital | `/website-development/ecommerce` | merged into an existing page | Stack stated (Next.js and React); enterprise headless-CMS playbook not written. | /website-development/ecommerce 200 |
 | BELK-052 | https://www.belkdigital.com/en/blog/building-an-ruo-website-guide | GUIDE | How to Sell Peptides Online: Compliance & Merchant Processing Setup / Belk Digital | `/website-development/peptide-websites` | covered and verified | Building a research-use-only website: peptide website development + RUO storefront copy guide. | /website-development/peptide-websites 200 |
-| BELK-053 | https://www.belkdigital.com/en/blog/medical-practice-website-development-hipaa-guide | GUIDE | Medical Practice Website Development: HIPAA-Compliant Guide (2026) / Belk Digital | — | unavailable offer | HIPAA-compliant medical development is not claimed. | no destination (by design) |
+| BELK-053 | https://www.belkdigital.com/en/blog/medical-practice-website-development-hipaa-guide | GUIDE | Medical Practice Website Development: HIPAA-Compliant Guide (2026) / Belk Digital | `/website-development/telehealth` | merged into an existing page | Medical practice website section on the telehealth page; HIPAA approach stated, compliance not certified. | /website-development/telehealth 200 |
 | BELK-054 | https://www.belkdigital.com/en/blog/san-diego-ruo-website-design | GUIDE | The San Diego RUO Blueprint: Headless Architecture, Compliance & High-Risk Payments / Belk Digital | `/website-development/peptide-websites` | merged into an existing page | City-specific RUO article not built: no San Diego facts. | /website-development/peptide-websites 200 |
 | BELK-055 | https://www.belkdigital.com/en/services/custom-web-design | SERVICE | Custom Web Design & UI/UX - Belk Digital / Belk Digital | `/website-development` | covered and verified | Custom web design: designed from scratch for your brand. | /website-development 200 |
 | BELK-056 | https://www.belkdigital.com/en/services/website-redesign | SERVICE | Website Redesign & Optimization - Belk Digital / Belk Digital | `/website-development/redesign` | covered and verified | Website Redesign & Migration. | /website-development/redesign 200 |
@@ -245,19 +245,19 @@ Exact competitor titles are kept as research reference. Product titles on Foundr
 | BELK-059 | https://www.belkdigital.com/en/services/web-development | SERVICE | Web & SaaS Development - Belk Digital / Belk Digital | `/website-development` | covered and verified | Website development hub. | /website-development 200 |
 | BELK-060 | https://www.belkdigital.com/en/services/seo-optimization | SERVICE | Search Engine Optimization (SEO) - Belk Digital / Belk Digital | `/seo-ai-search` | covered and verified | SEO & AI search service (existing). | /seo-ai-search 200 |
 | BELK-061 | https://www.belkdigital.com/en/services/maintenance | SERVICE | Website Maintenance, Support & Server Management - Belk Digital / Belk Digital | `/website-development/maintenance` | covered and verified | Website Maintenance & Support (monthly developer team). | /website-development/maintenance 200 |
-| BELK-062 | https://www.belkdigital.com/en/services/shopify-development | SERVICE | Shopify Development & E-commerce Solutions - Belk Digital / Belk Digital | — | unavailable offer | Shopify development not offered; the ecommerce FAQ says so plainly. | no destination (by design) |
+| BELK-062 | https://www.belkdigital.com/en/services/shopify-development | SERVICE | Shopify Development & E-commerce Solutions - Belk Digital / Belk Digital | `/website-development/shopify` | covered and verified | Shopify development page (offered, owner 2026-10-24). | /website-development/shopify 200 |
 | BELK-063 | https://www.belkdigital.com/en/services/custom-cms | SERVICE | Custom CMS Development & Content Management - Belk Digital / Belk Digital | `/website-development/ecommerce` | merged into an existing page | Content management is in the store build; no separate custom-CMS offer. | /website-development/ecommerce 200 |
-| BELK-064 | https://www.belkdigital.com/en/services/telehealth-development | SERVICE | Telehealth Platform Development - Belk Digital / Belk Digital | — | unavailable offer | Telehealth development not offered. | no destination (by design) |
+| BELK-064 | https://www.belkdigital.com/en/services/telehealth-development | SERVICE | Telehealth Platform Development - Belk Digital / Belk Digital | `/website-development/telehealth` | covered and verified | Telehealth page (offered, owner 2026-10-24). | /website-development/telehealth 200 |
 | BELK-065 | https://www.belkdigital.com/en/services/ecommerce-development | SERVICE | eCommerce Development - Belk Digital / Belk Digital | `/website-development/ecommerce` | covered and verified | Ecommerce Website Development. | /website-development/ecommerce 200 |
-| BELK-066 | https://www.belkdigital.com/en/services/ai-solutions | SERVICE | AI Solutions & Automation - Belk Digital / Belk Digital | — | unavailable offer | AI solutions not offered. | no destination (by design) |
-| BELK-067 | https://www.belkdigital.com/en/services/ai-lead-generation | SERVICE | AI Lead Generation - Belk Digital / Belk Digital | — | unavailable offer | AI lead generation not offered. | no destination (by design) |
-| BELK-068 | https://www.belkdigital.com/en/services/performance-marketing | SERVICE | Performance Marketing - Belk Digital / Belk Digital | — | unavailable offer | Performance marketing not offered. | no destination (by design) |
-| BELK-069 | https://www.belkdigital.com/en/services/social-media-ugc | SERVICE | Social Media & UGC - Belk Digital / Belk Digital | — | unavailable offer | Social media / UGC not offered. | no destination (by design) |
+| BELK-066 | https://www.belkdigital.com/en/services/ai-solutions | SERVICE | AI Solutions & Automation - Belk Digital / Belk Digital | `/website-development/ai-solutions` | covered and verified | AI solutions page (offered, owner 2026-10-24). | /website-development/ai-solutions 200 |
+| BELK-067 | https://www.belkdigital.com/en/services/ai-lead-generation | SERVICE | AI Lead Generation - Belk Digital / Belk Digital | `/website-development/ai-lead-generation` | covered and verified | AI lead generation page (offered, owner 2026-10-24). | /website-development/ai-lead-generation 200 |
+| BELK-068 | https://www.belkdigital.com/en/services/performance-marketing | SERVICE | Performance Marketing - Belk Digital / Belk Digital | `/website-development/paid-ads` | covered and verified | Performance marketing page (offered, owner 2026-10-24). | /website-development/paid-ads 200 |
+| BELK-069 | https://www.belkdigital.com/en/services/social-media-ugc | SERVICE | Social Media & UGC - Belk Digital / Belk Digital | `/website-development/social-media` | covered and verified | Social media and UGC page (offered, owner 2026-10-24). | /website-development/social-media 200 |
 | BELK-070 | https://www.belkdigital.com/en/services/geo-optimization | SERVICE | Generative Engine Optimization - Belk Digital / Belk Digital | `/seo-ai-search` | covered and verified | GEO (generative engine optimization) is part of SEO & AI search. | /seo-ai-search 200 |
 | BELK-071 | https://www.belkdigital.com/en/services/aeo-optimization | SERVICE | Answer Engine Optimization - Belk Digital / Belk Digital | `/seo-ai-search` | merged into an existing page | Answer-engine work is part of SEO & AI search; 'AEO' as a separate service not offered. | /seo-ai-search 200 |
-| BELK-072 | https://www.belkdigital.com/en/services/mobile-development | SERVICE | Mobile App Development - Belk Digital / Belk Digital | — | unavailable offer | Native mobile apps not offered (sites are mobile-first). | no destination (by design) |
+| BELK-072 | https://www.belkdigital.com/en/services/mobile-development | SERVICE | Mobile App Development - Belk Digital / Belk Digital | `/website-development/mobile-apps` | covered and verified | Mobile app page (offered, owner 2026-10-24). | /website-development/mobile-apps 200 |
 | BELK-073 | https://www.belkdigital.com/en/services/api-integrations | SERVICE | API & Integrations - Belk Digital / Belk Digital | `/website-development/integrations` | covered and verified | Ecommerce Integration Development. | /website-development/integrations 200 |
-| BELK-074 | https://www.belkdigital.com/en/services/cloud-infrastructure | SERVICE | Cloud & Infrastructure - Belk Digital / Belk Digital | — | unavailable offer | Cloud infrastructure services not offered. | no destination (by design) |
+| BELK-074 | https://www.belkdigital.com/en/services/cloud-infrastructure | SERVICE | Cloud & Infrastructure - Belk Digital / Belk Digital | `/website-development/cloud-infrastructure` | covered and verified | Cloud infrastructure page (offered, owner 2026-10-24). | /website-development/cloud-infrastructure 200 |
 | 99PW-001 | https://99puritywholesale.com | HUB | Wholesale Research Peptides / Premium Bulk Kits / 99 Purity | `/wholesale` | covered and verified | Wholesale Peptides & Bulk Supply owns general supplier intent. | /wholesale 200 |
 | 99PW-002 | https://99puritywholesale.com/about | PROOF | About 99 Purity Wholesale — U.S. Manufacturer. B2B Wholesale Supplier. / 99 Purity Wholesale | `/about` | covered and verified | About Vanta Foundry. | /about 200 |
 | 99PW-003 | https://99puritywholesale.com/peptide-calculator | UTILITY | Free Peptide Reconstitution Calculator / 99 Purity Wholesale / 99 Purity Wholesale | — | excluded by compliance | Dosage/reconstitution/syringe calculator: dosing and reconstitution content is prohibited (COMPLIANCE.md). | no destination (by design) |

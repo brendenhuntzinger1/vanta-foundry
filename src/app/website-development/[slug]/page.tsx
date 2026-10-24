@@ -88,7 +88,7 @@ export default async function DevServicePage(props: PageProps<"/website-developm
             <aside className="min-w-0 space-y-4 lg:sticky lg:top-24 lg:self-start">
               <Link href={s.proof.href ?? "/work"} className="group block overflow-hidden rounded-2xl border border-line">
                 <div className="relative aspect-[16/10] bg-bg-2">
-                  <Image src="/showcase/vanta-labs-desktop.webp" alt="The Vanta Labs store, built by our team" fill sizes="340px" className="object-cover object-left-top" />
+                  <Image src={s.proof.image?.src ?? "/showcase/vanta-labs-desktop.webp"} alt={s.proof.image?.alt ?? "The Vanta Labs store, built by our team"} fill sizes="340px" className="object-cover object-left-top" />
                 </div>
                 <div className="p-5">
                   <p className="text-[17px] font-semibold tracking-[-0.02em] text-ink">{s.proof.title}</p>

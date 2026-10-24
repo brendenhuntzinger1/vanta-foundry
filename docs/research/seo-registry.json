@@ -104,6 +104,110 @@
    "updated": "2026-10-23"
   },
   {
+   "route": "/website-development/shopify",
+   "primaryPhrase": "Shopify development",
+   "title": "Shopify Development | Vanta Foundry",
+   "h1": "Shopify Development",
+   "description": "Shopify stores built, customized and migrated: theme design, products, checkout settings, apps and integrations, set up so your team can run the store day to day.",
+   "cta": "Discuss Your Shopify Store",
+   "phrases": [
+    "Shopify store",
+    "Shopify migration"
+   ],
+   "updated": "2026-10-24"
+  },
+  {
+   "route": "/website-development/telehealth",
+   "primaryPhrase": "telehealth website development",
+   "title": "Telehealth & Medical Website Development | Vanta Foundry",
+   "h1": "Telehealth & Medical Website Development",
+   "description": "Websites and patient paths for telehealth practices and clinics: service pages, online intake, booking and payments, with patient data kept in HIPAA-ready systems, not on the website.",
+   "cta": "Discuss Your Practice",
+   "phrases": [
+    "medical practice website",
+    "patient intake"
+   ],
+   "updated": "2026-10-24"
+  },
+  {
+   "route": "/website-development/mobile-apps",
+   "primaryPhrase": "mobile app development",
+   "title": "Mobile App Development | Vanta Foundry",
+   "h1": "Mobile App Development",
+   "description": "iPhone and Android apps for your customers or your team: designed, built, tested and submitted to the App Store and Google Play, connected to your website and data.",
+   "cta": "Discuss Your App",
+   "phrases": [
+    "iOS and Android",
+    "cross-platform"
+   ],
+   "updated": "2026-10-24"
+  },
+  {
+   "route": "/website-development/ai-solutions",
+   "primaryPhrase": "AI solutions",
+   "title": "AI Solutions & Automation | Vanta Foundry",
+   "h1": "AI Solutions & Automation",
+   "description": "AI assistants and automations for your website and operations: answering questions from your own content, sorting inquiries, drafting replies and moving data between tools, with a person in control.",
+   "cta": "Discuss an AI Project",
+   "phrases": [
+    "AI automation",
+    "AI chatbot"
+   ],
+   "updated": "2026-10-24"
+  },
+  {
+   "route": "/website-development/cloud-infrastructure",
+   "primaryPhrase": "cloud infrastructure",
+   "title": "Cloud Infrastructure & DevOps | Vanta Foundry",
+   "h1": "Cloud Infrastructure & DevOps",
+   "description": "Hosting, deployments, databases, backups and monitoring for your website and apps, set up in accounts you own, with access and costs you can see.",
+   "cta": "Discuss Your Infrastructure",
+   "phrases": [
+    "DevOps",
+    "website hosting"
+   ],
+   "updated": "2026-10-24"
+  },
+  {
+   "route": "/website-development/paid-ads",
+   "primaryPhrase": "performance marketing",
+   "title": "Performance Marketing & Paid Ads | Vanta Foundry",
+   "h1": "Performance Marketing & Paid Ads",
+   "description": "Google, Meta and TikTok campaigns set up and run against tracked sales and leads, with landing pages built to match each campaign and ad accounts in your name.",
+   "cta": "Discuss Your Ads",
+   "phrases": [
+    "paid ads",
+    "Google Ads"
+   ],
+   "updated": "2026-10-24"
+  },
+  {
+   "route": "/website-development/social-media",
+   "primaryPhrase": "social media management",
+   "title": "Social Media Management & UGC Content | Vanta Foundry",
+   "h1": "Social Media Management & UGC Content",
+   "description": "Social accounts planned, posted and managed for your brand, plus creator-style UGC videos and photos for ads and organic posts, with every post approved by you.",
+   "cta": "Discuss Social Media",
+   "phrases": [
+    "UGC content",
+    "content calendar"
+   ],
+   "updated": "2026-10-24"
+  },
+  {
+   "route": "/website-development/ai-lead-generation",
+   "primaryPhrase": "AI lead generation",
+   "title": "AI Lead Generation | Vanta Foundry",
+   "h1": "AI Lead Generation",
+   "description": "Lead capture and follow-up that runs on its own: forms and chat that qualify inquiries, an instant first reply, routing, reminders and tracking from first visit to sale.",
+   "cta": "Discuss Lead Generation",
+   "phrases": [
+    "lead qualification",
+    "lead capture"
+   ],
+   "updated": "2026-10-24"
+  },
+  {
    "route": "/wholesale",
    "primaryPhrase": "wholesale peptides",
    "title": "Wholesale Peptides & Bulk Supply | Vanta Foundry",
