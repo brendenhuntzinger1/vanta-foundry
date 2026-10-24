@@ -4,7 +4,7 @@ import { IconArrow, IconWhatsApp } from "./icons";
 import { CATALOG, productPath } from "@/lib/catalog";
 import { whatsappLink } from "@/lib/site";
 
-const FEATURED = ["glow", "bpc-157-tb-500", "ghk-cu", "tesamorelin", "glp-1", "cjc-1295-ipamorelin", "bpc-157", "klow"];
+const FEATURED = ["glow", "klow", "bpc-157-tb-500", "cjc-1295-ipamorelin", "semax", "mots-c", "nad", "epithalon"];
 
 
 /**
@@ -23,8 +23,7 @@ export function SupplyShowcase() {
             <span className="accent block">COA with every lot.</span>
           </h2>
           <p className="mt-4 text-[18px] leading-[1.6] text-body">
-            {CATALOG.length} research peptides in stock. Open any product for its specs and lab reports, or ask for wholesale
-            pricing on WhatsApp.
+            {CATALOG.length} research peptides in stock. Need something else? Ask, and we source it.
           </p>
         </div>
         <div className="flex flex-wrap gap-3">

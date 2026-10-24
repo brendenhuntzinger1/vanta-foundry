@@ -30,10 +30,15 @@ Websites and payment processing are offered to research-supply brands only (owne
   site. Nothing here pitches to non-research businesses: no industries pages
   (they redirect home), no skincare/coffee/apparel concept stores, no "any
   business" copy.
-- Homepage: "Start and scale your research brand." with the catalog and
-  "Plan my brand" buttons, supply photos, the brand row, the services in two
-  rows (supply, label and ship; sell it), the catalog preview (8 products,
-  COA badges), the two live stores (Vanta Labs, Genesis), FAQ.
+- Homepage, direct (owner, 2026-10-24: "more direct"): "Wholesale research
+  peptides. Your label. We ship it." with Browse the catalog and WhatsApp
+  "Get wholesale pricing". The hero shows real catalog vials, not stock
+  photos ("the images on the front cover don't look good"). Then the brand
+  row, what we do (supply, label and ship; sell it), the catalog preview,
+  the two live stores, FAQ.
+- We source beyond the catalog (owner: "if they need anything else we can
+  get it"): say so in the hero, the catalog preview, the catalog page, the
+  wholesale tile and the FAQ.
 - WhatsApp shows on every page now, the website pages included; their brief
   form to `/api/lead` stays (Resend: `RESEND_API_KEY`, `LEAD_FROM`,
   optional `LEAD_TO`).
