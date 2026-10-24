@@ -1,7 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import { SERVICES } from "@/lib/services";
-import { IconArrow } from "./icons";
+import { IconArrow, IconCheck } from "./icons";
+import { CATALOG } from "@/lib/catalog";
 import { LABEL_LOOKS } from "@/lib/labels";
 import { SiteRotator } from "./site-rotator";
 
@@ -31,16 +32,16 @@ export function SupplyBento() {
   return (
     <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
       <Tile slug="wholesale" title={svc("wholesale").name} body="Our catalog by the case, COA with every lot. Anything else, we source.">
-        <Photo src="/supply/bulk.webp" alt="Cartons of vials packed for a bulk order" chip="Bulk · wholesale pricing" />
+        <CatalogVisual />
       </Tile>
       <Tile slug="factory-direct" title={svc("factory-direct").name} body="Made to order at the manufacturer, for the lowest unit cost.">
-        <Photo src="/supply/factory-coa.webp" alt="A vial filling line with a certificate of analysis on a clipboard" chip="COA included" />
+        <CoaVisual />
       </Tile>
       <Tile slug="white-label" title={svc("white-label").name} body="Your brand on every vial, in any look you want.">
         <VialRow />
       </Tile>
       <Tile slug="fulfillment" title={svc("fulfillment").name} body="We store, pack and ship every order as your brand.">
-        <Photo src="/supply/warehouse.webp" alt="Aisles of racked, labelled stock in a clean warehouse" chip="Shipped as your brand" />
+        <ShipVisual />
       </Tile>
     </ul>
   );
@@ -63,14 +64,6 @@ function Tile({ slug, title, body, children }: { slug: string; title: string; bo
   );
 }
 
-function Photo({ src, alt, chip }: { src: string; alt: string; chip: string }) {
-  return (
-    <>
-      <Image src={src} alt={alt} fill sizes="(min-width: 1024px) 380px, (min-width: 640px) 50vw, 100vw" className="object-cover transition-transform duration-500 group-hover:scale-[1.03]" />
-      <span className="absolute bottom-3 left-3 rounded-full bg-ink/85 px-3 py-1.5 text-[12px] font-medium text-white">{chip}</span>
-    </>
-  );
-}
 
 function ApplePay({ className = "" }: { className?: string }) {
   return (
@@ -140,6 +133,71 @@ export function VialRow() {
           <Image src={look(k)} alt="" fill sizes="110px" className="object-cover" />
         </div>
       ))}
+    </div>
+  );
+}
+
+/** Four real catalog products, as a wholesale price list would show them. */
+export function CatalogVisual() {
+  const items = ["bpc-157", "ghk-cu", "tesamorelin", "glow"].map((slug) => CATALOG.find((p) => p.slug === slug)).filter((p) => p !== undefined);
+  return (
+    <div className="flex h-full flex-col justify-center gap-1.5 px-5">
+      {items.map((p) => (
+        <div key={p.slug} className="flex items-center gap-3 rounded-xl bg-[#1d1d20] p-1.5 pr-3 text-white">
+          <span className="relative h-9 w-9 shrink-0 overflow-hidden rounded-lg bg-white">
+            <Image src={p.image} alt="" fill sizes="36px" className="object-cover" />
+          </span>
+          <span className="flex-1 truncate text-[12.5px] font-medium">{p.name}</span>
+          <span className="rounded-full bg-white/10 px-2 py-0.5 text-[10px] text-white/75">COA</span>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+/** A certificate of analysis, as a buyer receives it: what it covers, no figures. */
+function CoaVisual() {
+  return (
+    <div className="flex h-full items-center justify-center px-5">
+      <div className="w-full max-w-[250px] rounded-xl bg-white p-4 shadow-[0_18px_40px_-20px_rgba(0,0,0,0.8)]">
+        <p className="text-[10.5px] text-muted">Certificate of analysis</p>
+        <p className="mt-0.5 text-[14px] font-semibold tracking-[-0.02em] text-ink">Third-party tested</p>
+        <ul className="mt-3 space-y-1.5 border-t border-line pt-2.5 text-[11.5px] text-body">
+          {["Identity", "Purity", "Lot number", "Testing lab"].map((x) => (
+            <li key={x} className="flex items-center justify-between">
+              {x}
+              <IconCheck className="h-3.5 w-3.5 text-[#2f9e5b]" />
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  );
+}
+
+/** An order moving through our warehouse under the client's brand. */
+function ShipVisual() {
+  return (
+    <div className="flex h-full items-center justify-center px-5">
+      <div className="w-full max-w-[260px] rounded-2xl border border-white/10 bg-[#1d1d20] p-4 text-white">
+        <div className="flex items-center justify-between text-[11.5px] text-white/60">
+          <span>Order · Your Brand</span>
+          <span className="text-[#5fd08f]">Shipped</span>
+        </div>
+        <ol className="mt-3 space-y-2">
+          {["Picked from stock", "Packed in your box", "Labelled and shipped"].map((x) => (
+            <li key={x} className="flex items-center gap-2.5 text-[12px] text-white/85">
+              <span className="flex h-4 w-4 items-center justify-center rounded-full bg-[#5fd08f] text-[#0f1a14]">
+                <IconCheck className="h-2.5 w-2.5" />
+              </span>
+              {x}
+            </li>
+          ))}
+        </ol>
+        <div className="mt-3 h-1.5 overflow-hidden rounded-full bg-white/10">
+          <div className="h-full w-full rounded-full bg-[#5fd08f]" />
+        </div>
+      </div>
     </div>
   );
 }

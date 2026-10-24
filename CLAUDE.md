@@ -32,8 +32,11 @@ Websites and payment processing are offered to research-supply brands only (owne
   business" copy.
 - Homepage, direct (owner, 2026-10-24: "more direct"): "Wholesale research
   peptides. Your label. We ship it." with Browse the catalog and WhatsApp
-  "Get wholesale pricing". The hero shows real catalog vials, not stock
-  photos ("the images on the front cover don't look good"). Then the brand
+  "Get wholesale pricing". No stock photos anywhere on the homepage (owner
+  rejected them twice). The hero shows three cards: Website development (the
+  live Vanta Labs store), Wholesale catalog (real products, "we source it")
+  and Payment processing (a coded checkout). The service tiles use coded
+  visuals too: price list, COA checklist, label looks, shipped order. Then the brand
   row, what we do (supply, label and ship; sell it), the catalog preview,
   the two live stores, FAQ.
 - We source beyond the catalog (owner: "if they need anything else we can
