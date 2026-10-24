@@ -6,9 +6,9 @@ import { LABEL_LOOKS } from "@/lib/labels";
 import { SiteRotator } from "./site-rotator";
 
 /**
- * The two things we sell, as two rows of tiles: websites, payments and SEO
- * for any business; and peptide supply for research brands. Each tile opens
- * its one-minute start flow.
+ * What we offer research brands, as two rows of tiles: supply, label and ship;
+ * and the website, payments and search to sell it. Each tile opens its
+ * one-minute start flow.
  */
 export function WebBento() {
   return (
@@ -116,14 +116,14 @@ function SeoVisual() {
   return (
     <div className="flex h-full flex-col justify-center gap-2.5 px-5">
       <div className="rounded-xl bg-white p-3.5">
-        <p className="text-[10.5px] text-muted">Google · &ldquo;coffee subscription&rdquo;</p>
-        <p className="mt-1 text-[13px] font-medium leading-snug text-[#1a0dab]">Halcyon Coffee · Fresh-Roasted</p>
-        <p className="text-[11px] text-body">Roasted every Monday, shipped the same week.</p>
+        <p className="text-[10.5px] text-muted">Google · &ldquo;bpc-157 coa&rdquo;</p>
+        <p className="mt-1 text-[13px] font-medium leading-snug text-[#1a0dab]">Your Brand · BPC-157 · Lab Reports</p>
+        <p className="text-[11px] text-body">Every lot with its certificate of analysis. Research use only.</p>
       </div>
       <div className="rounded-xl border border-white/10 bg-[#1d1d20] p-3.5 text-white">
         <p className="text-[10.5px] text-white/55">AI answer</p>
         <p className="mt-1 text-[12px] leading-[1.45] text-white/85">
-          Try <span className="font-semibold text-white">Halcyon Coffee</span>: small lots, roasted weekly.
+          <span className="font-semibold text-white">Your Brand</span> publishes a COA for every lot.
         </p>
       </div>
     </div>

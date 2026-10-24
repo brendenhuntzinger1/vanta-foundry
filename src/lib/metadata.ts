@@ -18,4 +18,4 @@ export function pageMetadata({ path, title, description, noindex }: { path: stri
   };
 }
 
-export const HOME_TITLE = `Website Development & Wholesale Peptides | ${SITE.name}`;
+export const HOME_TITLE = `Wholesale Peptides, White Label & 3PL for Research Brands | ${SITE.name}`;

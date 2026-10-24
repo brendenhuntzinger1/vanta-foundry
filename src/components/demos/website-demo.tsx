@@ -5,8 +5,7 @@ import { useState } from "react";
 import { SITES, SiteView } from "./example-sites";
 
 /**
- * Slide through sites we build: the live Vanta Labs store first, then invented
- * brands in other industries, each coded in HTML to the same standard.
+ * Slide through the live stores we built for research brands.
  */
 export function WebsiteDemo() {
   const [i, setI] = useState(0);

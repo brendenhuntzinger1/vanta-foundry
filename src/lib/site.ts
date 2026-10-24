@@ -11,7 +11,7 @@ export const SITE = {
   builtStores: ["Vanta Labs", "Genesis Biomapping", "Remade Clinic"],
   url: (process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.vantafoundry.com").replace(/\/$/, ""),
   description:
-    "Premium, custom-coded websites for any business, with payment processing, SEO & AI search and a 24/7 developer team. Plus RUO supply, white label and 3PL for research brands.",
+    "Everything to start and scale a research peptide brand: wholesale peptides with a COA for every lot, factory-direct supply, white label, 3PL fulfillment, and the website and payment processing to sell them.",
   /** Every email link and prefilled request goes here (owner, 2026-10-23). */
   email: "support@vantalabsresearch.com",
   /**
@@ -38,11 +38,11 @@ export function emailLink(subject?: string, body?: string) {
 }
 
 /**
- * Website-development pages take inquiries through their own form, so the
- * WhatsApp buttons (meant for wholesale and supply) are hidden there
- * (owner, 2026-10-23).
+ * Pages that hide the WhatsApp buttons. Empty since 2026-10-24: Vanta Foundry
+ * now serves research brands only, and WhatsApp is how they reach us on every
+ * page, the website pages included (their brief form stays).
  */
-export const NO_WHATSAPP_PATHS = ["/website-development", "/start/website-development", "/work"];
+export const NO_WHATSAPP_PATHS: string[] = [];
 
 /** True on every website-development page, including the service pages under it and each case study. */
 export function isWebsitePath(pathname: string) {
@@ -50,13 +50,13 @@ export function isWebsitePath(pathname: string) {
 }
 
 export const NAV = [
-  { href: "/website-development", label: "Website development" },
-  { href: "/supply", label: "Wholesale & 3PL" },
   { href: "/catalog", label: "Catalog" },
-  { href: "/work", label: "Our work" },
+  { href: "/supply", label: "Wholesale & 3PL" },
+  { href: "/white-label", label: "White label" },
+  { href: "/website-development", label: "Websites & payments" },
   { href: "/guides", label: "Guides" },
   { href: "/contact", label: "Contact" },
 ] as const;
 
 export const RUO_NOTICE =
-  "Research materials supplied by Vanta Foundry are for laboratory research use only. They are not for human or veterinary use and are not drugs, foods, cosmetics or dietary supplements. Payment processing, website development and SEO & AI search are available to any lawful business.";
+  "Research materials supplied by Vanta Foundry are for laboratory research use only. They are not for human or veterinary use and are not drugs, foods, cosmetics or dietary supplements. Websites and payment processing are business services for research-supply brands.";

@@ -36,8 +36,8 @@ export const SERVICES: Service[] = [
     short: "Processing that keeps you taking payments: cards, Apple Pay and Google Pay, with a backup ready.",
     title: "Processing that keeps you taking payments.",
     answer:
-      "Vanta Foundry sets up payment processing for online businesses: a merchant account to accept card payments, connected to your checkout, with a second processor on standby so a closure or outage doesn't stop your sales. Declined and abandoned checkouts get a follow-up text or email.",
-    forWho: "Businesses in any industry, including the ones mainstream processors are quick to turn down.",
+      "Vanta Foundry sets up payment processing for research-supply brands: a merchant account to accept card payments, connected to your checkout, with a second processor on standby so a closure or outage doesn't stop your sales. Declined and abandoned checkouts get a follow-up text or email.",
+    forWho: "Research-supply brands, the kind of business mainstream processors are quick to turn down.",
     includes: [
       "Accept Visa, Mastercard, Amex, Discover, Apple Pay and Google Pay",
       "A backup processor connected and ready",
@@ -151,22 +151,22 @@ export const SERVICES: Service[] = [
   {
     slug: "website-development",
     name: "Website development",
-    short: "Premium custom-coded sites for any industry, live in 72 hours to a week, with your own developer team.",
+    short: "Custom-coded stores for research brands, live in 72 hours to a week, with your own developer team.",
     title: "A custom website, with its own developer team.",
     answer:
-      "Vanta Foundry designs and hand-codes custom websites and online stores for any kind of business: no page-builder templates, no AI-generated filler. Most sites are fully built and live within 72 hours to a week, and our developer team handles any specific request. We design it, build it, connect payments and launch it. Then keep your own developer team on a monthly plan, on call 24/7, so you never touch the maintenance.",
-    forWho: "Any business in any industry that needs a new website or a better one: skincare, coffee, apparel, services, supplements, research supply and more.",
+      "Vanta Foundry designs and hand-codes websites and online stores for research-supply brands: catalog, COA pages, research-use-only copy, checkout and wholesale ordering. No page-builder templates, no AI-generated filler. Most sites are fully built and live within 72 hours to a week, and our developer team handles any specific request. We design it, build it, connect payments and launch it. Then keep your own developer team on a monthly plan, on call 24/7, so you never touch the maintenance.",
+    forWho: "Research peptide and research-supply brands launching a store or replacing one that holds them back.",
     includes: [
       "Live in 72 hours to a week, built by our developer team",
       "Custom design, built from scratch for your brand",
       "Hand-written code: fast, secure and yours",
-      "Online store, booking site or company site, with payments connected",
+      "Online store with catalog, COA pages and wholesale ordering, payments connected",
       "Set up to be found on Google and in AI search",
       "Optional monthly developer team, on call 24/7",
     ],
     steps: ["Tell us what the site needs to do", "We design it and you sign off", "We build it, test it and launch it"],
     faqs: [
-      { q: "Do you only build for peptide or research companies?", a: "No. We build websites for every industry and any lawful business. Research supply is one of the things we also offer." },
+      { q: "Who do you build websites for?", a: "Research-supply brands: peptide stores, wholesale suppliers and brands we stock, label and ship for. The site is built around a research catalog, COA pages and research-use-only copy." },
       { q: "How fast can my site be live?", a: "Most sites are fully built and live within 72 hours to a week, depending on what it needs to do. Any specific request, feature or integration is handled by our developer team." },
       { q: "Who owns the website?", a: "You do. Your domain, your content and your site are yours, and they stay yours if you stop the monthly plan. It's written into your agreement before we start." },
       { q: "What does the monthly plan cover?", a: "Fixes, changes, updates, new pages and features, plus speed, security and uptime, with the team on call 24/7. What's included is listed in your agreement, so there's no guessing." },
@@ -183,8 +183,8 @@ export const SERVICES: Service[] = [
     short: "Get found on Google and recommended by ChatGPT, Gemini and other AI answers. Local and national.",
     title: "Found on Google. Recommended by AI.",
     answer:
-      "Vanta Foundry runs search engine optimisation and generative engine optimisation (GEO) for your business: the work that gets you found on Google, in Google Maps and in the answers ChatGPT, Gemini, Perplexity and Google's AI Overviews give. We fix the technical side of your site, write pages that answer what your customers ask, set up your Google Business Profile and build the local and industry listings AI tools read. Sold on its own or as part of a full launch package.",
-    forWho: "Any business in any industry that wants more customers from search without paying for every click.",
+      "Vanta Foundry runs search engine optimisation and generative engine optimisation (GEO) for research-supply brands: the work that gets you found on Google, in Google Maps and in the answers ChatGPT, Gemini, Perplexity and Google's AI Overviews give. We fix the technical side of your site, write pages that answer what your customers ask, set up your Google Business Profile and build the local and industry listings AI tools read. Sold on its own or as part of a full launch package.",
+    forWho: "Research brands that want more buyers from search without paying for every click.",
     includes: [
       "Technical SEO: speed, structure, structured data and indexing",
       "Pages written to answer what your customers search and ask AI",
@@ -197,7 +197,7 @@ export const SERVICES: Service[] = [
       { q: "What is GEO?", a: "Generative engine optimisation: making your business easy for AI tools like ChatGPT, Gemini and Perplexity to find, understand and recommend. It sits on top of normal SEO." },
       { q: "Do you guarantee rankings?", a: "No one honest can. Google and AI tools decide what they show. We do the work that gives you the best chance and show you what changed each month." },
       { q: "Do I need a website from you?", a: "No. We can work on the site you have. If it holds you back, we will tell you, and we can rebuild it." },
-      { q: "Is it part of a package?", a: "It can be. Website, payment processing and SEO & AI search are offered together as a launch package, with supply, white label and 3PL added if you sell research products." },
+      { q: "Is it part of a package?", a: "It can be. Supply, white label, 3PL, website, payment processing and SEO & AI search are offered together as one launch package." },
     ],
     demo: "seo",
     guides: ["seo-vs-geo"],

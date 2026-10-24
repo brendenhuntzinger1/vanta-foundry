@@ -1,7 +1,8 @@
 # Vanta Foundry: working agreements
 
-The B2B site for Vanta Labs: payment processing, wholesale, factory-direct,
-white label, 3PL and website development. It's a separate repository, Vercel
+The research-brand company behind Vanta Labs: wholesale peptides,
+factory-direct supply, white label and 3PL, plus the website and payment
+processing to sell them. It's a separate repository, Vercel
 project and domain from the Vanta Labs store (`brendenhuntzinger1/vanta-labs`).
 
 ## Next.js
@@ -18,35 +19,33 @@ Research-supply copy follows `docs/COMPLIANCE.md`, a copy of the store's rules:
 - no usage, dosing or outcome claims
 - no invented prices, rates, minimums, lead times or certifications
 
-Website development and payment processing are offered to any lawful business.
+Websites and payment processing are offered to research-supply brands only (owner, 2026-10-24).
 
-## Owner decisions (2026-10-23)
+## Owner decisions
 
+- **Research brands only (owner, 2026-10-24).** "We're going to make Vanta
+  Foundry our main wholesale 3PL and research peptide company, complete
+  startup. We provide them payment processing and website development."
+  Website development for every industry moves to a separate, more premium
+  site. Nothing here pitches to non-research businesses: no industries pages
+  (they redirect home), no skincare/coffee/apparel concept stores, no "any
+  business" copy.
+- Homepage: "Start and scale your research brand." with the catalog and
+  "Plan my brand" buttons, supply photos, the brand row, the services in two
+  rows (supply, label and ship; sell it), the catalog preview (8 products,
+  COA badges), the two live stores (Vanta Labs, Genesis), FAQ.
+- WhatsApp shows on every page now, the website pages included; their brief
+  form to `/api/lead` stays (Resend: `RESEND_API_KEY`, `LEAD_FROM`,
+  optional `LEAD_TO`).
 - Light theme, premium and plain-spoken. It must not look AI-made: no glows,
   glass, gradient text, tracked eyebrow labels or numbered grids.
-- Make it dummy-proof. Visitors pick services and send the request on WhatsApp
-  or by email (`support@vantalabsresearch.com`).
-- The homepage is two front doors: Website development (/website-development,
-  for any business) and Wholesale & 3PL (/supply, for research brands). Keep
-  them visibly separate so no one thinks they need a peptide brand to get a
-  website.
-- Website development is the exception: its pages are a premium, ad-ready
-  funnel with no WhatsApp. The brief is submitted on the page to
-  `/api/lead`, which emails it to the team through Resend
-  (`RESEND_API_KEY` and `LEAD_FROM` in the Vercel project; `LEAD_TO`
-  optional). Without them the form falls back to the visitor's email app.
-  WhatsApp stays for wholesale and supply.
+- Make it dummy-proof. Visitors send requests on WhatsApp or by email
+  (`support@vantalabsresearch.com`).
 - The catalog shows the Vanta Labs products (photos from the store's image
   storage) with NO prices. Each product has an Inquire button that opens
   WhatsApp (+1 419-378-1139), or the support email, with the product filled
   in, and we reply with pricing.
-- The homepage is the original two-doors version (owner, 2026-10-23: "It was
-  honestly better before when you first built the 2 sections"): headline
-  "Build your brand. Or supply it.", two big door cards (Website development
-  with the Genesis / Vanta Labs / Solenne / Halcyon collage, and Wholesale &
-  3PL), the brand row, FAQ and CTA. Later variants (the "Build it. Stock it.
-  Ship it." hero, the catalog block and the dark websites block) were tried
-  and rejected. The phone header keeps its Wholesale button.
+- The phone header keeps its Wholesale button.
 
 ## Search pages (2026-10-23)
 

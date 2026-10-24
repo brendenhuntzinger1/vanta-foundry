@@ -1,5 +1,4 @@
 import { FLOWS } from "@/lib/flows";
-import { INDUSTRIES } from "@/lib/industries";
 import type { MetadataRoute } from "next";
 import { SERVICES } from "@/lib/services";
 import { GUIDES } from "@/lib/guides";
@@ -39,8 +38,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     page("/work/vanta-labs", 0.75),
     ...Object.keys(FLOWS).map((k) => page(`/start/${k}`, 0.5, "yearly")),
     page("/get-started", 0.6, "yearly"),
-    page("/industries", 0.7),
-    ...INDUSTRIES.map((i) => page(`/industries/${i.slug}`, 0.7)),
     page("/guides", 0.7, "weekly"),
     ...GUIDES.map((g) => ({ url: u(`/guides/${g.slug}`), lastModified: g.updated, changeFrequency: "monthly" as const, priority: 0.7 })),
     page("/about", 0.6, "yearly"),

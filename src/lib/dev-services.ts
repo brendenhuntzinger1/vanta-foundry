@@ -105,7 +105,7 @@ export const DEV_SERVICES: DevService[] = [
     guides: ["peptide-website-features", "peptide-website-cost", "catalog-and-coa-library", "shopify-vs-custom-peptide-website"],
     related: [
       { href: "/wholesale", label: "wholesale peptides for your catalog" },
-      { href: "/industries/research-peptide-brands", label: "launching a research peptide brand" },
+      { href: "/start/ruo-brand", label: "launching a research peptide brand" },
     ],
   },
   {
@@ -152,7 +152,7 @@ export const DEV_SERVICES: DevService[] = [
     ],
     proof: {
       title: "Stores we've built",
-      body: "Two live research-supply stores, Vanta Labs and Genesis Biomapping, plus concept stores for skincare, coffee and athletic apparel built to the same standard.",
+      body: "Two live research-supply stores, Vanta Labs and Genesis Biomapping, designed and hand-coded by our team.",
       href: "/work",
     },
     faqs: [
@@ -208,13 +208,13 @@ export const DEV_SERVICES: DevService[] = [
         h: "Build Scope and Handover",
         p: [
           "A portal can start small: a request form and a price list for approved buyers, then accounts, quotes and reorders as volume grows. Your proposal lists what's in the first build and what's quoted later, and you own the code and data.",
-          "We haven't published a portal case study yet. The Halcyon concept store on our work page shows a café wholesale portal design; it's a concept build, not a client result.",
+          "We haven't published a portal case study yet. The Vanta Labs wholesale request flow is the closest live example.",
         ],
       },
     ],
     proof: {
       title: "A wholesale request flow, live today",
-      body: "Vanta Labs takes wholesale requests beside its retail store: compounds, volume and cadence in one form, reviewed before pricing is issued. The Halcyon concept store shows a café wholesale portal design.",
+      body: "Vanta Labs takes wholesale requests beside its retail store: compounds, volume and cadence in one form, reviewed before pricing is issued.",
       href: "/work/vanta-labs",
     },
     faqs: [

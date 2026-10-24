@@ -20,7 +20,6 @@ export function SiteFooter() {
             links={[
               { href: "/get-started", label: "Get started" },
               { href: "/work", label: "Our work" },
-              { href: "/industries", label: "Industries" },
               { href: "/about", label: "About us" },
               { href: "/contact", label: "Contact" },
               { href: "/catalog", label: "Catalog" },

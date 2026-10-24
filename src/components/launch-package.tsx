@@ -19,7 +19,7 @@ export function LaunchPackage() {
         <p className="text-[14px] font-medium text-gold-fill">The launch package</p>
         <p className="h-section mt-2 text-[30px] sm:text-[40px]">Built, paid and found. One package.</p>
         <p className="mt-3 max-w-[520px] text-[16px] leading-[1.6] text-white/70">
-          Everything a business in any industry needs to launch online and keep growing, run by one team and quoted as one package.
+          Everything a research brand needs to sell online and keep growing, run by one team and quoted as one package.
         </p>
         <ul className="mt-7 grid gap-3 sm:grid-cols-2">
           {CORE.map((c) => (
