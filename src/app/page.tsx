@@ -55,11 +55,11 @@ export default function Home() {
             <div>
               <h1 className="h-display text-[42px] leading-[1] text-ink sm:text-[60px] xl:text-[66px]">
                 Wholesale research peptides.{" "}
-                <span className="accent block">Your label. We ship it.</span>
+                <span className="accent block">Everything to scale your brand.</span>
               </h1>
               <p className="mt-6 max-w-[560px] text-[17px] leading-[1.6] text-body sm:text-[19px]">
-                {CATALOG.length} peptides in stock with a COA for every lot. Need something we don&rsquo;t list? We source it.
-                White label, 3PL fulfillment, and the website and payments to sell it.
+                {CATALOG.length} peptides in stock with a COA for every lot, and anything else we source. Plus the website,
+                payment processing, white label and 3PL to launch and scale your peptide company. One team.
               </p>
               <div className="mt-9 flex flex-wrap gap-3">
                 <Link href="/catalog" className="btn btn-dark h-14 px-8 text-[16px]">
