@@ -38,7 +38,7 @@ export const SEO_PAGES = {
     route: "/",
     primaryPhrase: "wholesale peptides",
     title: T("Wholesale Peptides, White Label & 3PL for Research Brands"),
-    h1: "Start and scale your research brand.",
+    h1: "Wholesale research peptides. Your label. We ship it.",
     description: "Wholesale research peptides with a COA for every lot, factory-direct supply, white label and 3PL fulfillment, plus the website and payment processing to sell them. One team.",
     cta: "Browse the catalog",
     phrases: ["3PL fulfillment", "factory-direct"],

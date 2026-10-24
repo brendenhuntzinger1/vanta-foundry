@@ -128,7 +128,7 @@ export function CatalogBrowser() {
 
       <p className="mt-10 text-[13.5px] text-muted">
         Want several products? Tap <span className="font-medium text-ink">Add to list</span> on each one, then send the whole
-        list at once from the bar at the bottom of the screen.
+        list at once from the bar at the bottom of the screen. Need a product we don&rsquo;t list? Message us and we source it.
       </p>
     </div>
   );

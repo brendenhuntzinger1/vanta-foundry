@@ -30,7 +30,7 @@ export function SupplyBento() {
   const svc = (slug: string) => SERVICES.find((s) => s.slug === slug)!;
   return (
     <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-      <Tile slug="wholesale" title={svc("wholesale").name} body="Our catalog by the case, at wholesale prices. COA with every lot.">
+      <Tile slug="wholesale" title={svc("wholesale").name} body="Our catalog by the case, COA with every lot. Anything else, we source.">
         <Photo src="/supply/bulk.webp" alt="Cartons of vials packed for a bulk order" chip="Bulk · wholesale pricing" />
       </Tile>
       <Tile slug="factory-direct" title={svc("factory-direct").name} body="Made to order at the manufacturer, for the lowest unit cost.">

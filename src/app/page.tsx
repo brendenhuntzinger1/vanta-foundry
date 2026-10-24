@@ -10,6 +10,7 @@ import { JsonLd, faqPage } from "@/lib/jsonld";
 import { pageMetadata } from "@/lib/metadata";
 import { SEO_PAGES } from "@/lib/seo-pages";
 import { RUO_NOTICE, SITE, whatsappLink } from "@/lib/site";
+import { CATALOG, productPath } from "@/lib/catalog";
 
 /*
  * Vanta Foundry is the research-brand company (owner, 2026-10-24): wholesale
@@ -26,6 +27,10 @@ const FAQS = [
     a: "Everything a research peptide brand needs, run by one team: wholesale peptides from our catalog with a COA for every lot, factory-direct supply, your label on every vial, 3PL storage and shipping, and the website and payment processing to sell it all.",
   },
   {
+    q: "Can you get products that aren't in the catalog?",
+    a: "Yes. The catalog is what we keep in stock. Tell us what you need on WhatsApp or by email and we source it, with documentation, and quote it in writing.",
+  },
+  {
     q: "Can I start a brand from nothing?",
     a: "Yes. Tell us what you want to sell and we plan it with you: products, label, the store, payments and fulfillment. Use one service or all of them.",
   },
@@ -40,45 +45,61 @@ const FAQS = [
 ];
 
 export default function Home() {
-  const wa = whatsappLink("Hi Vanta Foundry, I'd like to talk about my research brand.");
+  const wa = whatsappLink("Hi Vanta Foundry, I'd like wholesale pricing.");
+  const sourceWa = whatsappLink("Hi Vanta Foundry, I'm looking for a product that isn't in your catalog: ");
+  const HERO = ["bpc-157", "ghk-cu", "tesamorelin"].map((slug) => CATALOG.find((p) => p.slug === slug)).filter((p) => p !== undefined);
   return (
     <>
       {/* Hero */}
       <section className="pt-10 sm:pt-20">
         <Container>
-          <div className="grid items-center gap-10 lg:grid-cols-[1.05fr_1fr] lg:gap-14">
+          <div className="grid items-center gap-10 lg:grid-cols-[1.2fr_1fr] lg:gap-14">
             <div>
-              <h1 className="h-display text-[44px] leading-[1] text-ink sm:text-[76px]">
-                Start and scale your <span className="accent">research brand.</span>
+              <h1 className="h-display text-[42px] leading-[1] text-ink sm:text-[60px] xl:text-[66px]">
+                Wholesale research peptides.{" "}
+                <span className="accent block">Your label. We ship it.</span>
               </h1>
               <p className="mt-6 max-w-[560px] text-[17px] leading-[1.6] text-body sm:text-[19px]">
-                Wholesale peptides with a COA for every lot, factory-direct supply, your label on every vial, 3PL fulfillment,
-                and the website and payments to sell it. One team, from first order to full scale.
+                {CATALOG.length} peptides in stock with a COA for every lot. Need something we don&rsquo;t list? We source it.
+                White label, 3PL fulfillment, and the website and payments to sell it.
               </p>
               <div className="mt-9 flex flex-wrap gap-3">
                 <Link href="/catalog" className="btn btn-dark h-14 px-8 text-[16px]">
                   {SEO_PAGES.home.cta} <IconArrow />
                 </Link>
-                <Link href="/start/ruo-brand" className="btn btn-light h-14 px-8 text-[16px]">
-                  Plan my brand
-                </Link>
+                {wa && (
+                  <a href={wa} target="_blank" rel="noopener noreferrer" className="btn btn-light h-14 px-8 text-[16px]">
+                    <IconWhatsApp className="text-wa" /> Get wholesale pricing
+                  </a>
+                )}
               </div>
-              {wa && (
-                <a href={wa} target="_blank" rel="noopener noreferrer" className="mt-5 inline-flex items-center gap-2 text-[15px] text-body underline-offset-4 hover:text-ink hover:underline">
-                  <IconWhatsApp className="text-wa" /> Or message us on WhatsApp
-                </a>
-              )}
+              <Link href="/start/ruo-brand" className="mt-5 inline-flex items-center gap-1.5 text-[15px] text-body underline-offset-4 hover:text-ink hover:underline">
+                Starting a brand from scratch? Plan it with us <IconArrow />
+              </Link>
             </div>
-            <div className="grid grid-cols-2 gap-2.5 sm:gap-3">
-              <div className="relative col-span-2 aspect-[16/9] overflow-hidden rounded-2xl">
-                <Image src="/supply/bulk.webp" alt="Cartons of vials packed for a bulk order" fill sizes="(min-width: 1024px) 560px, 100vw" className="object-cover" priority />
-              </div>
-              <div className="relative aspect-[4/3] overflow-hidden rounded-2xl">
-                <Image src="/supply/unboxing.webp" alt="A branded mailer with vials in a foam insert" fill sizes="(min-width: 1024px) 280px, 50vw" className="object-cover" />
-              </div>
-              <div className="relative aspect-[4/3] overflow-hidden rounded-2xl">
-                <Image src="/supply/warehouse.webp" alt="Racked stock in our warehouse" fill sizes="(min-width: 1024px) 280px, 50vw" className="object-cover" />
-              </div>
+            <div>
+              <ul className="grid grid-cols-3 gap-2.5 sm:gap-3">
+                {HERO.map((p) => (
+                  <li key={p.slug}>
+                    <Link href={productPath(p.slug)} className="group block overflow-hidden rounded-2xl border border-line bg-white">
+                      <div className="relative aspect-[3/4] bg-bg-2">
+                        <Image src={p.image} alt={p.name} fill sizes="(min-width: 1024px) 190px, 33vw" className="object-cover transition-transform duration-500 group-hover:scale-[1.03]" priority />
+                      </div>
+                      <div className="px-3 py-2.5">
+                        <p className="truncate text-[13.5px] font-semibold tracking-[-0.02em] text-ink sm:text-[15px]">{p.name}</p>
+                        <p className="text-[11.5px] text-muted sm:text-[12.5px]">COA included</p>
+                      </div>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+              <a href={sourceWa ?? "/contact"} target={sourceWa ? "_blank" : undefined} rel={sourceWa ? "noopener noreferrer" : undefined} className="group mt-2.5 flex items-center justify-between gap-4 rounded-2xl bg-ink px-5 py-4 text-white sm:mt-3">
+                <span>
+                  <span className="block text-[16px] font-semibold tracking-[-0.02em]">Not in the catalog?</span>
+                  <span className="block text-[14px] text-white/65">Tell us what you need. We source it.</span>
+                </span>
+                <IconArrow className="shrink-0 transition-transform duration-200 group-hover:translate-x-0.5" />
+              </a>
             </div>
           </div>
 
@@ -99,9 +120,9 @@ export default function Home() {
         <Container>
           <div className="max-w-[760px]">
             <h2 className="h-section text-[38px] text-ink sm:text-[58px]">
-              Everything your brand needs. <span className="accent">One team.</span>
+              What we <span className="accent">do.</span>
             </h2>
-            <p className="mt-4 text-[18px] leading-[1.6] text-body">Use one service or all of them. Tap any to start.</p>
+            <p className="mt-4 text-[18px] leading-[1.6] text-body">Use one or all of it. Tap any to start.</p>
           </div>
           <p className="mt-12 text-[15px] font-medium text-ink">Supply, label and ship</p>
           <div className="mt-4">
@@ -127,9 +148,9 @@ export default function Home() {
           <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
             <div className="max-w-[680px]">
               <h2 className="h-section text-[38px] text-ink sm:text-[58px]">
-                The store to sell it. <span className="accent">Built by us.</span>
+                Stores we <span className="accent">built.</span>
               </h2>
-              <p className="mt-4 text-[18px] leading-[1.6] text-body">Two live research-supply stores our team designed and coded.</p>
+              <p className="mt-4 text-[18px] leading-[1.6] text-body">Two live research-supply stores. We can build yours.</p>
             </div>
             <Link href="/website-development" className="inline-flex items-center gap-1.5 text-[15px] font-medium text-ink underline underline-offset-4">
               Websites &amp; payments <IconArrow />
@@ -153,7 +174,7 @@ export default function Home() {
         </Container>
       </section>
 
-      <CtaBand title="Ready to build your brand?" lede="Tell us what you want to sell. A person on our team replies." primary={{ href: "/start/ruo-brand", label: "Plan my brand" }} />
+      <CtaBand title="Get wholesale pricing." lede="Tell us what you need, in the catalog or not. A person on our team replies." primary={{ href: "/catalog", label: "Browse the catalog" }} />
       <JsonLd data={faqPage(FAQS)} />
     </>
   );
