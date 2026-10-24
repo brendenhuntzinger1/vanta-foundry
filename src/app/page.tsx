@@ -3,7 +3,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { Container, CtaBand, FaqList } from "@/components/blocks";
 import { FeaturedWork } from "@/components/featured-work";
-import { CatalogVisual, PayVisual, SupplyBento, WebBento } from "@/components/service-bento";
+import { SupplyBento, WebBento } from "@/components/service-bento";
 import { SupplyShowcase } from "@/components/supply-showcase";
 import { IconArrow, IconWhatsApp } from "@/components/icons";
 import { JsonLd, faqPage } from "@/lib/jsonld";
@@ -88,10 +88,11 @@ export default function Home() {
                 </div>
               </HeroCard>
               <HeroCard href="/catalog" title="Wholesale catalog" note="Not listed? We source it.">
-                <CatalogVisual />
+                <Image src="/supply/case.webp" alt="Rows of research vials in a black foam-lined case" fill sizes="(min-width: 1024px) 270px, 100vw" className="object-cover transition-transform duration-700 group-hover:scale-[1.04]" />
+                <span className="absolute left-3 top-3 rounded-full bg-white/90 px-2.5 py-1 text-[11px] font-medium text-ink">{CATALOG.length} in stock · COA every lot</span>
               </HeroCard>
-              <HeroCard href="/payment-processing" title="Payment processing" note="Backup processor ready">
-                <PayVisual />
+              <HeroCard href="/payment-processing" title="Payment processing" note="Cards, Apple Pay, Google Pay · backup ready">
+                <CheckoutPhone />
               </HeroCard>
             </div>
           </div>
@@ -187,5 +188,47 @@ function HeroCard({ href, title, note, wide, children }: { href: string; title: 
         <IconArrow className="shrink-0 transition-transform duration-200 group-hover:translate-x-0.5" />
       </div>
     </Link>
+  );
+}
+
+/** A phone checkout, as a buyer on a store we build sees it. No prices: those are quoted. */
+function CheckoutPhone() {
+  const vial = CATALOG.find((p) => p.slug === "bpc-157");
+  return (
+    <div className="absolute inset-0 flex justify-center bg-gradient-to-b from-[#1f1f23] to-[#141416] pt-5">
+      <div className="w-[190px] rounded-t-[30px] border-[6px] border-b-0 border-[#2b2b30] bg-white px-3.5 pt-3 shadow-[0_-10px_40px_-10px_rgba(0,0,0,0.6)]">
+        <div className="mx-auto h-1.5 w-12 rounded-full bg-[#e7e7e4]" />
+        <div className="mt-3 flex items-center justify-between">
+          <span className="text-[11px] font-semibold text-ink">Checkout</span>
+          <span className="flex items-center gap-1 text-[9px] text-[#2f9e5b]">
+            <span className="h-1.5 w-1.5 rounded-full bg-[#2f9e5b]" /> Secure
+          </span>
+        </div>
+        {vial && (
+          <div className="mt-2.5 flex items-center gap-2 rounded-lg border border-line p-1.5">
+            <span className="relative h-8 w-8 shrink-0 overflow-hidden rounded-md bg-bg-2">
+              <Image src={vial.image} alt="" fill sizes="32px" className="object-cover" />
+            </span>
+            <span className="min-w-0">
+              <span className="block truncate text-[10.5px] font-medium text-ink">{vial.name}</span>
+              <span className="block text-[9px] text-muted">Wholesale order</span>
+            </span>
+          </div>
+        )}
+        <div className="mt-2.5 flex h-8 items-center justify-center gap-1 rounded-lg bg-black text-[11px] font-semibold text-white">
+          <svg width="10" height="12" viewBox="0 0 14 17" aria-hidden="true"><path fill="currentColor" d="M11.6 9c0-2 1.6-2.9 1.7-3-.9-1.4-2.4-1.5-2.9-1.6-1.2-.1-2.4.7-3 .7s-1.6-.7-2.6-.7C3.4 4.5 2.1 5.3 1.4 6.6c-1.4 2.4-.4 6 1 8 .7 1 1.5 2 2.5 2s1.4-.6 2.6-.6 1.5.6 2.6.6c1.1 0 1.8-1 2.4-2 .8-1.1 1.1-2.2 1.1-2.3 0 0-2-.8-2-3.3ZM9.7 3.1c.5-.7.9-1.6.8-2.5-.8 0-1.7.5-2.3 1.2-.5.6-.9 1.5-.8 2.4.9.1 1.8-.4 2.3-1.1Z" /></svg>
+          Pay
+        </div>
+        <div className="mt-1.5 grid grid-cols-3 gap-1">
+          {["Card", "G Pay", "Link"].map((x) => (
+            <span key={x} className="flex h-6 items-center justify-center rounded-md border border-line text-[9px] font-medium text-body">{x}</span>
+          ))}
+        </div>
+        <div className="mt-2.5 rounded-lg bg-bg-2 px-2 py-1.5 text-[9px] text-body">
+          <span className="flex justify-between"><span>Processor</span><span className="font-medium text-ink">Active</span></span>
+          <span className="mt-0.5 flex justify-between"><span>Backup</span><span className="font-medium text-ink">Ready</span></span>
+        </div>
+      </div>
+    </div>
   );
 }
