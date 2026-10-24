@@ -58,6 +58,13 @@ Websites and payment processing are offered to research-supply brands only (owne
   WhatsApp (+1 419-378-1139), or the support email, with the product filled
   in, and we reply with pricing.
 - The phone header keeps its Wholesale button.
+- Keep it simple (owner, 2026-10-24: "people want simplicity"). Intake forms
+  (`src/lib/flows.ts`) are one or two taps, then one screen with name, email,
+  phone and Send. No intro screen, no extras screen, no review screen. The
+  website development page has no step-by-step process section.
+- `<html data-scroll-behavior="smooth">` stays: without it Next 16 leaves the
+  CSS smooth scroll on during navigation and links (e.g. to /catalog) land
+  near the bottom of the page.
 
 ## Search pages (2026-10-23)
 
