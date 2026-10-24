@@ -212,7 +212,7 @@ export const BUYER_GUIDES: Guide[] = [
           "Who updates products and reports after launch.",
         ],
         p: [
-          "Vanta Foundry builds custom-coded websites for any lawful business, including research-supply brands. Describe what the site needs in the brief form on the website development page, and the project is quoted in writing.",
+          "Vanta Foundry builds custom-coded websites for research-supply brands. Describe what the site needs in the brief form on the website development page, and the project is quoted in writing.",
         ],
       },
     ],
@@ -533,7 +533,7 @@ export const BUYER_GUIDES: Guide[] = [
           "If you are unsure whether you are eligible on a platform or with a processor, check their policies before choosing either.",
         ],
         p: [
-          "Vanta Foundry builds custom-coded websites for any lawful business. If custom is the right fit, describe the site in the brief form on the website development page.",
+          "Vanta Foundry builds custom-coded websites for research-supply brands. If custom is the right fit, describe the site in the brief form on the website development page.",
         ],
       },
     ],
@@ -689,7 +689,7 @@ export const BUYER_GUIDES: Guide[] = [
           "Recheck links and forms after every significant update.",
         ],
         p: [
-          "Vanta Foundry builds custom-coded websites for any lawful business. Send a brief through the form on the website development page and the project is quoted in writing.",
+          "Vanta Foundry builds custom-coded websites for research-supply brands. Send a brief through the form on the website development page and the project is quoted in writing.",
         ],
       },
     ],
@@ -828,7 +828,7 @@ export const BUYER_GUIDES: Guide[] = [
           "Payments, where buyers pay online, through a processor that has approved the business.",
         ],
         p: [
-          "Vanta Foundry builds custom-coded websites for any lawful business. If a buyer portal is part of what you need, describe it in the brief form on the website development page and it will be scoped and quoted in writing.",
+          "Vanta Foundry builds custom-coded websites for research-supply brands. If a buyer portal is part of what you need, describe it in the brief form on the website development page and it will be scoped and quoted in writing.",
         ],
       },
     ],

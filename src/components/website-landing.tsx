@@ -4,7 +4,6 @@ import { Container, CtaBand, FaqList } from "./blocks";
 import { FeaturedWork, StackRow } from "./featured-work";
 import { IconArrow, IconCheck } from "./icons";
 import type { Service } from "@/lib/services";
-import { INDUSTRIES } from "@/lib/industries";
 import { DEV_SERVICES } from "@/lib/dev-services";
 import { SITE } from "@/lib/site";
 
@@ -44,14 +43,14 @@ export function WebsiteLanding({ s }: { s: Service }) {
       <section className="bg-ink text-white">
         <Container className="pb-0 pt-20 sm:pt-28">
           <div className="mx-auto max-w-[980px] text-center">
-            <h1 className="text-[14px] font-medium text-gold-fill">Website development</h1>
+            <h1 className="text-[14px] font-medium text-gold-fill">Websites for research brands</h1>
             <p className="h-display mt-5 text-[50px] leading-[0.98] sm:text-[92px]">
               Websites that <span className="accent">sell.</span>
               <span className="block text-white/45">Built in days.</span>
             </p>
             <p className="mx-auto mt-7 max-w-[620px] text-[18px] leading-[1.6] text-white/70 sm:text-[19px]">
-              Premium, custom-coded websites for any industry. Live in 72 hours to a week, then looked after by your own
-              developer team, 24/7.
+              Custom-coded stores for research brands, with COA pages, wholesale ordering and payment processing. Live in 72
+              hours to a week, then looked after by your own developer team, 24/7.
             </p>
             <div className="mt-10 flex flex-wrap justify-center gap-3">
               <Link href={START} className="btn h-14 bg-white px-8 text-[16px] text-ink hover:bg-white/90">
@@ -110,7 +109,7 @@ export function WebsiteLanding({ s }: { s: Service }) {
             <h2 className="h-section text-[36px] text-ink sm:text-[54px]">
               What we <span className="accent">build.</span>
             </h2>
-            <p className="mt-4 text-[18px] leading-[1.6] text-body">Custom web development for any business, UI/UX design included. Pick the one closest to your project; each page shows the scope, the process and the questions to ask.</p>
+            <p className="mt-4 text-[18px] leading-[1.6] text-body">Custom web development for research brands, UI/UX design included. Pick the one closest to your project; each page shows the scope, the process and the questions to ask.</p>
           </div>
           <ul className="mx-auto mt-12 grid max-w-[1040px] gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {DEV_SERVICES.map((d) => (
@@ -136,7 +135,7 @@ export function WebsiteLanding({ s }: { s: Service }) {
               <h2 className="h-section text-[36px] text-ink sm:text-[54px]">
                 Look what we <span className="accent">built.</span>
               </h2>
-              <p className="mt-3 text-[18px] text-body">Live stores taking real orders, and brands in other industries.</p>
+              <p className="mt-3 text-[18px] text-body">Live research-supply stores taking real orders.</p>
             </div>
             <Link href="/work" className="inline-flex items-center gap-1.5 text-[15px] font-medium text-ink underline underline-offset-4">
               See every site <IconArrow />
@@ -200,33 +199,12 @@ export function WebsiteLanding({ s }: { s: Service }) {
         </Container>
       </section>
 
-      {/* Industries */}
-      <section className="mt-28 sm:mt-36">
-        <Container>
-          <div className="mx-auto max-w-[760px] text-center">
-            <h2 className="h-section text-[36px] text-ink sm:text-[54px]">
-              For <span className="accent">any</span> industry.
-            </h2>
-            <p className="mt-4 text-[18px] leading-[1.6] text-body">See what we build for yours.</p>
-          </div>
-          <ul className="mx-auto mt-12 flex max-w-[960px] flex-wrap justify-center gap-2.5">
-            {INDUSTRIES.map((i) => (
-              <li key={i.slug}>
-                <Link href={`/industries/${i.slug}`} className="inline-flex h-12 items-center rounded-full border border-line-2 px-5 text-[15px] text-ink transition-colors hover:border-ink">
-                  {i.name}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </Container>
-      </section>
-
       {/* The other front door: wholesale & 3PL */}
       <section className="mt-28 sm:mt-36">
         <Container>
           <Link href="/supply" className="group grid overflow-hidden rounded-[32px] border border-line bg-bg-2 lg:grid-cols-[1.1fr_1fr]">
             <div className="flex flex-col justify-center p-8 sm:p-12">
-              <p className="text-[14px] font-medium text-gold">Also from our team · for research brands</p>
+              <p className="text-[14px] font-medium text-gold">The rest of the build</p>
               <h2 className="h-section mt-3 text-[32px] text-ink sm:text-[46px]">
                 Peptide wholesale <span className="accent">&amp; 3PL.</span>
               </h2>

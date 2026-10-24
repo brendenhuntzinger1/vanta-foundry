@@ -1,29 +1,33 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Container, CtaBand, FaqList, SectionHead } from "@/components/blocks";
-import { IconArrow, IconWhatsApp } from "@/components/icons";
 import type { Metadata } from "next";
+import { Container, CtaBand, FaqList } from "@/components/blocks";
+import { FeaturedWork } from "@/components/featured-work";
+import { SupplyBento, WebBento } from "@/components/service-bento";
+import { SupplyShowcase } from "@/components/supply-showcase";
+import { IconArrow, IconWhatsApp } from "@/components/icons";
 import { JsonLd, faqPage } from "@/lib/jsonld";
 import { pageMetadata } from "@/lib/metadata";
 import { SEO_PAGES } from "@/lib/seo-pages";
-import { SITE, whatsappLink } from "@/lib/site";
+import { RUO_NOTICE, SITE, whatsappLink } from "@/lib/site";
 
 /*
- * Two front doors (owner, 2026-10-23): website development for any business,
- * and wholesale & 3PL for research brands. Each opens its own premium page;
- * the homepage only helps a visitor pick the right one.
+ * Vanta Foundry is the research-brand company (owner, 2026-10-24): wholesale
+ * peptides, factory-direct supply, white label and 3PL, plus the website and
+ * payment processing to sell them. Website development for every industry
+ * moves to its own site; nothing here pitches to non-research businesses.
  */
 
 export const metadata: Metadata = pageMetadata({ path: "/", title: SEO_PAGES.home.title, description: SEO_PAGES.home.description });
 
 const FAQS = [
   {
-    q: "What do you do?",
-    a: "Two things, run by one team. We design and hand-code premium websites for any business, with payments, SEO and a 24/7 developer team. And for research brands, we supply peptides wholesale or factory-direct, label them with your brand and store and ship them for you.",
+    q: "What does Vanta Foundry do?",
+    a: "Everything a research peptide brand needs, run by one team: wholesale peptides from our catalog with a COA for every lot, factory-direct supply, your label on every vial, 3PL storage and shipping, and the website and payment processing to sell it all.",
   },
   {
-    q: "Do I need to sell peptides to get a website from you?",
-    a: "No. Website development is for any business: clinics, skincare, food, apparel, trades, professional services and more. Research supply is a separate service.",
+    q: "Can I start a brand from nothing?",
+    a: "Yes. Tell us what you want to sell and we plan it with you: products, label, the store, payments and fulfillment. Use one service or all of them.",
   },
   {
     q: "Do your peptides come with documentation?",
@@ -31,65 +35,56 @@ const FAQS = [
   },
   {
     q: "How much does it cost?",
-    a: "Everything is quoted for your business, in writing. Websites: tell us about your project. Wholesale: tap Inquire on any product and we reply with pricing.",
+    a: "Everything is quoted for your brand, in writing. Tap Inquire on any product for wholesale pricing, or tell us what you need and we quote the rest.",
   },
 ];
 
 export default function Home() {
-  const wa = whatsappLink("Hi Vanta Foundry, I have a question.");
+  const wa = whatsappLink("Hi Vanta Foundry, I'd like to talk about my research brand.");
   return (
     <>
-      <section className="pt-14 sm:pt-24">
+      {/* Hero */}
+      <section className="pt-10 sm:pt-20">
         <Container>
-          <div className="mx-auto max-w-[860px] text-center">
-            <h1 className="h-display text-[44px] leading-[1] text-ink sm:text-[72px]">
-              Build your brand.{" "}
-              <span className="block text-muted">Or supply it.</span>
-            </h1>
-            <p className="mx-auto mt-6 max-w-[600px] text-[18px] leading-[1.6] text-body">
-              Premium website development for any business, and wholesale peptides, white label and 3PL for research brands. Pick where to start.
-            </p>
-          </div>
-
-          {/* The two front doors */}
-          <div className="mx-auto mt-12 grid max-w-[1120px] gap-4 lg:grid-cols-2">
-            <Door
-              href="/website-development"
-              dark
-              eyebrow="For any business"
-              title="Website development"
-              body="Premium, custom-coded websites, live in 72 hours to a week, with payments, SEO and your own developer team on call 24/7."
-              points={["Custom design", "SEO & AI search", "Payments", "Developer team 24/7"]}
-              cta="Explore website development"
-            >
-              <div className="grid h-full grid-cols-2 gap-1 bg-ink p-1">
-                {[
-                  { src: "/showcase/genesis-desktop.webp", alt: "Genesis Biomapping website", top: true },
-                  { src: "/showcase/vanta-labs-desktop.webp", alt: "Vanta Labs website", top: true },
-                  { src: "/showcase/solenne-desktop.webp", alt: "Solenne skincare website", top: true },
-                  { src: "/showcase/halcyon-desktop.webp", alt: "Halcyon coffee website", top: true },
-                ].map((x) => (
-                  <div key={x.src} className="relative overflow-hidden rounded-[14px]">
-                    <Image src={x.src} alt={x.alt} fill sizes="(min-width: 1024px) 280px, 50vw" className={`object-cover ${x.top ? "object-left-top" : ""}`} priority />
-                  </div>
-                ))}
+          <div className="grid items-center gap-10 lg:grid-cols-[1.05fr_1fr] lg:gap-14">
+            <div>
+              <h1 className="h-display text-[44px] leading-[1] text-ink sm:text-[76px]">
+                Start and scale your <span className="accent">research brand.</span>
+              </h1>
+              <p className="mt-6 max-w-[560px] text-[17px] leading-[1.6] text-body sm:text-[19px]">
+                Wholesale peptides with a COA for every lot, factory-direct supply, your label on every vial, 3PL fulfillment,
+                and the website and payments to sell it. One team, from first order to full scale.
+              </p>
+              <div className="mt-9 flex flex-wrap gap-3">
+                <Link href="/catalog" className="btn btn-dark h-14 px-8 text-[16px]">
+                  {SEO_PAGES.home.cta} <IconArrow />
+                </Link>
+                <Link href="/start/ruo-brand" className="btn btn-light h-14 px-8 text-[16px]">
+                  Plan my brand
+                </Link>
               </div>
-            </Door>
-            <Door
-              href="/supply"
-              eyebrow="For research brands"
-              title="Wholesale & 3PL"
-              body="Research peptides wholesale or factory-direct with a COA for every wholesale lot, your label on every vial, stored and shipped as your brand."
-              points={["Peptide wholesale", "White label", "Factory-direct", "3PL fulfillment"]}
-              cta="Explore wholesale & 3PL"
-            >
-              <Image src="/supply/bulk.webp" alt="Cartons of vials packed for a bulk order" fill sizes="(min-width: 1024px) 560px, 100vw" className="object-cover" priority />
-            </Door>
+              {wa && (
+                <a href={wa} target="_blank" rel="noopener noreferrer" className="mt-5 inline-flex items-center gap-2 text-[15px] text-body underline-offset-4 hover:text-ink hover:underline">
+                  <IconWhatsApp className="text-wa" /> Or message us on WhatsApp
+                </a>
+              )}
+            </div>
+            <div className="grid grid-cols-2 gap-2.5 sm:gap-3">
+              <div className="relative col-span-2 aspect-[16/9] overflow-hidden rounded-2xl">
+                <Image src="/supply/bulk.webp" alt="Cartons of vials packed for a bulk order" fill sizes="(min-width: 1024px) 560px, 100vw" className="object-cover" priority />
+              </div>
+              <div className="relative aspect-[4/3] overflow-hidden rounded-2xl">
+                <Image src="/supply/unboxing.webp" alt="A branded mailer with vials in a foam insert" fill sizes="(min-width: 1024px) 280px, 50vw" className="object-cover" />
+              </div>
+              <div className="relative aspect-[4/3] overflow-hidden rounded-2xl">
+                <Image src="/supply/warehouse.webp" alt="Racked stock in our warehouse" fill sizes="(min-width: 1024px) 280px, 50vw" className="object-cover" />
+              </div>
+            </div>
           </div>
 
-          <div className="mt-12 flex flex-col items-center gap-3 sm:flex-row sm:justify-center sm:gap-10">
-            <p className="text-[13px] text-muted">The team behind</p>
-            <ul className="flex flex-wrap justify-center gap-x-8 gap-y-2">
+          <div className="mt-14 flex flex-col items-center gap-3 border-y border-line py-6 sm:flex-row sm:justify-between">
+            <p className="text-[13.5px] text-muted">The team behind</p>
+            <ul className="flex flex-wrap justify-center gap-x-9 gap-y-2">
               {SITE.builtStores.map((b) => (
                 <li key={b} className="text-[17px] font-semibold tracking-[-0.02em] text-ink/70">{b}</li>
               ))}
@@ -99,48 +94,67 @@ export default function Home() {
         </Container>
       </section>
 
-      <section id="faq" className="mt-28 scroll-mt-20 sm:mt-36">
+      {/* Everything to launch */}
+      <section className="mt-24 sm:mt-32">
         <Container>
-          <div className="mx-auto max-w-[760px]">
-            <SectionHead center title="Questions." />
-            <div className="mt-10">
-              <FaqList faqs={FAQS} />
-            </div>
-            {wa && (
-              <p className="mt-8 text-center text-[15px] text-body">
-                Still have a question?{" "}
-                <a href={wa} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 font-medium text-ink underline underline-offset-4">
-                  <IconWhatsApp className="text-wa" /> Chat on WhatsApp
-                </a>
-              </p>
-            )}
+          <div className="max-w-[760px]">
+            <h2 className="h-section text-[38px] text-ink sm:text-[58px]">
+              Everything your brand needs. <span className="accent">One team.</span>
+            </h2>
+            <p className="mt-4 text-[18px] leading-[1.6] text-body">Use one service or all of them. Tap any to start.</p>
+          </div>
+          <p className="mt-12 text-[15px] font-medium text-ink">Supply, label and ship</p>
+          <div className="mt-4">
+            <SupplyBento />
+          </div>
+          <p className="mt-10 text-[15px] font-medium text-ink">Sell it</p>
+          <div className="mt-4">
+            <WebBento />
           </div>
         </Container>
       </section>
 
-      <CtaBand title="Not sure where to start?" lede="Tell us what you need. A person on our team replies." />
+      {/* The catalog */}
+      <section className="mt-24 sm:mt-32">
+        <Container>
+          <SupplyShowcase />
+        </Container>
+      </section>
+
+      {/* Stores we built */}
+      <section className="mt-24 sm:mt-32">
+        <Container>
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+            <div className="max-w-[680px]">
+              <h2 className="h-section text-[38px] text-ink sm:text-[58px]">
+                The store to sell it. <span className="accent">Built by us.</span>
+              </h2>
+              <p className="mt-4 text-[18px] leading-[1.6] text-body">Two live research-supply stores our team designed and coded.</p>
+            </div>
+            <Link href="/website-development" className="inline-flex items-center gap-1.5 text-[15px] font-medium text-ink underline underline-offset-4">
+              Websites &amp; payments <IconArrow />
+            </Link>
+          </div>
+          <div className="mt-12">
+            <FeaturedWork />
+          </div>
+        </Container>
+      </section>
+
+      <section id="faq" className="mt-24 scroll-mt-20 sm:mt-32">
+        <Container>
+          <div className="mx-auto max-w-[760px]">
+            <h2 className="h-section text-center text-[36px] text-ink sm:text-[52px]">Questions.</h2>
+            <div className="mt-10">
+              <FaqList faqs={FAQS} />
+            </div>
+            <p className="mt-10 text-center text-[12.5px] leading-5 text-muted">{RUO_NOTICE}</p>
+          </div>
+        </Container>
+      </section>
+
+      <CtaBand title="Ready to build your brand?" lede="Tell us what you want to sell. A person on our team replies." primary={{ href: "/start/ruo-brand", label: "Plan my brand" }} />
       <JsonLd data={faqPage(FAQS)} />
     </>
-  );
-}
-
-function Door({ href, eyebrow, title, body, points, cta, dark, children }: { href: string; eyebrow: string; title: string; body: string; points: string[]; cta: string; dark?: boolean; children: React.ReactNode }) {
-  return (
-    <Link href={href} className={`group flex flex-col overflow-hidden rounded-[28px] border transition-shadow duration-300 hover:shadow-[0_30px_70px_-35px_rgba(0,0,0,0.5)] ${dark ? "border-ink bg-ink text-white" : "border-line bg-white text-ink"}`}>
-      <div className="relative aspect-[16/9] overflow-hidden">{children}</div>
-      <div className="flex flex-1 flex-col p-7 sm:p-9">
-        <p className={`text-[13.5px] font-medium ${dark ? "text-gold-fill" : "text-gold"}`}>{eyebrow}</p>
-        <p className="mt-2 text-[32px] font-semibold leading-[1.05] tracking-[-0.035em] sm:text-[40px]">{title}</p>
-        <p className={`mt-3 text-[16px] leading-[1.6] ${dark ? "text-white/70" : "text-body"}`}>{body}</p>
-        <ul className="mt-5 flex flex-wrap gap-2">
-          {points.map((p) => (
-            <li key={p} className={`rounded-full px-3 py-1.5 text-[13px] ${dark ? "bg-white/10 text-white/85" : "bg-bg-2 text-body"}`}>{p}</li>
-          ))}
-        </ul>
-        <span className={`mt-8 inline-flex w-fit items-center gap-2 rounded-full px-6 py-3.5 text-[15px] font-medium ${dark ? "bg-white text-ink" : "bg-ink text-white"}`}>
-          {cta} <IconArrow className="transition-transform duration-200 group-hover:translate-x-0.5" />
-        </span>
-      </div>
-    </Link>
   );
 }

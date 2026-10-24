@@ -29,9 +29,9 @@ export default function AboutPage() {
             <p className="mt-4 text-[22px] font-medium tracking-[-0.02em] text-ink">The team behind the brands.</p>
             <p className="mt-6 text-[18px] leading-[1.65] text-body">
               {SITE.name} is run by the people who build and operate {SITE.builtStores.join(", ")} and
-              more. We started by building what our own brands needed: custom websites, payment processing that
-              stays up, search visibility, and a supply chain for research products. {SITE.name} offers the same setup to other
-              businesses, in any industry.
+              more. We started by building what our own brands needed: a supply chain for research products,
+              labels, a warehouse, custom websites and payment processing that stays up. {SITE.name} offers the same setup to
+              research brands, from the first order to full scale.
             </p>
           </div>
           <div className="mt-10">
@@ -49,13 +49,13 @@ export default function AboutPage() {
         <Container>
           <SectionHead title="What we do." />
           <div className="mt-10 grid gap-4 md:grid-cols-2">
-            <Link href="/website-development" className="rounded-2xl border border-line p-7 transition-colors hover:border-ink">
-              <p className="text-[21px] font-semibold tracking-[-0.025em] text-ink">Website development, for any business</p>
-              <p className="mt-2 text-[15.5px] leading-[1.6] text-body">Custom-coded websites and online stores, with payments, SEO and a developer team after launch. You don&rsquo;t need to sell research products to work with us.</p>
-            </Link>
             <Link href="/wholesale" className="rounded-2xl border border-line p-7 transition-colors hover:border-ink">
-              <p className="text-[21px] font-semibold tracking-[-0.025em] text-ink">Wholesale peptides, for research brands</p>
-              <p className="mt-2 text-[15.5px] leading-[1.6] text-body">Our research catalog wholesale or factory-direct, white label and 3PL. Research use only. Each service is quoted separately.</p>
+              <p className="text-[21px] font-semibold tracking-[-0.025em] text-ink">Supply, label and ship</p>
+              <p className="mt-2 text-[15.5px] leading-[1.6] text-body">Our research catalog wholesale or factory-direct, your label on every vial, and 3PL fulfillment. Research use only.</p>
+            </Link>
+            <Link href="/website-development" className="rounded-2xl border border-line p-7 transition-colors hover:border-ink">
+              <p className="text-[21px] font-semibold tracking-[-0.025em] text-ink">Sell it: websites and payments</p>
+              <p className="mt-2 text-[15.5px] leading-[1.6] text-body">A custom-coded store with COA pages and wholesale ordering, payment processing with a backup, and a developer team after launch.</p>
             </Link>
           </div>
         </Container>

@@ -3,7 +3,7 @@ import { IconCheck } from "./icons";
 
 const BUILD = [
   { t: "Live in 72 hours to a week", b: "Our developer team builds it fast, without cutting corners. Any specific request gets built." },
-  { t: "Designed for your brand", b: "A design made for you, not a theme everyone else is using. Any industry." },
+  { t: "Designed for your brand", b: "A design made for your research brand, not a theme every other store is using." },
   { t: "Custom-coded", b: "Hand-written code on a modern stack. No page builders, no bloated plugins, no AI filler." },
   { t: "Fast on every phone", b: "Built mobile-first, because that is where most of your customers are." },
   { t: "Found on Google and in AI search", b: "Clean structure, structured data and answers written to be quoted." },

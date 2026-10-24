@@ -15,6 +15,14 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  // Vanta Foundry serves research brands only (owner, 2026-10-24); the old
+  // any-industry pages send visitors home.
+  async redirects() {
+    return [
+      { source: "/industries", destination: "/", permanent: true },
+      { source: "/industries/:slug*", destination: "/", permanent: true },
+    ];
+  },
   async headers() {
     return [
       {

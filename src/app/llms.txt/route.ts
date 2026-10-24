@@ -1,6 +1,5 @@
 import { SERVICES } from "@/lib/services";
 import { GUIDES } from "@/lib/guides";
-import { INDUSTRIES } from "@/lib/industries";
 import { RUO_NOTICE, SITE } from "@/lib/site";
 import { CATALOG, productPath } from "@/lib/catalog";
 import { DEV_SERVICES } from "@/lib/dev-services";
@@ -23,23 +22,19 @@ export function GET() {
     "",
     RUO_NOTICE,
     "",
-    "## Website development (any lawful business)",
-    "",
-    `- [${SEO_PAGES.websiteDevelopment.h1}](${SITE.url}/website-development): ${SEO_PAGES.websiteDevelopment.description}`,
-    ...DEV_SERVICES.map((d) => `- [${d.seo.h1}](${SITE.url}${d.seo.route}): ${d.seo.description}`),
-    "",
     "## Wholesale peptides (research use only)",
     "",
     ...[SEO_PAGES.wholesale, SEO_PAGES.catalog, SEO_PAGES.testing, SEO_PAGES.ordering].map((p) => `- [${p.h1}](${SITE.url}${p.route}): ${p.description}`),
     `- Products: ${CATALOG.map((p) => `[${p.name}](${SITE.url}${productPath(p.slug)})`).join(", ")}`,
     "",
-    "## Other services",
+    "## Supply, fulfillment and payments for research brands",
     "",
     ...SERVICES.filter((s) => !["website-development", "wholesale"].includes(s.slug)).map((s) => `- [${s.name}](${SITE.url}/${s.slug}): ${s.answer}`),
     "",
-    "## Industries",
+    "## Websites for research brands",
     "",
-    ...INDUSTRIES.map((i) => `- [${i.name}](${SITE.url}/industries/${i.slug}): ${i.answer}`),
+    `- [${SEO_PAGES.websiteDevelopment.h1}](${SITE.url}/website-development): ${SEO_PAGES.websiteDevelopment.description}`,
+    ...DEV_SERVICES.map((d) => `- [${d.seo.h1}](${SITE.url}${d.seo.route}): ${d.seo.description}`),
     "",
     "## Guides",
     "",
@@ -50,7 +45,7 @@ export function GET() {
     `- [Standards](${SITE.url}/standards): How supply is documented, and the research-use-only line partners are held to.`,
     `- [Get started](${SITE.url}/get-started): Pick services and send the request on WhatsApp or by email.`,
     `- [Wholesale & 3PL](${SITE.url}/supply): Research peptides wholesale or factory-direct with a COA for every wholesale lot, white label and 3PL fulfillment. Research use only.`,
-    `- [Our work](${SITE.url}/work): Storefronts our team designed and coded: research supply (Vanta Labs and Genesis Biomapping, both live), and concept stores for skincare, coffee and athletic apparel.`,
+    `- [Our work](${SITE.url}/work): Research-supply stores our team designed and coded: Vanta Labs and Genesis Biomapping, both live.`,
     `- [Vanta Labs case study](${SITE.url}/work/vanta-labs): ${SEO_PAGES.caseVantaLabs.description}`,
     `- [Glossary](${SITE.url}/glossary): Plain-English definitions of payments, SEO/GEO and supply terms.`,
     `- [About](${SITE.url}/about): The team behind ${SITE.builtStores.join(", ")} and more.`,

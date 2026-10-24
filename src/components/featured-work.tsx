@@ -1,6 +1,5 @@
 import Image from "next/image";
-import Link from "next/link";
-import { IconArrow, IconArrowUpRight } from "./icons";
+import { IconArrowUpRight } from "./icons";
 
 const LIVE = [
   {
@@ -23,14 +22,10 @@ const LIVE = [
   },
 ];
 
-const MORE = [
-  { name: "Solenne", kind: "Skincare", src: "/showcase/solenne-desktop.webp" },
-  { name: "Halcyon", kind: "Specialty coffee", src: "/showcase/halcyon-desktop.webp" },
-];
 
 /**
  * Live sites first, shown the way they look on a laptop and a phone, with
- * what we did on each and a link to visit. Then brands in other industries.
+ * what we did on each and a link to visit.
  */
 export function FeaturedWork() {
   return (
@@ -69,24 +64,6 @@ export function FeaturedWork() {
           </div>
         </article>
       ))}
-      <ul className="grid gap-5 md:grid-cols-2">
-        {MORE.map((m) => (
-          <li key={m.name}>
-            <Link href="/work" className="group block overflow-hidden rounded-[28px] border border-line">
-              <div className="relative aspect-[16/10] overflow-hidden bg-bg-2">
-                <Image src={m.src} alt={`${m.name} website`} fill sizes="(min-width: 768px) 560px, 100vw" className="object-cover object-left-top transition-transform duration-700 group-hover:scale-[1.03]" />
-              </div>
-              <div className="flex items-center justify-between px-6 py-5">
-                <div>
-                  <p className="text-[18px] font-semibold tracking-[-0.02em] text-ink">{m.name}</p>
-                  <p className="text-[13.5px] text-muted">{m.kind} · design &amp; build</p>
-                </div>
-                <IconArrow className="text-ink transition-transform duration-200 group-hover:translate-x-0.5" />
-              </div>
-            </Link>
-          </li>
-        ))}
-      </ul>
     </div>
   );
 }

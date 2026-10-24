@@ -32,7 +32,7 @@ export default function ContactPage() {
           <div className="flex flex-col rounded-2xl bg-ink p-7 text-white sm:p-9">
             <h2 className="text-[24px] font-semibold tracking-[-0.025em]">Website Inquiry</h2>
             <p className="mt-2 text-[16px] leading-[1.6] text-white/70">
-              A new website, a redesign, a store or a buyer portal, for any business. Answer a few quick questions and send your brief
+              A new store, a redesign or a buyer portal for your research brand. Answer a few quick questions and send your brief
               from the page. A project lead replies with a written quote and timeline.
             </p>
             <Link href="/start/website-development" className="btn mt-7 h-12 w-fit bg-white px-6 text-[15px] text-ink hover:bg-white/90">

@@ -43,7 +43,7 @@ const RUO: FlowQuestion = { q: "Confirm research use", label: "Research use", op
 
 export const FLOWS: Record<string, Flow> = {
   "website-development": {
-    promise: "A premium, custom-coded website for any industry, designed for your brand, live in 72 hours to a week, and looked after by your own developer team.",
+    promise: "A premium, custom-coded store for your research brand, designed for you, live in 72 hours to a week, and looked after by your own developer team.",
     showcase: true,
     contact: "form",
     pillars: [
@@ -57,14 +57,14 @@ export const FLOWS: Record<string, Flow> = {
         q: "What are you building?",
         label: "Project",
         options: [
-          { label: "Online store", desc: "Products, cart, checkout and accounts" },
-          { label: "Service or booking business", desc: "Bookings, consultations and payments" },
-          { label: "Company or brand site", desc: "Who you are, what you do, how to reach you" },
-          { label: "Landing page", desc: "One page built to convert" },
+          { label: "Online store", desc: "Catalog, COA pages, cart and checkout" },
+          { label: "Wholesale ordering", desc: "Quote requests, quantity pricing and reorders" },
+          { label: "Store and wholesale", desc: "Retail checkout and a buyer portal on one site" },
+          { label: "Redesign my current site", desc: "Keep your products, rebuild the store" },
           { label: "Not sure yet", desc: "We'll recommend the right build" },
         ],
       },
-      { q: "What's your industry?", label: "Industry", options: ["Skincare & beauty", "Health, clinics & wellness", "Food & beverage", "Apparel & fashion", "Research supply", "Home & local services", "Professional services", "Something else"] },
+      { q: "Where is your brand today?", label: "Stage", options: ["Just starting", "Selling, want a better site", "Established, adding wholesale", "Something else"] },
       {
         q: "What do you want included?",
         label: "Included",
@@ -73,7 +73,7 @@ export const FLOWS: Record<string, Flow> = {
         options: [
           { label: "Custom design", desc: "Designed from scratch for your brand" },
           { label: "Online store & checkout", desc: "Cards, Apple Pay, Google Pay" },
-          { label: "Booking & appointments", desc: "Clients book and pay online" },
+          { label: "COA library", desc: "Lab reports searchable by product and lot" },
           { label: "SEO (Google)", desc: "Rank in search and Google Maps" },
           { label: "GEO (AI search)", desc: "Get recommended by ChatGPT, Gemini, Perplexity" },
           { label: "Payment processing", desc: "Merchant account with a backup" },
