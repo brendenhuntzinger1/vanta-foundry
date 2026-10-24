@@ -35,12 +35,14 @@ Websites and payment processing are offered to research-supply brands only (owne
   but we're a full startup partner, not just 3PL (owner rejected "Your label.
   We ship it." for implying 3PL only). With Browse the catalog and WhatsApp
   "Get wholesale pricing". No stock photos anywhere on the homepage (owner
-  rejected them twice). The hero shows three cards: Website development (the
-  live Vanta Labs store, with SEO, AEO, GEO and developer team 24/7),
-  Wholesale catalog (a screenshot of our real catalog page) and Payment
-  processing (a phone checkout, no prices). Then the brand
-  row, what we do (supply, label and ship; sell it), the catalog preview,
-  the two live stores, FAQ.
+  rejected them twice).
+- Homepage layout (owner approved 2026-10-24, "crisp, premium" like Amino
+  Engine, minus any email/SMS pitch): centered hero, then our real catalog
+  page in a laptop frame, the brand row, then one section per service
+  (wholesale, white label, 3PL, websites with SEO/AEO/GEO and developers
+  24/7, card processing), each with a coded panel from
+  `src/components/home-showcase.tsx`: no prices, illustrative items tagged
+  "example". Then "Starting from zero?", FAQ and the CTA band.
 - We source beyond the catalog (owner: "if they need anything else we can
   get it"): say so in the hero, the catalog preview, the catalog page, the
   wholesale tile and the FAQ.
