@@ -17,6 +17,7 @@ const P = SEO_PAGES.catalog;
 export const metadata: Metadata = pageMetadata({ path: P.route, title: P.title, description: P.description });
 
 const FAQS = [
+  { q: "Is this everything you have?", a: "No. The catalog shows part of what we have. Ask us on WhatsApp or by email and we reply with availability and pricing, or source it factory-direct." },
   { q: "Are quantities per vial or per kit?", a: `Per vial. ${QUANTITY_NOTE}` },
   { q: "Can several products share one inquiry?", a: "Yes. Tap Add to list on each product, set the size and number of vials for each, then send the whole list on WhatsApp or by email from the bar at the bottom of the screen." },
   { q: "Where are the prices?", a: "We send them to you. Wholesale pricing depends on the products, sizes and quantities, so every inquiry gets a written quote." },
@@ -52,15 +53,15 @@ export default function CatalogPage() {
           </div>
           <div className="mt-8 flex flex-col gap-5 rounded-2xl border border-line bg-bg-2 p-6 sm:flex-row sm:items-center sm:justify-between sm:p-7">
             <div className="max-w-xl">
-              <p className="text-[17px] font-semibold text-ink">Don&rsquo;t see what you need?</p>
+              <p className="text-[17px] font-semibold text-ink">This isn&rsquo;t everything we have.</p>
               <p className="mt-1.5 text-[15.5px] leading-[1.6] text-body">
-                This is what we have ready to go. For anything else, we source it factory-direct, label it with your brand and
-                store and ship it for you (3PL).
+                We list part of our range online. If you don&rsquo;t see what you need, ask us: we have more than what&rsquo;s
+                shown, and anything else we source factory-direct, label with your brand and store and ship for you (3PL).
               </p>
             </div>
             <ContactButtons
               single
-              message="Hi Vanta Foundry, I'm looking for a product that isn't in your catalog:"
+              message="Hi Vanta Foundry, I'm looking for a product I don't see in your catalog:"
               subject="Product request"
               className="shrink-0"
             />

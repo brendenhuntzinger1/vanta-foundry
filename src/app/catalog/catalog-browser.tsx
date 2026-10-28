@@ -11,6 +11,53 @@ import { AddToInquiry } from "@/components/inquiry";
 
 const ALL = "All";
 
+const REQUEST = [
+  "Hi Vanta Foundry, I'm looking for a product I don't see in the catalog:",
+  "",
+  "Vial size: ",
+  "Number of vials: ",
+].join("\n");
+
+/**
+ * The catalog shows part of what we have (owner, 2026-10-28: "so customers
+ * don't think that's all we have"). This tile closes the grid and fills an
+ * empty search, so a missing product is never a dead end. It never repeats
+ * the search: a visitor's text (a drug name, say) must not become our copy
+ * (owner, 2026-10-28).
+ */
+function MoreTile() {
+  const wa = whatsappLink(REQUEST);
+  const mail = emailLink("Product request", REQUEST);
+  return (
+    <div className="flex h-full flex-col justify-between rounded-2xl border-2 border-dashed border-line-2 bg-bg-2 p-5 sm:p-6">
+      <div>
+        <span className="flex h-11 w-11 items-center justify-center rounded-full bg-white text-[22px] leading-none text-ink" aria-hidden="true">+</span>
+        <p className="mt-4 text-[18px] font-semibold leading-snug tracking-[-0.02em] text-ink sm:text-[20px]">
+          We have more than what&rsquo;s shown.
+        </p>
+        <p className="mt-2 text-[14px] leading-[1.55] text-body">
+          These are the products we list online, not everything we carry. Ask us and we reply with availability and pricing.
+        </p>
+      </div>
+      <div className="mt-5">
+        <a
+          href={wa ?? mail}
+          {...(wa ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+          onClick={() => track("contact_click", { channel: wa ? "whatsapp" : "email", form: "product_request" })}
+          className="btn btn-dark h-10 w-full text-[13.5px]"
+        >
+          {wa ? <IconWhatsApp className="text-wa" /> : <IconMail />} Ask for a product
+        </a>
+        {wa && (
+          <a href={mail} onClick={() => track("contact_click", { channel: "email", form: "product_request" })} className="mt-2 block text-center text-[12.5px] text-muted underline-offset-2 hover:text-ink hover:underline">
+            or email
+          </a>
+        )}
+      </div>
+    </div>
+  );
+}
+
 function inquiry(p: CatalogProduct) {
   return [
     `Hi Vanta Foundry, I'd like wholesale pricing for ${p.name} (${p.sizes.join(" / ")}).`,
@@ -78,7 +125,10 @@ export function CatalogBrowser() {
       </div>
 
       {shown.length === 0 ? (
-        <p className="mt-8 text-[15px] text-body">Nothing matches &ldquo;{query}&rdquo;.</p>
+        <div className="mt-8 max-w-sm">
+          <p className="mb-4 text-[15px] text-body">Nothing listed online matches that search.</p>
+          <MoreTile />
+        </div>
       ) : (
         <ul className="mt-8 grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
           {shown.map((p) => {
@@ -123,12 +173,15 @@ export function CatalogBrowser() {
               </li>
             );
           })}
+          <li className="col-span-2 sm:col-span-1">
+            <MoreTile />
+          </li>
         </ul>
       )}
 
       <p className="mt-10 text-[13.5px] text-muted">
         Want several products? Tap <span className="font-medium text-ink">Add to list</span> on each one, then send the whole
-        list at once from the bar at the bottom of the screen. Need a product we don&rsquo;t list? Message us and we source it.
+        list at once from the bar at the bottom of the screen. Need a product we don&rsquo;t list? We have more than what&rsquo;s shown here: message us and we get it for you.
       </p>
     </div>
   );
