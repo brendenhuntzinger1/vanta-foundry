@@ -30,7 +30,7 @@ const FAQS = [
   },
   {
     q: "Can you get products that aren't in the catalog?",
-    a: "Yes. The catalog is what we keep in stock. Tell us what you need on WhatsApp or by email and we source it, with documentation, and quote it in writing.",
+    a: "Yes. The catalog online is only part of what we have. Tell us what you need on WhatsApp or by email and we get it, sourcing it with documentation where we need to, and quote it in writing.",
   },
   {
     q: "Can I start a brand from nothing?",
@@ -47,6 +47,7 @@ const FAQS = [
 ];
 export default function Home() {
   const wa = whatsappLink("Hi Vanta Foundry, I'd like wholesale pricing.");
+  const ask = whatsappLink("Hi Vanta Foundry, I'm looking for a product I don't see in your catalog:");
   return (
     <>
       {/* Hero */}
@@ -83,6 +84,16 @@ export default function Home() {
               </div>
               <Image src="/showcase/catalog-wide.webp" alt="Our wholesale catalog: products with COA badges and Inquire buttons" width={2336} height={1308} sizes="(min-width: 1024px) 950px, 100vw" className="h-auto w-full" priority />
             </Laptop>
+            {/* Owner, 2026-10-28: make it clear the vials shown aren't all we have. */}
+            <p className="mx-auto mt-6 max-w-[620px] text-center text-[15px] leading-[1.6] text-body">
+              A few of the {CATALOG.length} products listed online, and we have more than what&rsquo;s shown.{" "}
+              {ask ? (
+                <a href={ask} target="_blank" rel="noopener noreferrer" className="font-medium text-ink underline underline-offset-4">Ask for any peptide by name</a>
+              ) : (
+                <Link href="/contact" className="font-medium text-ink underline underline-offset-4">Ask for any peptide by name</Link>
+              )}
+              .
+            </p>
           </div>
           <div className="mt-14 flex flex-col items-center gap-3 border-y border-line py-6 sm:flex-row sm:justify-between">
             <p className="text-[13.5px] text-muted">The team behind</p>
