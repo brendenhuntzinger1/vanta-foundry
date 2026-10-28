@@ -11,35 +11,32 @@ import { AddToInquiry } from "@/components/inquiry";
 
 const ALL = "All";
 
-function request(name?: string) {
-  return [
-    name ? `Hi Vanta Foundry, do you have ${name}? I don't see it in the catalog.` : "Hi Vanta Foundry, I'm looking for a product I don't see in the catalog:",
-    "",
-    "Vial size: ",
-    "Number of vials: ",
-  ].join("\n");
-}
+const REQUEST = [
+  "Hi Vanta Foundry, I'm looking for a product I don't see in the catalog:",
+  "",
+  "Vial size: ",
+  "Number of vials: ",
+].join("\n");
 
 /**
  * The catalog shows part of what we have (owner, 2026-10-28: "so customers
- * don't think that's all we have"). This tile closes the grid, and the empty
- * search result asks for the searched name, so a missing product is never a
- * dead end.
+ * don't think that's all we have"). This tile closes the grid and fills an
+ * empty search, so a missing product is never a dead end. It never repeats
+ * the search: a visitor's text (a drug name, say) must not become our copy
+ * (owner, 2026-10-28).
  */
-function MoreTile({ name }: { name?: string }) {
-  const wa = whatsappLink(request(name));
-  const mail = emailLink("Product request", request(name));
+function MoreTile() {
+  const wa = whatsappLink(REQUEST);
+  const mail = emailLink("Product request", REQUEST);
   return (
     <div className="flex h-full flex-col justify-between rounded-2xl border-2 border-dashed border-line-2 bg-bg-2 p-5 sm:p-6">
       <div>
         <span className="flex h-11 w-11 items-center justify-center rounded-full bg-white text-[22px] leading-none text-ink" aria-hidden="true">+</span>
         <p className="mt-4 text-[18px] font-semibold leading-snug tracking-[-0.02em] text-ink sm:text-[20px]">
-          {name ? <>We can still get {name}.</> : <>We have more than what&rsquo;s shown.</>}
+          We have more than what&rsquo;s shown.
         </p>
         <p className="mt-2 text-[14px] leading-[1.55] text-body">
-          {name
-            ? "It isn't listed online, but that doesn't mean we don't have it. Ask, and we reply with availability and pricing."
-            : "These are the products we list online, not everything we carry. Ask for any peptide by name and we get it for you."}
+          These are the products we list online, not everything we carry. Ask us and we reply with availability and pricing.
         </p>
       </div>
       <div className="mt-5">
@@ -129,8 +126,8 @@ export function CatalogBrowser() {
 
       {shown.length === 0 ? (
         <div className="mt-8 max-w-sm">
-          <p className="mb-4 text-[15px] text-body">Nothing listed matches &ldquo;{query}&rdquo;.</p>
-          <MoreTile name={query.trim() || undefined} />
+          <p className="mb-4 text-[15px] text-body">Nothing listed online matches that search.</p>
+          <MoreTile />
         </div>
       ) : (
         <ul className="mt-8 grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
