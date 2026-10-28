@@ -88,9 +88,9 @@ export default function Home() {
             <p className="mx-auto mt-6 max-w-[620px] text-center text-[15px] leading-[1.6] text-body">
               A few of the {CATALOG.length} products listed online, and we have more than what&rsquo;s shown.{" "}
               {ask ? (
-                <a href={ask} target="_blank" rel="noopener noreferrer" className="font-medium text-ink underline underline-offset-4">Ask for any peptide by name</a>
+                <a href={ask} target="_blank" rel="noopener noreferrer" className="font-medium text-ink underline underline-offset-4">Ask us for it</a>
               ) : (
-                <Link href="/contact" className="font-medium text-ink underline underline-offset-4">Ask for any peptide by name</Link>
+                <Link href="/contact" className="font-medium text-ink underline underline-offset-4">Ask us for it</Link>
               )}
               .
             </p>

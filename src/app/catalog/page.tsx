@@ -17,7 +17,7 @@ const P = SEO_PAGES.catalog;
 export const metadata: Metadata = pageMetadata({ path: P.route, title: P.title, description: P.description });
 
 const FAQS = [
-  { q: "Is this everything you have?", a: "No. The catalog shows part of what we have. Ask for any peptide by name on WhatsApp or by email and we reply with availability and pricing, or source it factory-direct." },
+  { q: "Is this everything you have?", a: "No. The catalog shows part of what we have. Ask us on WhatsApp or by email and we reply with availability and pricing, or source it factory-direct." },
   { q: "Are quantities per vial or per kit?", a: `Per vial. ${QUANTITY_NOTE}` },
   { q: "Can several products share one inquiry?", a: "Yes. Tap Add to list on each product, set the size and number of vials for each, then send the whole list on WhatsApp or by email from the bar at the bottom of the screen." },
   { q: "Where are the prices?", a: "We send them to you. Wholesale pricing depends on the products, sizes and quantities, so every inquiry gets a written quote." },
@@ -55,7 +55,7 @@ export default function CatalogPage() {
             <div className="max-w-xl">
               <p className="text-[17px] font-semibold text-ink">This isn&rsquo;t everything we have.</p>
               <p className="mt-1.5 text-[15.5px] leading-[1.6] text-body">
-                We list part of our range online. If you don&rsquo;t see a peptide, ask for it by name: we have more than what&rsquo;s
+                We list part of our range online. If you don&rsquo;t see what you need, ask us: we have more than what&rsquo;s
                 shown, and anything else we source factory-direct, label with your brand and store and ship for you (3PL).
               </p>
             </div>
